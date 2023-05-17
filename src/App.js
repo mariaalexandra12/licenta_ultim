@@ -1,11 +1,17 @@
-import './App.css';
+import React from "react";
+
+import MenuItem from "./components/MenuItem";
+import Navig from "./components/Navig";
+
 
 
 function App() {
   return (
-    <>
-    <button>Click here</button>
-    </>
+    <div>
+      
+      <MenuItem />
+      <Navig/>
+    </div>
   );
 }
 
