@@ -26,7 +26,7 @@ const Navig=()=>{
                   </ListItemButton>
                   <ListItemButton>
                   <Button variant="contained" startIcon={<SummarizeRoundedIcon/>} 
-                  color="secondary">Rapoarte</Button>
+                  color="secondary" >Rapoarte</Button>
                   </ListItemButton>
                   <ListItemButton>
                   <Button variant="contained" startIcon={<AddCircleOutlineRoundedIcon/>}
