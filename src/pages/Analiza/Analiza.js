@@ -2,9 +2,9 @@ import React from 'react';
 
 const Analiza=()=>{
     return (
-        <>
-        <h1>Analiza</h1>
-        </>
+        <div style={{marginLeft:'500px'}}>
+            ANAL
+        </div>
     )
 
 }

@@ -2,9 +2,7 @@ import React from 'react';
 
 const AdaugaFacturi=()=>{
     return (
-        <>
-        <h1>AdaugaFacturi</h1>
-        </>
+        <h1>Adauga facturi</h1>
     )
 
 }
