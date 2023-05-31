@@ -1,9 +1,13 @@
 import React from "react";
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
-import MenuItem from './MenuItem';
 import Button from '@mui/material/Button'
-
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import ReceiptIcon from '@mui/icons-material/Receipt';
+import SummarizeRoundedIcon from '@mui/icons-material/SummarizeRounded';
+import AddCircleOutlineRoundedIcon from '@mui/icons-material/AddCircleOutlineRounded';
+import AssessmentRoundedIcon from '@mui/icons-material/AssessmentRounded';
+import { ListItemButton} from "@mui/material";
 
 const Navig=()=>{
     return (
@@ -11,8 +15,29 @@ const Navig=()=>{
             <Drawer variant="permanent" open={true}>
                 <div>
                   <h1>Invoice Reader App</h1>
-                  <Button variant="contained" 
-                  onClick={()=>console.log("Invoice Reader App")}>First Mui com</Button>
+                  <List>
+                  <ListItemButton>
+                    <Button variant="contained" startIcon={<DashboardIcon/>}
+                    color="success">Dashboard</Button>
+                  </ListItemButton>
+                  <ListItemButton>
+                  <Button variant="contained" startIcon={<ReceiptIcon/>}
+                  color="error">Facturi</Button>
+                  </ListItemButton>
+                  <ListItemButton>
+                  <Button variant="contained" startIcon={<SummarizeRoundedIcon/>} 
+                  color="secondary">Rapoarte</Button>
+                  </ListItemButton>
+                  <ListItemButton>
+                  <Button variant="contained" startIcon={<AddCircleOutlineRoundedIcon/>}
+                  color="info">Adauga Facturi</Button>
+                  </ListItemButton>
+                  <ListItemButton>
+                  <Button variant="contained" startIcon={<AssessmentRoundedIcon/>}
+                  color="warning">Analiza</Button>
+                  </ListItemButton>
+                  </List>
+                  
                 </div>
             </Drawer>
         </div>

@@ -1,8 +1,7 @@
 import React from "react";
 
-import MenuItem from "./components/MenuItem";
 import Navig from "./components/Navig";
-import OCRComponent from "./components/OCRComponent";
+
 
 
 
