@@ -8,7 +8,6 @@ import Navig from "./components/Navig";
 function App() {
   return (
     <div>
-      
       <MenuItem />
       <Navig/>
     </div>
