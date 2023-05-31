@@ -10,9 +10,11 @@ import AssessmentRoundedIcon from '@mui/icons-material/AssessmentRounded';
 import invoice from "./images/invoice.png";
 import { ListItem, ListItemAvatar, ListItemButton} from "@mui/material";
 import Divider from "@mui/material/Divider";
+import { useNavigate } from "react-router-dom";
 
 
 const Navig=()=>{
+    const navigate=useNavigate();
     return (
         <div>
             <Drawer variant="permanent" open={true}>
@@ -25,17 +27,18 @@ const Navig=()=>{
                   </ListItemButton>
                 
                   <ListItemButton>
-                    
                      <Button variant="contained" color="error" startIcon={<ReceiptIcon/>}>Facturi</Button>
                   </ListItemButton>
 
 
                   <ListItemButton>
                     
-                    <Button variant="contained" color="secondary" startIcon={<SummarizeRoundedIcon/>}>Rapoarte</Button>
+                    <Button variant="contained" color="secondary" 
+                    startIcon={<SummarizeRoundedIcon/>}
+                    onClick={()=>navigate("rapoarte")}>Rapoarte</Button>
                   </ListItemButton>
 
-                  <ListItemButton>
+                  <ListItemButton> 
                    <Button variant="contained" color="info" startIcon={<AddCircleOutlineRoundedIcon/>}>Adauga Facturi</Button>
                   </ListItemButton>
 
