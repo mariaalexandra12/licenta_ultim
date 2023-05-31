@@ -21,39 +21,27 @@ const Navig=()=>{
                   <h1>Invoice Read</h1>
                   <List>
                   <ListItemButton>
-                    <ListItemAvatar>
-                        <DashboardIcon/>
-                    </ListItemAvatar>
-                    <Button variant="contained" color="success">Dashboard</Button>
+                    <Button variant="contained" color="success" startIcon={<DashboardIcon/>}>Dashboard</Button>
                   </ListItemButton>
                 
                   <ListItemButton>
-                     <ListItemAvatar>
-                        <ReceiptIcon/>
-                     </ListItemAvatar>
-                     <Button variant="contained" color="error">Facturi</Button>
+                    
+                     <Button variant="contained" color="error" startIcon={<ReceiptIcon/>}>Facturi</Button>
                   </ListItemButton>
 
 
                   <ListItemButton>
-                    <ListItemAvatar>
-                        <SummarizeRoundedIcon/>
-                    </ListItemAvatar>
-                    <Button variant="contained" color="secondary" >Rapoarte</Button>
+                    
+                    <Button variant="contained" color="secondary" startIcon={<SummarizeRoundedIcon/>}>Rapoarte</Button>
                   </ListItemButton>
 
                   <ListItemButton>
-                   <ListItemAvatar>
-                    <AddCircleOutlineRoundedIcon/>
-                   </ListItemAvatar>
-                   <Button variant="contained" color="info">Adauga Facturi</Button>
+                   <Button variant="contained" color="info" startIcon={<AddCircleOutlineRoundedIcon/>}>Adauga Facturi</Button>
                   </ListItemButton>
 
                   <ListItemButton>
-                    <ListItemAvatar>
-                        <AssessmentRoundedIcon/>
-                    </ListItemAvatar>
-                    <Button variant="contained" color="warning">Analiza</Button>
+                    
+                    <Button variant="contained" color="warning" startIcon={<AssessmentRoundedIcon/>}>Analiza</Button>
                   </ListItemButton>
                   </List>
                   </div>
