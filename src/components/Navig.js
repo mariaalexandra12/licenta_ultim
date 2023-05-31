@@ -1,12 +1,17 @@
 import React from "react";
 import Drawer from '@mui/material/Drawer';
-import { useStyles } from "../styles";
 import List from '@mui/material/List';
 import MenuItem from './MenuItem';
+import { makeStyles, withStyles } from 'tss-react/mui'
 
+const styles = makeStyles({
+    navlogo:{
+        width: '50%',
+    },
+});
 
 const Navig=()=>{
-    const classes=useStyles();
+    const classes=styles();
     return (
         <div>
             <Drawer  variant="permanent" open={true}>

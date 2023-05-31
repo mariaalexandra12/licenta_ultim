@@ -9,7 +9,8 @@ import OCRComponent from "./components/OCRComponent";
 function App() {
   return (
     <div>
-      
+      <Navig/>
+      <MenuItem/>
     </div>
   );
 }
