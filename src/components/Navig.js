@@ -7,6 +7,7 @@ import ReceiptIcon from '@mui/icons-material/Receipt';
 import SummarizeRoundedIcon from '@mui/icons-material/SummarizeRounded';
 import AddCircleOutlineRoundedIcon from '@mui/icons-material/AddCircleOutlineRounded';
 import AssessmentRoundedIcon from '@mui/icons-material/AssessmentRounded';
+import invoice from "./images/invoice.png";
 import { ListItemButton} from "@mui/material";
 
 const Navig=()=>{
@@ -14,7 +15,7 @@ const Navig=()=>{
         <div>
             <Drawer variant="permanent" open={true}>
                 <div>
-                  <h1>Invoice Reader App</h1>
+                <img src={invoice} alt="Invoice" title="Invoice Reader App"/>
                   <List>
                   <ListItemButton>
                     <Button variant="contained" startIcon={<DashboardIcon/>}
