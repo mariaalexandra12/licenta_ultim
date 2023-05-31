@@ -23,11 +23,13 @@ const Navig=()=>{
                   <h1>Invoice Read</h1>
                   <List>
                   <ListItemButton>
-                    <Button variant="contained" color="success" startIcon={<DashboardIcon/>}>Dashboard</Button>
+                    <Button variant="contained" color="success" startIcon={<DashboardIcon/>}
+                    onClick={()=>navigate("dashboard")}>Dashboard</Button>
                   </ListItemButton>
                 
                   <ListItemButton>
-                     <Button variant="contained" color="error" startIcon={<ReceiptIcon/>}>Facturi</Button>
+                     <Button variant="contained" color="error" startIcon={<ReceiptIcon/>}
+                     onClick={()=>navigate("facturi")}>Facturi</Button>
                   </ListItemButton>
 
 
@@ -39,12 +41,13 @@ const Navig=()=>{
                   </ListItemButton>
 
                   <ListItemButton> 
-                   <Button variant="contained" color="info" startIcon={<AddCircleOutlineRoundedIcon/>}>Adauga Facturi</Button>
+                   <Button variant="contained" color="info" startIcon={<AddCircleOutlineRoundedIcon/>}
+                   onClick={()=>navigate("adaugaFacturi")}>Adauga Facturi</Button>
                   </ListItemButton>
 
                   <ListItemButton>
-                    
-                    <Button variant="contained" color="warning" startIcon={<AssessmentRoundedIcon/>}>Analiza</Button>
+                    <Button variant="contained" color="warning" startIcon={<AssessmentRoundedIcon/>}
+                    onClick={()=>navigate("analiza")}>Analiza</Button>
                   </ListItemButton>
                   </List>
                   </div>
