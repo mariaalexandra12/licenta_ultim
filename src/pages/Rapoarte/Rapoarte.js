@@ -4,7 +4,6 @@ import Navig from '../../components/Navig';
 const Rapoarte=()=>{
     return (
         <>
-        <Navig/>
         <h1>Rapoarte</h1>
         </>
     )
