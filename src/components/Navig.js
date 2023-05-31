@@ -8,38 +8,56 @@ import SummarizeRoundedIcon from '@mui/icons-material/SummarizeRounded';
 import AddCircleOutlineRoundedIcon from '@mui/icons-material/AddCircleOutlineRounded';
 import AssessmentRoundedIcon from '@mui/icons-material/AssessmentRounded';
 import invoice from "./images/invoice.png";
-import { ListItemButton} from "@mui/material";
+import { ListItem, ListItemAvatar, ListItemButton} from "@mui/material";
+import Divider from "@mui/material/Divider";
+
 
 const Navig=()=>{
     return (
         <div>
             <Drawer variant="permanent" open={true}>
+              <Divider>
                 <div>
-                <img src={invoice} alt="Invoice" title="Invoice Reader App"/>
+                  <h1>Invoice Read</h1>
                   <List>
                   <ListItemButton>
-                    <Button variant="contained" startIcon={<DashboardIcon/>}
-                    color="success">Dashboard</Button>
+                    <ListItemAvatar>
+                        <DashboardIcon/>
+                    </ListItemAvatar>
+                    <Button variant="contained" color="success">Dashboard</Button>
                   </ListItemButton>
+                
                   <ListItemButton>
-                  <Button variant="contained" startIcon={<ReceiptIcon/>}
-                  color="error">Facturi</Button>
+                     <ListItemAvatar>
+                        <ReceiptIcon/>
+                     </ListItemAvatar>
+                     <Button variant="contained" color="error">Facturi</Button>
                   </ListItemButton>
+
+
                   <ListItemButton>
-                  <Button variant="contained" startIcon={<SummarizeRoundedIcon/>} 
-                  color="secondary" >Rapoarte</Button>
+                    <ListItemAvatar>
+                        <SummarizeRoundedIcon/>
+                    </ListItemAvatar>
+                    <Button variant="contained" color="secondary" >Rapoarte</Button>
                   </ListItemButton>
+
                   <ListItemButton>
-                  <Button variant="contained" startIcon={<AddCircleOutlineRoundedIcon/>}
-                  color="info">Adauga Facturi</Button>
+                   <ListItemAvatar>
+                    <AddCircleOutlineRoundedIcon/>
+                   </ListItemAvatar>
+                   <Button variant="contained" color="info">Adauga Facturi</Button>
                   </ListItemButton>
+
                   <ListItemButton>
-                  <Button variant="contained" startIcon={<AssessmentRoundedIcon/>}
-                  color="warning">Analiza</Button>
+                    <ListItemAvatar>
+                        <AssessmentRoundedIcon/>
+                    </ListItemAvatar>
+                    <Button variant="contained" color="warning">Analiza</Button>
                   </ListItemButton>
                   </List>
-                  
-                </div>
+                  </div>
+                </Divider>
             </Drawer>
         </div>
     )
