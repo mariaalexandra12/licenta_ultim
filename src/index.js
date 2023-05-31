@@ -4,13 +4,18 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom";
-
+import {Route,Routes} from "react-router-dom";
+import Rapoarte from "./components/Rapoarte";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-         <App/>
+          <Routes>
+            <Route path="/" element={<App/>}>
+               <Route path="rapoarte" element={<Rapoarte/>}></Route>
+            </Route>
+          </Routes>
     </BrowserRouter>
   </React.StrictMode>
 );
