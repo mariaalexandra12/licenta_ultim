@@ -1,5 +1,19 @@
 import React, { useState } from 'react';
 
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBj-1iw_5zOCZE-RZ1kzuy_wcb58XuW_1M",
+  authDomain: "invoice-reader-4b865.firebaseapp.com",
+  databaseURL: "https://invoice-reader-4b865-default-rtdb.firebaseio.com",
+  projectId: "invoice-reader-4b865",
+  storageBucket: "invoice-reader-4b865.appspot.com",
+  messagingSenderId: "1079218684020",
+  appId: "1:1079218684020:web:759261781a389b346bd121"
+};
+
+
+
+
 function AdaugaFacturi() {
   const [selectedImage,setSelectedImage]=useState();
   const imageChange=(event)=>{
