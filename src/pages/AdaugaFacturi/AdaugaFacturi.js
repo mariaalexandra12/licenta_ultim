@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 
-
-
 function AdaugaFacturi() {
   const [selectedImage,setSelectedImage]=useState();
   const imageChange=(event)=>{
