@@ -10,12 +10,13 @@ import Analiza from "./pages/Analiza/Analiza";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import AdaugaFacturi from "./pages/AdaugaFacturi/AdaugaFacturi";
 import Facturi from "./pages/Facturi/Facturi"
+import Auth from "./pages/Authentification/Auth";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter >
-     <App/>
+    <App/>
           <Routes>
                 <Route path="rapoarte" element={<Rapoarte/>}></Route>
                 <Route path="analiza" element={<Analiza/>}></Route>
