@@ -13,8 +13,8 @@ import InputLabel from '@mui/material/InputLabel';
 import FilledInput from '@mui/material/FilledInput';
 import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton';
-import Alert from '@mui/material/Alert';
-import AlertTitle from '@mui/material/AlertTitle';
+import { useNavigate } from "react-router-dom";
+
 
 
 
@@ -60,11 +60,11 @@ function LogIn(){
 
     
     const handleSubmit=(e)=>{
-        e.preventDefault();
-        if(emailError || password){
-           
-        }
-  }
+        e.preventDefault();      
+     }
+     
+    const n=useNavigate();
+
 
     return (
         <div>
@@ -120,7 +120,7 @@ function LogIn(){
 
         <Button color="secondary" variant="outlined"
         startIcon={<LoginOutlinedIcon/>} style={{width:"80%"}}
-        onClick={handleSubmit}>Log In</Button> 
+        onClick={()=>n('navig')}>Log In</Button> 
 
         </Stack>  
       
