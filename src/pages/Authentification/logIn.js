@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { AlertTitle, Chip} from "@mui/material";
+import { Chip} from "@mui/material";
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import TextField from '@mui/material/TextField';
 import { styled } from '@mui/material/styles';
@@ -13,6 +13,10 @@ import InputLabel from '@mui/material/InputLabel';
 import FilledInput from '@mui/material/FilledInput';
 import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
+
+
 
 function LogIn(){
 
@@ -29,8 +33,14 @@ function LogIn(){
     
     const handleSubmit=(e)=>{
           e.preventDefault();
-          console.log(email);
-          console.log(password);
+          if(emailError){
+            return (
+                <Alert severity="error">
+                  <AlertTitle>Error</AlertTitle>
+                   This is an error alert — <strong>check it out!</strong>
+                </Alert>
+            )
+          }
     }
 
     const [emailError,setEmailError]=useState();
@@ -59,7 +69,6 @@ function LogIn(){
     }
     setPasswordError(false);
     }
-
 
 
     return (
