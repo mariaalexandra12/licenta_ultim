@@ -21,12 +21,12 @@ function Auth(){
             height:"400px",
             color:"primary",
             padding:"10px"}} square="true">
-           
-           {checked ?(<LogIn/>):(<SignUp/>)}
-           <Switch defaultChecked color="secondary" onChange={handleChange}/>
+
+            
             <br/>
-           
-          
+           {checked ?(<LogIn/>):(<SignUp/>)}
+           <Switch defaultChecked color="secondary" onChange={handleChange}
+            checked={checked} inputProps={"controlled"}/>
             </Paper>
         </div>
     );

@@ -6,28 +6,24 @@ import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import LoginOutlinedIcon from '@mui/icons-material/LoginOutlined';
 import Stack from '@mui/material/Stack';
-import Navig from "../../components/Navig";
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import FilledInput from '@mui/material/FilledInput';
+import InputAdornment from '@mui/material/InputAdornment';
+import IconButton from '@mui/material/IconButton';
 
 function LogIn(){
 
-    const [clicked , setClick]=useState();
+    const [showPassword, setShowPassword] = React.useState(false);
 
+    const handleClickShowPassword = () => setShowPassword((show) => !show);
   
+    const handleMouseDownPassword = (event) => {
+      event.preventDefault();
+    };
 
-    const ValidationTextField = styled(TextField)({
-        '& input:valid + fieldset': {
-          borderColor: '#E0E3E7',
-          borderWidth: 1,
-        },
-        '& input:invalid + fieldset': {
-          borderColor: 'red',
-          borderWidth: 1,
-        },
-        '& input:valid:focus + fieldset': {
-          borderLeftWidth: 4,
-          padding: '4px !important',
-        },
-      });
 
     return (
         <div>
@@ -36,30 +32,41 @@ function LogIn(){
            style={{marginLeft: "150px", marginTop: "20px"}}
            />
           <br/>
-          <ValidationTextField
-            label="Email Adress"
-            required
-            variant="outlined"
-            id="validation-outlined-input"
-            style={{marginTop:"50px" , width:"75%"}}
-            helperText="Please enter your email address"
-          />
+          <TextField
+          id="filled-error-helper-text"
+          label="Email Adress"
+          helperText="Please enter your Email Adress."
+          variant="filled"
+          color="secondary"
+          error
+          style={{marginTop:30, width:"75%"}}
+        />
           <br/>
-          <ValidationTextField
-             label="Password"
-             required
-            variant="outlined"
-            id="validation-outlined-input"
-            style={{marginTop:"10px",width:"75%"}}
-            helperText="Please enter your password"
-           />
+          <FormControl sx={{marginTop:2,marginBottom:5, width: '75%' }} variant="filled" >
+          <InputLabel htmlFor="filled-adornment-password"
+          color="secondary" form>Password</InputLabel>
+          <FilledInput
+            id="filled-adornment-password" 
+            type={showPassword ? 'text' : 'password'}
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                  edge="end"
+                >
+                  {showPassword ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            }
+              />
+              </FormControl>
 
           <br/>
-
         <Stack>
         <Button color="secondary" variant="outlined"
-        startIcon={<LoginOutlinedIcon/>}>Log In</Button>
-         
+        startIcon={<LoginOutlinedIcon/>}>Log In</Button>     
         </Stack>  
       
     </div>
