@@ -14,9 +14,7 @@ function Auth(){
     };
     
     return (
-        <div className="auth">
-          <div className='elements' >
-
+        <div className="auth">   
           <Paper elevation={24} style={{
             marginLeft:"400px",
             marginTop:"50px",
@@ -36,7 +34,7 @@ function Auth(){
             {checked ?(<LogIn/>):(<SignUp/>)}
             </Paper>
          </div>
-    </div>
+    
     );
 }
 
