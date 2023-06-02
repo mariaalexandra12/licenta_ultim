@@ -32,6 +32,7 @@ function LogIn(){
            style={{marginLeft: "150px", marginTop: "20px"}}
            />
           <br/>
+          <p>
           <TextField
           id="filled-error-helper-text"
           label="Email Adress"
@@ -39,10 +40,10 @@ function LogIn(){
           variant="filled"
           color="secondary"
           error
-          style={{marginTop:30, width:"80%"}}
+          style={{marginTop:30,width:"80%"}}
         />
-          <br/>
-          <FormControl sx={{marginTop:2,marginBottom:5, width: '80%' }} variant="filled" >
+        </p>
+          <FormControl sx={{marginBottom:5,width:"80%"}} variant="filled" >
           <InputLabel htmlFor="filled-adornment-password"
           color="secondary" form>Password</InputLabel>
           <FilledInput
