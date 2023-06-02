@@ -3,7 +3,6 @@ import Paper from '@mui/material/Paper';
 import Switch from '@mui/material/Switch';
 import SignUp from './signUp';
 import LogIn from './logIn';
-import './auth.css'
 
 function Auth(){
 

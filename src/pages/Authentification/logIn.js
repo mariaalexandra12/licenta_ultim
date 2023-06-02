@@ -30,19 +30,7 @@ function LogIn(){
 
     const [email,setEmail]=useState();
     const [password,setPassword]=useState();
-    
-    const handleSubmit=(e)=>{
-          e.preventDefault();
-          if(emailError){
-            return (
-                <Alert severity="error">
-                  <AlertTitle>Error</AlertTitle>
-                   This is an error alert — <strong>check it out!</strong>
-                </Alert>
-            )
-          }
-    }
-
+   
     const [emailError,setEmailError]=useState();
     const [passwordError,setPasswordError]=useState();
 
@@ -70,6 +58,13 @@ function LogIn(){
     setPasswordError(false);
     }
 
+    
+    const handleSubmit=(e)=>{
+        e.preventDefault();
+        if(emailError || password){
+           
+        }
+  }
 
     return (
         <div>
@@ -122,9 +117,11 @@ function LogIn(){
 
 
         <Stack>
+
         <Button color="secondary" variant="outlined"
         startIcon={<LoginOutlinedIcon/>} style={{width:"80%"}}
-        onClick={handleSubmit}>Log In</Button>     
+        onClick={handleSubmit}>Log In</Button> 
+
         </Stack>  
       
     </div>
