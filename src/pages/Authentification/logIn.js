@@ -48,6 +48,16 @@ function LogIn(){
         setEmailError(true);
         return;
     }
+
+    setEmailError(false);
+}
+
+    const handlePass=()=>{
+    if(!password || password.length < 8 || password.length > 12){
+        setPasswordError(true);
+        return;
+    }
+    setPasswordError(false);
     }
 
 
@@ -81,6 +91,8 @@ function LogIn(){
             id="filled-adornment-password" 
             type={showPassword ? 'text' : 'password'}
             value={password}
+            error={passwordError}
+            onBlur={handlePass}
           onChange={(event) =>setPassword(event.target.value)}
             endAdornment={
               <InputAdornment position="end">
@@ -98,6 +110,8 @@ function LogIn(){
               </FormControl>
 
           <br/>
+
+
         <Stack>
         <Button color="secondary" variant="outlined"
         startIcon={<LoginOutlinedIcon/>} style={{width:"80%"}}
