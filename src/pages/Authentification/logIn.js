@@ -48,24 +48,19 @@ function LogIn(){
     }
 
     setEmailError(false);
-}
+    }
 
     const handlePass=()=>{
     if(!password || password.length < 8 || password.length > 12){
         setPasswordError(true);
+        console.log(setPasswordError());
         return;
     }
     setPasswordError(false);
     }
 
     
-    const handleSubmit=(e)=>{
-        e.preventDefault();      
-     }
      
-    const n=useNavigate();
-
-
     return (
         <div>
           <Chip label="Log In" variant="outlined"
@@ -119,8 +114,7 @@ function LogIn(){
         <Stack>
 
         <Button color="secondary" variant="outlined"
-        startIcon={<LoginOutlinedIcon/>} style={{width:"80%"}}
-        onClick={()=>n('navig')}>Log In</Button> 
+        startIcon={<LoginOutlinedIcon/>} style={{width:"80%"}}>Log In</Button> 
 
         </Stack>  
       

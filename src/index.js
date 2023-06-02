@@ -18,9 +18,8 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter >
-        
+       <Auth/> 
           <Routes>
-             <Route index element={<Auth/>}></Route>
               <Route path="navig" element={<Navig/>}>
                    <Route path="rapoarte" element={<Rapoarte/>}></Route>
                    <Route path="analiza" element={<Analiza/>}></Route>
