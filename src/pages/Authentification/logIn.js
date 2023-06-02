@@ -24,6 +24,15 @@ function LogIn(){
       event.preventDefault();
     };
 
+    const [email,setEmail]=useState();
+    const [password,setPassword]=useState();
+    
+    const handleSubmit=(e)=>{
+          e.preventDefault();
+          console.log(email);
+          console.log(password);
+    }
+
 
     return (
         <div>
@@ -39,16 +48,20 @@ function LogIn(){
           helperText="Please enter your Email Adress."
           variant="filled"
           color="secondary"
-          error
           style={{marginTop:30,width:"80%"}}
+          value={email}
+          onChange={(event) =>setEmail(event.target.value)}
         />
         </p>
-          <FormControl sx={{marginBottom:5,width:"80%"}} variant="filled" >
+          <FormControl sx={{marginBottom:5,width:"80%"}} variant="filled" 
+          >
           <InputLabel htmlFor="filled-adornment-password"
           color="secondary" form>Password</InputLabel>
           <FilledInput
             id="filled-adornment-password" 
             type={showPassword ? 'text' : 'password'}
+            value={password}
+          onChange={(event) =>setPassword(event.target.value)}
             endAdornment={
               <InputAdornment position="end">
                 <IconButton
@@ -67,7 +80,8 @@ function LogIn(){
           <br/>
         <Stack>
         <Button color="secondary" variant="outlined"
-        startIcon={<LoginOutlinedIcon/>} style={{width:"80%"}}>Log In</Button>     
+        startIcon={<LoginOutlinedIcon/>} style={{width:"80%"}}
+        onClick={handleSubmit}>Log In</Button>     
         </Stack>  
       
     </div>
