@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Chip} from "@mui/material";
+import { AlertTitle, Chip} from "@mui/material";
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import TextField from '@mui/material/TextField';
 import { styled } from '@mui/material/styles';
@@ -33,6 +33,24 @@ function LogIn(){
           console.log(password);
     }
 
+    const [emailError,setEmailError]=useState();
+    const [passwordError,setPasswordError]=useState();
+
+    const handleEmail=()=>{
+        if(!email)
+        {
+            setEmailError(true);
+           
+            return;
+        }
+
+    if(!email.endsWith("@gmail.com")){
+        setEmailError(true);
+        return;
+    }
+    }
+
+
 
     return (
         <div>
@@ -51,6 +69,8 @@ function LogIn(){
           style={{marginTop:30,width:"80%"}}
           value={email}
           onChange={(event) =>setEmail(event.target.value)}
+          error={emailError}
+          onBlur={handleEmail}
         />
         </p>
           <FormControl sx={{marginBottom:5,width:"80%"}} variant="filled" 
