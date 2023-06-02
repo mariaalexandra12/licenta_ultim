@@ -39,10 +39,10 @@ function LogIn(){
           variant="filled"
           color="secondary"
           error
-          style={{marginTop:30, width:"75%"}}
+          style={{marginTop:30, width:"80%"}}
         />
           <br/>
-          <FormControl sx={{marginTop:2,marginBottom:5, width: '75%' }} variant="filled" >
+          <FormControl sx={{marginTop:2,marginBottom:5, width: '80%' }} variant="filled" >
           <InputLabel htmlFor="filled-adornment-password"
           color="secondary" form>Password</InputLabel>
           <FilledInput
@@ -66,7 +66,7 @@ function LogIn(){
           <br/>
         <Stack>
         <Button color="secondary" variant="outlined"
-        startIcon={<LoginOutlinedIcon/>}>Log In</Button>     
+        startIcon={<LoginOutlinedIcon/>} style={{width:"80%"}}>Log In</Button>     
         </Stack>  
       
     </div>
