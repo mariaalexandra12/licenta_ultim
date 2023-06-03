@@ -67,10 +67,10 @@ function LogIn(){
 
     const handleLogIn=()=>{
 
-      if(!password || passwordError){
+      if(!password){
          setValid('Please enter a valid password.The password shoul have between 8 and 15 characters!');
       }
-      if(!email || emailError){
+      if(!email){
         setValid('Please enter a valid email address!')
       }
 
