@@ -37,7 +37,6 @@ function LogIn(){
         if(!email)
         {
             setEmailError(true);
-           
             return;
         }
 
@@ -55,7 +54,7 @@ function LogIn(){
     const handlePass=()=>{
     if(!password || password.length < 8 || password.length > 12){
         setPasswordError(true);
-        alert("Please enter a valid password. The passord length should be between 8-12 characters!");
+        alert("Please enter a valid password");
         return;
     }
 
