@@ -59,7 +59,7 @@ function LogIn(){
     setPasswordError(false);
     }
 
-    
+    const nav=useNavigate();
      
     return (
         <div>
@@ -114,7 +114,8 @@ function LogIn(){
         <Stack>
 
         <Button color="secondary" variant="outlined"
-        startIcon={<LoginOutlinedIcon/>} style={{width:"80%"}}>Log In</Button> 
+        startIcon={<LoginOutlinedIcon/>} style={{width:"80%"}}
+        onClick={()=>nav("navig")}>Log In</Button> 
 
         </Stack>  
       
