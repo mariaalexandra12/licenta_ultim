@@ -13,9 +13,7 @@ import InputLabel from '@mui/material/InputLabel';
 import FilledInput from '@mui/material/FilledInput';
 import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton';
-import { useNavigate } from "react-router-dom";
-
-
+import { useNavigate} from "react-router-dom";
 
 
 function LogIn(){
@@ -44,22 +42,37 @@ function LogIn(){
 
     if(!email.endsWith("@gmail.com")){
         setEmailError(true);
+        alert("Please enter a valid email address!");
         return;
     }
 
     setEmailError(false);
     }
 
+  
+
     const handlePass=()=>{
     if(!password || password.length < 8 || password.length > 12){
         setPasswordError(true);
-        console.log(setPasswordError());
+        alert("Please enter a valid password. The passord length should be between 8-12 characters!");
         return;
     }
+
     setPasswordError(false);
     }
 
+    
     const nav=useNavigate();
+
+    const handleLogIn=()=>{
+      
+      if(password || email){
+         nav('navig');
+      }
+      else{
+        alert("Adresa de email/Parola nu se potrivesc!");
+      }
+    }
      
     return (
         <div>
@@ -115,7 +128,7 @@ function LogIn(){
 
         <Button color="secondary" variant="outlined"
         startIcon={<LoginOutlinedIcon/>} style={{width:"80%"}}
-        onClick={()=>nav("navig")}>Log In</Button> 
+        onClick={()=>handleLogIn}>Log In</Button> 
 
         </Stack>  
       
