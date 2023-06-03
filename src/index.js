@@ -20,13 +20,13 @@ root.render(
     <BrowserRouter >
           <Routes>
             <Route exact path="/" element={<Auth/>}></Route>
-              <Route path="navig" element={<Navig/>}>
-                   <Route path="rapoarte" element={<Rapoarte/>}></Route>
-                   <Route path="analiza" element={<Analiza/>}></Route>
-                   <Route path="dashboard" element={<Dashboard/>}></Route>
-                   <Route path="adaugaFacturi" element={<AdaugaFacturi/>}></Route>
-                   <Route path="facturi" element={<Facturi/>}></Route>
-                </Route>
+            <Route  path="navig" element={<Navig/>}></Route>
+              <Route path="rapoarte" element={<Rapoarte/>}></Route>
+              <Route path="navig/analiza" element={<Analiza/>}></Route>
+              <Route path="navig/dashboard" element={<Dashboard/>}></Route>
+              <Route path="navig/adaugaFacturi" element={<AdaugaFacturi/>}></Route>
+              <Route path="navig/facturi" element={<Facturi/>}></Route>
+              
             </Routes>
 
     </BrowserRouter>

@@ -12,22 +12,11 @@ import { ListItem, ListItemAvatar, ListItemButton, ListItemIcon} from "@mui/mate
 import Divider from "@mui/material/Divider";
 import { useNavigate } from "react-router-dom";
 import LogoutIcon from '@mui/icons-material/Logout';
-import { styled, alpha } from '@mui/material/styles';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import InputBase from '@mui/material/InputBase';
-import MenuIcon from '@mui/icons-material/Menu';
-import SearchIcon from '@mui/icons-material/Search';
-import MuiAppBar from '@mui/material/AppBar';
-
 
 
 const Navig=()=>{
     const navigate=useNavigate();
-    
+ 
     return (
         <>  
           <Drawer variant="permanent" open={true}>
@@ -132,14 +121,17 @@ const Navig=()=>{
                     width:"180px"
                     }}
                     startIcon={<LogoutIcon/>}
-                    onClick={()=>navigate("/")} 
+                    onClick={()=>{
+                      if(prompt('Sigur doresti sa log out?')=='DA'){
+                          navigate('/');
+                      }
+                    }} 
                     size="medium">Log Out</Button>
                   </ListItemButton>
                  </List>
               </div>
             </Drawer>
           
-         
     <div/>
   </>
 )};
