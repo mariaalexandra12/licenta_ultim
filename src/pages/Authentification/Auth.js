@@ -11,14 +11,16 @@ function Auth(){
      const handleChange = (event) => {
     setChecked(event.target.checked);
     };
+
+
     
     return (
         <div className="auth">   
           <Paper elevation={24} style={{
             marginLeft:"400px",
             marginTop:"50px",
-            width:"400px",
-            height:"400px",
+            width:"450px",
+            height:"450px",
             color:"primary",
             padding:"10px",
             background: "rgba(218, 185, 241, 0.57)",

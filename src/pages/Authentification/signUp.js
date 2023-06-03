@@ -15,6 +15,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton';
 import { useNavigate} from "react-router-dom";
 import Alert from '@mui/material/Alert';
+import LogIn from "./logIn";
 
 function SignUp(){
 
@@ -77,11 +78,12 @@ function SignUp(){
      };
 
      const nav=useNavigate();
+
       
     return (
         <div>
-        <Chip label="Log In" variant="outlined"
-         icon={<LockOpenIcon/>} color="secondary"
+        <Chip label="Sign Up" variant="outlined"
+         icon={<SensorOccupiedIcon/>} color="secondary"
          style={{marginLeft: "150px", marginTop: "20px"}}
          />
         <br/>
@@ -158,8 +160,8 @@ function SignUp(){
       <Stack>
 
       <Button color="secondary" variant="outlined"
-      startIcon={<LoginOutlinedIcon/>} style={{width:"80%"}}
-      onClick={()=>nav("navig")}>Log In</Button> 
+      startIcon={<SensorOccupiedIcon/>} style={{width:"80%"}}
+      onClick={()=>nav("navig")}>Sign Up</Button> 
       </Stack> 
 
       {valid && (
