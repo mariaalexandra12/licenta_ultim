@@ -23,20 +23,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 const Navig=()=>{
     const navigate=useNavigate();
    
-    const [open, setOpen] = React.useState(false);
-
-    const handleClickOpen = () => {
-      setOpen(true);
-    };
-  
-    const handleClose = () => {
-      setOpen(false);
-    };
-
-    
-
-
-
+    const [open, setOpen] = React.useState(false);  
  
     return (
         <>  
@@ -142,7 +129,15 @@ const Navig=()=>{
                     width:"180px"
                     }}
                     startIcon={<LogoutIcon/>}
-                    onClick={()=>{}}
+                    onClick={()=>{
+                      var result = window.confirm("Sigur doresti sa log out ?");
+                      if(result===true){
+                        navigate("/");
+                      }
+                      else{
+                        return;
+                      }
+                    }}
                     size="medium">Log Out</Button>
                   </ListItemButton>
                  </List>
