@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Chip} from "@mui/material";
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import TextField from '@mui/material/TextField';
-import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import LoginOutlinedIcon from '@mui/icons-material/LoginOutlined';
 import Stack from '@mui/material/Stack';
@@ -14,6 +13,8 @@ import FilledInput from '@mui/material/FilledInput';
 import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton';
 import { useNavigate} from "react-router-dom";
+import Alert from '@mui/material/Alert';
+
 
 
 function LogIn(){
@@ -62,17 +63,19 @@ function LogIn(){
     }
 
     
-    const nav=useNavigate();
+    const [valid, setValid]=useState();
 
     const handleLogIn=()=>{
+
+      if(!password || passwordError){
+         setValid('Please enter a valid password.The password shoul have between 8 and 15 characters!');
+      }
+      if(!email || emailError){
+        setValid('Please enter a valid email address!')
+      }
+
+     }
       
-      if(password || email){
-         nav('navig');
-      }
-      else{
-        alert("Adresa de email/Parola nu se potrivesc!");
-      }
-    }
      
     return (
         <div>
@@ -129,9 +132,15 @@ function LogIn(){
         <Button color="secondary" variant="outlined"
         startIcon={<LoginOutlinedIcon/>} style={{width:"80%"}}
         onClick={()=>handleLogIn}>Log In</Button> 
+        </Stack> 
 
-        </Stack>  
-      
+        {valid && (
+           <Stack sx={{ width: '100%' }} spacing={2}>
+             <Alert severity="error" size="small">{setValid}</Alert>
+           </Stack>
+        )}
+
+          
     </div>
     )
 }
