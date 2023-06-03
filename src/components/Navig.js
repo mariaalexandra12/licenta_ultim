@@ -27,122 +27,10 @@ import MuiAppBar from '@mui/material/AppBar';
 
 const Navig=()=>{
     const navigate=useNavigate();
-    const Search = styled('div')(({ theme }) => ({
-      position: 'relative',
-      borderRadius: theme.shape.borderRadius,
-      background: "rgba( 214, 102, 238, 0.55 )",
-      '&:hover': {
-        background:" rgba( 214, 102, 238, 0.55 )",
-      },
-      marginLeft: 0,
-      width: '100%',
-      [theme.breakpoints.up('sm')]: {
-        marginLeft: theme.spacing(1),
-        width: 'auto',
-      },
-    }));
     
-    const SearchIconWrapper = styled('div')(({ theme }) => ({
-      padding: theme.spacing(0, 2),
-      height: '100%',
-      position: 'absolute',
-      pointerEvents: 'none',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-    }));
-    
-    const StyledInputBase = styled(InputBase)(({ theme }) => ({
-      color: 'inherit',
-      '& .MuiInputBase-input': {
-        padding: theme.spacing(1, 1, 1, 0),
-        // vertical padding + font size from searchIcon
-        paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-        transition: theme.transitions.create('width'),
-        width: '100%',
-        [theme.breakpoints.up('sm')]: {
-          width: '12ch',
-          '&:focus': {
-            width: '20ch',
-          },
-        },
-      },
-    }));
-
-    const [open, setOpen] = React.useState(false);
-
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
-
-  const drawerWidth = 240;
-
-  const AppBar = styled(MuiAppBar, {
-    shouldForwardProp: (prop) => prop !== 'open',
-  })(({ theme, open }) => ({
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    ...(open && {
-      width: `calc(100% - ${drawerWidth}px)`,
-      marginLeft: `${drawerWidth}px`,
-      transition: theme.transitions.create(['margin', 'width'], {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-    }),
-  }));
-
     return (
-        <>
-
-<Box sx={{ display: 'flex'}}>
-          
-               <AppBar position="fixed" open={open} style={{
-                width: `calc(100% - ${drawerWidth}px)`,
-                marginLeft: `${drawerWidth}px`,
-               }}>
-                <Toolbar>
-               <IconButton
-                 color="inherit"
-                 aria-label="open drawer"
-                 onClick={handleDrawerOpen}
-                 edge="start"
-                 sx={{ mr: 2, ...(open && { display: 'none' }) }}><MenuIcon/></IconButton>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}>
-          </Typography>
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ 'aria-label': 'search' }}/>
-          </Search>
-           </Toolbar>
-          </AppBar>
-        </Box>
-          <Drawer  sx={{
-         
-          width:drawerWidth,
-          flexShrink: 0,
-          '& .MuiDrawer-paper': {
-            width: drawerWidth,
-            boxSizing: 'border-box',
-          },
-        }}
-        variant="persistent"
-        anchor="left"
-        open={open}>
+        <>  
+          <Drawer variant="permanent" open={true}>
         <div>
                 <List>
                   <ListItemButton>
@@ -154,11 +42,12 @@ const Navig=()=>{
                     WebkitBackdropFilter: "blur( 9px )",
                     borderRadius:"10px",
                     border:" 1px solid rgba( 255, 255, 255, 0.18 )",
+                    width:"180px"
                     }} 
                       startIcon={<DashboardIcon/>}
                      onClick={()=>navigate("dashboard")} 
                      size="medium" 
-                     fullWidth>Dashboard</Button>
+                     >Dashboard</Button>
                   </ListItemButton>
 
                     
@@ -171,11 +60,12 @@ const Navig=()=>{
                     WebkitBackdropFilter: "blur( 9px )",
                     borderRadius:"10px",
                     border:" 1px solid rgba( 255, 255, 255, 0.18 )",
+                    width:"180px"
                     }}
                      startIcon={<ReceiptIcon/>}
                      onClick={()=>navigate("facturi")} 
                      size="medium"
-                     fullWidth>Facturi</Button>
+                     >Facturi</Button>
                   </ListItemButton>
 
 
@@ -189,11 +79,12 @@ const Navig=()=>{
                     WebkitBackdropFilter: "blur( 9px )",
                     borderRadius:"10px",
                     border:" 1px solid rgba( 255, 255, 255, 0.18 )",
+                    width:"180px"
                     }}
                     startIcon={<SummarizeRoundedIcon/>}
                     onClick={()=>navigate("rapoarte")} 
                     size="medium"
-                    fullWidth>Rapoarte</Button>
+                    >Rapoarte</Button>
                   </ListItemButton>
 
                   <ListItemButton> 
@@ -205,11 +96,11 @@ const Navig=()=>{
                   WebkitBackdropFilter: "blur( 9px )",
                   borderRadius:"10px",
                   border:" 1px solid rgba( 255, 255, 255, 0.18 )",
+                  width:"180px"
                   }}
                    startIcon={<AddCircleOutlineRoundedIcon/>}
                    onClick={()=>navigate("adaugaFacturi")} 
-                   size="medium"
-                   fullWidth>Adauga Facturi</Button>
+                   size="medium">Adauga Facturi</Button>
                   </ListItemButton>
 
                   <ListItemButton>
@@ -221,11 +112,11 @@ const Navig=()=>{
                     WebkitBackdropFilter: "blur( 9px )",
                     borderRadius:"10px",
                     border:" 1px solid rgba( 255, 255, 255, 0.18 )",
+                    width:"180px"
                     }} 
                     startIcon={<AssessmentRoundedIcon/>}
                     onClick={()=>navigate("analiza")} 
-                    size="medium"
-                    fullWidth>Analiza</Button>
+                    size="medium">Analiza</Button>
                   </ListItemButton>
                   
 
@@ -238,11 +129,11 @@ const Navig=()=>{
                     WebkitBackdropFilter: "blur( 9px )",
                     borderRadius:"10px",
                     border:" 1px solid rgba( 255, 255, 255, 0.18 )",
+                    width:"180px"
                     }}
                     startIcon={<LogoutIcon/>}
                     onClick={()=>navigate("/")} 
-                    size="medium"
-                    fullWidth>Log Out</Button>
+                    size="medium">Log Out</Button>
                   </ListItemButton>
                  </List>
               </div>
