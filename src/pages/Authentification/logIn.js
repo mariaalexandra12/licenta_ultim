@@ -74,7 +74,9 @@ function LogIn(){
         setValid('Please enter a valid email address!')
       }
 
-     }
+     };
+
+     const nav=useNavigate();
       
      
     return (
@@ -131,7 +133,7 @@ function LogIn(){
 
         <Button color="secondary" variant="outlined"
         startIcon={<LoginOutlinedIcon/>} style={{width:"80%"}}
-        onClick={()=>handleLogIn}>Log In</Button> 
+        onClick={()=>nav("navig")}>Log In</Button> 
         </Stack> 
 
         {valid && (
