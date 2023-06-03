@@ -12,10 +12,31 @@ import { ListItem, ListItemAvatar, ListItemButton, ListItemIcon} from "@mui/mate
 import Divider from "@mui/material/Divider";
 import { useNavigate } from "react-router-dom";
 import LogoutIcon from '@mui/icons-material/Logout';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+
 
 
 const Navig=()=>{
     const navigate=useNavigate();
+   
+    const [open, setOpen] = React.useState(false);
+
+    const handleClickOpen = () => {
+      setOpen(true);
+    };
+  
+    const handleClose = () => {
+      setOpen(false);
+    };
+
+    
+
+
+
  
     return (
         <>  
@@ -121,11 +142,7 @@ const Navig=()=>{
                     width:"180px"
                     }}
                     startIcon={<LogoutIcon/>}
-                    onClick={()=>{
-                      if(prompt('Sigur doresti sa log out?')=='DA'){
-                          navigate('/');
-                      }
-                    }} 
+                    onClick={()=>{}}
                     size="medium">Log Out</Button>
                   </ListItemButton>
                  </List>
