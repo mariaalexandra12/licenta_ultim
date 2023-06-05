@@ -13,7 +13,7 @@ const AdaugaFacturi=()=>{
    return(
     <>
     <h1>Buna</h1>
-    f
+    
     </>
    )
 }

@@ -5,6 +5,8 @@ import { initializeApp } from "firebase/app";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
+
+import {getStorage} from 'firebase/storage';
 const firebaseConfig = {
   apiKey: "AIzaSyBj-1iw_5zOCZE-RZ1kzuy_wcb58XuW_1M",
   authDomain: "invoice-reader-4b865.firebaseapp.com",
@@ -17,4 +19,4 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-
+export const storage=getStorage(app);
