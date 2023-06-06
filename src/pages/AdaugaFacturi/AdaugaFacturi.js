@@ -11,7 +11,7 @@ export default function AdauagaFacturi(){
   const handleChange=(event)=>{
      let selectedFile=event.target.files[0]
      if(selectedFile){
-        if(selectedFile && fileType.include(selectedFile.type)){
+        if(selectedFile && (fileType.includes(selectedFile.type))){
             let reader=new FileReader()
             reader.readAsDataURL(selectedFile)
             reader.onload=(event)=>{
@@ -35,16 +35,16 @@ export default function AdauagaFacturi(){
         }
   }
 
-
+ // const newPlug=defaultLayoutPlugin()
   return(
-    <div class="pdfwork">
-      <form>
+    <div className="pdfwork">
+      <form  >
           <input type="file" className="form-control" onChange={handleChange}></input>        
           <button type="submit" onClick={handleSubmit}>View Pdf</button>
       </form>
       <h2>View Pdf</h2>
         <div className="pdfView" style={{
-        width:"500px",
+        width:"65%",
         height:"500px",
         display:"flex",
         overflowY:"auto",
@@ -52,9 +52,14 @@ export default function AdauagaFacturi(){
         alignItems:"center",
        }}>
         
-        
+        <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">
+         {viewPdf && <>
+            <Viewer fileUrl={viewPdf} ></Viewer>
+         </>}
+          {!viewPdf && <>No pdf!</>}
+        </Worker>
        
-      
+        
         </div>
     </div>
     
