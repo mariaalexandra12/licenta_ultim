@@ -8,7 +8,7 @@ export default function AdauagaFacturi(){
       <button class="upload">Upload</button>
       <div class="afterupload">
          
-       
+         
       </div>
     </div>
   )
