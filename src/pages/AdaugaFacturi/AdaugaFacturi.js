@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Worker , Viewer } from '@react-pdf-viewer/core';
 import { defaultLayoutPlugin } from "@react-pdf-viewer/default-layout";
+import TextField from '@mui/material/TextField';
+
 
 export default function AdauagaFacturi(){
-
   const [pdfFile,setPdfFile]=useState(null)
   const [viewPdf,setViewPdf]=useState(null)
   const [error , setError]=useState(null)
@@ -58,9 +59,21 @@ export default function AdauagaFacturi(){
          </>}
           {!viewPdf && <>Nu a fost incarcata nicio factura !</>}
         </Worker>
-       
-        
         </div>
+
+        <button style={{
+          marginLeft:"600px",
+          marginTop:0,
+          }}>Afiseaza datele</button>
+     
+     <TextField id="furnizor" label="Furnizor" variant="outlined" style={{
+      
+    }}/>
+     <TextField id="nrFactura" label="Numarul Facturii" variant="outlined" />
+     <TextField id="total" label="Total de plata" variant="outlined" />
+     <TextField id="descriereServicii" label="Descriere servicii" variant="outlined" />
+
+
     </div>
     
   )
