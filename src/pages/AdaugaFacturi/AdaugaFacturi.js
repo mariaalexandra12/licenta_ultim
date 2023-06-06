@@ -39,12 +39,12 @@ export default function AdauagaFacturi(){
   return(
     <div className="pdfwork">
       <form  >
-          <input type="file" className="form-control" onChange={handleChange}></input>        
-          <button type="submit" onClick={handleSubmit}>View Pdf</button>
+          <input type="file" className="form-control" onChange={handleChange} placeholder="Alege o factura"></input>        
+          <button type="submit" onClick={handleSubmit}>Vizualizeaza factura</button>
       </form>
-      <h2>View Pdf</h2>
+      <h2>Vizualizeaza factura</h2>
         <div className="pdfView" style={{
-        width:"65%",
+        width:"60%",
         height:"500px",
         display:"flex",
         overflowY:"auto",
@@ -56,7 +56,7 @@ export default function AdauagaFacturi(){
          {viewPdf && <>
             <Viewer fileUrl={viewPdf} ></Viewer>
          </>}
-          {!viewPdf && <>No pdf!</>}
+          {!viewPdf && <>Nu a fost incarcata nicio factura !</>}
         </Worker>
        
         

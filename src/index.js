@@ -21,7 +21,6 @@ root.render(
           <Routes>
             <Route exact path="/" element={<Auth/>}></Route>
             <Route  path="navig" element={<Navig/>}></Route>
-              <Route path="rapoarte" element={<Rapoarte/>}></Route>
               <Route path="navig/analiza" element={<Analiza/>}></Route>
               <Route path="navig/dashboard" element={<Dashboard/>}></Route>
               <Route path="navig/adaugaFacturi" element={<AdaugaFacturi/>}></Route>

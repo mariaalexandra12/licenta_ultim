@@ -22,8 +22,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 const Navig=()=>{
     const navigate=useNavigate();
-   
-    const [open, setOpen] = React.useState(false);  
+  
  
     return (
         <>  
@@ -63,25 +62,6 @@ const Navig=()=>{
                      onClick={()=>navigate("facturi")} 
                      size="medium"
                      >Facturi</Button>
-                  </ListItemButton>
-
-
-                  <ListItemButton>
-                    
-                    <Button 
-                    style={{
-                      background:" rgba( 214, 102, 238, 0.55 )",
-                    boxShadow: "0 8px 32px 0 rgba( 31, 38, 135, 0.37 )",
-                    backDropFilter: "blur( 9px )",
-                    WebkitBackdropFilter: "blur( 9px )",
-                    borderRadius:"10px",
-                    border:" 1px solid rgba( 255, 255, 255, 0.18 )",
-                    width:"180px"
-                    }}
-                    startIcon={<SummarizeRoundedIcon/>}
-                    onClick={()=>navigate("rapoarte")} 
-                    size="medium"
-                    >Rapoarte</Button>
                   </ListItemButton>
 
                   <ListItemButton> 
