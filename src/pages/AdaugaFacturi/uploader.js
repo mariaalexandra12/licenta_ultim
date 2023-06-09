@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import "./uploader.css"
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import { Worker } from '@react-pdf-viewer/core';
-import { Viewer } from '@react-pdf-viewer/core';
-import Icon from '@mui/material/Icon';
+import { createWorker } from "tesseract.js";
 
 export function Uploader(){
 
@@ -13,7 +11,7 @@ export function Uploader(){
    return(    
     <div className="adaugaFact">
      <form action="">
-        <input type="file" className="inputFile" hidden={true} onChange={({target:{files}})=>{
+        <input type="file" className="inputFile" hidden={true} onChange={({event:{files}})=>{
             files[0] && setFileNames(files[0].name);
             if(files){
                 setImage(URL.createObjectURL(files[0]));
@@ -43,7 +41,7 @@ export function Uploader(){
      }
      
      
-     
+     <button>Vizualizeaza date </button>
 
     </div>
 )
