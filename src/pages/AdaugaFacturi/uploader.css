@@ -1,0 +1,21 @@
+.adaugaFact {
+    background: rgba(229, 185, 225, 0.25);
+    box-shadow:0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter:blur( 4px );
+    -webkit-backdrop-filter:blur( 4px );
+     border-radius: 10px;
+      border: 1px solid rgba( 255, 255, 255, 0.18 );
+      width:400px;
+      height:400px;
+      margin-top: 10px;
+      display: block;
+      margin-left: 10px;
+      
+}
+.upload {
+    width: 25%;
+    height: 25%;
+    margin-top: 10px;
+    margin-left: 100px;
+    color:rgb(216, 128, 233);
+}
