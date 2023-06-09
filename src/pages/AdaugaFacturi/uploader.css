@@ -6,7 +6,7 @@
      border-radius: 10px;
       border: 1px solid rgba( 255, 255, 255, 0.18 );
       width:400px;
-      height:100px;
+      height:150px;
       margin-top: 10px;
       margin-left: 10px;
       align-items: center;
@@ -24,6 +24,6 @@ form{
     justify-content: center;
     align-items: center;
     border: 2px dashed #5094ec;
-    height: 100px;
+    height: 150px;
 }
 
