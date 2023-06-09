@@ -1,77 +1,22 @@
 import React, { useState } from "react";
 import { Worker , Viewer } from '@react-pdf-viewer/core';
-import { defaultLayoutPlugin } from "@react-pdf-viewer/default-layout";
-import TextField from '@mui/material/TextField';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import { Image } from "@mui/icons-material";
+import Box from '@mui/material/Box';
+import ImageList from '@mui/material/ImageList';
+import ImageListItem from '@mui/material/ImageListItem';
 
 
 export default function AdauagaFacturi(){
-  const [pdfFile,setPdfFile]=useState(null)
-  const [viewPdf,setViewPdf]=useState(null)
-  const [error , setError]=useState(null)
-  const fileType=['application/pdf']
-  const handleChange=(event)=>{
-     let selectedFile=event.target.files[0]
-     if(selectedFile){
-        if(selectedFile && (fileType.includes(selectedFile.type))){
-            let reader=new FileReader()
-            reader.readAsDataURL(selectedFile)
-            reader.onload=(event)=>{
-              setPdfFile(event.target.result)
-            }
-        }
-        else{
-          setPdfFile(null)
-          alert('Ai introdus un format invalid! Incarca doar fisiere PDF!')
-        }
-     }
-  }
 
-  const handleSubmit=(e)=>{
-        e.preventDefault()
-        if(pdfFile !== null){
-          setViewPdf(pdfFile)
-        }
-        else{
-          setPdfFile(null)
-        }
-  }
 
- // const newPlug=defaultLayoutPlugin()
+
   return(
     <div className="pdfwork">
-      <form  >
-          <input type="file" className="form-control" onChange={handleChange} placeholder="Alege o factura"></input>        
-          <button type="submit" onClick={handleSubmit}>Vizualizeaza factura</button>
-      </form>
-      <h2>Vizualizeaza factura</h2>
-        <div className="pdfView" style={{
-        width:"60%",
-        height:"500px",
-        display:"flex",
-        overflowY:"auto",
-        justifyContent:"center",
-        alignItems:"center",
-       }}>
-        
-        <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">
-         {viewPdf && <>
-            <Viewer fileUrl={viewPdf} ></Viewer>
-         </>}
-          {!viewPdf && <>Nu a fost incarcata nicio factura !</>}
-        </Worker>
-        </div>
-
-        <button style={{
-          marginLeft:"600px",
-          marginTop:0,
-          }}>Afiseaza datele</button>
-     
-     <TextField id="furnizor" label="Furnizor" variant="outlined" style={{
       
-    }}/>
-     <TextField id="nrFactura" label="Numarul Facturii" variant="outlined" />
-     <TextField id="total" label="Total de plata" variant="outlined" />
-     <TextField id="descriereServicii" label="Descriere servicii" variant="outlined" />
+     BUNA 
+     
 
 
     </div>
