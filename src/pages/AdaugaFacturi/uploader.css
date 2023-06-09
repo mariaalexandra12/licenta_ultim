@@ -6,16 +6,24 @@
      border-radius: 10px;
       border: 1px solid rgba( 255, 255, 255, 0.18 );
       width:400px;
-      height:400px;
+      height:100px;
       margin-top: 10px;
-      display: block;
       margin-left: 10px;
-      
+      align-items: center;
 }
-.upload {
-    width: 25%;
-    height: 25%;
-    margin-top: 10px;
-    margin-left: 100px;
+
+.uploadIcon {
     color:rgb(216, 128, 233);
+    cursor: pointer;
 }
+
+form{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px dashed #5094ec;
+    height: 100px;
+}
+
