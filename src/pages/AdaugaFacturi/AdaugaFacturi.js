@@ -12,13 +12,7 @@ export default function AdauagaFacturi(){
 
   return(
     <div className="pdfwork">
-    <link rel="stylesheet" type="AdaugaFacturi.css"></link>
-    
-
-      <div className="dragDrop">
-
-
-      </div>
+   
 
 
 
