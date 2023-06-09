@@ -7,7 +7,7 @@ import Icon from '@mui/material/Icon';
 
 export function Uploader(){
 
-    const [fileName,setFileNames]=useState("Nu a fost selectat un document");
+    const [fileName,setFileNames]=useState();
     const[image,setImage]=useState(null);
 
    return(    
@@ -24,17 +24,25 @@ export function Uploader(){
         </CloudUploadIcon>
      
         <p>Incarca o factura</p>
+        <section>
+          {fileName ?
+           <>A fost selectat documentul "{fileName}"</>
+           :
+           <>Nu a fost selectat un document</>
+           }
+        </section>
      
      </form>
     
-     {image && 
-     
-     
-     
-     <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">
-      <Viewer fileUrl={image}></Viewer>
-     </Worker>
+     {image &&
+     <img src={image} alt="invoice" style={{
+        width:"450px",
+        height:"550px",
+        marginTop:"20px"
+    }}></img>
      }
+     
+     
      
 
     </div>
