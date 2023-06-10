@@ -1,37 +1,38 @@
-import React, { useEffect, useState } from "react";
-import { createWorker } from 'tesseract.js';
-
+import React, { useEffect, useState , useRef } from "react";
+import Tesseract, { createWorker } from "tesseract.js";
 import "./uploader.css";
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 
 
 export default function AdauagaFacturi(){
 
-  const [selectedImage, setSelectedImage ]=useState(null)
-  const [ocrResult , setOcrResult] = useState("")
-  const [fileName, setFileName]=useState()
-  
+  const [selectedImage, setSelectedImage ]=useState(null);
+  const [ocrResult , setOcrResult] = useState("");
+  const [fileName, setFileName]=useState("");
+
   const worker=createWorker();
- 
-
-    const getOcrResult=async()=>{
-
-     const { data }=(await worker).recognize(selectedImage);
-     console.log(data.text);
-     console.log(5);
-    (await worker).terminate();   }  
-    else{
-      console.log("nu a fost incarcata factura");
-    }
-    
-     }
-
-
 
   const handleChangeImage = e =>{
-    setSelectedImage(e.target.files[0]);
+    const reader=new FileReader();
+    reader.onloadend=()=>{
+    const image=reader.result;
+    setSelectedImage(image);
+    setFileName(e.target.files[0].name);
   }
- 
+  reader.readAsDataURL(e.target.files[0]);
+  };
+
+  const ocr=async()=>{
+      (await worker).load();
+      (await worker).loadLanguage("ron");
+      (await worker).loadLanguage("ron");
+      const { data : { text } } = (await worker).recognize(selectedImage); 
+      (await worker).terminate();
+      setOcrResult(text);
+  }
+  
+
+  
 
   return(    
     <div className="adaugaFact">
@@ -43,12 +44,30 @@ export default function AdauagaFacturi(){
         <p>Incarca o factura</p>
         <section>
           {fileName ? 
-          <p>A fost incarcat documentul  {fileName} </p>
+          <p>A fost incarcat documentul {fileName} </p>
            :
            <p>Nu a fost incarcata nicio factura</p>}
         </section>
      </form>
-        </div>
+     <button >Extract data</button>
+     {selectedImage && <>
+     <img className="document" src={URL.createObjectURL(selectedImage)} alt="invoice"  />
+     </>}
+
+
+     {ocrResult ? 
+     <>
+     <p>Result {ocrResult}</p>
+     </>
+     :
+      
+     <p>Nu merge !</p>
+    
+    }
+
+
+      </div>
+
     </div>
 )
 }
