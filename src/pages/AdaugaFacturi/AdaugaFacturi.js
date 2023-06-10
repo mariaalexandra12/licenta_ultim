@@ -9,29 +9,52 @@ export default function AdauagaFacturi(){
   const [selectedImage, setSelectedImage ]=useState(null);
   const [ocrResult , setOcrResult] = useState("");
   const [fileName, setFileName]=useState("");
+  const [progress , setProgress] = useState(0);
+  const [progressLabel, setProgressLabel] = useState("");
 
-  const worker=createWorker();
+  const workerRef=useRef();
+
+  useEffect(()=>{
+     workerRef.current=createWorker({
+      logger : message => {
+        if ('progress' in message) {
+          setProgress(message.progress);
+          setProgressLabel(message.progress === 1 ? 'Done' : message.status);
+        }
+      }
+    });
+    return ()=>{
+      if(workerRef.current){
+      //workerRef.current.terminate();
+      workerRef.current=null;
+      }
+    }
+  },[])
 
   const handleChangeImage = e =>{
+ 
     const reader=new FileReader();
     reader.onloadend=()=>{
     const image=reader.result;
-    setSelectedImage(image.toString());
+    setSelectedImage(image);
     setFileName(e.target.files[0].name);
   }
   reader.readAsDataURL(e.target.files[0]);
   };
 
   const ocr=async()=>{
-    
-      (await worker).loadLanguage("ron");
-      (await worker).initialize();
-      const data = (await worker).recognize(); 
+    setProgress(0);
+    setProgressLabel('starting');
+    const worker=workerRef.current;
+     await worker.load();
+     await worker.loadLanguage("ron");
+     await worker.initialize("ron");
+      const response=await worker.recognize(selectedImage);
       
-      setOcrResult(data);
-      console.log(data);
-      (await worker).terminate();
-  }
+      setOcrResult(response.data.text);
+      console.log(response.data);
+     
+  };
   
 
 
@@ -50,7 +73,7 @@ export default function AdauagaFacturi(){
            <p>Nu a fost incarcata nicio factura</p>}
         </section>
      </form>
-     <button onClick={()=>{ocr()}}>Extract data</button>
+     <button disabled={!selectedImage || !workerRef} onClick={()=>{ocr()}}>Extract data</button>
      {selectedImage && <>
      <img className="document" src={selectedImage} alt="invoice"  />
      </>}
