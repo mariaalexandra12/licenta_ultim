@@ -38,8 +38,8 @@ export default function OcrData({onReadOcrData}){
 
    
        <div>
-
-        BUNA 
+        {ocrState}
+        
        </div>
    
    

@@ -5,9 +5,18 @@ import OcrData from './OcrData';
 
 
 export function Uploader(){
-    
+
     const [fileName,setFileNames]=useState();
     const[image,setImage]=useState(null);
+
+    
+    const [ocrData, setOcrData] = useState("")
+
+    // Receive OCR data as a prop from the child component
+    const onReadOcrData = (image) => {
+      setOcrData(ocrData)
+    }
+    
    return(    
     <div className="adaugaFact">
         <div className="imageUploadDisplay">
@@ -32,13 +41,11 @@ export function Uploader(){
         </section>
         
      </form>
-     {image && <>
-        <img  className="document"  src={image} alt="invoice"></img>
-        </>}
+   
     
 
-     <OcrData image={image} ></OcrData>
-
+     <OcrData onReadOcrData={onReadOcrData}></OcrData>
+     
 
         </div>
     </div>
