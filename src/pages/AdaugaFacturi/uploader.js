@@ -10,6 +10,7 @@ export function Uploader(){
 
    return(    
     <div className="adaugaFact">
+        <div className="imageUploadDisplay">
      <form action="">
         <input type="file" className="inputFile" hidden={true} onChange={({target:{files}})=>{
             files[0] && setFileNames(files[0].name);
@@ -31,11 +32,12 @@ export function Uploader(){
         </section>
         
      </form>
+     {image && <>
+        <img  className="document"  src={image} alt="invoice"></img>
+        </>}
+     
     
-     
-     
-     
-
+        </div>
     </div>
 )
 
