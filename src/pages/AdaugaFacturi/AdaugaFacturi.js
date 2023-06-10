@@ -10,6 +10,7 @@ export default function AdauagaFacturi(){
     
     <div className="container">
     <Uploader/>
+
     </div>
     
   )
