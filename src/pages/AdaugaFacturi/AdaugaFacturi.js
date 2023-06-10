@@ -13,20 +13,23 @@ export default function AdauagaFacturi(){
   const worker=createWorker();
 
   const handleChangeImage = e =>{
-    const file = e.target.files[0];
-    const imageUrl = URL.createObjectURL(file);
-    setSelectedImage(imageUrl);
-    setFileName(file.name);
+    const reader=new FileReader();
+    reader.onloadend=()=>{
+    const image=reader.result;
+    setSelectedImage(image.toString());
+    setFileName(e.target.files[0].name);
+  }
+  reader.readAsDataURL(e.target.files[0]);
   };
 
   const ocr=async()=>{
     
       (await worker).loadLanguage("ron");
       (await worker).initialize();
-      const response = (await worker).recognize(selectedImage); 
+      const data = (await worker).recognize(); 
       
-      setOcrResult((await response).data.text);
-      console.log((await response).data.text);
+      setOcrResult(data);
+      console.log(data);
       (await worker).terminate();
   }
   
