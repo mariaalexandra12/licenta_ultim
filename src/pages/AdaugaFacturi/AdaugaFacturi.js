@@ -8,16 +8,30 @@ export default function AdauagaFacturi(){
 
   const [selectedImage, setSelectedImage ]=useState(null)
   const [ocrResult , setOcrResult] = useState("")
+  const [ocrState, setOcrState ]=useState(STATUS.IDLE)
   
   const worker=createWorker();
 
-  const getOcrResult=async()=>{
+ const STATUS={
+  IDLE:"",
+  FAILED:"Factura nu a putut fi incarcata",
+  PENDING:"In curs de procesare....",
+  SUCCEEDED:"Factura a fost citita cu succes",
+ }
+
+  try{
+    const getOcrResult=async()=>{
      (await worker).load();
-     (await worker).loadLanguage("eng");
-     (await worker).initialize("eng");
-     const { data }=(await worker).recognize(setSelectedImage);
+     (await worker).loadLanguage("ron");
+     (await worker).initialize("ron");
+     const { data  }=(await worker).recognize(selectedImage);
+     await worker.terminate();
      console.log(data);
+     setOcrState(STATUS.SUCCEEDED);
+  }} catch(err){
+     setOcrState(STATUS.FAILED);
   }
+}
 
   useEffect(()=>{
      getOcrResult();
