@@ -51,7 +51,7 @@ export default function AdauagaFacturi(){
      </form>
      <button >Extract data</button>
      {selectedImage && <>
-     <img className="document" src={URL.createObjectURL(selectedImage)} alt="invoice"  />
+     <img className="document" src={selectedImage} alt="invoice"  />
      </>}
 
 
