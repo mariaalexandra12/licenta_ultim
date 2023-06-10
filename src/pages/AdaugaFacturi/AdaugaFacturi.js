@@ -13,26 +13,24 @@ export default function AdauagaFacturi(){
   const worker=createWorker();
 
   const handleChangeImage = e =>{
-    const reader=new FileReader();
-    reader.onloadend=()=>{
-    const image=reader.result;
-    setSelectedImage(image);
-    setFileName(e.target.files[0].name);
-  }
-  reader.readAsDataURL(e.target.files[0]);
+    const file = e.target.files[0];
+    const imageUrl = URL.createObjectURL(file);
+    setSelectedImage(imageUrl);
+    setFileName(file.name);
   };
 
   const ocr=async()=>{
-      (await worker).load();
+    
       (await worker).loadLanguage("ron");
-      (await worker).loadLanguage("ron");
-      const { data : { text } } = (await worker).recognize(selectedImage); 
+      (await worker).initialize();
+      const response = (await worker).recognize(selectedImage); 
+      
+      setOcrResult((await response).data.text);
+      console.log((await response).data.text);
       (await worker).terminate();
-      setOcrResult(text);
   }
   
 
-  
 
   return(    
     <div className="adaugaFact">
@@ -49,7 +47,7 @@ export default function AdauagaFacturi(){
            <p>Nu a fost incarcata nicio factura</p>}
         </section>
      </form>
-     <button >Extract data</button>
+     <button onClick={()=>{ocr()}}>Extract data</button>
      {selectedImage && <>
      <img className="document" src={selectedImage} alt="invoice"  />
      </>}
