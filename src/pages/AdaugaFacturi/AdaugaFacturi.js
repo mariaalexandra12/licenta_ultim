@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./uploader.css";
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-
+import Tooltip from '@mui/material/Tooltip';
 
 export default function AdauagaFacturi(){
 
@@ -40,9 +40,11 @@ export default function AdauagaFacturi(){
            <div className="uploadDocument">
             <form action="">
             <input type="file" className="inputFile" hidden={true} onChange={handleChangeImage}></input>
-           <CloudUploadIcon className="uploadIcon" onClick={()=>document.querySelector(".inputFile").click()}>
+            <Tooltip title="Incarca o factura ">
+           <CloudUploadIcon fontSize="large" className="uploadIcon" onClick={()=>document.querySelector(".inputFile").click()}>
            </CloudUploadIcon>
-            <p style={{marginLeft: "130px",}}>Incarca o factura</p>
+           </Tooltip>
+
               <section>
               {fileName ? 
                <p style={{marginLeft: "50px",}}>A fost incarcat documentul {fileName} </p>
