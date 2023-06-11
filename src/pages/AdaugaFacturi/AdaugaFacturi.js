@@ -36,36 +36,54 @@ export default function AdauagaFacturi(){
 
   return(    
     <div className="adaugaFact">
-        <div className="imageUploadDisplay">
+        <div className="uploadDocDisplay">
+           <div className="uploadDocument">
             <form action="">
             <input type="file" className="inputFile" hidden={true} onChange={handleChangeImage}></input>
            <CloudUploadIcon className="uploadIcon" onClick={()=>document.querySelector(".inputFile").click()}>
            </CloudUploadIcon>
-            <p>Incarca o factura</p>
-           <section>
+            <p style={{marginLeft: "130px",}}>Incarca o factura</p>
+              <section>
               {fileName ? 
-               <p>A fost incarcat documentul {fileName} </p>
+               <p style={{marginLeft: "50px",}}>A fost incarcat documentul {fileName} </p>
                 :
-                <p>Nu a fost incarcata nicio factura</p>}
-           </section>
-         </form>
-        
-         {selectedImage && <>
-         <img className="document" src={selectedImage} alt="invoice"  />
-         </>}
-     
-      </div>
+                <p style={{marginLeft: "80px"}}>Nu a fost incarcata nicio factura</p>}
+              </section>
+             </form>
+          </div>
 
-      <button className="extractData" disabled={!selectedImage} onClick={ocr}>Extract data</button>
-    
-    <div className="showResult">
-        {ocrResult ? 
-         <p>Result {ocrResult}</p>
-         :
-         <p>Nu a fost nimic incarcat!</p>
-        }
+          
+          <div className="displayDocument">
+            {selectedImage && <>
+            <img className="document" src={selectedImage} alt="invoice"  />
+             </>}
+          </div>
+         
+         </div>
+
+         <div className="showProgressDisplayResult">
+
+         <div className="showProgress">
+               
+               <button onClick={ocr}>Extrage Date</button>
+ 
+            </div>
+           
+
+           <div className="displayResult">
+            {ocrResult ? 
+            <p>Result {ocrResult}</p>
+             :
+             <p>Nu a fost nimic incarcat!</p>
+            }
   
-    </div>
+         </div>
+          
+         </div>
+        
+      
+    
+   
   </div>
 )
 }
