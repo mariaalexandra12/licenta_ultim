@@ -2,19 +2,22 @@ import React, { useEffect, useState } from "react";
 import "./uploader.css";
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import Tooltip from '@mui/material/Tooltip';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
 
 export default function AdauagaFacturi(){
 
   const [selectedImage, setSelectedImage ]=useState(null);
   const [ocrResult , setOcrResult] = useState("");
   const [fileName, setFileName]=useState("");
+  const [vendorName, setVendorName]=useState("");
+  const [totalValue,setTotalValue] = useState(0);
+  const [dueDate , setDueDate]=useState("");
 
 
   const tess=require("tesseract.js");
 
-  useEffect(()=>{
-     //console.log(ocrResult);
-  },[selectedImage])
 
   const handleChangeImage = e =>{
  
@@ -28,10 +31,12 @@ export default function AdauagaFacturi(){
   };
 
   const ocr=async()=>{
-     tess.recognize(selectedImage,"ron").then(out=>{setOcrResult(out.data.text)});
-     
+     tess.recognize(selectedImage,"ron").then(out=>{
+          setOcrResult(out.data.text);
+       })
+
   };
-  
+  //"Data scadentă"
 
 
   return(    
@@ -66,10 +71,12 @@ export default function AdauagaFacturi(){
          <div className="showProgressDisplayResult">
 
          <div className="showProgress">
+              
+               <Button onClick={ocr} endIcon={<LibraryBooksIcon/>} color="secondary" 
+               variant="outlined" disabled={!selectedImage} >Extrage date</Button>
                
-               <button onClick={ocr}>Extrage Date</button>
- 
-            </div>
+  
+          </div>
            
 
            <div className="displayResult">
