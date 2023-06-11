@@ -1,5 +1,4 @@
-import React, { useEffect, useState , useRef } from "react";
-import Tesseract, { createWorker } from "tesseract.js";
+import React, { useEffect, useState } from "react";
 import "./uploader.css";
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 
@@ -9,27 +8,13 @@ export default function AdauagaFacturi(){
   const [selectedImage, setSelectedImage ]=useState(null);
   const [ocrResult , setOcrResult] = useState("");
   const [fileName, setFileName]=useState("");
-  const [progress , setProgress] = useState(0);
-  const [progressLabel, setProgressLabel] = useState("");
 
-  const workerRef=useRef();
+
+  const tess=require("tesseract.js");
 
   useEffect(()=>{
-     workerRef.current=createWorker({
-      logger : message => {
-        if ('progress' in message) {
-          setProgress(message.progress);
-          setProgressLabel(message.progress === 1 ? 'Done' : message.status);
-        }
-      }
-    });
-    return ()=>{
-      if(workerRef.current){
-      //workerRef.current.terminate();
-      workerRef.current=null;
-      }
-    }
-  },[])
+     //console.log(ocrResult);
+  },[selectedImage])
 
   const handleChangeImage = e =>{
  
@@ -43,16 +28,7 @@ export default function AdauagaFacturi(){
   };
 
   const ocr=async()=>{
-    setProgress(0);
-    setProgressLabel('starting');
-    const worker=workerRef.current;
-     await worker.load();
-     await worker.loadLanguage("ron");
-     await worker.initialize("ron");
-      const response=await worker.recognize(selectedImage);
-      
-      setOcrResult(response.data.text);
-      console.log(response.data);
+     tess.recognize(selectedImage,"ron").then(out=>{setOcrResult(out.data.text)});
      
   };
   
@@ -61,37 +37,35 @@ export default function AdauagaFacturi(){
   return(    
     <div className="adaugaFact">
         <div className="imageUploadDisplay">
-     <form action="">
-        <input type="file" className="inputFile" hidden={true} onChange={handleChangeImage}></input>
-        <CloudUploadIcon className="uploadIcon" onClick={()=>document.querySelector(".inputFile").click()}>
-        </CloudUploadIcon>
-        <p>Incarca o factura</p>
-        <section>
-          {fileName ? 
-          <p>A fost incarcat documentul {fileName} </p>
-           :
-           <p>Nu a fost incarcata nicio factura</p>}
-        </section>
-     </form>
-     <button disabled={!selectedImage || !workerRef} onClick={()=>{ocr()}}>Extract data</button>
-     {selectedImage && <>
-     <img className="document" src={selectedImage} alt="invoice"  />
-     </>}
-
-
-     {ocrResult ? 
-     <>
-     <p>Result {ocrResult}</p>
-     </>
-     :
-      
-     <p>Nu merge !</p>
-    
-    }
-
-
+            <form action="">
+            <input type="file" className="inputFile" hidden={true} onChange={handleChangeImage}></input>
+           <CloudUploadIcon className="uploadIcon" onClick={()=>document.querySelector(".inputFile").click()}>
+           </CloudUploadIcon>
+            <p>Incarca o factura</p>
+           <section>
+              {fileName ? 
+               <p>A fost incarcat documentul {fileName} </p>
+                :
+                <p>Nu a fost incarcata nicio factura</p>}
+           </section>
+         </form>
+        
+         {selectedImage && <>
+         <img className="document" src={selectedImage} alt="invoice"  />
+         </>}
+     
       </div>
 
+      <button className="extractData" disabled={!selectedImage} onClick={ocr}>Extract data</button>
+    
+    <div className="showResult">
+        {ocrResult ? 
+         <p>Result {ocrResult}</p>
+         :
+         <p>Nu a fost nimic incarcat!</p>
+        }
+  
     </div>
+  </div>
 )
 }
