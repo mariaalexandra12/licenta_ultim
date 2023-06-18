@@ -23,7 +23,7 @@ const Navig=()=>{
         <div>
 
          <div className="navigBar">
-          <Drawer variant="permanent" open={true}>
+          <Drawer variant="permanent" open={true} >
                 <List>
                   <ListItemButton>
                      <Button 
