@@ -18,7 +18,10 @@ const Navig=()=>{
         
         <div>
           <div className="navBar">
-             <Drawer variant="permanent" open={true} >
+             <Drawer variant="permanent" open={true} style={{
+                backgroundColor: "rgb(255, 166, 203)",
+
+              }}>
                   <List>
                      <ListItemButton>
                      <Button 
