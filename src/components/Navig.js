@@ -4,19 +4,13 @@ import List from '@mui/material/List';
 import Button from '@mui/material/Button'
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import ReceiptIcon from '@mui/icons-material/Receipt';
-import SummarizeRoundedIcon from '@mui/icons-material/SummarizeRounded';
 import AddCircleOutlineRoundedIcon from '@mui/icons-material/AddCircleOutlineRounded';
 import AssessmentRoundedIcon from '@mui/icons-material/AssessmentRounded';
-import invoice from "./images/invoice.png";
 import { ListItem, ListItemAvatar, ListItemButton, ListItemIcon} from "@mui/material";
 import Divider from "@mui/material/Divider";
 import { useNavigate } from "react-router-dom";
 import LogoutIcon from '@mui/icons-material/Logout';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
+import './Navig.css'
 
 
 
@@ -26,8 +20,10 @@ const Navig=()=>{
  
     return (
         <>  
-          <Drawer variant="permanent" open={true}>
         <div>
+
+          <div className="navigBar">
+          <Drawer variant="permanent" open={true}>
                 <List>
                   <ListItemButton>
                      <Button 
@@ -121,10 +117,13 @@ const Navig=()=>{
                     size="medium">Log Out</Button>
                   </ListItemButton>
                  </List>
-              </div>
+              
             </Drawer>
           
     <div/>
+    </div>
+    </div>
+  
   </>
 )};
 
