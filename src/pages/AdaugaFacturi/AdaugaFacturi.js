@@ -32,7 +32,7 @@ export default function AdauagaFacturi(){
 
   const ocr=async()=>{
      tess.recognize(selectedImage,"ron").then(out=>{
-          setOcrResult(out.data.text);
+          setDueDate(out.data.text[924])
        })
 
   };
@@ -80,12 +80,16 @@ export default function AdauagaFacturi(){
            
 
            <div className="displayResult">
-            {ocrResult ? 
-            <p>Result {ocrResult}</p>
+            {dueDate ? 
+             <input type="text"  style={{
+              marginLeft:'5px',
+              marginTop:'5px'}}></input>
              :
              <p>Nu a fost nimic incarcat!</p>
             }
   
+
+         
          </div>
           
          </div>
