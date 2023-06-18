@@ -120,7 +120,7 @@ const Navig=()=>{
             </Drawer>
           
           </div>
-          </div>
+        </div>
   </>
 )};
 
