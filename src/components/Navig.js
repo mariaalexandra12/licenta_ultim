@@ -19,12 +19,12 @@ const Navig=()=>{
 
     return (
         <>  
+        
         <div>
-
-         <div className="navigBarDr">
-          <Drawer variant="permanent" open={true} color="" >
-                <List>
-                  <ListItemButton>
+           <div className="navBar">
+             <Drawer variant="permanent" open={true}>
+                  <List>
+                     <ListItemButton>
                      <Button 
                      style={{
                       background:" rgba( 214, 102, 238, 0.55 )",
@@ -119,8 +119,8 @@ const Navig=()=>{
               
             </Drawer>
           
-    </div>
-    </div>
+          </div>
+          </div>
   </>
 )};
 
