@@ -9,11 +9,11 @@ import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
 export default function AdauagaFacturi(){
 
   const [selectedImage, setSelectedImage ]=useState(null);
-  const [ocrResult , setOcrResult] = useState("");
   const [fileName, setFileName]=useState("");
   const [vendorName, setVendorName]=useState("");
   const [totalValue,setTotalValue] = useState(0);
   const [dueDate , setDueDate]=useState("");
+  const [ services,setServices]=useState("");
 
 
   const tess=require("tesseract.js");
@@ -32,10 +32,26 @@ export default function AdauagaFacturi(){
 
   const ocr=async()=>{
      tess.recognize(selectedImage,"ron").then(out=>{
-          setDueDate(out.data.text[924])
-       })
+      const pattern = /Data scadentă: (\d{2}\.\d{2}\.\d{4})/; 
+      const match = out.data.text.match(pattern);
+      if(match && match[1]){
+        setDueDate(match[1]);
+      }
+      else
+      {
+        setDueDate(' ');
+      }
 
-  };
+
+      const patternValue=out.data.text.match('TOTAL DE PLATA $ ([0-9])')
+      if(patternValue && patternValue[1]){
+        setTotalValue(patternValue[1]);
+      }
+      else{
+        setTotalValue(0);
+      }
+     
+  })}
   //"Data scadentă"
 
 
@@ -80,10 +96,29 @@ export default function AdauagaFacturi(){
            
 
            <div className="displayResult">
-            {dueDate ? 
+            {dueDate && totalValue && vendorName && services? 
+            <div>
+            <label>Nume furnizor</label>
              <input type="text"  style={{
               marginLeft:'5px',
-              marginTop:'5px'}}></input>
+              marginTop:'5px'}} value={vendorName}></input>
+
+             <label>Data Scadenta</label>
+             <input type="text"  style={{
+              marginLeft:'5px',
+              marginTop:'5px'}} value={dueDate}></input>
+             
+
+              <label>Total plata</label>
+              <input type="text"  style={{
+              marginLeft:'5px',
+            marginTop:'5px'}} value={totalValue}></input>
+
+              <label>Denumire servicii</label>
+              <input type="text"  style={{
+              marginLeft:'5px',
+            marginTop:'5px'}} value={services}></input>
+            </div>
              :
              <p>Nu a fost nimic incarcat!</p>
             }
