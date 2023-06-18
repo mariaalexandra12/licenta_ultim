@@ -41,8 +41,14 @@ export default function AdauagaFacturi(){
         setDueDate(' ');
       }
 
-
-     
+    const patternValue=/[TOTAL DE PLATA] $ [0-9]*/gmi;
+    const matchValue=out.data.text.match(patternValue);
+    if(matchValue && matchValue[1]){
+      setTotalValue(matchValue[1]);
+    }
+    else{
+      setTotalValue(0);
+    }
      
   })}
   //"Data scadentă"
