@@ -22,7 +22,7 @@ const Navig=()=>{
         <>  
         <div>
 
-          <div className="navigBar">
+         <div className="navigBar">
           <Drawer variant="permanent" open={true}>
                 <List>
                   <ListItemButton>
@@ -120,10 +120,9 @@ const Navig=()=>{
               
             </Drawer>
           
-    <div/>
     </div>
+    
     </div>
-  
   </>
 )};
 
