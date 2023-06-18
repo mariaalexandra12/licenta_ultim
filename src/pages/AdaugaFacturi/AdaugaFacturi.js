@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import "./uploader.css";
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import Tooltip from '@mui/material/Tooltip';
-import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
 
@@ -43,13 +42,7 @@ export default function AdauagaFacturi(){
       }
 
 
-      const patternValue=out.data.text.match('TOTAL DE PLATA $ ([0-9])')
-      if(patternValue && patternValue[1]){
-        setTotalValue(patternValue[1]);
-      }
-      else{
-        setTotalValue(0);
-      }
+     
      
   })}
   //"Data scadentă"
@@ -96,7 +89,7 @@ export default function AdauagaFacturi(){
            
 
            <div className="displayResult">
-            {dueDate && totalValue && vendorName && services? 
+           
             <div>
             <label>Nume furnizor</label>
              <input type="text"  style={{
@@ -119,13 +112,11 @@ export default function AdauagaFacturi(){
               marginLeft:'5px',
             marginTop:'5px'}} value={services}></input>
             </div>
-             :
-             <p>Nu a fost nimic incarcat!</p>
-            }
-  
-
-         
+            
+            
          </div>
+
+        
           
          </div>
         
