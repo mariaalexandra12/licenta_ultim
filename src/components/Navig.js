@@ -12,13 +12,13 @@ import LogoutIcon from '@mui/icons-material/Logout';
 
 const Navig=()=>{
     const navigate=useNavigate();
-    
+
     return (
         <>  
         
         <div>
           <div className="navBar">
-             <Drawer variant="permanent" open={true} className="navBar">
+             <Drawer variant="permanent" open={true} >
                   <List>
                      <ListItemButton>
                      <Button 
