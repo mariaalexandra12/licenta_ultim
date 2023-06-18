@@ -7,22 +7,18 @@ import ReceiptIcon from '@mui/icons-material/Receipt';
 import AddCircleOutlineRoundedIcon from '@mui/icons-material/AddCircleOutlineRounded';
 import AssessmentRoundedIcon from '@mui/icons-material/AssessmentRounded';
 import { ListItem, ListItemAvatar, ListItemButton, ListItemIcon} from "@mui/material";
-import Divider from "@mui/material/Divider";
 import { useNavigate } from "react-router-dom";
 import LogoutIcon from '@mui/icons-material/Logout';
-import "./Navig.css";
-
-
 
 const Navig=()=>{
     const navigate=useNavigate();
-
+    
     return (
         <>  
         
         <div>
-           <div className="navBar">
-             <Drawer variant="permanent" open={true}>
+          <div className="navBar">
+             <Drawer variant="permanent" open={true} className="navBar">
                   <List>
                      <ListItemButton>
                      <Button 
@@ -119,8 +115,9 @@ const Navig=()=>{
               
             </Drawer>
           
+            </div>
           </div>
-        </div>
+       
   </>
 )};
 
