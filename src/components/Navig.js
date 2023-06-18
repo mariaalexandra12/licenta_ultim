@@ -10,7 +10,7 @@ import { ListItem, ListItemAvatar, ListItemButton, ListItemIcon} from "@mui/mate
 import Divider from "@mui/material/Divider";
 import { useNavigate } from "react-router-dom";
 import LogoutIcon from '@mui/icons-material/Logout';
-import './Navig.css'
+import "./Navig.css"
 
 
 
@@ -22,7 +22,7 @@ const Navig=()=>{
         <>  
         <div>
 
-         <div className="navigBar">
+         <div className="navigBarDr">
           <Drawer variant="permanent" open={true} >
                 <List>
                   <ListItemButton>
@@ -121,7 +121,6 @@ const Navig=()=>{
             </Drawer>
           
     </div>
-    
     </div>
   </>
 )};
