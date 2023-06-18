@@ -10,20 +10,19 @@ import { ListItem, ListItemAvatar, ListItemButton, ListItemIcon} from "@mui/mate
 import Divider from "@mui/material/Divider";
 import { useNavigate } from "react-router-dom";
 import LogoutIcon from '@mui/icons-material/Logout';
-import "./Navig.css"
+import "./Navig.css";
 
 
 
 const Navig=()=>{
     const navigate=useNavigate();
-  
- 
+
     return (
         <>  
         <div>
 
          <div className="navigBarDr">
-          <Drawer variant="permanent" open={true} >
+          <Drawer variant="permanent" open={true} color="" >
                 <List>
                   <ListItemButton>
                      <Button 
