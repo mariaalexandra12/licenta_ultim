@@ -46,7 +46,7 @@ export default function AdauagaFacturi(){
         setDueDate(' ');
       }
 
-    const patternValue=/[Total de plata]:\s*([0-9]+)\s*lei/gmi;
+    const patternValue=/Total de plata\s*:\s*(\d+(?:\.\d+)?)\b/gmi;
     const matchValue=out.data.text.match(patternValue);
     if(matchValue && matchValue[1]){
       setTotalValue(matchValue[1]);
