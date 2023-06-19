@@ -56,7 +56,7 @@ export default function AdauagaFacturi(){
     setProgress(currentProgress);
      
   })}
-  //"Data scadentă"
+  
 
 
   return(    
