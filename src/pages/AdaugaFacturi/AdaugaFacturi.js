@@ -12,7 +12,7 @@ export default function AdauagaFacturi(){
   const [selectedImage, setSelectedImage ]=useState(null);
   const [fileName, setFileName]=useState("");
   const [vendorName, setVendorName]=useState("");
-  const [totalValue,setTotalValue] = useState(0);
+  const [totalValue,setTotalValue] = useState("");
   const [dueDate , setDueDate]=useState("");
   const [ services,setServices]=useState("");
   const [progress, setProgress] =useState(0);
@@ -45,11 +45,13 @@ export default function AdauagaFacturi(){
         setDueDate(' ');
       }
 
-    const patternValue=/[total de plata][0-9]+(?:\.[0-9]*)\s?lei/gmi;
+    //console.log(out.data.text)
+    const patternValue=/(Total de plata|(Factura curenta:))\s[0-9]*(,)[0-9]*\s(lei)/gmi;
     const matchValue=out.data.text.match(patternValue);
     console.log(matchValue);
     //console.log(out.data.text);
     setTotalValue(matchValue);
+    
 
     const patternVendor=/FURNIZOR:([A-Z])/gmi;
     const matchVendor=out.data.text.match(patternVendor);
