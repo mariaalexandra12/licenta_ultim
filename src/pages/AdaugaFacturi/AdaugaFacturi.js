@@ -42,7 +42,7 @@ export default function AdauagaFacturi(){
       }
 
       console.log(out.data.text)
-    const patternValue=/Total de plata:\s*([\d.]+)\s*lei/gmi;
+    const patternValue=/[Total de plata]:\s*([0-9]+)\s*lei/gmi;
     const matchValue=out.data.text.match(patternValue);
     if(matchValue && matchValue[1]){
       setTotalValue(matchValue[1]);
