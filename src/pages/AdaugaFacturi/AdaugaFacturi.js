@@ -35,7 +35,6 @@ export default function AdauagaFacturi(){
 
   const ocr=async()=>{
      tess.recognize(selectedImage,"ron").then(out=>{
-      console.log(out.data.text);
       const pattern = /Data scadentă: (\d{2}\.\d{2}\.\d{4})/; 
       const match = out.data.text.match(pattern);
       if(match && match[1]){
@@ -46,14 +45,11 @@ export default function AdauagaFacturi(){
         setDueDate(' ');
       }
 
-    const patternValue=/\bTotal de plata:\b\D*(\d{1,3}(?:[,. ]\d{3})*(?:[,.]\d{2}))\b/gmi;
+    const patternValue=/[total de plata][0-9]+(?:\.[0-9]*)\s?lei/gmi;
     const matchValue=out.data.text.match(patternValue);
-    if(matchValue && matchValue[1]){
-      setTotalValue(matchValue[1]);
-    }
-    else{
-      setTotalValue(0);
-    }
+    console.log(matchValue);
+    //console.log(out.data.text);
+    setTotalValue(matchValue);
 
     const patternVendor=/FURNIZOR:([A-Z])/gmi;
     const matchVendor=out.data.text.match(patternVendor);
