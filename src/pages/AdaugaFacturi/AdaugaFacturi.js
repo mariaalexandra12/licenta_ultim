@@ -4,6 +4,7 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import Tooltip from '@mui/material/Tooltip';
 import Button from '@mui/material/Button';
 import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
+import CircularProgress from '@mui/material/CircularProgress';
 
 export default function AdauagaFacturi(){
 
@@ -13,7 +14,7 @@ export default function AdauagaFacturi(){
   const [totalValue,setTotalValue] = useState(0);
   const [dueDate , setDueDate]=useState("");
   const [ services,setServices]=useState("");
-
+  const [progress, setProgress] =useState(0);
 
   const tess=require("tesseract.js");
 
@@ -31,6 +32,7 @@ export default function AdauagaFacturi(){
 
   const ocr=async()=>{
      tess.recognize(selectedImage,"ron").then(out=>{
+      const startTime=performance.now();
       const pattern = /Data scadentă: (\d{2}\.\d{2}\.\d{4})/; 
       const match = out.data.text.match(pattern);
       if(match && match[1]){
@@ -41,7 +43,6 @@ export default function AdauagaFacturi(){
         setDueDate(' ');
       }
 
-      console.log(out.data.text)
     const patternValue=/[Total de plata]:\s*([0-9]+)\s*lei/gmi;
     const matchValue=out.data.text.match(patternValue);
     if(matchValue && matchValue[1]){
@@ -50,6 +51,9 @@ export default function AdauagaFacturi(){
     else{
       setTotalValue(0);
     }
+    
+    const currentProgress=Math.round(startTime*100);
+    setProgress(currentProgress);
      
   })}
   //"Data scadentă"
@@ -90,7 +94,10 @@ export default function AdauagaFacturi(){
               
                <Button onClick={ocr} endIcon={<LibraryBooksIcon/>} color="secondary" 
                variant="outlined" disabled={!selectedImage} >Extrage date</Button>
-               
+              <CircularProgress variant="determinate" value={progress} 
+              style={{
+                marginLeft:'25px'
+              }}/>
   
           </div>
            
@@ -101,23 +108,23 @@ export default function AdauagaFacturi(){
             <label>Nume furnizor</label>
              <input type="text"  style={{
               marginLeft:'5px',
-              marginTop:'5px'}} value={vendorName}></input>
+              marginTop:'5px'}} defaultValue={vendorName}></input>
 
              <label>Data Scadenta</label>
              <input type="text"  style={{
               marginLeft:'5px',
-              marginTop:'5px'}} value={dueDate}></input>
+              marginTop:'5px'}} defaultValue={dueDate}></input>
              
 
               <label>Total plata</label>
               <input type="text"  style={{
               marginLeft:'5px',
-            marginTop:'5px'}} value={totalValue}></input>
+            marginTop:'5px'}} defaultValue={totalValue}></input>
 
               <label>Denumire servicii</label>
               <input type="text"  style={{
               marginLeft:'5px',
-            marginTop:'5px'}} value={services}></input>
+            marginTop:'5px'}} defaultValue={services}></input>
             </div>
             
             

@@ -41,21 +41,19 @@
 
 .showProgressDisplayResult {
     flex-direction: row;
-    display: flex;
+  
     margin-left: 100px;
 }
 
 .showProgress {
-    flex: horizontal;
+    flex:column;
     margin-left: 10px;
-   
     margin-top: 65px;
-
 }
 
 .displayResult { 
-    flex: horizontal;
-    margin-top: 25px;
+    flex:column;
+    margin-top: 100px;
     margin-left: 10px;
     border:3px dashed #000000;
     width: 300px;
