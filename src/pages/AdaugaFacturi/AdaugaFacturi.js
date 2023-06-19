@@ -46,7 +46,7 @@ export default function AdauagaFacturi(){
         setDueDate(' ');
       }
 
-    const patternValue=/[Total de plată factură curentă]\s*?d{1,10}{.}\d{0,2}/gmi;
+    const patternValue=/[Total de plata]\s*?([0-9])/gmi;
     const matchValue=out.data.text.match(patternValue);
     if(matchValue && matchValue[1]){
       setTotalValue(matchValue[1]);
@@ -65,7 +65,7 @@ export default function AdauagaFacturi(){
     }
     
     
-     
+  
   })}
   
 
