@@ -6,6 +6,7 @@ import Button from '@mui/material/Button';
 import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
 import CircularProgress from '@mui/material/CircularProgress';
 
+
 export default function AdauagaFacturi(){
 
   const [selectedImage, setSelectedImage ]=useState(null);
@@ -30,9 +31,11 @@ export default function AdauagaFacturi(){
   reader.readAsDataURL(e.target.files[0]);
   };
 
+ 
+
   const ocr=async()=>{
      tess.recognize(selectedImage,"ron").then(out=>{
-      const startTime=performance.now();
+      console.log(out.data.text);
       const pattern = /Data scadentă: (\d{2}\.\d{2}\.\d{4})/; 
       const match = out.data.text.match(pattern);
       if(match && match[1]){
@@ -51,9 +54,17 @@ export default function AdauagaFacturi(){
     else{
       setTotalValue(0);
     }
+
+    const patternVendor=/FURNIZOR:([A-Z])/gmi;
+    const matchVendor=out.data.text.match(patternVendor);
+    if(matchVendor && matchVendor[1]){
+      setVendorName(matchVendor[1]);
+    }
+    else{
+      setVendorName('');
+    }
     
-    const currentProgress=Math.round(startTime*100);
-    setProgress(currentProgress);
+    
      
   })}
   
@@ -125,7 +136,10 @@ export default function AdauagaFacturi(){
               <input type="text"  style={{
               marginLeft:'5px',
             marginTop:'5px'}} defaultValue={services}></input>
-            </div>
+
+       
+          </div>
+            
             
             
          </div>
