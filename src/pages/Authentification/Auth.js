@@ -24,10 +24,10 @@ function Auth(){
             height:"50%",
             color:"primary",
             padding:"10px",
-            background: "rgba( 254, 0, 161, 0.25 )",
+            background: "rgba( 189, 16, 224,0.10)",
             boxShadow: "0 8px 32px 0 rgba( 31, 38, 135, 0.37 )",
-            backdropFilter: "blur( 4px )",
-            WebkitBackdropFilter: "blur( 4px )",
+            backdropFilter: "blur( 0px )",
+            WebkitBackdropFilter: "blur( 0px )",
              borderRadius:" 10px",
             border: "1px solid rgba( 255, 255, 255, 0.18 )",}} square="true">
            <Switch defaultChecked color="secondary" onChange={handleChange}
