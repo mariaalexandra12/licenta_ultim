@@ -13,19 +13,8 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate} from "react-router-dom";
+import SignUp from './signUp';
 
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 
 const defaultTheme = createTheme();
@@ -66,7 +55,7 @@ export default function LogIn() {
               required
               fullWidth
               id="email"
-              label="Email Address"
+              label="Adresa de email"
               name="email"
               autoComplete="email"
               autoFocus
@@ -76,14 +65,10 @@ export default function LogIn() {
               required
               fullWidth
               name="password"
-              label="Password"
+              label="Parola"
               type="password"
               id="password"
               autoComplete="current-password"
-            />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
             />
             <Button
               type="submit"
@@ -93,17 +78,17 @@ export default function LogIn() {
               color="secondary"
               onClick={()=>nav("navig")}
             >
-              Sign In
+              Intra in cont
             </Button>
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">
-                  Forgot password?
+                  Ai uitat parola?
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
+                <Link href="#" variant="body2" onClick={()=>{<SignUp/>}}>
+                  {"Nu ai un cont?Creeaza-ti unul!"}
                 </Link>
               </Grid>
             </Grid>

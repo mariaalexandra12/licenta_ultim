@@ -19,8 +19,8 @@ function Auth(){
           <Paper elevation={24} style={{
             marginLeft:"400px",
             marginTop:"50px",
-            width:"75%px",
-            height:"75%px",
+            width:"50%",
+            height:"50%",
             color:"primary",
             padding:"10px",
             background: "rgba(218, 185, 241, 0.57)",
