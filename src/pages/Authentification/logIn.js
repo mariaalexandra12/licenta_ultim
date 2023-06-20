@@ -12,6 +12,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useNavigate} from "react-router-dom";
 
 function Copyright(props) {
   return (
@@ -38,6 +39,8 @@ export default function LogIn() {
       password: data.get('password'),
     });
   };
+
+  const nav=useNavigate();
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -88,6 +91,7 @@ export default function LogIn() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
               color="secondary"
+              onClick={()=>nav("navig")}
             >
               Sign In
             </Button>
@@ -105,7 +109,6 @@ export default function LogIn() {
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
     </ThemeProvider>
   );
