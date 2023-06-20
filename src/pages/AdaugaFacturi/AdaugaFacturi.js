@@ -52,7 +52,7 @@ export default function AdauagaFacturi(){
     //console.log(out.data.text);
     setTotalValue(matchValue);
     
-
+    console.log(out.data.text);
     const patternVendor=/FURNIZOR:([A-Z])/gmi;
     const matchVendor=out.data.text.match(patternVendor);
     if(matchVendor && matchVendor[1]){
