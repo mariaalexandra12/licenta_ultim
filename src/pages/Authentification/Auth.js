@@ -3,6 +3,7 @@ import Paper from '@mui/material/Paper';
 import Switch from '@mui/material/Switch';
 import SignUp from './signUp';
 import LogIn from './logIn';
+import './auth.css';
 
 function Auth(){
 
@@ -23,12 +24,12 @@ function Auth(){
             height:"50%",
             color:"primary",
             padding:"10px",
-            background: "rgba(218, 185, 241, 0.57)",
-            borderRadius: "16px",
-            boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
-            backDropFilter: "blur(20px)",
-            WebkitBackdropFilter: "blur(20px)",
-            border: "1px solid rgba(121, 160, 241, 1)"}} square="true">
+            background: "rgba( 178, 45, 236, 0.25 )",
+            boxShadow: "0 8px 32px 0 rgba( 31, 38, 135, 0.37 )",
+            backdropFilter: "blur( 4px )",
+            WebkitBackdropFilter: "blur( 4px )",
+             borderRadius:" 10px",
+            border: "1px solid rgba( 255, 255, 255, 0.18 )",}} square="true">
            <Switch defaultChecked color="secondary" onChange={handleChange}
             checked={checked} inputProps={{'aria-label':"controlled"}}/>
             <br/>
