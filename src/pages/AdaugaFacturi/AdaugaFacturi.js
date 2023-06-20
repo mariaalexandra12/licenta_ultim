@@ -19,7 +19,8 @@ export default function AdauagaFacturi(){
 
   const tess=require("tesseract.js");
 
-
+  const express=require("express");
+   
   const handleChangeImage = e =>{
  
     const reader=new FileReader();
