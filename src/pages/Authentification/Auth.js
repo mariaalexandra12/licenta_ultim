@@ -20,7 +20,7 @@ function Auth(){
           <Paper elevation={24} style={{
             marginLeft:"400px",
             marginTop:"50px",
-            width:"50%",
+            width:"full",
             height:"50%",
             color:"primary",
             padding:"10px",
