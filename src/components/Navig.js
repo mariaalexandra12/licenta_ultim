@@ -17,6 +17,14 @@ import Link from '@mui/material/Link';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
+import Button from '@mui/material/Button'
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import ReceiptIcon from '@mui/icons-material/Receipt';
+import AddCircleOutlineRoundedIcon from '@mui/icons-material/AddCircleOutlineRounded';
+import AssessmentRoundedIcon from '@mui/icons-material/AssessmentRounded';
+import { ListItem, ListItemAvatar, ListItemButton, ListItemIcon} from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import LogoutIcon from '@mui/icons-material/Logout';
 
 
 const drawerWidth = 240;
@@ -68,17 +76,19 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 const defaultTheme = createTheme();
 
-export default function Dashboard() {
+export default function Navig() {
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
   };
 
+
+  const navigate=useNavigate();
   return (
     <ThemeProvider theme={defaultTheme}>
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
-        <AppBar position="absolute" open={open}>
+        <AppBar position="absolute" open={open} color="secondary">
           <Toolbar
             sx={{
               pr: '24px', 
@@ -119,14 +129,123 @@ export default function Dashboard() {
               alignItems: 'center',
               justifyContent: 'flex-end',
               px: [1],
+
             }}
           >
             <IconButton onClick={toggleDrawer}>
               <ChevronLeftIcon />
-            </IconButton>
+             </IconButton>
+   
+    
           </Toolbar>
-          <Divider />
+        
+        
+          <List>
+            <Divider>
+                     <ListItemButton>
+                     <Button 
+                     style={{
+                      background:" rgba( 214, 102, 238, 0.55 )",
+                    boxShadow: "0 8px 32px 0 rgba( 31, 38, 135, 0.37 )",
+                    backDropFilter: "blur( 9px )",
+                    WebkitBackdropFilter: "blur( 9px )",
+                    borderRadius:"10px",
+                    border:" 1px solid rgba( 255, 255, 255, 0.18 )",
+                    width:"180px"
+                    }} 
+                      startIcon={<DashboardIcon/>}
+                     onClick={()=>navigate("dashboard")} 
+                     size="medium" 
+                     >Dashboard</Button>
+                  </ListItemButton>
+                  </Divider>
+                    
+
+                    <Divider>
+                  <ListItemButton>
+                     <Button 
+                     style={{
+                      background: "rgba( 214, 102, 238, 0.55 )",
+                    boxShadow: "0 8px 32px 0 rgba( 31, 38, 135, 0.37 )",
+                    backDropFilter: "blur( 9px )",
+                    WebkitBackdropFilter: "blur( 9px )",
+                    borderRadius:"10px",
+                    border:" 1px solid rgba( 255, 255, 255, 0.18 )",
+                    width:"180px"
+                    }}
+                     startIcon={<ReceiptIcon/>}
+                     onClick={()=>navigate("facturi")} 
+                     size="medium"
+                     >Facturi</Button>
+                  </ListItemButton>
+                  </Divider>
+
+
+                  <Divider>
+                  <ListItemButton> 
+                   <Button 
+                   style={{
+                    background: "rgba( 214, 102, 238, 0.55 )",
+                  boxShadow: "0 8px 32px 0 rgba( 31, 38, 135, 0.37 )",
+                  backDropFilter: "blur( 9px )",
+                  WebkitBackdropFilter: "blur( 9px )",
+                  borderRadius:"10px",
+                  border:" 1px solid rgba( 255, 255, 255, 0.18 )",
+                  width:"180px"
+                  }}
+                   startIcon={<AddCircleOutlineRoundedIcon/>}
+                   onClick={()=>navigate("adaugaFacturi")} 
+                   size="medium">Adauga Facturi</Button>
+                  </ListItemButton>
+                  </Divider>
+
+
+                  <Divider>
+                  <ListItemButton>
+                    <Button 
+                    style={{
+                      background:" rgba( 214, 102, 238, 0.55 )",
+                    boxShadow: "0 8px 32px 0 rgba( 31, 38, 135, 0.37 )",
+                    backDropFilter: "blur( 9px )",
+                    WebkitBackdropFilter: "blur( 9px )",
+                    borderRadius:"10px",
+                    border:" 1px solid rgba( 255, 255, 255, 0.18 )",
+                    width:"180px"
+                    }} 
+                    startIcon={<AssessmentRoundedIcon/>}
+                    onClick={()=>navigate("analiza")} 
+                    size="medium">Analiza</Button>
+                  </ListItemButton>
+                  </Divider>
+
+                 <Divider>
+                  <ListItemButton>
+                    <Button 
+                    style={{
+                      background: "rgba( 214, 102, 238, 0.55 )",
+                    boxShadow: "0 8px 32px 0 rgba( 31, 38, 135, 0.37 )",
+                    backDropFilter: "blur( 9px )",
+                    WebkitBackdropFilter: "blur( 9px )",
+                    borderRadius:"10px",
+                    border:" 1px solid rgba( 255, 255, 255, 0.18 )",
+                    width:"180px"
+                    }}
+                    startIcon={<LogoutIcon/>}
+                    onClick={()=>{
+                      var result = window.confirm("Sigur doresti sa log out ?");
+                      if(result===true){
+                        navigate("/");
+                      }
+                      else{
+                        return;
+                      }
+                    }}
+                    size="medium">Log Out</Button>
+                  </ListItemButton>
+                  </Divider>
+                 </List>
         </Drawer>
+        
         <Box
           component="main"
           sx={{
