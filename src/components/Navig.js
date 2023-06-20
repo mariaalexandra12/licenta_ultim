@@ -29,6 +29,12 @@ import './Navig.css';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import Face6Icon from '@mui/icons-material/Face6';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Slide from '@mui/material/Slide';
 
 const drawerWidth = 240;
 
@@ -91,15 +97,26 @@ export default function Navig() {
 
   const navigate=useNavigate();
 
+  const Transition = React.forwardRef(function Transition(props, ref) {
+    return <Slide direction="up" ref={ref} {...props} />;
+  });
+
+  const [openDialog, setOpenDilalog] = React.useState();
+
+  const handleClickOpen = () => {
+    setOpenDilalog(true);
+  };
+
   return (
     <ThemeProvider theme={defaultTheme}>
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
-        <AppBar position="absolute" open={open} color="secondary">
+        <AppBar position="absolute" open={open} color='secondary'>
           <Toolbar
             sx={{
-              pr: '24px', 
+              pr: '14px', 
             }}
+            
           >
             <IconButton
               edge="start"
@@ -113,15 +130,7 @@ export default function Navig() {
             >
               <MenuIcon />
             </IconButton>
-            <Typography
-              component="h1"
-              variant="h6"
-              color="inherit"
-              noWrap
-              sx={{ flexGrow: 1 }}
-            >
-              Invoice Reader Application
-            </Typography>
+            
             <IconButton color="inherit">
               
             </IconButton>
@@ -146,6 +155,17 @@ export default function Navig() {
 
             }}
           >
+
+            <Typography
+              component="h1"
+              variant="h6"
+              color="inherit"
+              noWrap
+              sx={{ flexGrow: 1 }}
+              style={{color:"rgba(138, 5, 186)"}}
+            >
+              Invoice Reader
+            </Typography>
             <IconButton onClick={toggleDrawer}>
               <ChevronLeftIcon />
              </IconButton>
@@ -187,22 +207,34 @@ export default function Navig() {
                   <Divider></Divider>
 
 
-                  <ListItemButton onClick={()=>{
-                      var result = window.confirm("Sigur doresti sa log out ?");
-                      if(result===true){
-                        navigate("/");
-                      }
-                      else{
-                        return;
-                      }
-                    }} style={{marginTop: "280px"}}
-                    
-                    >
-                    
+                  <ListItemButton onClick={handleClickOpen} style={{marginTop:'280px'}}>
+
+                    <Dialog
+                        
+                         TransitionComponent={Transition}
+                     
+                        aria-describedby="alert-dialog-slide-description">
+      
+                        <DialogTitle>{"Log Out?"}</DialogTitle>
+                        <DialogContent>
+                        <DialogContentText id="alert-dialog-slide-description">
+                             Vrei sa iesi din aplicatie ?
+                        </DialogContentText>
+                        </DialogContent>
+                        <DialogActions>
+                        <Button onClick={()=>{return}}>Nu</Button>
+                         <Button onClick={()=>{navigate("/")}}>Da</Button>
+                        </DialogActions>
+                        </Dialog> 
+                   
+
                     <ListItemIcon style={{color:"rgba(138, 5, 186)"}}><LogoutIcon/></ListItemIcon>
                     <ListItemText style={{color:"rgba(138, 5, 186)"}}>Log Out</ListItemText>
+
+                       
                   </ListItemButton>
                   <Divider></Divider>
+
                  </List>
         </Drawer>
 
