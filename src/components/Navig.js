@@ -28,6 +28,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import './Navig.css';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
+import Avatar from '@mui/material/Avatar';
 
 const drawerWidth = 240;
 
@@ -84,8 +85,12 @@ export default function Navig() {
     setOpen(!open);
   };
 
+  const handleClick=()=>{
+    console.log("buna")
+  }
 
   const navigate=useNavigate();
+
   return (
     <ThemeProvider theme={defaultTheme}>
       <Box sx={{ display: 'flex' }}>
@@ -120,7 +125,16 @@ export default function Navig() {
             <IconButton color="inherit">
               
             </IconButton>
+            <Stack direction="row" spacing={1}>
+            <Chip onClick={handleClick} 
+             avatar={<Avatar alt="user" src='/poza.jpg' />}
+             label="Profil"
+             variant="outlined"
+            />
+           </Stack>
           </Toolbar>
+
+         
         </AppBar>
         <Drawer variant="permanent" open={open}>
           <Toolbar
