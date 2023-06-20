@@ -28,7 +28,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import './Navig.css';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
-import Avatar from '@mui/material/Avatar';
+import Face6Icon from '@mui/icons-material/Face6';
 
 const drawerWidth = 240;
 
@@ -127,9 +127,9 @@ export default function Navig() {
             </IconButton>
             <Stack direction="row" spacing={1}>
             <Chip onClick={handleClick} 
-             avatar={<Avatar alt="user" src='/poza.jpg' />}
+             icon={<Face6Icon/>}
              label="Profil"
-             variant="outlined"
+             variant="contained"
             />
            </Stack>
           </Toolbar>
