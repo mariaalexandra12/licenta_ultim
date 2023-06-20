@@ -6,18 +6,25 @@ import Button from '@mui/material/Button';
 
 export default function AdauagaFacturi(){
 
-  const handleClick=(event) => {
+  const handleClick=event => {
     let api="";
     let reader=new FileReader();
     reader.readAsDataURL(event.target.files[0]);
     reader.onload=()=>{
-      let result=reader.result;
+      let rest=reader.result;
+      let b64=rest.split("base64,")[1];
       fetch(api,{
         method: "POST",
         body: JSON.stringify({
-          
+           file:b64,
+           type:event.target.files.type,
+           name:event.target.files.name,
         })
-      });
+      })
+        .then(response=>response.text())
+        .then(data => {
+          text.inne
+        }));
     }
   }
 
