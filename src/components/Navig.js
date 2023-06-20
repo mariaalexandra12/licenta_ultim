@@ -101,11 +101,15 @@ export default function Navig() {
     return <Slide direction="up" ref={ref} {...props} />;
   });
 
-  const [openDialog, setOpenDilalog] = React.useState();
+  const [openDialog, setOpenDilalog] = React.useState(false);
 
   const handleClickOpen = () => {
     setOpenDilalog(true);
   };
+
+  const handleCloseDialog=()=>{
+    setOpenDilalog(false);
+  }
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -210,9 +214,9 @@ export default function Navig() {
                   <ListItemButton onClick={handleClickOpen} style={{marginTop:'280px'}}>
 
                     <Dialog
-                        
                          TransitionComponent={Transition}
-                     
+                         open={openDialog}
+                         onClose={handleCloseDialog}
                         aria-describedby="alert-dialog-slide-description">
       
                         <DialogTitle>{"Log Out?"}</DialogTitle>
@@ -222,7 +226,7 @@ export default function Navig() {
                         </DialogContentText>
                         </DialogContent>
                         <DialogActions>
-                        <Button onClick={()=>{return}}>Nu</Button>
+                        <Button onClick={handleCloseDialog}>Nu</Button>
                          <Button onClick={()=>{navigate("/")}}>Da</Button>
                         </DialogActions>
                         </Dialog> 
