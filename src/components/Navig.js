@@ -180,28 +180,28 @@ export default function Navig() {
         
           <List>
             
-                     <ListItemButton onClick={()=>navigate("dashboard")}>
+                     <ListItemButton onClick={()=>navigate("/dashboard")}>
 
                       <ListItemIcon style={{color:"rgba(138, 5, 186)"}}><DashboardIcon/> </ListItemIcon>
                       <ListItemText style={{color:"rgba(138, 5, 186)"}}>Dashboard</ListItemText>
                      </ListItemButton>
                     <Divider></Divider>
                  
-                  <ListItemButton  onClick={()=>navigate("facturi")} >
+                  <ListItemButton  onClick={()=>navigate("/facturi")} >
 
                     <ListItemIcon style={{color:"rgba(138, 5, 186)"}}><ReceiptIcon/></ListItemIcon>
                     <ListItemText style={{color:"rgba(138, 5, 186)"}}>Facturi</ListItemText>
                   </ListItemButton>
                   <Divider></Divider>
 
-                  <ListItemButton onClick={()=>navigate("adaugaFacturi")} > 
+                  <ListItemButton onClick={()=>navigate("/adaugaFacturi")} > 
                    
                   <ListItemIcon style={{color:"rgba(138, 5, 186)"}}><AddCircleOutlineRoundedIcon/></ListItemIcon>
                   <ListItemText style={{color:"rgba(138, 5, 186)"}}>Adauga Facturi</ListItemText>
                   </ListItemButton>
                   <Divider></Divider>
 
-                  <ListItemButton  onClick={()=>navigate("analiza")}>
+                  <ListItemButton  onClick={()=>navigate("/analiza")}>
               
                     <ListItemIcon style={{color:"rgba(138, 5, 186)"}}><AssessmentRoundedIcon/></ListItemIcon>
                     <ListItemText style={{
@@ -226,7 +226,7 @@ export default function Navig() {
                         </DialogContentText>
                         </DialogContent>
                         <DialogActions>
-                        <Button onClick={handleCloseDialog}>Nu</Button>
+                        <Button onClick={()=>{navigate("/navig")}}>Nu</Button>
                          <Button onClick={()=>{navigate("/")}}>Da</Button>
                         </DialogActions>
                         </Dialog> 

@@ -1,11 +1,14 @@
 import React from 'react';
 import Navig from '../../components/Navig';
+import Box from '@mui/material/Box';
 
 const Rapoarte=()=>{
     return (
-        <div style={{marginLeft:"500px"}}>
-        <h1>Rapoarte</h1>
-        </div>
+        <>
+         <Box sx={{ display: 'flex' }}>
+          <h1>Rapoarte</h1>
+          </Box>
+        </>
     )
 
 }

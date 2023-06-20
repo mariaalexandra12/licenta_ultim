@@ -1,11 +1,13 @@
 import React from 'react';
-
+import Box from '@mui/material/Box'
 
 const Dashboard=()=>{
     return (
-        <div style={{marginLeft:"1000px"}}>
+        <>
+         <Box sx={{ display: 'flex' }}>
         <h1>Dashboard</h1>
-        </div>
+        </Box>
+        </>
     )
 
 }

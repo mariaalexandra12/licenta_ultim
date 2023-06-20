@@ -15,6 +15,7 @@ export default function AdauagaFacturi(){
 
   return(    
     <div className="adaugaFact">
+      <Box sx={{ display: 'flex' }}>
         <span>Selecteaza un document</span>
         <input className='selectfile' type="file"></input>
         <Button variant="contained" color="success" style={{
@@ -26,6 +27,7 @@ export default function AdauagaFacturi(){
           }}></LinearProgress>
         <span id="result" style={{marginTop:'10px'}}>Result text</span>
         <textarea className="text" ></textarea>
+        </Box>  
   </div>
 )
 

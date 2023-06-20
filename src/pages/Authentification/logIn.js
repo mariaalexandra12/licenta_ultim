@@ -76,7 +76,7 @@ export default function LogIn() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
               color="secondary"
-              onClick={()=>nav("navig")}
+              onClick={()=>nav("/navig")}
             >
               Intra in cont
             </Button>

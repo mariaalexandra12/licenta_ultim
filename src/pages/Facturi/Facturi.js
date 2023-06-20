@@ -1,11 +1,14 @@
 import React from 'react';
-import './facturi.css'
+import './facturi.css';
+import Box from '@mui/material/Box';
 
 const Facturi=()=>{
     return (
-        <div style={{marginLeft:"1000px"}}>
+        <>
+            <Box sx={{ display: 'flex' }}>
            <h1>Facturi</h1>
-        </div>
+           </Box>
+        </>
     )
 
 }
