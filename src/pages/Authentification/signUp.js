@@ -12,7 +12,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-
+import LogIn from './logIn';
+import { useNavigate } from 'react-router-dom';
 
 
 const defaultTheme = createTheme();
@@ -26,6 +27,9 @@ export default function SignUp() {
       password: data.get('password'),
     });
   };
+
+  const nav=useNavigate();
+
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -96,12 +100,13 @@ export default function SignUp() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
               color="secondary"
+              onClick={()=>nav('navig')}
             >
               Intra in cont
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="#" variant="body2" >
                   Ai deja un cont? Intra in cont!
                 </Link>
               </Grid>

@@ -22,10 +22,12 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import ReceiptIcon from '@mui/icons-material/Receipt';
 import AddCircleOutlineRoundedIcon from '@mui/icons-material/AddCircleOutlineRounded';
 import AssessmentRoundedIcon from '@mui/icons-material/AssessmentRounded';
-import { ListItem, ListItemAvatar, ListItemButton, ListItemIcon} from "@mui/material";
+import { ListItem, ListItemAvatar, ListItemButton, ListItemIcon, ListItemText} from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import LogoutIcon from '@mui/icons-material/Logout';
-
+import './Navig.css';
+import Chip from '@mui/material/Chip';
+import Stack from '@mui/material/Stack';
 
 const drawerWidth = 240;
 
@@ -113,12 +115,10 @@ export default function Navig() {
               noWrap
               sx={{ flexGrow: 1 }}
             >
-              Dashboard
+              Invoice Reader Application
             </Typography>
             <IconButton color="inherit">
-              <Badge badgeContent={4} color="secondary">
-                <NotificationsIcon />
-              </Badge>
+              
             </IconButton>
           </Toolbar>
         </AppBar>
@@ -141,97 +141,39 @@ export default function Navig() {
         
         
           <List>
-            <Divider>
-                     <ListItemButton>
-                     <Button 
-                     style={{
-                      background:" rgba( 214, 102, 238, 0.55 )",
-                    boxShadow: "0 8px 32px 0 rgba( 31, 38, 135, 0.37 )",
-                    backDropFilter: "blur( 9px )",
-                    WebkitBackdropFilter: "blur( 9px )",
-                    borderRadius:"10px",
-                    border:" 1px solid rgba( 255, 255, 255, 0.18 )",
-                    width:"180px"
-                    }} 
-                      startIcon={<DashboardIcon/>}
-                     onClick={()=>navigate("dashboard")} 
-                     size="medium" 
-                     >Dashboard</Button>
+            
+                     <ListItemButton onClick={()=>navigate("dashboard")}>
+
+                      <ListItemIcon style={{color:"rgba(138, 5, 186)"}}><DashboardIcon/> </ListItemIcon>
+                      <ListItemText style={{color:"rgba(138, 5, 186)"}}>Dashboard</ListItemText>
+                     </ListItemButton>
+                    <Divider></Divider>
+                 
+                  <ListItemButton  onClick={()=>navigate("facturi")} >
+
+                    <ListItemIcon style={{color:"rgba(138, 5, 186)"}}><ReceiptIcon/></ListItemIcon>
+                    <ListItemText style={{color:"rgba(138, 5, 186)"}}>Facturi</ListItemText>
                   </ListItemButton>
-                  </Divider>
-                    
+                  <Divider></Divider>
 
-                    <Divider>
-                  <ListItemButton>
-                     <Button 
-                     style={{
-                      background: "rgba( 214, 102, 238, 0.55 )",
-                    boxShadow: "0 8px 32px 0 rgba( 31, 38, 135, 0.37 )",
-                    backDropFilter: "blur( 9px )",
-                    WebkitBackdropFilter: "blur( 9px )",
-                    borderRadius:"10px",
-                    border:" 1px solid rgba( 255, 255, 255, 0.18 )",
-                    width:"180px"
-                    }}
-                     startIcon={<ReceiptIcon/>}
-                     onClick={()=>navigate("facturi")} 
-                     size="medium"
-                     >Facturi</Button>
+                  <ListItemButton onClick={()=>navigate("adaugaFacturi")} > 
+                   
+                  <ListItemIcon style={{color:"rgba(138, 5, 186)"}}><AddCircleOutlineRoundedIcon/></ListItemIcon>
+                  <ListItemText style={{color:"rgba(138, 5, 186)"}}>Adauga Facturi</ListItemText>
                   </ListItemButton>
-                  </Divider>
+                  <Divider></Divider>
 
-
-                  <Divider>
-                  <ListItemButton> 
-                   <Button 
-                   style={{
-                    background: "rgba( 214, 102, 238, 0.55 )",
-                  boxShadow: "0 8px 32px 0 rgba( 31, 38, 135, 0.37 )",
-                  backDropFilter: "blur( 9px )",
-                  WebkitBackdropFilter: "blur( 9px )",
-                  borderRadius:"10px",
-                  border:" 1px solid rgba( 255, 255, 255, 0.18 )",
-                  width:"180px"
-                  }}
-                   startIcon={<AddCircleOutlineRoundedIcon/>}
-                   onClick={()=>navigate("adaugaFacturi")} 
-                   size="medium">Adauga Facturi</Button>
+                  <ListItemButton  onClick={()=>navigate("analiza")}>
+              
+                    <ListItemIcon style={{color:"rgba(138, 5, 186)"}}><AssessmentRoundedIcon/></ListItemIcon>
+                    <ListItemText style={{
+                      color: "rgba(138, 5, 186)",
+                     }}>Analiza</ListItemText>
                   </ListItemButton>
-                  </Divider>
+                  <Divider></Divider>
 
 
-                  <Divider>
-                  <ListItemButton>
-                    <Button 
-                    style={{
-                      background:" rgba( 214, 102, 238, 0.55 )",
-                    boxShadow: "0 8px 32px 0 rgba( 31, 38, 135, 0.37 )",
-                    backDropFilter: "blur( 9px )",
-                    WebkitBackdropFilter: "blur( 9px )",
-                    borderRadius:"10px",
-                    border:" 1px solid rgba( 255, 255, 255, 0.18 )",
-                    width:"180px"
-                    }} 
-                    startIcon={<AssessmentRoundedIcon/>}
-                    onClick={()=>navigate("analiza")} 
-                    size="medium">Analiza</Button>
-                  </ListItemButton>
-                  </Divider>
-
-                 <Divider>
-                  <ListItemButton>
-                    <Button 
-                    style={{
-                      background: "rgba( 214, 102, 238, 0.55 )",
-                    boxShadow: "0 8px 32px 0 rgba( 31, 38, 135, 0.37 )",
-                    backDropFilter: "blur( 9px )",
-                    WebkitBackdropFilter: "blur( 9px )",
-                    borderRadius:"10px",
-                    border:" 1px solid rgba( 255, 255, 255, 0.18 )",
-                    width:"180px"
-                    }}
-                    startIcon={<LogoutIcon/>}
-                    onClick={()=>{
+                  <ListItemButton onClick={()=>{
                       var result = window.confirm("Sigur doresti sa log out ?");
                       if(result===true){
                         navigate("/");
@@ -239,13 +181,17 @@ export default function Navig() {
                       else{
                         return;
                       }
-                    }}
-                    size="medium">Log Out</Button>
+                    }} style={{marginTop: "280px"}}
+                    
+                    >
+                    
+                    <ListItemIcon style={{color:"rgba(138, 5, 186)"}}><LogoutIcon/></ListItemIcon>
+                    <ListItemText style={{color:"rgba(138, 5, 186)"}}>Log Out</ListItemText>
                   </ListItemButton>
-                  </Divider>
+                  <Divider></Divider>
                  </List>
         </Drawer>
-        
+
         <Box
           component="main"
           sx={{
