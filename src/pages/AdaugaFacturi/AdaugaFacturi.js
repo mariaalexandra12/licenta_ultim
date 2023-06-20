@@ -1,21 +1,36 @@
 import React, { useState } from "react";
 import "./uploader.css";
-import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import Tooltip from '@mui/material/Tooltip';
 import Button from '@mui/material/Button';
-import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
-import CircularProgress from '@mui/material/CircularProgress';
-import 'pdfjs-dist/build/pdf.worker.entry';
+
+
 
 export default function AdauagaFacturi(){
 
-  const handleClick=()=>{
-    console.log('buna');
+  const handleClick=(event) => {
+    let api="";
+    let reader=new FileReader();
+    reader.readAsDataURL(event.target.files[0]);
+    reader.onload=()=>{
+      let result=reader.result;
+      fetch(api,{
+        method: "POST",
+        body: JSON.stringify({
+          
+        })
+      });
+    }
   }
 
   return(    
     <div className="adaugaFact">
-        <Button variant='outlined' color='secondary' onClick={handleClick}>Apasa aici</Button>
+        <span>Selecteaza un document</span>
+        <input className='selectfile' type="file"></input>
+        <Button id="btn" variant='outlined' color='secondary' onClick={handleClick}
+        style={{
+          marginTop:'25px'
+        }}>Extrage date</Button>
+        <span id="result">Result text</span>
+        <textarea className="text" ></textarea>
   </div>
 )
 }
