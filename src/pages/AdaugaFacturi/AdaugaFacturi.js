@@ -1,7 +1,7 @@
 import React, { useState , useEffect ,useRef} from "react";
 import "./uploader.css";
 import { Button } from '@mui/material';
-import Box from '@mui/material/Box';
+
 import LinearProgress from '@mui/material/LinearProgress';
 
 export default function AdauagaFacturi(){
@@ -15,7 +15,7 @@ export default function AdauagaFacturi(){
 
   return(    
     <div className="adaugaFact">
-      <Box sx={{ display: 'flex' }}>
+      
         <span>Selecteaza un document</span>
         <input className='selectfile' type="file"></input>
         <Button variant="contained" color="success" style={{
@@ -27,7 +27,7 @@ export default function AdauagaFacturi(){
           }}></LinearProgress>
         <span id="result" style={{marginTop:'10px'}}>Result text</span>
         <textarea className="text" ></textarea>
-        </Box>  
+       
   </div>
 )
 

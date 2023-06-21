@@ -180,7 +180,7 @@ export default function Navig() {
         
           <List>
             
-                     <ListItemButton onClick={()=>navigate("/dashboard")}>
+                     <ListItemButton onClick={()=>navigate("/navig")}>
 
                       <ListItemIcon style={{color:"rgba(138, 5, 186)"}}><DashboardIcon/> </ListItemIcon>
                       <ListItemText style={{color:"rgba(138, 5, 186)"}}>Dashboard</ListItemText>
