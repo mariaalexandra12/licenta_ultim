@@ -12,12 +12,20 @@ export default function AdauagaFacturi(){
   const [imageData, setImageData]=useState();
   const [ocrResult,setOcrResult]=useState('');
 
+  const handleChange=(event) => {
+    const reader=new FileReader();
+    reader.onloadend = ()=>{
+      const imageDataUrl=reader.result;
+      setImageData(imageDataUrl);
+    };
+    reader.readAsDataURL(event.target.files[0]);
+  }
 
   return(    
     <div className="adaugaFact">
       
         <span>Selecteaza un document</span>
-        <input className='selectfile' type="file"></input>
+        <input className='selectfile' type="file" onChange={handleChange}></input>
         <Button variant="contained" color="success" style={{
           marginTop:'25px'
         }}>Extrage date</Button>
