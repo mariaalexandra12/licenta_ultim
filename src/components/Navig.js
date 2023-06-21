@@ -78,7 +78,9 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
           width: theme.spacing(9),
         },
       }),
+      
     },
+   
   }),
 );
 
@@ -115,7 +117,7 @@ export default function Navig() {
     <ThemeProvider theme={defaultTheme}>
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
-        <AppBar position="absolute" open={open} color='secondary'>
+        <AppBar position="absolute" open={open} style={{ background:'rgba( 156, 5, 242, 0.25 )'}}>
           <Toolbar
             sx={{
               pr: '14px', 
