@@ -36,7 +36,7 @@ export default function AdauagaFacturi(){
         <span id="result" style={{marginTop:'10px'}}>Result text</span>
         <textarea className="text" ></textarea>
        
-  </div>
+    </div>
 )
 
 }
