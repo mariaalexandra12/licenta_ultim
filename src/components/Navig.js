@@ -151,14 +151,14 @@ export default function Navig() {
 
          
         </AppBar>
-        <Drawer variant="permanent" open={open}>
+        <Drawer variant="permanent" open={open} >
           <Toolbar
             sx={{
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'flex-end',
               px: [1],
-
+              backgroundColor: "rgba( 156, 5, 242, 0.25 )",
             }}
           >
 
@@ -180,26 +180,35 @@ export default function Navig() {
           </Toolbar>
         
         
-          <List>
+          <List style={{ 
+           background: 'rgb(227,56,218)',
+           background: 'linear-gradient(360deg, rgba(227,56,218,1) 0%, rgba(235,188,235,1) 80%)',
+            boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
+            backdropFilter: 'blur( 11.5px )',
+            WebkitBackdropFilter:'blur( 11.5px )',
+          }}>
             
                      <ListItemButton onClick={()=>navigate("/navig")}>
 
                       <ListItemIcon style={{color:"rgba(138, 5, 186)"}}><DashboardIcon/> </ListItemIcon>
-                      <ListItemText style={{color:"rgba(138, 5, 186)"}}>Dashboard</ListItemText>
+                      <ListItemText style={{color:"black",
+                    fontFamily: 'Goudy Bookletter 1911", sans-serif',}}>Dashboard</ListItemText>
                      </ListItemButton>
                     <Divider></Divider>
                  
                   <ListItemButton  onClick={()=>navigate("/facturi")} >
 
                     <ListItemIcon style={{color:"rgba(138, 5, 186)"}}><ReceiptIcon/></ListItemIcon>
-                    <ListItemText style={{color:"rgba(138, 5, 186)"}}>Facturi</ListItemText>
+                    <ListItemText style={{color:"black",
+                  fontFamily: 'Goudy Bookletter 1911", sans-serif',}}>Facturi</ListItemText>
                   </ListItemButton>
                   <Divider></Divider>
 
                   <ListItemButton onClick={()=>navigate("/adaugaFacturi")} > 
                    
                   <ListItemIcon style={{color:"rgba(138, 5, 186)"}}><AddCircleOutlineRoundedIcon/></ListItemIcon>
-                  <ListItemText style={{color:"rgba(138, 5, 186)"}}>Adauga Facturi</ListItemText>
+                  <ListItemText style={{color:"black" ,
+                   fontFamily: 'Goudy Bookletter 1911", sans-serif',}}>Adauga Facturi</ListItemText>
                   </ListItemButton>
                   <Divider></Divider>
 
@@ -207,13 +216,17 @@ export default function Navig() {
               
                     <ListItemIcon style={{color:"rgba(138, 5, 186)"}}><AssessmentRoundedIcon/></ListItemIcon>
                     <ListItemText style={{
-                      color: "rgba(138, 5, 186)",
+                      color: "black",
+                      fontFamily: 'Goudy Bookletter 1911", sans-serif',
                      }}>Analiza</ListItemText>
                   </ListItemButton>
                   <Divider></Divider>
 
 
-                  <ListItemButton onClick={handleClickOpen} style={{marginTop:'280px'}}>
+                  <ListItemButton onClick={handleClickOpen} style={{
+                    marginTop:'280px',
+                    marginBottom:'0px',
+                    }}>
 
                     <Dialog
                          TransitionComponent={Transition}
@@ -235,11 +248,12 @@ export default function Navig() {
                    
 
                     <ListItemIcon style={{color:"rgba(138, 5, 186)"}}><LogoutIcon/></ListItemIcon>
-                    <ListItemText style={{color:"rgba(138, 5, 186)"}}>Log Out</ListItemText>
-
-                       
+                    <ListItemText style={{
+                      color:"black",
+                      fontFamily: 'Goudy Bookletter 1911", sans-serif',
+                      }}>Log Out</ListItemText> 
                   </ListItemButton>
-                  <Divider></Divider>
+                  
 
                  </List>
         </Drawer>
