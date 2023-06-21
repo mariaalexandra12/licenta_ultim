@@ -35,6 +35,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
+import Settings from './Settings';
 
 const drawerWidth = 240;
 
@@ -93,9 +94,7 @@ export default function Navig() {
     setOpen(!open);
   };
 
-  const handleClick=()=>{
-    console.log("buna")
-  }
+
 
   const navigate=useNavigate();
 
@@ -141,7 +140,7 @@ export default function Navig() {
               
             </IconButton>
             <Stack direction="row" spacing={1}>
-            <Chip onClick={handleClick} 
+            <Chip onClick={()=>{<Settings/>}} 
              icon={<Face6Icon/>}
              label="Profil"
              variant="contained"
