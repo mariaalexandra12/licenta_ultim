@@ -15,12 +15,12 @@ function App() {
     <React.StrictMode>
     <BrowserRouter >
           <Routes> 
-            <Route  path="/" exact element={<Auth/>}></Route>
-            <Route  path="/navig" exact element={<Navig/>}></Route>
-              <Route path="/analiza" exact element={<Analiza/>}></Route>
-              <Route path="/dashboard" exact element={<Dashboard/>}></Route>
-              <Route path="/adaugaFacturi" exact element={<AdaugaFacturi/>}></Route>
-              <Route path="/facturi" exact element={<Facturi/>}></Route>
+            <Route  path="/"  element={<Auth/>}></Route>
+            <Route  path="/navig" element={<Navig/>}></Route>
+              <Route path="/analiza"  element={<Analiza/>}></Route>
+              <Route path="/dashboard" element={<Dashboard/>}></Route>
+              <Route path="/adaugaFacturi"  element={<AdaugaFacturi/>}></Route>
+              <Route path="/facturi" element={<Facturi/>}></Route>
               
             </Routes>
 
