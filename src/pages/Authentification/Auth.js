@@ -16,7 +16,7 @@ function Auth(){
 
     
     return (
-        <div className="auth">   
+        <div className="auth" >   
           <Paper elevation={24} style={{
             marginLeft:"400px",
             marginTop:"50px",
