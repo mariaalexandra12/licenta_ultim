@@ -187,7 +187,7 @@ export default function Navig() {
                      </ListItem>
                     <Divider></Divider>
                  
-                 <ListItem  onClick={()=>navigate("facturi")} >
+                 <ListItem  onClick={()=>navigate("/navig/facturi")} >
                   <ListItemButton >
 
                     <ListItemIcon style={{color:"rgba(138, 5, 186)"}}><ReceiptIcon/></ListItemIcon>
