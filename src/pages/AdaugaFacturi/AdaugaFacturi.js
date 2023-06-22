@@ -15,4 +15,4 @@ function AdaugaFacturi(){
 
 }
 
-export default AdaugaFacturi
+export default AdaugaFacturi;
