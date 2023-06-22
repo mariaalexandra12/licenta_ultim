@@ -7,8 +7,7 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import AdaugaFacturi from "./pages/AdaugaFacturi/AdaugaFacturi";
 import Facturi from "./pages/Facturi/Facturi"
 import Auth from "./pages/Authentification/Auth";
-
-
+import { Router } from "express";
 
 function App() {
   return (
@@ -18,9 +17,9 @@ function App() {
             <Route  path="/"  element={<Auth/>}></Route>
             <Route path="/navig" element={<Navig/>} children={[
             
-            <Route path="analiza" element={<Analiza/>}></Route>,
+            <Route path="analiza"  element={<Analiza/>}></Route>,
             <Route path="adaugaFacturi"  element={<AdaugaFacturi/>}></Route>,
-            <Route path="facturi" element={<Facturi/>}></Route>,
+            <Route path="facturi"  element={<Facturi/>}></Route>,
             
             ]}
             ></Route>
