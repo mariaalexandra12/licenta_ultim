@@ -94,8 +94,6 @@ export default function Navig() {
     setOpen(!open);
   };
 
-
-
   const navigate=useNavigate();
 
   const Transition = React.forwardRef(function Transition(props, ref) {
@@ -116,7 +114,10 @@ export default function Navig() {
     <ThemeProvider theme={defaultTheme}>
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
-        <AppBar position="absolute" open={open} style={{ background:'rgba( 156, 5, 242, 0.25 )'}}>
+        <AppBar position="absolute" open={open} style={{
+          background: 'rgb(227,56,218)',
+          background: 'linear-gradient(360deg, rgba(227,56,218,1) 0%, rgba(235,188,235,1) 80%)'
+        }}>
           <Toolbar
             sx={{
               pr: '14px', 
@@ -187,7 +188,7 @@ export default function Navig() {
                      </ListItem>
                     <Divider></Divider>
                  
-                 <ListItem  onClick={()=>navigate("/navig/facturi")} >
+                 <ListItem  onClick={()=>navigate("/facturi")} >
                   <ListItemButton >
 
                     <ListItemIcon style={{color:"rgba(138, 5, 186)"}}><ReceiptIcon/></ListItemIcon>
@@ -197,7 +198,7 @@ export default function Navig() {
                   </ListItem>
                   <Divider></Divider>
 
-                 <ListItem onClick={()=>navigate("adaugaFacturi")} >
+                 <ListItem onClick={()=>navigate("/adaugaFacturi")} >
                   <ListItemButton > 
                    
                   <ListItemIcon style={{color:"rgba(138, 5, 186)"}}><AddCircleOutlineRoundedIcon/></ListItemIcon>
@@ -210,7 +211,7 @@ export default function Navig() {
                   <Divider></Divider>
 
 
-                <ListItem   onClick={()=>navigate("analiza")}>
+                <ListItem   onClick={()=>navigate("/analiza")}>
                   <ListItemButton>
               
                     <ListItemIcon style={{color:"rgba(138, 5, 186)"}}><AssessmentRoundedIcon/></ListItemIcon>
