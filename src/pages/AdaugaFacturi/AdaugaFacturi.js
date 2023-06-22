@@ -9,7 +9,7 @@ export default function AdaugaFacturi(){
     <>
     <Box sx={{display: 'flex'}}>
       
-        <Button variant="outlined" color="succes">Apasa</Button>
+        <Button color="succes">Apasa</Button>
       </Box>
 
     </>
