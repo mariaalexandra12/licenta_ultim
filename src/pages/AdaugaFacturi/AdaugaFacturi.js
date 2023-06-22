@@ -17,6 +17,17 @@ function AdaugaFacturi(){
   }, [])
 
   const {getRootProps, getInputProps} = useDropzone({onDrop})
+  const selected_file=selectedFiles?.map(file=>(
+    <div>
+
+      <img src={file.preview} style={{
+        width:"450px",
+        height:"500px",
+        }} alt=""/>
+
+    </div>
+
+  ))
 
   return(    
     <>
@@ -24,17 +35,12 @@ function AdaugaFacturi(){
     <Navig/>
     <Box sx={{marginTop: '50px',}}>
       <Box sx={{marginLeft:'15px'}}>
-      <h2>Incarca o factura</h2>
-      <div>
+
+      <div {...getRootProps()}>
       <input {...getInputProps()} />
-          <p>Insereaza o factura aici</p> :
-
-
-
-
-
+          <p>Insereaza o factura aici</p>
       </div>
-    
+      {selected_file}
     
       </Box>
     </Box>
