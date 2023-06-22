@@ -4,6 +4,10 @@ import { Box, Button } from '@mui/material';
 import LinearProgress from '@mui/material/LinearProgress';
 import Navig from "../../components/Navig";
 import {useDropzone} from 'react-dropzone'
+import Card from '@mui/material/Card';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import Typography from '@mui/material/Typography';
+import CardContent from '@mui/material/CardContent';
 
 function AdaugaFacturi(){
   const [selectedFiles, setSelectedFiles]=useState();
@@ -38,7 +42,23 @@ function AdaugaFacturi(){
 
       <div {...getRootProps()}>
       <input {...getInputProps()} />
-          <p>Insereaza o factura aici</p>
+        <Card sx={{ minWidth: 275 , marginTop:"50px" ,
+      background: 'rgba( 177, 94, 241, 0.25 )',
+      boxShadow:' 0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
+      backdropFilter:' blur( 4px )',
+      WebkitBackdropFilter: 'blur( 4px )',
+      borderRadius:' 10px',
+      border: '1px solid rgba( 255, 255, 255, 0.18 )'}}>
+        <CardContent>
+        <Typography sx={{ fontSize: 18 , marginLeft:"80px" }} color="text.secondary" gutterBottom variant="h5">
+          <CloudUploadIcon sx={{marginLeft:"90px"}}></CloudUploadIcon>
+          <br/>
+          Incarca o factura aici
+        </Typography>
+        
+      </CardContent>
+    </Card>
+
       </div>
       {selected_file}
     
