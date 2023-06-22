@@ -7,27 +7,29 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import AdaugaFacturi from "./pages/AdaugaFacturi/AdaugaFacturi";
 import Facturi from "./pages/Facturi/Facturi"
 import Auth from "./pages/Authentification/Auth";
-import { Router } from "express";
+
+
+
 
 function App() {
   return (
-    <React.StrictMode>
+   
     <BrowserRouter >
           <Routes> 
             <Route  path="/"  element={<Auth/>}></Route>
-            <Route path="/navig" element={<Navig/>} children={[
+            <Route path="/navig" element={<Navig/>}   ></Route>
             
-            <Route path="analiza"  element={<Analiza/>}></Route>,
-            <Route path="adaugaFacturi"  element={<AdaugaFacturi/>}></Route>,
-            <Route path="facturi"  element={<Facturi/>}></Route>,
+            <Route path="analiza" exact element={<Analiza/>}></Route>,
+            <Route path="adaugaFacturi" exact element={<AdaugaFacturi/>}></Route>,
+            <Route path="facturi" exact element={<Facturi/>}></Route>,
             
-            ]}
-            ></Route>
+            
+          
               
             </Routes>
 
     </BrowserRouter>
-  </React.StrictMode>
+  
 
   );
 }
