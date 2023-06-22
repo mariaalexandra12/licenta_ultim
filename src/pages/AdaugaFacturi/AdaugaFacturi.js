@@ -13,7 +13,7 @@ function AdaugaFacturi(){
     <>
     <Box sx={{display: 'flex'}}>
     <Navig/>
-    <Box sx={{marginTop: '50px'}}>
+    <Box sx={{marginTop: '50px',}}>
       <Box sx={{marginLeft:'15px'}}>
       <h2>Incarca o factura</h2>
       <form>

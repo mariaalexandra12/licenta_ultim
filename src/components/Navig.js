@@ -115,7 +115,7 @@ export default function Navig() {
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
         <AppBar position="absolute" open={open} style={{
-          background: 'rgba( 206, 236, 180)',
+         background: 'rgba( 241, 213, 213, 0.25 )',
         }}>
           <Toolbar
             sx={{
@@ -157,7 +157,7 @@ export default function Navig() {
               alignItems: 'center',
               justifyContent: 'flex-end',
               px: [1],
-              background: 'rgba( 206, 236, 180)',
+              background: 'rgba( 241, 213, 213, 0.25 )',
             }}
           >
             <IconButton onClick={toggleDrawer}>
@@ -169,7 +169,7 @@ export default function Navig() {
         
         
           <List style={{ 
-         background: 'rgba( 206, 236, 180)',
+         background: 'rgba( 241, 213, 213, 0.25 )'
           }}>
              <ListItem onClick={()=>navigate("/navig")}>
                      <ListItemButton >
