@@ -16,11 +16,14 @@ function App() {
     <BrowserRouter >
           <Routes> 
             <Route  path="/"  element={<Auth/>}></Route>
-            <Route path="navig" element={<Navig/>}></Route>
-              <Route path="analiza"  element={<Analiza/>}></Route>
-              <Route path="dashboard" element={<Dashboard/>}></Route>
-                <Route path="adaugaFacturi"  element={<AdaugaFacturi/>}></Route>
-                <Route path="facturi" element={<Facturi/>}></Route>
+            <Route path="/navig" element={<Navig/>} children={[
+            
+            <Route path="analiza" element={<Analiza/>}></Route>,
+            <Route path="adaugaFacturi"  element={<AdaugaFacturi/>}></Route>,
+            <Route path="facturi" element={<Facturi/>}></Route>,
+            
+            ]}
+            ></Route>
               
             </Routes>
 

@@ -157,20 +157,10 @@ export default function Navig() {
               alignItems: 'center',
               justifyContent: 'flex-end',
               px: [1],
-              backgroundColor: "rgba( 156, 5, 242, 0.25 )",
+              background: 'rgb(227,56,218)',
+              background: 'linear-gradient(360deg, rgba(227,56,218,1) 0%, rgba(235,188,235,1) 80%)' 
             }}
           >
-
-            <Typography
-              component="h1"
-              variant="h6"
-              color="inherit"
-              noWrap
-              sx={{ flexGrow: 1 }}
-              style={{color:"rgba(138, 5, 186)"}}
-            >
-              Invoice Reader
-            </Typography>
             <IconButton onClick={toggleDrawer}>
               <ChevronLeftIcon />
              </IconButton>
@@ -181,37 +171,47 @@ export default function Navig() {
         
           <List style={{ 
            background: 'rgb(227,56,218)',
-           background: 'linear-gradient(360deg, rgba(227,56,218,1) 0%, rgba(235,188,235,1) 80%)',
+           background: 'linear-gradient(360deg, rgba(227,56,218,1) 0%, rgba(235,188,235,1) 95%)',
             boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
             backdropFilter: 'blur( 11.5px )',
             WebkitBackdropFilter:'blur( 11.5px )',
           }}>
-            
-                     <ListItemButton onClick={()=>navigate("/navig")}>
+             <ListItem onClick={()=>navigate("/navig")}>
+                     <ListItemButton >
 
                       <ListItemIcon style={{color:"rgba(138, 5, 186)"}}><DashboardIcon/> </ListItemIcon>
                       <ListItemText style={{color:"black",
                     fontFamily: 'Goudy Bookletter 1911", sans-serif',}}>Dashboard</ListItemText>
                      </ListItemButton>
+
+                     </ListItem>
                     <Divider></Divider>
                  
-                  <ListItemButton  onClick={()=>navigate("/facturi")} >
+                 <ListItem  onClick={()=>navigate("facturi")} >
+                  <ListItemButton >
 
                     <ListItemIcon style={{color:"rgba(138, 5, 186)"}}><ReceiptIcon/></ListItemIcon>
                     <ListItemText style={{color:"black",
                   fontFamily: 'Goudy Bookletter 1911", sans-serif',}}>Facturi</ListItemText>
                   </ListItemButton>
+                  </ListItem>
                   <Divider></Divider>
 
-                  <ListItemButton onClick={()=>navigate("/adaugaFacturi")} > 
+                 <ListItem onClick={()=>navigate("adaugaFacturi")} >
+                  <ListItemButton > 
                    
                   <ListItemIcon style={{color:"rgba(138, 5, 186)"}}><AddCircleOutlineRoundedIcon/></ListItemIcon>
                   <ListItemText style={{color:"black" ,
                    fontFamily: 'Goudy Bookletter 1911", sans-serif',}}>Adauga Facturi</ListItemText>
                   </ListItemButton>
+                 
+
+                  </ListItem>
                   <Divider></Divider>
 
-                  <ListItemButton  onClick={()=>navigate("/analiza")}>
+
+                <ListItem   onClick={()=>navigate("analiza")}>
+                  <ListItemButton>
               
                     <ListItemIcon style={{color:"rgba(138, 5, 186)"}}><AssessmentRoundedIcon/></ListItemIcon>
                     <ListItemText style={{
@@ -220,9 +220,10 @@ export default function Navig() {
                      }}>Analiza</ListItemText>
                   </ListItemButton>
                   <Divider></Divider>
+                  </ListItem>
 
-
-                  <ListItemButton onClick={handleClickOpen} style={{
+                 <ListItem  onClick={handleClickOpen}>
+                  <ListItemButton style={{
                     marginTop:'280px',
                     marginBottom:'0px',
                     }}>
@@ -230,7 +231,7 @@ export default function Navig() {
                     <Dialog
                          TransitionComponent={Transition}
                          open={openDialog}
-                         onClose={handleCloseDialog}
+                         
                         aria-describedby="alert-dialog-slide-description">
       
                         <DialogTitle>{"Log Out?"}</DialogTitle>
@@ -240,73 +241,24 @@ export default function Navig() {
                         </DialogContentText>
                         </DialogContent>
                         <DialogActions>
-                        <Button onClick={()=>{navigate("/navig")}}>Nu</Button>
+                        
                          <Button onClick={()=>{navigate("/")}}>Da</Button>
                         </DialogActions>
                         </Dialog> 
                    
-
+                   
                     <ListItemIcon style={{color:"rgba(138, 5, 186)"}}><LogoutIcon/></ListItemIcon>
                     <ListItemText style={{
                       color:"black",
                       fontFamily: 'Goudy Bookletter 1911", sans-serif',
                       }}>Log Out</ListItemText> 
                   </ListItemButton>
-                  
+                  </ListItem>
 
                  </List>
         </Drawer>
 
-        <Box
-          component="main"
-          sx={{
-            backgroundColor: (theme) =>
-              theme.palette.mode === 'light'
-                ? theme.palette.grey[100]
-                : theme.palette.grey[900],
-            flexGrow: 1,
-            height: '100vh',
-            overflow: 'auto',
-          }}
-        >
-          <Toolbar />
-          <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-            <Grid container spacing={3}>
-              {/* Chart */}
-              <Grid item xs={12} md={8} lg={9}>
-                <Paper
-                  sx={{
-                    p: 2,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    height: 240,
-                  }}
-                >
-                </Paper>
-              </Grid>
-              {/* Recent Deposits */}
-              <Grid item xs={12} md={4} lg={3}>
-                <Paper
-                  sx={{
-                    p: 2,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    height: 240,
-                  }}
-                >
-                  
-                </Paper>
-              </Grid>
-              {/* Recent Orders */}
-              <Grid item xs={12}>
-                <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-              
-                </Paper>
-              </Grid>
-            </Grid>
-      
-          </Container>
-        </Box>
+        
       </Box>
     </ThemeProvider>
   );
