@@ -7,9 +7,11 @@ import LinearProgress from '@mui/material/LinearProgress';
 export default function AdaugaFacturi(){
   return(    
     <>
-    <Box component="/navig" sx={{flexGrow:1,p:3}}>
+    <Box sx={{display: 'flex'}}>
+      
         <Button variant="outlined" color="succes">Apasa</Button>
-    </Box>
+      </Box>
+
     </>
 )
 
