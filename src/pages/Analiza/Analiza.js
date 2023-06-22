@@ -1,10 +1,13 @@
 import React from 'react';
+import Navig from "../../components/Navig";
+import { Box, Button } from '@mui/material';
 
 const Analiza=()=>{
     return (
-        <div style={{marginLeft:'500px'}}>
-            ANALIZA
-        </div>
+        <Box component={Navig}>
+
+         <Button color="secondary">Apasa aici</Button>
+        </Box>
     )
 
 }

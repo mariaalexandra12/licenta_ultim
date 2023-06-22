@@ -8,8 +8,9 @@ import Navig from "../../components/Navig";
 function AdaugaFacturi(){
   return(    
     <>
-    <h1>Buna</h1>
-
+    <Box component={Navig} sx={{display: 'flex',justifyContent: 'center'}}>
+      <h1>Buna</h1>
+    </Box>
     </>
 )
 
