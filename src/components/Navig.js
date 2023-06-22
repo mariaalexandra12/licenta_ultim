@@ -115,8 +115,7 @@ export default function Navig() {
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
         <AppBar position="absolute" open={open} style={{
-          background: 'rgb(227,56,218)',
-          background: 'linear-gradient(360deg, rgba(227,56,218,1) 0%, rgba(235,188,235,1) 80%)'
+          background: 'rgba( 206, 236, 180)',
         }}>
           <Toolbar
             sx={{
@@ -158,8 +157,7 @@ export default function Navig() {
               alignItems: 'center',
               justifyContent: 'flex-end',
               px: [1],
-              background: 'rgb(227,56,218)',
-              background: 'linear-gradient(360deg, rgba(227,56,218,1) 0%, rgba(235,188,235,1) 80%)' 
+              background: 'rgba( 206, 236, 180)',
             }}
           >
             <IconButton onClick={toggleDrawer}>
@@ -171,11 +169,7 @@ export default function Navig() {
         
         
           <List style={{ 
-           background: 'rgb(227,56,218)',
-           background: 'linear-gradient(360deg, rgba(227,56,218,1) 0%, rgba(235,188,235,1) 95%)',
-            boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
-            backdropFilter: 'blur( 11.5px )',
-            WebkitBackdropFilter:'blur( 11.5px )',
+         background: 'rgba( 206, 236, 180)',
           }}>
              <ListItem onClick={()=>navigate("/navig")}>
                      <ListItemButton >

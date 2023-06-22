@@ -4,10 +4,15 @@ import { Box, Button } from '@mui/material';
 
 const Analiza=()=>{
     return (
-        <Box component={Navig}>
-
-         <Button color="secondary">Apasa aici</Button>
+        <>
+        <Box sx={{display: 'flex'}}>
+        <Navig/>
+        <Box sx={{marginTop: '80px'}}>
+          <Button variant="contained" color="secondary" style={{marginTop: '50px'}}>Apasa aici</Button>
         </Box>
+    
+        </Box>
+        </>
     )
 
 }

@@ -6,9 +6,13 @@ import Navig from "../../components/Navig";
 const Facturi=()=>{
     return (
         <>
-            <Box component={Navig} sx={{ display: 'flex' }}>
-           <h1>Facturi</h1>
-           </Box>
+        <Box sx={{display: 'flex'}}>
+        <Navig/>
+        <Box sx={{marginTop: '80px'}}>
+          <h1>Facturi</h1>
+        </Box>
+    
+        </Box>
         </>
     )
 
