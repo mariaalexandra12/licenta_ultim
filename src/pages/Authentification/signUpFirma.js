@@ -29,5 +29,5 @@ export default function SignUpFirma() {
        border: "1px solid rgba( 255, 255, 255, 0.18 )",}} square="true"/>
     
     </div>
-  )
+  );
 }
