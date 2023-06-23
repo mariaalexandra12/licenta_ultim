@@ -9,6 +9,7 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import Typography from '@mui/material/Typography';
 import CardContent from '@mui/material/CardContent';
 
+
 function AdaugaFacturi(){
   const [selectedFiles, setSelectedFiles]=useState();
   const onDrop = useCallback(acceptedFiles => {
@@ -19,6 +20,8 @@ function AdaugaFacturi(){
       
       ));
   }, [])
+
+ // console.log('db',db);
 
   const {getRootProps, getInputProps} = useDropzone({onDrop})
   const selected_file=selectedFiles?.map(file=>(

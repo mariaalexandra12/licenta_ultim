@@ -36,6 +36,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
 import Settings from './Settings';
+import DescriptionIcon from '@mui/icons-material/Description';
 
 const drawerWidth = 240;
 
@@ -160,14 +161,17 @@ export default function Navig() {
               background: 'rgba( 177, 94, 241, 0.25 )',
             }}
           >
-            <IconButton onClick={toggleDrawer}>
+
+         
+             <IconButton onClick={toggleDrawer}>
               <ChevronLeftIcon />
              </IconButton>
-   
+             
     
           </Toolbar>
         
-        
+         
+
           <List style={{ 
          background: 'rgba( 177, 94, 241, 0.25 )',
           }}>
