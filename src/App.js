@@ -8,10 +8,10 @@ import AdaugaFacturi from "./pages/AdaugaFacturi/AdaugaFacturi";
 import Facturi from "./pages/Facturi/Facturi"
 import Auth from "./pages/Authentification/Auth";
 import SignUp from "./pages/Authentification/signUp";
-import SignUpFirma from "./pages/Authentication/signUpFirma";
 import SignUpPers from "./pages/Authentification/signUpPers";
 import ResetPass from "./pages/Authentification/resetParola";
 import ForgetPass from "./pages/Authentification/forgetParola";
+import SignUpFirma from "./pages/Authentification/signUpFirma";
 
 function App() {
   return (
