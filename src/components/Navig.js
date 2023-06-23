@@ -38,7 +38,7 @@ import Slide from '@mui/material/Slide';
 import Settings from './Settings';
 import DescriptionIcon from '@mui/icons-material/Description';
 
-const drawerWidth = 140;
+const drawerWidth = 200;
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',

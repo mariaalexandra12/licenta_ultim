@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from "react-router-dom";
 import './facturi.css';
 import Box from '@mui/material/Box';
 import Navig from "../../components/Navig";
@@ -10,11 +11,13 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-
+import Button from '@mui/material/Button';
+import AddIcon from '@mui/icons-material/Add';
 
 
 const Facturi=()=>{
 
+  const nav=useNavigate();
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
       backgroundColor: theme.palette.common.black,
@@ -81,7 +84,11 @@ const Facturi=()=>{
         </TableBody>
       </Table>
     </TableContainer>
-
+ 
+      <Button onClick={()=>{nav('/adaugaFacturi')}} color="secondary" endIcon={<AddIcon/>}
+       sx={{marginLeft:'150px',marginTop:'30px'}}
+      
+      >Adauga facturi</Button>
 
 
 
