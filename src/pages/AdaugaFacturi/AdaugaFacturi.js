@@ -19,9 +19,7 @@ function AdaugaFacturi(){
       })
       
       ));
-  }, [])
-
-  console.log('storage',storage);
+  }, []);
 
   const {getRootProps, getInputProps} = useDropzone({onDrop})
   const selected_file=selectedFiles?.map(file=>(
@@ -35,6 +33,8 @@ function AdaugaFacturi(){
     </div>
 
   ))
+
+  const [data , setData]=useState();
 
   return(    
     <>
@@ -63,12 +63,10 @@ function AdaugaFacturi(){
     </Card>
 
       </div>
+      <Button variant="contained" color="secondary">Incarca</Button>
       {selected_file}
        
-
-
-
-      <Button variant="outlined" color="secondary">Incarca</Button>
+      
       </Box>
       
     </Box>
