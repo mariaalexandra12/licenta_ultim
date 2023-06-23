@@ -26,8 +26,13 @@ export default function SignUpFirma() {
        backdropFilter: "blur( 0px )",
        WebkitBackdropFilter: "blur( 0px )",
        borderRadius:" 10px",
-       border: "1px solid rgba( 255, 255, 255, 0.18 )",}} square="true"/>
-    
+       border: "1px solid rgba( 255, 255, 255, 0.18 )",}} square="true">
+        
+        
+        
+        BUNAAA
+       </Paper>
+       
     </div>
   );
 }

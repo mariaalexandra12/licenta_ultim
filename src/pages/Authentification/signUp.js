@@ -27,7 +27,7 @@ export default function SignUp() {
        WebkitBackdropFilter: "blur( 0px )",
        borderRadius:" 10px",
        border: "1px solid rgba( 255, 255, 255, 0.18 )",}} square="true">
-      <Button variant="contained" color="secondary" onclick={()=>nav('/signUpPers')}>Creeaza un cont personal si configureaza datele firmei pe parcurs!</Button>
+      <Button variant="contained" color="secondary" onclick={()=>nav('/sPers')}>Creeaza un cont personal si configureaza datele firmei pe parcurs!</Button>
       <Button variant="contained" color="secondary" onClick={()=>nav('/signUpFirma')} style={{marginTop:'25px'}}>Creeaza un cont al firmei!</Button>
     </Paper>
     </>

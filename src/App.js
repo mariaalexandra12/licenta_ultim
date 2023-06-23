@@ -25,9 +25,9 @@ function App() {
             <Route path="/facturi" exact element={<Facturi/>}></Route>
             <Route path="/signUp" exact element={<SignUp/>}></Route>
             <Route path="/signUpFirma" exact element={<SignUpFirma/>}></Route>
-            <Route path="/signUpPers" exact element={<SignUpPers/>}></Route>
             <Route path="/reset" exact element={<ResetPass/>}></Route>
             <Route path="/forget" exact element={<ForgetPass/>}></Route>
+            <Route path="/sPers" exact element={<SignUpPers/>}></Route>
             </Routes>
 
     </BrowserRouter>
