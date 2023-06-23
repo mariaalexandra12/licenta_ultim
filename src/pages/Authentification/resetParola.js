@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{ useState } from 'react';
 import Paper from '@mui/material/Paper';
 import LockResetIcon from '@mui/icons-material/LockReset';
 import TextField from '@mui/material/TextField';
@@ -6,18 +6,29 @@ import Box from '@mui/material/Box';
 import { Divider, Typography } from '@mui/material';
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import { IconButton , InputAdornment } from '@mui/material';
 
 export default function ResetPass(){
 
+   const [visible,setVisible] = useState();
     const nav=useNavigate();
+    const EndAdornment = () =>{
+      return <InputAdornment position='end'>
+       <IconButton onClick={()=>{setVisible(!visible)}}>
+         {visible ? <VisibilityIcon/> : <VisibilityOffIcon/>}
+       </IconButton> 
+      </InputAdornment>
+    }
     return (
      <>
      
      <Paper elevation={24} style={{
                marginLeft:"350px",
                marginTop:"55px",
-               width:"500px",
-               height:'500px',
+               width:"450px",
+               height:'450px',
                color:"primary",
                padding:"10px",
                background: "rgba( 189, 16, 224,0.10)",
@@ -42,8 +53,26 @@ export default function ResetPass(){
             }}></LockResetIcon>        
         <Typography variant="h5" sx={{marginLeft:'100px'}}>Probleme la conectare?</Typography>   
         <Box style={{display:'flex',flexDirection:'column'}}>    
-      <TextField id="outlined-basic" label="Parola noua" variant="outlined" sx={{marginTop:'10px'}}></TextField>
-      <TextField id="outlined-basic" label="Confirma noua parola " variant="outlined" sx={{marginTop:'20px'}}></TextField>
+
+      <TextField id="outlined-basic" 
+      label="Parola noua"
+       variant="outlined" 
+       sx={{marginTop:'10px'}}
+       type={visible ? "text":"password"}
+       InputProps={{
+        endAdornment: <EndAdornment/>,
+      }}
+       ></TextField>
+
+      <TextField id="outlined-basic"
+       label="Confirma noua parola " 
+       variant="outlined" 
+       sx={{marginTop:'20px'}}
+       type={visible ? "text":"password"}
+       InputProps={{
+        endAdornment: <EndAdornment/>,
+      }}
+       ></TextField>
       </Box>     
      
         
@@ -51,7 +80,7 @@ export default function ResetPass(){
       <Button variant="contained" color="secondary" onClick={()=>nav('/')}
       style={{
         marginTop:'100px',
-        width:'100%',
+        width:'75%',
         }}>Inapoi la conectare</Button>
     </Box>
 

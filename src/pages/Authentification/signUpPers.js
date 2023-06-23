@@ -15,6 +15,7 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { IconButton , InputAdornment } from '@mui/material';
 import { useState } from 'react';
+import PersonIcon from '@mui/icons-material/Person';
 
 
 
@@ -29,6 +30,16 @@ export default function SignUpPers() {
        {visible ? <VisibilityIcon/> : <VisibilityOffIcon/>}
      </IconButton> 
     </InputAdornment>
+  }
+
+  const Icon=()=>{
+    return(
+      <InputAdornment position='end'>
+        <IconButton>
+          <PersonIcon/>
+        </IconButton>
+      </InputAdornment>
+    )
   }
 
 
@@ -94,6 +105,9 @@ export default function SignUpPers() {
                   label="Adresa de email"
                   name="email"
                   autoComplete="email"
+                  InputProps={{
+                    endAdornment:<Icon/>,
+                  }}
                 />
               </Grid>
               <Grid item xs={12}>
