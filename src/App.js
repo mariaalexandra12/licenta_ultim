@@ -8,9 +8,8 @@ import AdaugaFacturi from "./pages/AdaugaFacturi/AdaugaFacturi";
 import Facturi from "./pages/Facturi/Facturi"
 import Auth from "./pages/Authentification/Auth";
 import SignUp from "./pages/Authentification/signUp";
-
-
-
+import SignUpFirma from "./pages/Authentication/SignUpFirma";
+import SignUpPers from "./pages/Authentification/signUpPers";
 
 function App() {
   return (
@@ -24,6 +23,8 @@ function App() {
             <Route path="/adaugaFacturi" exact element={<AdaugaFacturi/>}></Route>
             <Route path="/facturi" exact element={<Facturi/>}></Route>
             <Route path="/signUp" exact element={<SignUp/>}></Route>
+            <Route path="/signUpFirma" exact element={<SignUpFirma/>}></Route>
+            <Route path="/signupPers" exact element={<SignUpPers/>}></Route>
               
             </Routes>
 
