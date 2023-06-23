@@ -6,7 +6,7 @@ import { Button } from '@mui/material';
 
 
 
-export default function SignUp() {
+export default function SignUpFirma() {
   
 
   const nav=useNavigate();

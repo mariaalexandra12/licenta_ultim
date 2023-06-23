@@ -8,8 +8,10 @@ import AdaugaFacturi from "./pages/AdaugaFacturi/AdaugaFacturi";
 import Facturi from "./pages/Facturi/Facturi"
 import Auth from "./pages/Authentification/Auth";
 import SignUp from "./pages/Authentification/signUp";
-import SignUpFirma from "./pages/Authentication/SignUpFirma";
+import SignUpFirma from "./pages/Authentication/signUpFirma";
 import SignUpPers from "./pages/Authentification/signUpPers";
+import ResetPass from "./pages/Authentification/resetParola";
+import ForgetPass from "./pages/Authentification/forgetParola";
 
 function App() {
   return (
@@ -24,8 +26,9 @@ function App() {
             <Route path="/facturi" exact element={<Facturi/>}></Route>
             <Route path="/signUp" exact element={<SignUp/>}></Route>
             <Route path="/signUpFirma" exact element={<SignUpFirma/>}></Route>
-            <Route path="/signupPers" exact element={<SignUpPers/>}></Route>
-              
+            <Route path="/signUpPers" exact element={<SignUpPers/>}></Route>
+            <Route path="/reset" exact element={<ResetPass/>}></Route>
+            <Route path="/forget" exact element={<ForgetPass/>}></Route>
             </Routes>
 
     </BrowserRouter>
