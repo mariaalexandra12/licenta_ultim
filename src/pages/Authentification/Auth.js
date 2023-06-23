@@ -18,27 +18,14 @@ import { IconButton , InputAdornment } from '@mui/material';
 
 function Auth(){
 
-    const [checked, setChecked] = useState(true);
 
-    const [visible,setVisible] = useState(false);
-     const handleChange = (event) => {
-    setChecked(event.target.checked);
-    };
-
-    const handleSubmit = (event) => {
-      event.preventDefault();
-      const data = new FormData(event.currentTarget);
-      console.log({
-        email: data.get('email'),
-        password: data.get('password'),
-      });
-    };
+    const [visible,setVisible] = useState();
   
     const nav=useNavigate();
 
-    const EndAdornment = ([visible,setVisible]) =>{
+    const EndAdornment = () =>{
       return <InputAdornment position='end'>
-       <IconButton onClick={setVisible(!visible)}>
+       <IconButton onClick={()=>{setVisible(!visible)}}>
          {visible ? <VisibilityIcon/> : <VisibilityOffIcon/>}
        </IconButton> 
       </InputAdornment>
@@ -77,7 +64,7 @@ function Auth(){
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box component="form" noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
@@ -94,11 +81,11 @@ function Auth(){
               fullWidth
               name="password"
               label="Parola"
-              type="password"
+              type={visible ? "text":"password"}
               id="password"
               autoComplete="current-password"
               InputProps={{
-                endAdornment: <EndAdornment visible={visible} setVisible={setVisible}/>,
+                endAdornment: <EndAdornment/>,
               }}>
 
               </TextField>

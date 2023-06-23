@@ -12,23 +12,27 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 import Paper from '@mui/material/Paper';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import { IconButton , InputAdornment } from '@mui/material';
+import { useState } from 'react';
 
 
-const defaultTheme = createTheme();
 
 export default function SignUpPers() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
 
+  const [visible,setVisible] = useState();
   const nav=useNavigate();
 
 
+  
+  const EndAdornment = () =>{
+    return <InputAdornment position='end'>
+     <IconButton onClick={()=>{setVisible(!visible)}}>
+       {visible ? <VisibilityIcon/> : <VisibilityOffIcon/>}
+     </IconButton> 
+    </InputAdornment>
+  }
   return (
     <Paper elevation={24} style={{
       marginLeft:"350px",
@@ -43,7 +47,7 @@ export default function SignUpPers() {
        WebkitBackdropFilter: "blur( 0px )",
        borderRadius:" 10px",
        border: "1px solid rgba( 255, 255, 255, 0.18 )",}} square="true">
-    <ThemeProvider theme={defaultTheme}>
+    <ThemeProvider>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -60,7 +64,7 @@ export default function SignUpPers() {
           <Typography component="h1" variant="h5">
             Creeaza un cont
           </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <Box component="form" noValidate  sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -99,9 +103,12 @@ export default function SignUpPers() {
                   fullWidth
                   name="password"
                   label="Parola"
-                  type="password"
+                  type={visible ? "text":"password"}
                   id="password"
                   autoComplete="new-password"
+                  InputProps={{
+                    endAdornment: <EndAdornment/>,
+                  }}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -110,9 +117,12 @@ export default function SignUpPers() {
                   fullWidth
                   name="password"
                   label="Confirma Parola"
-                  type="password"
+                  type={visible ? "text":"password"}
                   id="password"
                   autoComplete="new-password"
+                  InputProps={{
+                    endAdornment: <EndAdornment/>,
+                  }}
                 />
               </Grid>
             </Grid>
