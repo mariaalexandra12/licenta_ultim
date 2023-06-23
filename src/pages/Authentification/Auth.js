@@ -44,9 +44,7 @@ function Auth(){
       )
     }
     
-    const handleLog=()=>{
-      
-    }
+  
 
     return (
       <div className="auth" >   
@@ -94,6 +92,7 @@ function Auth(){
               InputProps={{
                 endAdornment:<Icon/>,
               }}
+              error={()=>{}}
             >
             </TextField>
             <TextField
