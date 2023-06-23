@@ -38,8 +38,8 @@ function Auth(){
             <Paper elevation={24} style={{
                marginLeft:"350px",
                marginTop:"55px",
-               width:"50%",
-               height:'full',
+               width:"550px",
+               height:'550px',
                color:"primary",
                padding:"10px",
                background: "rgba( 189, 16, 224,0.10)",
@@ -99,15 +99,23 @@ function Auth(){
             >
               Intra in cont
             </Button>
-            <Grid container>
+
+            <Grid container sx={{display:'flex', flexDirection:'column',justifyContent: 'center'}}>
               <Grid item xs>
-                <Link href="#" variant="body2">
+                <Link href="/forget" variant="body2">
                   Ai uitat parola?
                 </Link>
               </Grid>
               <Grid item>
                 <Link href="/signUp" variant="body2" >
                   {"Nu ai un cont?Creeaza-ti unul!"}
+                </Link>
+              </Grid>
+
+
+              <Grid item xs>
+                <Link href="/reset" variant="body2">
+                  Reseteaza parola
                 </Link>
               </Grid>
             </Grid>
