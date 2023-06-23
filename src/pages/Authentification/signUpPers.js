@@ -9,7 +9,6 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 import Paper from '@mui/material/Paper';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
@@ -32,7 +31,7 @@ export default function SignUpPers() {
     </InputAdornment>
   }
 
-  
+
   return (
     <Paper elevation={24} style={{
       marginLeft:"350px",
@@ -47,12 +46,11 @@ export default function SignUpPers() {
        WebkitBackdropFilter: "blur( 0px )",
        borderRadius:" 10px",
        border: "1px solid rgba( 255, 255, 255, 0.18 )",}} square="true">
-    <ThemeProvider>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
+            
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -61,9 +59,10 @@ export default function SignUpPers() {
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h5">
-            Creeaza un cont
-          </Typography>
+          <Typography component="h1" style={{fontSize:'20px'}}>
+           Haide sa ne cunoastem! </Typography>
+           <Typography style={{fontSize:'20px',justifyContent:'center'}}>Am nevoie de cateva informatii ca sa iti creez contul:
+         </Typography> 
           <Box component="form" noValidate  sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
@@ -134,7 +133,7 @@ export default function SignUpPers() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
               color="secondary"
-              onClick={()=>nav('/navig')}
+              onClick={()=>nav('/')}
             >
               Intra in cont
             </Button>
@@ -148,7 +147,7 @@ export default function SignUpPers() {
           </Box>
         </Box>
       </Container>
-    </ThemeProvider>
+
     </Paper>
   );
 }
