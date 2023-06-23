@@ -104,6 +104,17 @@ export default function SignUpPers() {
                   autoComplete="new-password"
                 />
               </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="password"
+                  label="Confirma Parola"
+                  type="password"
+                  id="password"
+                  autoComplete="new-password"
+                />
+              </Grid>
             </Grid>
             <Button
               type="submit"
@@ -115,9 +126,9 @@ export default function SignUpPers() {
             >
               Intra in cont
             </Button>
-            <Grid container justifyContent="flex-end">
+            <Grid container justifyContent="center">
               <Grid item>
-                <Link href="/" variant="body2" >
+                <Link href="/" color="secondary" underline='hover'>
                   Ai deja un cont? Intra in cont!
                 </Link>
               </Grid>

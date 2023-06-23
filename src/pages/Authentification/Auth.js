@@ -97,7 +97,10 @@ function Auth(){
               Intra in cont
             </Button>
 
-            <Grid container sx={{display:'flex', flexDirection:'column',justifyContent: 'center'}}>
+            <Grid container style={{display:"flex",
+            flexDirection:"column",
+            marginLeft:'90px'
+          }}>
               <Grid item xs>
                 <Link href="/forget" color="secondary" underline="hover">
                   Ai uitat parola?
