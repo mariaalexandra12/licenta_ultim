@@ -9,7 +9,7 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 import Paper from '@mui/material/Paper';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
@@ -24,8 +24,6 @@ export default function SignUpPers() {
   const [visible,setVisible] = useState();
   const nav=useNavigate();
 
-
-  
   const EndAdornment = () =>{
     return <InputAdornment position='end'>
      <IconButton onClick={()=>{setVisible(!visible)}}>
@@ -33,6 +31,8 @@ export default function SignUpPers() {
      </IconButton> 
     </InputAdornment>
   }
+
+  
   return (
     <Paper elevation={24} style={{
       marginLeft:"350px",
@@ -111,6 +111,7 @@ export default function SignUpPers() {
                   }}
                 />
               </Grid>
+
               <Grid item xs={12}>
                 <TextField
                   required
@@ -125,6 +126,7 @@ export default function SignUpPers() {
                   }}
                 />
               </Grid>
+
             </Grid>
             <Button
               type="submit"
