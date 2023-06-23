@@ -8,7 +8,7 @@ import Card from '@mui/material/Card';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import Typography from '@mui/material/Typography';
 import CardContent from '@mui/material/CardContent';
-import { db } from "../../firebase/firebase";
+import { db, storage } from "../../firebase/firebase";
 
 function AdaugaFacturi(){
   const [selectedFiles, setSelectedFiles]=useState();
@@ -21,7 +21,7 @@ function AdaugaFacturi(){
       ));
   }, [])
 
- // console.log('db',db);
+  console.log('storage',storage);
 
   const {getRootProps, getInputProps} = useDropzone({onDrop})
   const selected_file=selectedFiles?.map(file=>(
@@ -41,7 +41,7 @@ function AdaugaFacturi(){
     <Box sx={{display: 'flex'}}>
     <Navig/>
     <Box sx={{marginTop: '50px',}}>
-      <Box sx={{marginLeft:'15px'}}>
+      <Box sx={{marginLeft:'15px',display: 'flex',flexDirection: 'column'}}>
 
       <div {...getRootProps()}>
       <input {...getInputProps()} />
@@ -68,8 +68,9 @@ function AdaugaFacturi(){
 
 
 
-
+      <Button variant="outlined" color="secondary">Incarca</Button>
       </Box>
+      
     </Box>
 
     </Box>
