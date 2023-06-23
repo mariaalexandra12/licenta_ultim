@@ -1,5 +1,5 @@
 import * as React from 'react';
-
+import './signUp.css';
 import { useNavigate } from 'react-router-dom';
 import Paper from '@mui/material/Paper';
 import { Button } from '@mui/material';
@@ -13,7 +13,7 @@ export default function SignUp() {
 
 
   return (
-    <>
+    <div className="signUp">
     <Paper elevation={24} style={{
       marginLeft:"350px",
       marginTop:"55px",
@@ -40,9 +40,9 @@ export default function SignUp() {
             width:'250px',
             height:'75px'}}
         >Creeaza un cont personal si configureaza datele firmei pe parcurs</Button>
-        <Link href="/" underline="none" color="secondary">{'Inapoi la conectare'}</Link>
+        <Link href="/" color="secondary" underline="hover">{'Inapoi la conectare'}</Link>
       </Box>
     </Paper>
-    </>
+    </div>
   );
 }
