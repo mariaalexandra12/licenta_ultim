@@ -24,14 +24,11 @@ function AdaugaFacturi(){
   const {getRootProps, getInputProps} = useDropzone({onDrop})
   const selected_file=selectedFiles?.map(file=>(
     <div>
-
       <img src={file.preview} style={{
         width:"450px",
         height:"500px",
         }} alt=""/>
-
     </div>
-
   ))
 
   const [data , setData]=useState();
