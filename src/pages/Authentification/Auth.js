@@ -14,12 +14,15 @@ import { useNavigate} from "react-router-dom";
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { IconButton , InputAdornment } from '@mui/material';
+import PersonIcon from '@mui/icons-material/Person';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 
 function Auth(){
 
 
-    const [visible,setVisible] = useState();
+    const [complete , setComplete]=useState(false);
+    const [visible,setVisible] = useState(false);
   
     const nav=useNavigate();
 
@@ -29,6 +32,19 @@ function Auth(){
          {visible ? <VisibilityIcon/> : <VisibilityOffIcon/>}
        </IconButton> 
       </InputAdornment>
+    }
+
+    const Icon=()=>{
+      return(
+        <InputAdornment position='end'>
+          <IconButton>
+            <PersonIcon/>
+          </IconButton>
+        </InputAdornment>
+      )
+    }
+    const handleLog=()=>{
+      
     }
 
     return (
@@ -74,7 +90,11 @@ function Auth(){
               name="email"
               autoComplete="email"
               autoFocus
-            />
+              InputProps={{
+                endAdornment:<Icon/>,
+              }}
+            >
+            </TextField>
             <TextField
               margin="normal"
               required
