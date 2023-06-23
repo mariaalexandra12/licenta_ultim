@@ -20,7 +20,6 @@ function App() {
           <Routes> 
             <Route  path="/"  element={<Auth/>}></Route>
             <Route path="/navig" element={<Navig/>}  ></Route>
-    
             <Route path="/analiza" exact element={<Analiza/>}></Route>
             <Route path="/adaugaFacturi" exact element={<AdaugaFacturi/>}></Route>
             <Route path="/facturi" exact element={<Facturi/>}></Route>
