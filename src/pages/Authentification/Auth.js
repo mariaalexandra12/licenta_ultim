@@ -11,12 +11,16 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { useNavigate} from "react-router-dom";
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import { IconButton , InputAdornment } from '@mui/material';
 
 
 function Auth(){
 
     const [checked, setChecked] = useState(true);
 
+    const [visible,setVisible] = useState(false);
      const handleChange = (event) => {
     setChecked(event.target.checked);
     };
@@ -31,6 +35,14 @@ function Auth(){
     };
   
     const nav=useNavigate();
+
+    const EndAdornment = ([visible,setVisible]) =>{
+      return <InputAdornment position='end'>
+       <IconButton onClick={setVisible(!visible)}>
+         {visible ? <VisibilityIcon/> : <VisibilityOffIcon/>}
+       </IconButton> 
+      </InputAdornment>
+    }
 
     return (
       <div className="auth" >   
@@ -85,7 +97,11 @@ function Auth(){
               type="password"
               id="password"
               autoComplete="current-password"
-            />
+              InputProps={{
+                endAdornment: <EndAdornment visible={visible} setVisible={setVisible}/>,
+              }}>
+
+              </TextField>
             <Button
               type="submit"
               fullWidth
