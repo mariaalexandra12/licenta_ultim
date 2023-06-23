@@ -48,10 +48,7 @@ function Auth(){
                 WebkitBackdropFilter: "blur( 0px )",
                 borderRadius:" 10px",
                 border: "1px solid rgba( 255, 255, 255, 0.18 )",}} square="true">
-             
-
-
-
+            
              <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
