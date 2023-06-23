@@ -12,8 +12,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import LogIn from './logIn';
 import { useNavigate } from 'react-router-dom';
+import Paper from '@mui/material/Paper';
 
 
 const defaultTheme = createTheme();
@@ -32,6 +32,19 @@ export default function SignUp() {
 
 
   return (
+    <Paper elevation={24} style={{
+      marginLeft:"350px",
+      marginTop:"55px",
+      width:"50%",
+      height:'full',
+      color:"primary",
+      padding:"10px",
+      background: "rgba( 189, 16, 224,0.10)",
+       boxShadow: "0 8px 32px 0 rgba( 31, 38, 135, 0.37 )",
+       backdropFilter: "blur( 0px )",
+       WebkitBackdropFilter: "blur( 0px )",
+       borderRadius:" 10px",
+       border: "1px solid rgba( 255, 255, 255, 0.18 )",}} square="true">
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
@@ -106,7 +119,7 @@ export default function SignUp() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2" >
+                <Link href="/" variant="body2" >
                   Ai deja un cont? Intra in cont!
                 </Link>
               </Grid>
@@ -115,5 +128,6 @@ export default function SignUp() {
         </Box>
       </Container>
     </ThemeProvider>
+    </Paper>
   );
 }

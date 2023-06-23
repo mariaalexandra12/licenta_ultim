@@ -7,6 +7,7 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import AdaugaFacturi from "./pages/AdaugaFacturi/AdaugaFacturi";
 import Facturi from "./pages/Facturi/Facturi"
 import Auth from "./pages/Authentification/Auth";
+import SignUp from "./pages/Authentification/signUp";
 
 
 
@@ -22,7 +23,7 @@ function App() {
             <Route path="/analiza" exact element={<Analiza/>}></Route>
             <Route path="/adaugaFacturi" exact element={<AdaugaFacturi/>}></Route>
             <Route path="/facturi" exact element={<Facturi/>}></Route>
-            
+            <Route path="/signUp" exact element={<SignUp/>}></Route>
               
             </Routes>
 
