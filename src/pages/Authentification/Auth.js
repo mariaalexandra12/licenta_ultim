@@ -99,19 +99,19 @@ function Auth(){
 
             <Grid container sx={{display:'flex', flexDirection:'column',justifyContent: 'center'}}>
               <Grid item xs>
-                <Link href="/forget" variant="body2">
+                <Link href="/forget" color="secondary" >
                   Ai uitat parola?
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="/signUp" variant="body2" >
+                <Link href="/signUp" color="secondary" >
                   {"Nu ai un cont?Creeaza-ti unul!"}
                 </Link>
               </Grid>
 
 
               <Grid item xs>
-                <Link href="/reset" variant="body2">
+                <Link href="/reset" color="secondary">
                   Reseteaza parola
                 </Link>
               </Grid>
