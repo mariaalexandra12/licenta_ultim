@@ -54,7 +54,7 @@ function Auth(){
     const handleSubmit=(event)=>{
       const errors=validate();
       setErrors(errors);
-      if(!setErrors(errors)){
+      if(!errors.email && !errors.password){
         nav('/navig');
       }
     }
@@ -91,7 +91,7 @@ function Auth(){
                marginLeft:"350px",
                marginTop:"55px",
                width:"550px",
-               height:'550px',
+               height:'590px',
                color:"primary",
                padding:"10px",
                background: "rgba( 189, 16, 224,0.10)",
@@ -145,6 +145,7 @@ function Auth(){
 
             <TextField
               margin="normal"
+              required
               fullWidth
               name="password"
               label="Parola"

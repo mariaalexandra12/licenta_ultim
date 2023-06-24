@@ -16,7 +16,8 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import { IconButton , InputAdornment } from '@mui/material';
 import { useState } from 'react';
 import PersonIcon from '@mui/icons-material/Person';
-
+import CheckIcon from '@mui/icons-material/Check';
+import ClearIcon from '@mui/icons-material/Clear';
 
 
 export default function SignUpPers() {
@@ -42,6 +43,47 @@ export default function SignUpPers() {
     )
   }
 
+
+  const [email , setEmail]=useState('')
+  const [password, setPassword] = useState('')
+  const [confirmPass, setConfirmPass]=useState('')
+  const [ errors , setErrors] = useState([])
+  const handleSubmit=(event)=>{
+    const errors=validate();
+    setErrors(errors);
+    if(!errors.email && !errors.password){
+      nav('/navig');
+    }
+  }
+
+  const validate=()=>{
+    const eroare = {};
+    if(!email){
+      eroare.email="Adresa de mail nu a fost introdusa.";
+    }
+    else if(!/(@gmail.com)/.test(email)){
+         eroare.email="Adresa de mail nu are un format valid."
+    }
+    else{
+      eroare.email='';
+    }
+
+
+    if(!password){
+      eroare.password="Parola nu a fost introdusa.";
+    }
+    else if(password.length>15 || password.length<10){
+         eroare.password="Parola trebuie sa contina intre 10-15 caractere."
+    }
+    else{
+      eroare.password='';
+    }
+    return eroare;
+  };
+
+  const handlePass=(e) => {
+     setPassword(e.target.value);
+  }
 
   
   return (
@@ -75,32 +117,38 @@ export default function SignUpPers() {
            Haide sa ne cunoastem! </Typography>
            <Typography style={{fontSize:'20px',justifyContent:'center'}}>Am nevoie de cateva informatii ca sa iti creez contul:
          </Typography> 
+        
           <Box component="form" noValidate  sx={{ mt: 3 }}>
+          <form onSubmit={handleSubmit}>
             <Grid container spacing={2}>
+            
               <Grid item xs={12} sm={6}>
+              
                 <TextField
                   autoComplete="given-name"
                   name="firstName"
-                  required
                   fullWidth
                   id="firstName"
                   label="Nume"
                   autoFocus
-                />
+                  onChange={(e)=>setEmail(e.target.value)}></TextField>
+            
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
-                  required
+                  
                   fullWidth
                   id="lastName"
                   label="Prenume"
                   name="lastName"
                   autoComplete="family-name"
-                />
+                  onChange={(e)=>setEmail(e.target.value)}></TextField>
+                
               </Grid>
               <Grid item xs={12}>
+
                 <TextField
-                  required
+                required
                   fullWidth
                   id="email"
                   label="Adresa de email"
@@ -109,9 +157,13 @@ export default function SignUpPers() {
                   InputProps={{
                     endAdornment:<Icon/>,
                   }}
-                />
+                  onChange={(e)=>setEmail(e.target.value)}></TextField>
+                
               </Grid>
+
+
               <Grid item xs={12}>
+               <div className="parola">
                 <TextField
                   required
                   fullWidth
@@ -123,8 +175,30 @@ export default function SignUpPers() {
                   InputProps={{
                     endAdornment: <EndAdornment/>,
                   }}
-                />
+                  onChange={handlePass}/>
+                 <p id="upper" style={{fontSize:'15px',opacity:'0.5',transition:'0.3'}}>
+                    <CheckIcon  style={{width:'20px',height:'15px'}}/>
+                    <span>Parola trebuie sa contina cel putin o majuscula.</span>
+                 </p>
+                 <p id="lower" style={{fontSize:'15px',opacity:'0.5',transition:'0.3'}}>
+                    <CheckIcon  style={{width:'20px',height:'15px'}}/>
+                    <span>Parola trebuie sa contina cel putin o litera mica.</span>
+                 </p>
+                 <p id="numere"  style={{fontSize:'15px',opacity:'0.5',transition:'0.3'}}>
+                    <CheckIcon style={{width:'20px',height:'15px'}}/>
+                    <span>Parola trebuie sa contina cel putin un numar.</span>
+                 </p>
+                 <p id="length" style={{fontSize:'15px',opacity:'0.5',transition:'0.3'}}>
+                    <CheckIcon style={{width:'20px',height:'15px'}}/>
+                    <span>Parola trebuie sa contina cel putin 10 caractere.</span>
+                 </p>
+
+
+                  </div>
               </Grid>
+
+
+
 
               <Grid item xs={12}>
                 <TextField
@@ -138,8 +212,9 @@ export default function SignUpPers() {
                   InputProps={{
                     endAdornment: <EndAdornment/>,
                   }}
-                />
+                  onChange={(e)=>setConfirmPass(e.target.value)}/>
               </Grid>
+
 
             </Grid>
             <Button
@@ -152,6 +227,8 @@ export default function SignUpPers() {
             >
               Intra in cont
             </Button>
+
+            </form>
             <Grid container justifyContent="center">
               <Grid item>
                 <Link href="/" color="secondary" underline='hover'>
