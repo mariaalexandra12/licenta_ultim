@@ -116,9 +116,6 @@ export default function SignUpPers() {
     if(!cif){
       eroare.cif="Nu ai introdus codul de inregistrare fiscala al firmei"
     }
-    else if(!/[0-9]/.test(cif)){
-      eroare.cif="Codul introdus nu este valid"
-    }
     else{
       eroare.cif="";
     }
@@ -389,6 +386,7 @@ export default function SignUpPers() {
 
               <Grid item xs={12} sm={6}>
                 <TextField
+                  type="number"
                   required
                   fullWidth
                   id="cif"
