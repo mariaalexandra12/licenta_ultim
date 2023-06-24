@@ -19,6 +19,8 @@ import PersonIcon from '@mui/icons-material/Person';
 import CheckIcon from '@mui/icons-material/Check';
 import ClearIcon from '@mui/icons-material/Clear';
 import './signUpPers.css';
+import LinearProgress from '@mui/material/LinearProgress';
+
 
 export default function SignUpPers() {
 
@@ -81,35 +83,8 @@ export default function SignUpPers() {
     }
     return eroare;
   };
-
-
-  const [color,setColor]=useState();
-  const getStrengthColor = () => {
-    if (password.length < 10) {
-      setColor('red'); // culoare slabă
-    } else if (password.length < 12) {
-      setColor('orange'); // culoare medie
-    } else {
-      setColor('green'); // culoare puternică
-    }
-    return color;
-  };
-  
-  const showText = () => {
-    var textPass="";
-    if(color === 'red'){
-      textPass="Parola foarte slaba";
-    }
-    if(color === 'orange'){
-      textPass="Parola medie";
-    }
-    else{
-      textPass="Parola puternica";
-    }
-    return textPass;
-  }
-
-
+   
+ 
 
   return (
     <Paper elevation={24} style={{
@@ -202,15 +177,7 @@ export default function SignUpPers() {
                   }}
                   onChange={(e)=>setPassword(e.target.value)}
                   />
-                 <div>
-                   <span style={{
-                    borderRadius:'10px',
-                    top:'0',
-                    height:'8px',
-                    color:getStrengthColor(),
-                   }}></span>
-                   <p>{showText}</p>
-                  </div> 
+                
               
                 </div>
                   
