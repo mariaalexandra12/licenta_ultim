@@ -18,6 +18,9 @@ import PersonIcon from '@mui/icons-material/Person';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useForm } from "react-hook-form";
 import Popover from '@mui/material/Popover';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
+import Stack from '@mui/material/Stack';
 
 function Auth(){
 
@@ -49,11 +52,10 @@ function Auth(){
     const [password, setPassword] = useState('')
     const [ errors , setErrors] = useState([])
     const handleSubmit=(event)=>{
-      event.preventDefault();
       const errors=validate();
       setErrors(errors);
-      if(Object.keys(errors).length===0){
-        alert('Autentificat cu succes');
+      if(!setErrors(errors)){
+        nav('/navig');
       }
     }
 
@@ -62,7 +64,7 @@ function Auth(){
       if(!email){
         eroare.email="Adresa de mail nu a fost introdusa.";
       }
-      else if(!/\S+@\S+\.\S+/.test(email) || !/(@gmail.com)/.test(email)){
+      else if(!/(@gmail.com)/.test(email)){
            eroare.email="Adresa de mail nu are un format valid."
       }
       else{
@@ -74,7 +76,7 @@ function Auth(){
         eroare.password="Parola nu a fost introdusa.";
       }
       else if(password.length>15 || password.length<10){
-           eroare.password="Parola nu are un format valid."
+           eroare.password="Parola trebuie sa contina intre 10-15 caractere."
       }
       else{
         eroare.password='';
@@ -132,9 +134,15 @@ function Auth(){
               }}
               
                  onChange={(e)=>setEmail(e.target.value)}>
-            {errors.email && <div style={{color: 'red'}}>{errors.email}</div> }
-
             </TextField>
+            {errors.email && (
+              <div>
+              <Alert severity="error">
+                {errors.email}
+              </Alert>
+              </div>
+             )}
+
             <TextField
               margin="normal"
               fullWidth
@@ -149,7 +157,13 @@ function Auth(){
               onChange={(e)=>setPassword(e.target.value)}
               >
               </TextField>
-              {errors.password && <div style={{color: 'red'}}>{errors.password}</div>}
+              {errors.password && (
+              <div>
+              <Alert severity="error">
+                {errors.password}
+              </Alert>
+              </div>
+             )}
 
 
             <Button
@@ -158,6 +172,7 @@ function Auth(){
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
               color="secondary"
+              onClick={handleSubmit}
           >
               Intra in cont
             </Button>
