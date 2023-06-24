@@ -88,9 +88,10 @@ export default function SignUpPers() {
 
   const handlePass=(e) => {
     setPassword(e.target.value);
-    if(password !=""){
-      indicator.style.display="block";
-      indicator.style.display="flex";
+    if(password !== " "){
+      
+    }else{
+      indicator.style.display="none";
     }
  }
 
@@ -185,10 +186,10 @@ export default function SignUpPers() {
                     endAdornment: <EndAdornment/>,
                   }}
                   onChange={handlePass}/>
-                  <div class="indicator" >
-                  <span class="parolaFoarteSlaba" ></span>
-                  <span class="parolaSlaba" ></span>
-                  <span class="parolaPuternica" ></span>
+                  <div className="indicator" >
+                  <span className="parolaFoarteSlaba" ></span>
+                  <span className="parolaSlaba" ></span>
+                  <span className="parolaPuternica" ></span>
                   </div>
                   <div className="text" >Parola ta este foarte slaba.</div>
                   </div>
