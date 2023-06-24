@@ -117,16 +117,190 @@ export default function SignUpPers() {
     return eroare;
   };
   
+
+
+  const Romania = {
+    judete: [
+      {
+        nume:'Arad',
+        localitati:['Arad','Chisineu-Cris','Curtici','Ineu','Lipova','Nădlac','Sebiș']
+      },
+      {
+        nume:'Alba',
+        localitati:['Aiud','Alba Iulia','Blaj','Sebes','Abrud','Baia de Aries','Cugir','Campeni','Ocna Mures']
+      },
+      {
+        nume:'Arges',
+        localitati:['Curtea de Arges','Campulung','Pitesti','Costesti','Mioveni','Topoloveni','Stefanesti']
+      },
+      {
+        nume:'Bacau',
+        localitati:['Bacau','Moinesti','Onesti','Buhusi','Comanesti','Darmanesti','Slanic-Moldova','TarguOcna']
+      },
+      {
+        nume: 'Bucuresti',
+        localitati: ['Sector 1','Sector 2','Sector 3','Sector 4','Sector 5','Sector 6']
+      },
+      {
+        nume:'Bihor',
+        localitati: ['Beius','Marghita','Oradea','Salonta','Alesd','Nucet','Sacuieni']
+      },
+      {
+        nume:'Bistrita-Nasaud',
+        localitati:['Bistratita','Beclean','Nasaud','Sangeorz-Bai']
+      },
+      {
+        nume:'Botosani',
+        localitati:['Botosani','Albesti','Braesti','Copalau']
+      },
+      {
+        nume:'Brasov',
+        localitati:['Brasov','Codlea','Fagaras','Sacele','Ghimbav','Predeal','Rupea','Rasnov']
+      },
+      {
+        nume:'Braila',
+        localitati:['Braila']
+      },
+      {
+        nume:'Buzau',
+        localitati:['Buzau','Ramnicu Sarat','Nehoiu','Pogoanele']
+      },
+      {
+        nume:'Caras-Severin',
+        localitati:['Caransebes','Resita','Bocsa','Baile Herculane']
+      },
+      {
+        nume:'Calarasi',
+        localitati:['Calarasi','Oltenita','Budesti','Fundulea']
+      },
+      {
+        nume:'Cluj',
+        localitati:['Cluj-Napoca','Campia Turzii','Dej','Gherla','Turda']
+      },
+      {
+        nume:'Constanta',
+        localitati:['Mangalia','Constanta','Medgidia','Cernavoda','Navodari']
+      },
+      {
+        nume:'Covasna',
+        localitati:['Sfantu Gheorghe','Targu Secuiesc','Covasna']
+      },
+      {
+        nume:'Dambovita',
+        localitati:['Moreni','Targoviste','']
+      },
+      {
+        nume:'Dolj',
+        localitati:['Bailesti','Calafat','Craiova']
+      },
+      {
+        nume:'Galati',
+        localitati:['Galati','Tecuci','Targu Bujor']
+      },
+      {
+        nume:'Giurgiu',
+        localitati:['Giurgiu','Bolintin-Vale']
+      },
+      {
+        nume:'Gorj',
+        localitati:['Motru','Targu-Jiu']
+      },
+      {
+        nume:'Harghita',
+        localitati:['Gheorgheni','Miercurea Ciuc','Ordoheiu Secuiesc','Toplita']
+      },
+      {
+        nume:'Hunedoara',
+        localitati:['Brad','Deva','Hunedoara','Orastie','Petrosani']
+      },
+      {
+        nume:'Ialomita',
+        localitati:['Fetesti','Slobozia','Urziceni','Amara']
+      },
+      {
+        nume:'Maramures',
+        localitati:['Baia Mare','Sighetu Marmatiei','Baia Sprie']
+      },
+      {
+        nume:'Mehedinti',
+        localitati:['Drobeta-Turnu Severin','Orsova',]
+      },
+      {
+        nume:'Mures',
+        localitati:['Reghin','Sighisoara','Targu Mures','Tarnaveni']
+      },
+      {
+        nume:'Neamt',
+        localitati:['Piatra Neamt','Roman','Bicaz','Targu Neamt']
+      },
+      {
+        nume:'Olt',
+        localitati:['Caracal','Slatina','Corabia','Draganesti-Olt']
+      },
+      {
+        nume:'Prahova',
+        localitati:['Campina','Ploiesti','Azuga']
+      },
+      {
+        nume:'Satu Mare',
+        localitati:['Carei','Satu Mare']
+      },
+      {
+        nume:'Salaj',
+        localitati:['Zalau']
+      },
+      {
+        nume:'Sibiu',
+        localitati:['Medias','Sibiu','Avrig','']
+      },
+      {
+        nume:'Suceava',
+        localitati:['Campulung Moldovenesc','Falticeni','Rdauti','Suceava','Vatra Dornei']
+      },
+      {
+        nume:'Teleorman',
+        localitati:['Alexandria','Turnu Magurele','Rosiorii de Vede']
+      },
+      {
+        nume:'Timis',
+        localitati:['Lugoj','Timisoara','Buzias','Faget']
+      },
+      {
+        nume:'Tulcea',
+        localitati:['Tulcea','Macin','Sulina']
+      },
+      {
+        nume:'Vaslui',
+        localitati:['Barlad','Husi','Vaslui','Negresti']
+      },
+      {
+        nume:'Valcea',
+        localitati:['Dragasani','Ramnicu Valcea']
+      },
+      {
+        nume:'Vrancea',
+        localitati:['Adjud','Focsani','Marasesti','Odobesto','Panciu']
+      },
+      {
+        nume: 'Ilfov',
+        localitati: ['Voluntari', 'Pantelimon', 'Otopeni','Bragadiru','Buftea','Popesti-Leordeni']
+      },
+  
+    ]
+  };
+
   const handleJudet = (event) => {
     setJudet(event.target.value);
+    setLocalitate('');
   };
 
   const handleLocalitate = (event) => {
     setJudet(event.target.value);
   };
 
-
-
+  const judete=Romania.judete;
+  const local=judet ? judete.find((jud) => jud.nume===judet).localitati : [];
+   
   return (
     <Paper elevation={24} style={{
       marginLeft:"350px",
@@ -205,9 +379,11 @@ export default function SignUpPers() {
                  value={judet}
                  label="Judet"
                  onChange={handleJudet}>
-               <MenuItem value={10}>Ten</MenuItem>
-               <MenuItem value={20}>Twenty</MenuItem>
-               <MenuItem value={30}>Thirty</MenuItem>
+                 {
+                  judete.map((jud)=>(
+                    <MenuItem key={jud.nume} value={jud.nume}>{jud.nume}</MenuItem>
+                  ))
+                 }
                </Select>
                </FormControl>
               </Grid>
@@ -221,9 +397,12 @@ export default function SignUpPers() {
                 value={localitate}
                 label="Localitate"
                  onChange={handleLocalitate}>
-               <MenuItem value={10}>Ten</MenuItem>
-               <MenuItem value={20}>Twenty</MenuItem>
-               <MenuItem value={30}>Thirty</MenuItem>
+                {
+                  local.map((loc)=>(
+                    <MenuItem key={loc} value={loc}>{loc}</MenuItem>
+                  ))
+                }
+
                </Select>
                </FormControl>
               </Grid>
