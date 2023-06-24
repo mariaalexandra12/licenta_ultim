@@ -156,11 +156,12 @@ function Auth(){
 
 
             <Button
-              type="submit"
+            
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              color="secondary">
+              color="secondary"
+          >
               Intra in cont
             </Button>
 
@@ -188,7 +189,7 @@ function Auth(){
              </Grid>
             </Box>
           </Box>
-        </form>
+          </form>
       </Container>
         </Paper>
         </div>
