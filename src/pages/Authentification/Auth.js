@@ -130,12 +130,9 @@ function Auth(){
               InputProps={{
                 endAdornment:<Icon/>,
               }}
-              onChange={(e)=>setEmail(e.target.value)}
-              >
-            {errors.email && <Popover>
-             <Typography>{errors.email}</Typography>
-
-            </Popover> }
+              
+                 onChange={(e)=>setEmail(e.target.value)}>
+            {errors.email && <div style={{color: 'red'}}>{errors.email}</div> }
 
             </TextField>
             <TextField
@@ -152,7 +149,7 @@ function Auth(){
               onChange={(e)=>setPassword(e.target.value)}
               >
               </TextField>
-
+              {errors.password && <div style={{color: 'red'}}>{errors.password}</div>}
 
 
             <Button
