@@ -63,7 +63,8 @@ export default function SignUpPers() {
     event.preventDefault();
     const errors=validate();
     setErrors(errors);
-    if(!errors.email && !errors.password && !errors.confirmPass){
+    if(!errors.email && !errors.password && !errors.confirmPass && !errors.adresa 
+      && !errors.capSoc && !errors.cif && !errors.denumireFirma){
       nav('/');
     }
   }
@@ -126,9 +127,6 @@ export default function SignUpPers() {
     if(!capSoc){
       eroare.capSoc="Nu ai introdus capitalul social al firmei"
     }
-    else if(!/[0-9]/.test(capSoc)){
-      eroare.capSoc="Capitalul social trebuie sa contina doar cifre."
-    }
     else{
       eroare.capSoc="";
     }
@@ -136,8 +134,8 @@ export default function SignUpPers() {
     if(!adresa){
       eroare.adresa="Nu ai introdus adresa firmei"
     }
-    else if(!/(Str.)/gmi.test(adresa) || !/[0-9]/.test(adresa)){
-     eroare.adresa="Adresa introdusa nu are un format valid.Adresa trebuie sa contina strada si numarul acesteia"
+    else if(!/(Str.).+(nr.)/gmi.test(adresa) || !/[0-9]/.test(adresa)){
+     eroare.adresa="Adresa trebuie sa fie de forma : Str.{..} nr.{..}."
     }
     else{
       eroare.adresa="";
@@ -324,7 +322,7 @@ export default function SignUpPers() {
   };
 
   const handleLocalitate = (event) => {
-    setJudet(event.target.value);
+    setLocalitate(event.target.value);
   };
 
   const judete=Romania.judete;
@@ -452,6 +450,7 @@ export default function SignUpPers() {
                   id="adr"
                   label="Adresa"
                   name="adr"
+                  onChange={(e)=>setAdresa(e.target.value)}
                  ></TextField>
                  {errors.adresa && (
               <div>
@@ -464,11 +463,13 @@ export default function SignUpPers() {
 
               <Grid item xs={12} sm={6}>
                 <TextField
+                type="number"
                   required
                   fullWidth
                   id="capSoc"
                   label="Capital Social"
                   name="capSoc"
+                  onChange={(e)=>setCapSoc(e.target.value)}
                  ></TextField>
                     {errors.capSoc && (
                 <div>
