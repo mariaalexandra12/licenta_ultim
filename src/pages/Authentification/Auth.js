@@ -44,7 +44,13 @@ function Auth(){
       )
     }
     
-  
+    const initialValues={adressEmail:"",password:""}
+    const [formValues, setFormValues]=useState(initialValues);
+    
+    const handleChange=(e)=>{
+      const { name , value }=e.target;
+     
+    }
 
     return (
       <div className="auth" >   
@@ -92,7 +98,8 @@ function Auth(){
               InputProps={{
                 endAdornment:<Icon/>,
               }}
-              error={()=>{}}
+              onChange={handleChange}
+             
             >
             </TextField>
             <TextField
@@ -106,8 +113,11 @@ function Auth(){
               autoComplete="current-password"
               InputProps={{
                 endAdornment: <EndAdornment/>,
-              }}>
-
+              }}
+              onChange={handleChange}
+             
+              >
+              
               </TextField>
             <Button
               type="submit"
