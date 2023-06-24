@@ -81,7 +81,7 @@ export default function SignUpPers() {
     return eroare;
   };
 
-  const indicator=document.querySelector('.indicator');
+  const indicator=document.querySelector("#indicator");
   const parolaFoarteSlaba=document.querySelector('.parolaFoarteSlaba');
   const parolaSlaba=document.querySelector('.parolaSlaba');
   const parolaPuternica=document.querySelector('.parolaPuternica');
@@ -89,7 +89,7 @@ export default function SignUpPers() {
   const handlePass=(e) => {
     setPassword(e.target.value);
     if(password !== " "){
-      
+      indicator.style.display = "flex";
     }else{
       indicator.style.display="none";
     }
