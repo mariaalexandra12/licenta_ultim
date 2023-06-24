@@ -38,15 +38,15 @@
 }
 
 .indicator span.parolaFoarteSlaba.active::before {
-    background:red;
+    color:red;
 }
 
 .indicator span.parolaSlaba.active:before{
-    background: orange;
+    color:orange;
 }
 
-.indicator span.parolaPuternica:before{
-    background: green;
+.indicator span.parolaPuternica.active:before{
+    color: green;
 }
 
 .text{
