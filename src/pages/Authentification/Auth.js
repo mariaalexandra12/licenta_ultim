@@ -43,10 +43,9 @@ function Auth(){
         </InputAdornment>
       )
     }
-    
-  
-    const { register,  handleSubmit , formState:{ errors }}=useForm()
-    const onSubmit=(data)=>console.log(data)
+
+    const [email , setEmail]=useState('')
+    const [password, setPassword] = useState('')
 
     return (
       <div className="auth" >   
@@ -67,7 +66,7 @@ function Auth(){
             
              <Container component="main" maxWidth="xs">
         <CssBaseline />
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form>
            <Box
              sx={{
              marginTop: 8,
@@ -81,6 +80,8 @@ function Auth(){
            <Typography component="h1" variant="h5">
             Sign in
           </Typography>
+
+
           <Box component="form" noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
@@ -94,7 +95,8 @@ function Auth(){
               InputProps={{
                 endAdornment:<Icon/>,
               }}
-              {...register("email",{required: "Required"})}>
+              onChange={(e)=>setEmail(e.target.value)}
+              >
             </TextField>
             <TextField
               margin="normal"
@@ -107,8 +109,12 @@ function Auth(){
               InputProps={{
                 endAdornment: <EndAdornment/>,
               }}
-              {...register("password",{required: "Required"})}>
+              onChange={(e)=>setPassword(e.target.value)}
+              >
               </TextField>
+
+
+
             <Button
               type="submit"
               fullWidth
