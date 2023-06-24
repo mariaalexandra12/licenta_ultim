@@ -21,6 +21,10 @@ import ClearIcon from '@mui/icons-material/Clear';
 import Checkbox from '@mui/material/Checkbox';
 import LinearProgress from '@mui/material/LinearProgress';
 import Alert from '@mui/material/Alert';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
+import FormControl from '@mui/material/FormControl';
 
 
 export default function SignUpPers() {
@@ -50,6 +54,12 @@ export default function SignUpPers() {
   const [email , setEmail]=useState('')
   const [password, setPassword] = useState('')
   const [confirmPass, setConfirmPass]=useState('')
+  const [denumireFirma,setDenumireFirma]=useState('')
+  const [cif, setCif]=useState('')
+  const [localitate, setLocalitate]=useState('')
+  const [adresa,setAdresa]=useState('')
+  const [capSoc,setCapSoc]=useState('')
+  const [judet,setJudet]=useState('')
   const [ errors , setErrors] = useState([])
   const handleSubmit=(event)=>{
     event.preventDefault();
@@ -93,12 +103,29 @@ export default function SignUpPers() {
     else{
       eroare.confirmPass='';
     }
+
+    if(!denumireFirma){
+      eroare.denumireFirma="Nu ai introdus denumirea firmei.";
+    }
+    else if(!/(SRL)/.test(denumireFirma)){
+      eroare.denumireFirma="Denumirea trebuie sa contina SRL."
+    }
+    else{
+      eroare.denumireFirma="";
+    }
     
     return eroare;
   };
   
-   
- 
+  const handleJudet = (event) => {
+    setJudet(event.target.value);
+  };
+
+  const handleLocalitate = (event) => {
+    setJudet(event.target.value);
+  };
+
+
 
   return (
     <Paper elevation={24} style={{
@@ -148,7 +175,16 @@ export default function SignUpPers() {
                   autoFocus
                  ></TextField>
             
+            {errors.denumireFirma && (
+              <div>
+              <Alert severity="error">
+                {errors.denumireFirma}
+              </Alert>
+              </div>
+             )}
               </Grid>
+
+
               <Grid item xs={12} sm={6}>
                 <TextField
                   required
@@ -161,23 +197,35 @@ export default function SignUpPers() {
               </Grid>
 
               <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  fullWidth
-                  id="local"
-                  label="Localitate"
-                  name="local"
-                 ></TextField>
+              <FormControl fullWidth>
+               <InputLabel>Judet</InputLabel>
+               <Select
+                 labelId="judet"
+                 id="judet"
+                 value={judet}
+                 label="Judet"
+                 onChange={handleJudet}>
+               <MenuItem value={10}>Ten</MenuItem>
+               <MenuItem value={20}>Twenty</MenuItem>
+               <MenuItem value={30}>Thirty</MenuItem>
+               </Select>
+               </FormControl>
               </Grid>
 
               <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  fullWidth
-                  id="jud"
-                  label="Judet"
-                  name="jud"
-                 ></TextField>
+              <FormControl fullWidth>
+              <InputLabel id="local">Localitate</InputLabel>
+              <Select
+                 labelId="local"
+                 id="demo-simple-select"
+                value={localitate}
+                label="Localitate"
+                 onChange={handleLocalitate}>
+               <MenuItem value={10}>Ten</MenuItem>
+               <MenuItem value={20}>Twenty</MenuItem>
+               <MenuItem value={30}>Thirty</MenuItem>
+               </Select>
+               </FormControl>
               </Grid>
 
               <Grid item xs={12} sm={6}>
