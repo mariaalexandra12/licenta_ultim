@@ -34,11 +34,14 @@
    left: 0;
    width: 100%;
    height: 100%;
-   background:red;
    border-radius: 10px;
 }
 
-.indicator span.parolaSlaba:before{
+.indicator span.parolaFoarteSlaba.active::before {
+    background:red;
+}
+
+.indicator span.parolaSlaba.active:before{
     background: orange;
 }
 
@@ -46,10 +49,11 @@
     background: green;
 }
 
-.indicator text{
+.text{
     font-size: 20px;
     font-weight: 500;
     margin-bottom: -10px;
+    display: none;
 }
 
 .text.parolaFoarteSlaba{
