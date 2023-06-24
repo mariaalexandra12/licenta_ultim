@@ -176,22 +176,7 @@ export default function SignUpPers() {
                     endAdornment: <EndAdornment/>,
                   }}
                   onChange={handlePass}/>
-                 <p id="upper" style={{fontSize:'15px',opacity:'0.5',transition:'0.3'}}>
-                    <CheckIcon  style={{width:'20px',height:'15px'}}/>
-                    <span>Parola trebuie sa contina cel putin o majuscula.</span>
-                 </p>
-                 <p id="lower" style={{fontSize:'15px',opacity:'0.5',transition:'0.3'}}>
-                    <CheckIcon  style={{width:'20px',height:'15px'}}/>
-                    <span>Parola trebuie sa contina cel putin o litera mica.</span>
-                 </p>
-                 <p id="numere"  style={{fontSize:'15px',opacity:'0.5',transition:'0.3'}}>
-                    <CheckIcon style={{width:'20px',height:'15px'}}/>
-                    <span>Parola trebuie sa contina cel putin un numar.</span>
-                 </p>
-                 <p id="length" style={{fontSize:'15px',opacity:'0.5',transition:'0.3'}}>
-                    <CheckIcon style={{width:'20px',height:'15px'}}/>
-                    <span>Parola trebuie sa contina cel putin 10 caractere.</span>
-                 </p>
+               
 
 
                   </div>
@@ -234,6 +219,8 @@ export default function SignUpPers() {
                 <Link href="/" color="secondary" underline='hover'>
                   Ai deja un cont? Intra in cont!
                 </Link>
+                <p style={{fontSize:'15px',opacity:'0.6'}}
+                >Doar campurile marcate cu * sunt obligatorii</p>
               </Grid>
             </Grid>
           </Box>
