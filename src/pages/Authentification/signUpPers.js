@@ -88,7 +88,10 @@ export default function SignUpPers() {
 
   const handlePass=(e) => {
     setPassword(e.target.value);
-   
+    if(password !=""){
+      indicator.style.display="block";
+      indicator.style.display="flex";
+    }
  }
 
 
@@ -187,7 +190,7 @@ export default function SignUpPers() {
                   <span class="parolaSlaba" ></span>
                   <span class="parolaPuternica" ></span>
                   </div>
-                  <div class="text" >Parola ta este foarte slaba.</div>
+                  <div className="text" >Parola ta este foarte slaba.</div>
                   </div>
               </Grid>
 
