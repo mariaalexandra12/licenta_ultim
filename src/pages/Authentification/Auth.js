@@ -16,6 +16,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import { IconButton , InputAdornment } from '@mui/material';
 import PersonIcon from '@mui/icons-material/Person';
 import Alert from '@mui/material/Alert';
+import './auth.css';
 
 function Auth(){
 
@@ -82,7 +83,7 @@ function Auth(){
          <div className="container">
             <Paper elevation={24} style={{
                marginLeft:"400px",
-               marginTop:"55px",
+               marginTop:"40px",
                width:"550px",
                height:'590px',
                color:"primary",
@@ -181,18 +182,18 @@ function Auth(){
             marginLeft:'90px'
           }}>
               <Grid item xs>
-                <Link href="/forget" color="secondary" underline="hover">
+                <Link href="/forget" color="black" underline="hover">
                   Ai uitat parola?
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="/signUp" color="secondary" underline="hover">
+                <Link href="/signUp" color="black" underline="hover">
                   {"Nu ai un cont?Creeaza-ti unul!"}
                 </Link>
               </Grid>
 
               <Grid item xs>
-                <Link href="/reset" color="secondary" underline="hover">
+                <Link href="/reset" color="black" underline="hover">
                   Reseteaza parola
                 </Link>
               </Grid>
