@@ -81,14 +81,15 @@ export default function SignUpPers() {
     return eroare;
   };
 
-  const handlePass=(e) => {
-     setPassword(e.target.value);
-  }
-
   const indicator=document.querySelector('.indicator');
   const parolaFoarteSlaba=document.querySelector('.parolaFoarteSlaba');
   const parolaSlaba=document.querySelector('.parolaSlaba');
   const parolaPuternica=document.querySelector('.parolaPuternica');
+
+  const handlePass=(e) => {
+    setPassword(e.target.value);
+   
+ }
 
 
   return (
@@ -168,7 +169,7 @@ export default function SignUpPers() {
 
 
               <Grid item xs={12}>
-               <div className="parola">
+               <div className="parola" style={{height: '100px'}}>
                 <TextField
                   required
                   fullWidth
