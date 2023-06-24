@@ -49,6 +49,7 @@ export default function SignUpPers() {
   const [confirmPass, setConfirmPass]=useState('')
   const [ errors , setErrors] = useState([])
   const handleSubmit=(event)=>{
+    event.preventDefault();
     const errors=validate();
     setErrors(errors);
     if(!errors.email && !errors.password){
@@ -81,19 +82,33 @@ export default function SignUpPers() {
     return eroare;
   };
 
-  const indicator=document.querySelector("#indicator");
-  const parolaFoarteSlaba=document.querySelector('.parolaFoarteSlaba');
-  const parolaSlaba=document.querySelector('.parolaSlaba');
-  const parolaPuternica=document.querySelector('.parolaPuternica');
 
-  const handlePass=(e) => {
-    setPassword(e.target.value);
-    if(password !== " "){
-      indicator.style.display = "flex";
-    }else{
-      indicator.style.display="none";
+  const [color,setColor]=useState();
+  const getStrengthColor = () => {
+    if (password.length < 10) {
+      setColor('red'); // culoare slabă
+    } else if (password.length < 12) {
+      setColor('orange'); // culoare medie
+    } else {
+      setColor('green'); // culoare puternică
     }
- }
+    return color;
+  };
+  
+  const showText = () => {
+    var textPass="";
+    if(color === 'red'){
+      textPass="Parola foarte slaba";
+    }
+    if(color === 'orange'){
+      textPass="Parola medie";
+    }
+    else{
+      textPass="Parola puternica";
+    }
+    return textPass;
+  }
+
 
 
   return (
@@ -173,8 +188,8 @@ export default function SignUpPers() {
 
 
               <Grid item xs={12}>
-               <div className="parola" style={{height: '100px'}}>
-                <TextField
+              <div className="parola" style={{height: '90px'}}>  
+               <TextField
                   required
                   fullWidth
                   name="password"
@@ -185,19 +200,23 @@ export default function SignUpPers() {
                   InputProps={{
                     endAdornment: <EndAdornment/>,
                   }}
-                  onChange={handlePass}/>
-                  <div className="indicator" >
-                  <span className="parolaFoarteSlaba" ></span>
-                  <span className="parolaSlaba" ></span>
-                  <span className="parolaPuternica" ></span>
-                  </div>
-                  <div className="text" >Parola ta este foarte slaba.</div>
-                  </div>
+                  onChange={(e)=>setPassword(e.target.value)}
+                  />
+                 <div>
+                   <span style={{
+                    borderRadius:'10px',
+                    top:'0',
+                    height:'8px',
+                    color:getStrengthColor(),
+                   }}></span>
+                   <p>{showText}</p>
+                  </div> 
+              
+                </div>
+                  
+                  
               </Grid>
-
-
-
-
+         
               <Grid item xs={12}>
                 <TextField
                   required

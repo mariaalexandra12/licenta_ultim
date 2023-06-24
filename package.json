@@ -34,7 +34,8 @@
     "tesseract-ocr": "^1.0.0",
     "tesseract.js": "^4.1.0",
     "tss-react": "^4.8.3",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "zxcvbn": "^4.4.2"
   },
   "scripts": {
     "start": "react-scripts start",
