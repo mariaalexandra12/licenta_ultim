@@ -18,7 +18,7 @@ import { useState } from 'react';
 import PersonIcon from '@mui/icons-material/Person';
 import CheckIcon from '@mui/icons-material/Check';
 import ClearIcon from '@mui/icons-material/Clear';
-
+import './signUpPers.css';
 
 export default function SignUpPers() {
 
@@ -176,9 +176,12 @@ export default function SignUpPers() {
                     endAdornment: <EndAdornment/>,
                   }}
                   onChange={handlePass}/>
-               
-
-
+                  <div class="indicator" >
+                  <span class="parolaFoarteSlaba" ></span>
+                  <span class="parolaSlaba" ></span>
+                  <span class="parolaPuternica" ></span>
+                  </div>
+                  <div class="text" >Parola ta este foarte slaba.</div>
                   </div>
               </Grid>
 
