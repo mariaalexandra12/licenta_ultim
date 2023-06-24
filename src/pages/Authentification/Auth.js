@@ -16,7 +16,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import { IconButton , InputAdornment } from '@mui/material';
 import PersonIcon from '@mui/icons-material/Person';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-
+import { useForm } from "react-hook-form";
 
 function Auth(){
 
@@ -44,13 +44,9 @@ function Auth(){
       )
     }
     
-    const initialValues={adressEmail:"",password:""}
-    const [formValues, setFormValues]=useState(initialValues);
-    
-    const handleChange=(e)=>{
-      const { name , value }=e.target;
-     
-    }
+  
+    const { register,  handleSubmit , formState:{ errors }}=useForm()
+    const onSubmit=(data)=>console.log(data)
 
     return (
       <div className="auth" >   
@@ -71,18 +67,18 @@ function Auth(){
             
              <Container component="main" maxWidth="xs">
         <CssBaseline />
-        <Box
-          sx={{
-            marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
-        >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
+        <form onSubmit={handleSubmit(onSubmit)}>
+           <Box
+             sx={{
+             marginTop: 8,
+             display: 'flex',
+             flexDirection: 'column',
+             alignItems: 'center',
+            }}>
+           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+             <LockOutlinedIcon />
+            </Avatar>
+           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
           <Box component="form" noValidate sx={{ mt: 1 }}>
@@ -98,13 +94,10 @@ function Auth(){
               InputProps={{
                 endAdornment:<Icon/>,
               }}
-              onChange={handleChange}
-             
-            >
+              {...register("email",{required: "Required"})}>
             </TextField>
             <TextField
               margin="normal"
-              required
               fullWidth
               name="password"
               label="Parola"
@@ -114,19 +107,14 @@ function Auth(){
               InputProps={{
                 endAdornment: <EndAdornment/>,
               }}
-              onChange={handleChange}
-             
-              >
-              
+              {...register("password",{required: "Required"})}>
               </TextField>
             <Button
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              color="secondary"
-              onClick={()=>nav("/navig")}
-            >
+              color="secondary">
               Intra in cont
             </Button>
 
@@ -151,13 +139,12 @@ function Auth(){
                 </Link>
               </Grid>
 
-            </Grid>
+             </Grid>
+            </Box>
           </Box>
-        </Box>
+        </form>
       </Container>
-
-
-             </Paper>
+        </Paper>
         </div>
      </div>
     
