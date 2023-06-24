@@ -17,6 +17,7 @@ import { IconButton , InputAdornment } from '@mui/material';
 import PersonIcon from '@mui/icons-material/Person';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useForm } from "react-hook-form";
+import Popover from '@mui/material/Popover';
 
 function Auth(){
 
@@ -46,6 +47,40 @@ function Auth(){
 
     const [email , setEmail]=useState('')
     const [password, setPassword] = useState('')
+    const [ errors , setErrors] = useState([])
+    const handleSubmit=(event)=>{
+      event.preventDefault();
+      const errors=validate();
+      setErrors(errors);
+      if(Object.keys(errors).length===0){
+        alert('Autentificat cu succes');
+      }
+    }
+
+    const validate=()=>{
+      const eroare = {};
+      if(!email){
+        eroare.email="Adresa de mail nu a fost introdusa.";
+      }
+      else if(!/\S+@\S+\.\S+/.test(email) || !/(@gmail.com)/.test(email)){
+           eroare.email="Adresa de mail nu are un format valid."
+      }
+      else{
+        eroare.email='';
+      }
+
+
+      if(!password){
+        eroare.password="Parola nu a fost introdusa.";
+      }
+      else if(password.length>15 || password.length<10){
+           eroare.password="Parola nu are un format valid."
+      }
+      else{
+        eroare.password='';
+      }
+      return eroare;
+    }
 
     return (
       <div className="auth" >   
@@ -66,7 +101,7 @@ function Auth(){
             
              <Container component="main" maxWidth="xs">
         <CssBaseline />
-        <form>
+        <form onSubmit={handleSubmit}>
            <Box
              sx={{
              marginTop: 8,
@@ -97,6 +132,11 @@ function Auth(){
               }}
               onChange={(e)=>setEmail(e.target.value)}
               >
+            {errors.email && <Popover>
+             <Typography>{errors.email}</Typography>
+
+            </Popover> }
+
             </TextField>
             <TextField
               margin="normal"
