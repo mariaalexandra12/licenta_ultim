@@ -20,6 +20,7 @@ import CheckIcon from '@mui/icons-material/Check';
 import ClearIcon from '@mui/icons-material/Clear';
 import './signUpPers.css';
 import LinearProgress from '@mui/material/LinearProgress';
+import Alert from '@mui/material/Alert';
 
 
 export default function SignUpPers() {
@@ -54,7 +55,7 @@ export default function SignUpPers() {
     event.preventDefault();
     const errors=validate();
     setErrors(errors);
-    if(!errors.email && !errors.password){
+    if(!errors.email && !errors.password && !errors.confirmPass){
       nav('/navig');
     }
   }
@@ -81,6 +82,18 @@ export default function SignUpPers() {
     else{
       eroare.password='';
     }
+
+
+    if(!confirmPass){
+       eroare.confirmPass="Nu ai introdus confirmarea parolei.";
+    }
+    else if(!confirmPass===password){
+      eroare.confirmPass="Nu corespund parolele introduse.";
+    }
+    else{
+      eroare.confirmPass='';
+    }
+    
     return eroare;
   };
   
@@ -132,7 +145,7 @@ export default function SignUpPers() {
                   id="firstName"
                   label="Nume"
                   autoFocus
-                  onChange={(e)=>setEmail(e.target.value)}></TextField>
+                 ></TextField>
             
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -143,9 +156,10 @@ export default function SignUpPers() {
                   label="Prenume"
                   name="lastName"
                   autoComplete="family-name"
-                  onChange={(e)=>setEmail(e.target.value)}></TextField>
+                 ></TextField>
                 
               </Grid>
+
               <Grid item xs={12}>
 
                 <TextField
@@ -159,12 +173,17 @@ export default function SignUpPers() {
                     endAdornment:<Icon/>,
                   }}
                   onChange={(e)=>setEmail(e.target.value)}></TextField>
-                
+                {errors.email && (
+              <div>
+              <Alert severity="error">
+                {errors.email}
+              </Alert>
+              </div>
+             )}
               </Grid>
 
 
               <Grid item xs={12}>
-              <div className="parola" style={{height: '90px'}}>  
                <TextField
                   required
                   fullWidth
@@ -178,9 +197,13 @@ export default function SignUpPers() {
                   }}
                   onChange={(e)=>setPassword(e.target.value)}
                   />
-                
-              
-                </div>
+                  {errors.email && (
+              <div>
+              <Alert severity="error">
+                {errors.email}
+              </Alert>
+              </div>
+             )}
                   
                   
               </Grid>
@@ -198,17 +221,23 @@ export default function SignUpPers() {
                     endAdornment: <EndAdornment/>,
                   }}
                   onChange={(e)=>setConfirmPass(e.target.value)}/>
+                   {errors.confirmPass && (
+                  <div>
+                    <Alert severity="error">
+                      {errors.confirmPass}
+                    </Alert>
+                  </div>
+                 )}
               </Grid>
-
+             
 
             </Grid>
             <Button
-              type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
               color="secondary"
-              onClick={()=>nav('/')}
+              onClick={handleSubmit}
             >
               Intra in cont
             </Button>
