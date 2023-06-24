@@ -85,7 +85,12 @@ export default function SignUpPers() {
      setPassword(e.target.value);
   }
 
-  
+  const indicator=document.querySelector('.indicator');
+  const parolaFoarteSlaba=document.querySelector('.parolaFoarteSlaba');
+  const parolaSlaba=document.querySelector('.parolaSlaba');
+  const parolaPuternica=document.querySelector('.parolaPuternica');
+
+
   return (
     <Paper elevation={24} style={{
       marginLeft:"350px",
