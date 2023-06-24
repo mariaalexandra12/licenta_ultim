@@ -6,7 +6,7 @@ import TextField from '@mui/material/TextField';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import BusinessIcon from '@mui/icons-material/Business';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { useNavigate } from 'react-router-dom';
@@ -16,8 +16,6 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import { IconButton , InputAdornment } from '@mui/material';
 import { useState } from 'react';
 import PersonIcon from '@mui/icons-material/Person';
-import CheckIcon from '@mui/icons-material/Check';
-import ClearIcon from '@mui/icons-material/Clear';
 import Checkbox from '@mui/material/Checkbox';
 import LinearProgress from '@mui/material/LinearProgress';
 import Alert from '@mui/material/Alert';
@@ -112,6 +110,37 @@ export default function SignUpPers() {
     }
     else{
       eroare.denumireFirma="";
+    }
+
+    if(!cif){
+      eroare.cif="Nu ai introdus codul de inregistrare fiscala al firmei"
+    }
+    else if(!/[0-9]/.test(cif)){
+      eroare.cif="Codul introdus nu este valid"
+    }
+    else{
+      eroare.cif="";
+    }
+
+    
+    if(!capSoc){
+      eroare.capSoc="Nu ai introdus capitalul social al firmei"
+    }
+    else if(!/[0-9]/.test(capSoc)){
+      eroare.capSoc="Capitalul social trebuie sa contina doar cifre."
+    }
+    else{
+      eroare.capSoc="";
+    }
+
+    if(!adresa){
+      eroare.adresa="Nu ai introdus adresa firmei"
+    }
+    else if(!/(Str.)/gmi.test(adresa) || !/[0-9]/.test(adresa)){
+     eroare.adresa="Adresa introdusa nu are un format valid.Adresa trebuie sa contina strada si numarul acesteia"
+    }
+    else{
+      eroare.adresa="";
     }
     
     return eroare;
@@ -326,7 +355,7 @@ export default function SignUpPers() {
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
+            <BusinessIcon />
           </Avatar>
           <Typography component="h1" style={{fontSize:'20px'}}>
            Suntem aproape gata!</Typography>
@@ -342,11 +371,12 @@ export default function SignUpPers() {
                 <TextField
                   autoComplete="given-name"
                   required
-                  name="firstName"
+                  name="denFirma"
                   fullWidth
-                  id="firstName"
+                  id="denFirma"
                   label="Denumire Firma"
                   autoFocus
+                  onChange={(e)=>setDenumireFirma(e.target.value)}
                  ></TextField>
             
             {errors.denumireFirma && (
@@ -366,7 +396,15 @@ export default function SignUpPers() {
                   id="cif"
                   label="CIF"
                   name="cif"
+                  onChange={(e)=>setCif(e.target.value)}
                  ></TextField>
+                 {errors.cif && (
+              <div>
+              <Alert severity="error">
+                {errors.cif}
+              </Alert>
+              </div>
+             )}
                 
               </Grid>
 
@@ -415,6 +453,13 @@ export default function SignUpPers() {
                   label="Adresa"
                   name="adr"
                  ></TextField>
+                 {errors.adresa && (
+              <div>
+              <Alert severity="error">
+                {errors.adresa}
+              </Alert>
+              </div>
+             )}
               </Grid>
 
               <Grid item xs={12} sm={6}>
@@ -425,6 +470,13 @@ export default function SignUpPers() {
                   label="Capital Social"
                   name="capSoc"
                  ></TextField>
+                    {errors.capSoc && (
+                <div>
+                 <Alert severity="error">
+                    {errors.capSoc}
+                 </Alert>
+               </div>
+             )}
               </Grid>
 
               <Grid item xs={12}>
