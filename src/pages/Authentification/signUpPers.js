@@ -18,7 +18,7 @@ import { useState } from 'react';
 import PersonIcon from '@mui/icons-material/Person';
 import CheckIcon from '@mui/icons-material/Check';
 import ClearIcon from '@mui/icons-material/Clear';
-import './signUpPers.css';
+
 import LinearProgress from '@mui/material/LinearProgress';
 import Alert from '@mui/material/Alert';
 
@@ -56,7 +56,7 @@ export default function SignUpPers() {
     const errors=validate();
     setErrors(errors);
     if(!errors.email && !errors.password && !errors.confirmPass){
-      nav('/navig');
+      nav('/');
     }
   }
 
@@ -87,8 +87,8 @@ export default function SignUpPers() {
     if(!confirmPass){
        eroare.confirmPass="Nu ai introdus confirmarea parolei.";
     }
-    else if(!confirmPass===password){
-      eroare.confirmPass="Nu corespund parolele introduse.";
+    else if(confirmPass!==password){
+      eroare.confirmPass="Parola introdusa nu corespunde cu parola de mai sus.";
     }
     else{
       eroare.confirmPass='';
@@ -197,10 +197,10 @@ export default function SignUpPers() {
                   }}
                   onChange={(e)=>setPassword(e.target.value)}
                   />
-                  {errors.email && (
+                  {errors.password && (
               <div>
               <Alert severity="error">
-                {errors.email}
+                {errors.password}
               </Alert>
               </div>
              )}

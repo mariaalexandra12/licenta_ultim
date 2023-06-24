@@ -15,15 +15,10 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { IconButton , InputAdornment } from '@mui/material';
 import PersonIcon from '@mui/icons-material/Person';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { useForm } from "react-hook-form";
-import Popover from '@mui/material/Popover';
 import Alert from '@mui/material/Alert';
 
 function Auth(){
 
-
-    const [complete , setComplete]=useState(false);
     const [visible,setVisible] = useState(false);
   
     const nav=useNavigate();
@@ -86,7 +81,7 @@ function Auth(){
       <div className="auth" >   
          <div className="container">
             <Paper elevation={24} style={{
-               marginLeft:"350px",
+               marginLeft:"400px",
                marginTop:"55px",
                width:"550px",
                height:'590px',
@@ -97,7 +92,12 @@ function Auth(){
                 backdropFilter: "blur( 0px )",
                 WebkitBackdropFilter: "blur( 0px )",
                 borderRadius:" 10px",
-                border: "1px solid rgba( 255, 255, 255, 0.18 )",}} square="true">
+                border: "1px solid rgba( 255, 255, 255, 0.18 )",
+                display:"flex",
+                flexDirection:"center",
+              }} square="true"
+                
+                >
             
              <Container component="main" maxWidth="xs">
         <CssBaseline />
