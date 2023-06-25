@@ -1,6 +1,6 @@
 import React,{ useState , useCallback} from "react";
 import "./uploader.css";
-import { Box, Button } from '@mui/material';
+import { Alert, Box, Button } from '@mui/material';
 import LinearProgress from '@mui/material/LinearProgress';
 import Navig from "../../components/Navig";
 import {useDropzone} from 'react-dropzone'
@@ -19,66 +19,69 @@ import TextField from '@mui/material/TextField';
 
 function AdaugaFacturi(){
   const [selectedFiles, setSelectedFiles]=useState();
+
   const onDrop = useCallback(acceptedFiles => {
-    setSelectedFiles(acceptedFiles.map(file =>
-      Object.assign(file,{
-        preview:URL.createObjectURL(file)
-      })
-      
-      ));
+    // setSelectedFiles(acceptedFiles.map(file =>
+    //   Object.assign(file,{
+    //     preview:URL.createObjectURL(file)
+    setSelectedFiles(acceptedFiles[0])
   }, []);
 
-  const {getRootProps, getInputProps} = useDropzone({onDrop})
-  const selected_file=selectedFiles?.map(file=>(
+  const {getRootProps, getInputProps} = useDropzone({onDrop,multiple:false});
+  const selected_file=selectedFiles? (
     <div>
-      <img src={file.preview} style={{
+      <img src={selectedFiles} style={{
         width:"450px",
         height:"500px",
         }} alt=""/>
     </div>
-  ))
+  ) : "";
 
   const [result , setResult]=useState('');
   const [numeFur,setNumeFur]=useState('');
   const [dataSc,setDataSc]=useState('');
   const [val,setVal]=useState('');
+  const [urlImage,setUrlImage]=useState('');
   const [eroareExtras,setEroareExtras]=useState('');
+  const [stareIncarca,setStareIncarca]=useState('');
 
-  const extrageDateFactura= async (file)=>{
+  const extrageDateFactura= async ()=>{
        if(selected_file){
         setEroareExtras('');
-        const formData=new FormData();
         try {
+          // const formData=new FormData();
+          // formData.append('invoice',selected_file);
           const response = await fetch('http://localhost:3001/upload', {
           method: 'POST',
-          body: formData,
+          body:selected_file,
         });
         if(response.ok){
            const data = await response.json();
-          const { nume, dataS, valDePlata } = data;
+          const { nume, dataS, valDePlata,imagine } = data;
           setNumeFur(nume);
           setDataSc(dataS);
           setVal(valDePlata);
-          const imageRef = storage.ref(`invoices/${file.name}`);
-        await imageRef.put(file);
-
-        const imageUrl = await imageRef.getDownloadURL();
-
-        // Salvare în baza de date Firebase
-        const invoiceRef = await db.collection('facturi').add({
-          numeFurnizor: '',
-          dataScadenta: '',
-          valoareTotala: 0,
-          urlImagine: imageUrl,
-        });
-        }else{
-          console.error('Cerere respinsa:',response.status);
+          setUrlImage(imagine);
         }
-        }catch(err){
-
-        }
+         }catch(err){
+          setEroareExtras(err.message);
+         }}
+         else{
+          setEroareExtras('');
          }
-       
+}
+
+  const handleInregistrare=async ()=>{
+    try {
+      const invoiceRef = await db.collection('facturi').add({
+        numeFur,
+        dataSc,
+        val,
+        urlImage,
+      })}catch(err){
+        setStareIncarca(err.message);
+      // Succes! Datele au fost încărcate în baza de date Firebase
+    } 
   }
 
 
@@ -139,6 +142,11 @@ function AdaugaFacturi(){
       </DocumentScannerIcon>
       </IconButton>
       </Tooltip>
+      {eroareExtras && (<>
+        <Alert severity="warning">
+          {eroareExtras}
+        </Alert>
+      </>)}
             <TextField
               margin="normal"
               fullWidth
@@ -178,9 +186,14 @@ function AdaugaFacturi(){
               fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
-            color="secondary">
+            color="secondary" onClick={handleInregistrare}>
             Inregistreaza factura 
           </Button>
+          {stareIncarca && (<>
+          <Alert severity="warning">
+            {stareIncarca}
+          </Alert>
+          </>)}
 
         </Box>
 
