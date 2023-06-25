@@ -17,8 +17,8 @@ import { UserAuthContextProvider } from "./pages/Authentification/context/UserAu
 function App() {
   return (
     
-    <BrowserRouter >
-          <Routes> 
+    <>
+          
             <UserAuthContextProvider>
             <Route  path="/"  element={<Auth/>}></Route>
             <Route path="/navig" element={<Navig/>}  ></Route>
@@ -26,7 +26,9 @@ function App() {
             <Route path="/adaugaFacturi" exact element={<AdaugaFacturi/>}></Route>
             <Route path="/facturi" exact element={<Facturi/>}></Route>
             </UserAuthContextProvider>
-            
+
+           <BrowserRouter > 
+            <Routes> 
             <Route path="/signUp" exact element={<SignUp/>}></Route>
             <Route path="/signUpFirma" exact element={<SignUpFirma/>}></Route>
             <Route path="/reset" exact element={<ResetPass/>}></Route>
@@ -38,7 +40,7 @@ function App() {
             </Routes>
 
     </BrowserRouter>
-     
+    </>
    
   );
 }

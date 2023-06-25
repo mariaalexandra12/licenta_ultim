@@ -47,7 +47,7 @@ function Auth(){
     const [password, setPassword] = useState('');
     const [ errors , setErrors] = useState([]);
     const  signUp =useUserAuth();
-  
+    const [alerta,setAlerta]=useState('');
     const handleSubmit= async (event)=>{
       const errors=validate();
       setErrors(errors);
@@ -56,7 +56,7 @@ function Auth(){
          if(!errors.email && !errors.password){
         nav('/navig');
       }}catch(err){
-        alert(err.message);
+        setAlerta(err.message);
       }
       
     }
@@ -89,6 +89,13 @@ function Auth(){
     return (
       <div className="auth" >   
          <div className="container">
+          {alerta && (
+            <>
+            <Alert severity='error'>
+              {alerta}
+            </Alert>
+            </>
+          )}
             <Paper elevation={24} style={{
                marginLeft:"400px",
                marginTop:'30px',
