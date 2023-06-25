@@ -3,12 +3,13 @@ import Paper from '@mui/material/Paper';
 import LockResetIcon from '@mui/icons-material/LockReset';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
-import { Divider, Typography } from '@mui/material';
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import VisibilityIcon from '@mui/icons-material/Visibility';
-import { IconButton , InputAdornment } from '@mui/material';
+import { IconButton , InputAdornment ,Divider, Typography } from '@mui/material';
+import Grid from '@mui/material/Grid';
+import Alert from '@mui/material/Alert';
 
 export default function ResetPass(){
 
@@ -21,6 +22,44 @@ export default function ResetPass(){
        </IconButton> 
       </InputAdornment>
     }
+
+    const [ errors , setErrors] = useState([])
+    const [password, setPassword] = useState('')
+    const [confirmPass, setConfirmPass]=useState('')
+    const handleSubmit=(event)=>{
+      event.preventDefault();
+      const errors=validate();
+      setErrors(errors);
+      if(!errors.email && !errors.password && !errors.confirmPass){
+        nav('/');
+      }
+    }
+
+    const validate=()=>{
+      const eroare = {};
+      if(!password){
+        eroare.password="Parola nu a fost introdusa.";
+      }
+      else if(password.length>15 || password.length<10){
+           eroare.password="Parola trebuie sa contina intre 10-15 caractere."
+      }
+      else{
+        eroare.password='';
+      }
+  
+  
+      if(!confirmPass){
+         eroare.confirmPass="Nu ai introdus confirmarea parolei.";
+      }
+      else if(confirmPass!==password){
+        eroare.confirmPass="Parola introdusa nu corespunde cu parola de mai sus.";
+      }
+      else{
+        eroare.confirmPass='';
+      }
+      
+      return eroare;
+    };
     return (
      <>
      
@@ -54,25 +93,48 @@ export default function ResetPass(){
         <Typography variant="h5" sx={{marginLeft:'100px'}}>Probleme la conectare?</Typography>   
         <Box style={{display:'flex',flexDirection:'column'}}>    
 
-      <TextField id="outlined-basic" 
-      label="Parola noua"
-       variant="outlined" 
-       sx={{marginTop:'10px'}}
-       type={visible ? "text":"password"}
-       InputProps={{
-        endAdornment: <EndAdornment/>,
-      }}
-       ></TextField>
+          
+         <form onSubmit={handleSubmit}>
+         <Grid item xs={12} sm={6}>
+           <TextField id="outlined-basic" 
+              label="Parola noua"
+             variant="outlined" 
+             sx={{marginTop:'10px'}}
+             type={visible ? "text":"password"}
+              InputProps={{
+             endAdornment: <EndAdornment/>,
+            }}
+           ></TextField>
+          {errors.password && (
+              <div>
+              <Alert severity="error">
+                {errors.password}
+              </Alert>
+              </div>
+             )}
+        </Grid>
 
-      <TextField id="outlined-basic"
-       label="Confirma noua parola " 
-       variant="outlined" 
-       sx={{marginTop:'20px'}}
-       type={visible ? "text":"password"}
-       InputProps={{
-        endAdornment: <EndAdornment/>,
-      }}
-       ></TextField>
+          <Grid item xs={12} sm={6}>
+            <TextField id="outlined-basic"
+            label="Confirma noua parola " 
+            variant="outlined" 
+            sx={{marginTop:'20px'}}
+            type={visible ? "text":"password"}
+            InputProps={{
+           endAdornment: <EndAdornment/>,
+           }}
+           ></TextField>
+           {errors.confirmPass && (
+              <div>
+              <Alert severity="error">
+                {errors.conformPass}
+              </Alert>
+              </div>
+             )}
+           </Grid>
+        
+        </form>
+      
       </Box>     
      
         
