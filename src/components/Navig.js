@@ -37,6 +37,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
 import Settings from './Settings';
 import DescriptionIcon from '@mui/icons-material/Description';
+import { useAuth } from '../pages/Authentification/context/AuthContext';
 
 const drawerWidth = 200;
 
@@ -90,6 +91,10 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 const defaultTheme = createTheme();
 
 export default function Navig() {
+  const { currentUser }=useAuth();
+
+
+
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
@@ -257,7 +262,7 @@ export default function Navig() {
                  </List>
         </Drawer>
 
-        
+        <p style={{marginTop:'80px'}}>utilizator:{currentUser}</p>
       </Box>
     </ThemeProvider>
   );
