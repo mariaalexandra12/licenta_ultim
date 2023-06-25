@@ -16,25 +16,19 @@ import firebase from 'firebase/app';
 import TextField from '@mui/material/TextField';
 
 function AdaugaFacturi(){
-  const [selectedFiles, setSelectedFiles]=useState();
+  const [selectedFile, setSelectedFile]=useState();
   const onDrop = useCallback(acceptedFiles => {
-    setSelectedFiles(acceptedFiles.map(file =>
-      Object.assign(file,{
-        preview:URL.createObjectURL(file)
-      })
-      
-      ));
+    if(acceptedFiles.length > 0){
+      const file=acceptedFiles[0];
+      setSelectedFile(file);
+    }
   }, []);
 
-  const {getRootProps, getInputProps} = useDropzone({onDrop})
-  const selected_file=selectedFiles?.map(file=>(
-    <div key={file.name}>
-      <img src={file.preview} style={{
-        width:"450px",
-        height:"500px",
-        }} alt=""/>
-    </div>
-  ))
+  const {getRootProps, getInputProps} = useDropzone({onDrop,
+     accept:"image/jpeg",
+     multiple:false,
+  })
+  
 
   const [result , setResult]=useState('');
   const [numeFur,setNumeFur]=useState('');
@@ -45,12 +39,12 @@ function AdaugaFacturi(){
   const [stareIncarca,setStareIncarca]=useState('');
 
   const extrageDateFactura= async ()=>{
-       if(selectedFiles.length>0){
+       if(selectedFile){
         try {
           const formData=new FormData();
-          formData.append('invoice',selectedFiles[0]);
+          formData.append('invoice',selectedFile);
           const response = await fetch('http://localhost:3001/upload', {
-          method: 'POST',
+          method: 'POST',//send to server 
           body:formData,
         });
         if(response.ok){
@@ -64,6 +58,7 @@ function AdaugaFacturi(){
          }catch(err){
           setEroareExtras(err.message);
          }}
+     
 }
 
   const handleInregistrare=async ()=>{
@@ -111,7 +106,14 @@ function AdaugaFacturi(){
 
       </div>
      
-      {selected_file}
+      {selectedFile && (
+        <div>
+          <img src={URL.createObjectURL(selectedFile)} alt="" style={{
+        width:"450px",
+        height:"500px",
+        }}></img>
+        </div>
+      )}
        
     </Box>
     </Box>

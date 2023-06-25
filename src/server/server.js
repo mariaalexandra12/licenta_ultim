@@ -19,14 +19,14 @@ app.post('/upload',upload,async (req, res) => {
     const result = await Tesseract.recognize(image);
     const extractedText = result.data.text;
 
-    // Extrage numele furnizorului, data scadentă și valoarea totală
+    
     const { supplierName, dueDate, totalValue } = extractInvoiceData(extractedText);
 
     const bucket = admin.storage().bucket();
     const file = bucket.file(`invoices/${req.file.originalname}`);
     const stream = file.createWriteStream({
       metadata: {
-        contentType: req.file.mimetype,
+        contentType: req.mimetype,
       },
     });
     stream.end(image);
