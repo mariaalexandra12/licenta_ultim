@@ -9,6 +9,9 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import Typography from '@mui/material/Typography';
 import CardContent from '@mui/material/CardContent';
 import { db, storage } from "../../firebaseUtils/firebase_ut";
+import DocumentScannerIcon from '@mui/icons-material/DocumentScanner';
+import Popover from '@mui/material/Popover';
+
 
 import TextField from '@mui/material/TextField';
 
@@ -34,6 +37,17 @@ function AdaugaFacturi(){
   ))
 
   const [data , setData]=useState();
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handlePopoverOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handlePopoverClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
 
   return(    
     <>
@@ -73,9 +87,42 @@ function AdaugaFacturi(){
     <Box component="form" noValidate sx={{ 
       mt: 1 ,
       marginTop:'100px',
-      marginLeft:'40px',
-      width:'40px',
+      marginLeft:'200px',
+      width:'400px',
      }}>
+      
+      <DocumentScannerIcon color="secondary" style={{
+        marginLeft:'170px',
+        width:'50px',
+        height:'50px',
+      }}
+      aria-owns={open ? 'mouse-over-popover' : undefined}
+      aria-haspopup="true"
+      onMouseEnter={handlePopoverOpen}
+      onMouseLeave={handlePopoverClose}>
+
+        <Popover
+        id="mouse-over-popover"
+        sx={{
+          pointerEvents: 'none',
+        }}
+        open={open}
+        anchorEl={anchorEl}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'left',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'left',
+        }}
+        onClose={handlePopoverClose}
+        disableRestoreFocus
+      >
+        <Typography sx={{ p: 1 }}>Extrage datele facturii</Typography>
+      </Popover>
+     
+      </DocumentScannerIcon>
             <TextField
               margin="normal"
               fullWidth
