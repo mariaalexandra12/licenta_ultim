@@ -19,23 +19,24 @@ import TextField from '@mui/material/TextField';
 
 function AdaugaFacturi(){
   const [selectedFiles, setSelectedFiles]=useState();
-
   const onDrop = useCallback(acceptedFiles => {
-    // setSelectedFiles(acceptedFiles.map(file =>
-    //   Object.assign(file,{
-    //     preview:URL.createObjectURL(file)
-    setSelectedFiles(acceptedFiles[0])
+    setSelectedFiles(acceptedFiles.map(file =>
+      Object.assign(file,{
+        preview:URL.createObjectURL(file)
+      })
+      
+      ));
   }, []);
 
-  const {getRootProps, getInputProps} = useDropzone({onDrop,multiple:false});
-  const selected_file=selectedFiles? (
+  const {getRootProps, getInputProps} = useDropzone({onDrop})
+  const selected_file=selectedFiles?.map(file=>(
     <div>
-      <img src={selectedFiles} style={{
+      <img src={file.preview} style={{
         width:"450px",
         height:"500px",
         }} alt=""/>
     </div>
-  ) : "";
+  ))
 
   const [result , setResult]=useState('');
   const [numeFur,setNumeFur]=useState('');
@@ -53,7 +54,7 @@ function AdaugaFacturi(){
           // formData.append('invoice',selected_file);
           const response = await fetch('http://localhost:3001/upload', {
           method: 'POST',
-          body:selected_file,
+          body:selected_file[0].file,
         });
         if(response.ok){
            const data = await response.json();
