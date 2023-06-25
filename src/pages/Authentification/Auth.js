@@ -52,7 +52,7 @@ function Auth(){
       const errors=validate();
       setErrors(errors);
       try{
-        await signUp(email,password);
+        //await signUp(email,password);
          if(!errors.email && !errors.password){
         nav('/navig');
       }}catch(err){
