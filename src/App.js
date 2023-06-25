@@ -16,33 +16,29 @@ import { UserAuthContextProvider } from "./pages/Authentification/context/UserAu
 
 function App() {
   return (
-    
-    <>
-          
-            <UserAuthContextProvider>
-            <Route  path="/"  element={<Auth/>}></Route>
-            <Route path="/navig" element={<Navig/>}  ></Route>
-            <Route path="/analiza" exact element={<Analiza/>}></Route>
-            <Route path="/adaugaFacturi" exact element={<AdaugaFacturi/>}></Route>
-            <Route path="/facturi" exact element={<Facturi/>}></Route>
-            </UserAuthContextProvider>
+    <BrowserRouter>
+      <UserAuthContextProvider>
+        <>
+          <Routes>
+            <Route path="/" element={<Auth />} />
+            <Route path="/navig" element={<Navig />} />
+            <Route path="/analiza" element={<Analiza />} />
+            <Route path="/adaugaFacturi" element={<AdaugaFacturi />} />
+            <Route path="/facturi" element={<Facturi />} />
+          </Routes>
+        </>
 
-           <BrowserRouter > 
-            <Routes> 
-            <Route path="/signUp" exact element={<SignUp/>}></Route>
-            <Route path="/signUpFirma" exact element={<SignUpFirma/>}></Route>
-            <Route path="/reset" exact element={<ResetPass/>}></Route>
-            <Route path="/forget" exact element={<ForgetPass/>}></Route>
-            <Route path="/sPers" exact element={<SignUpPers/>}></Route>
-           
-           
-           
-            </Routes>
-
+        <Routes>
+          <Route path="/signUp" exact element={<SignUp />} />
+          <Route path="/signUpFirma" exact element={<SignUpFirma />} />
+          <Route path="/reset" exact element={<ResetPass />} />
+          <Route path="/forget" exact element={<ForgetPass />} />
+          <Route path="/sPers" exact element={<SignUpPers />} />
+        </Routes>
+      </UserAuthContextProvider>
     </BrowserRouter>
-    </>
-   
   );
 }
+
 
 export default App;

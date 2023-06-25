@@ -46,7 +46,7 @@ function Auth(){
     const [email , setEmail]=useState('');
     const [password, setPassword] = useState('');
     const [ errors , setErrors] = useState([]);
-    const  signUp =useUserAuth();
+    const  { signUp } =useUserAuth();
     const [alerta,setAlerta]=useState('');
     const handleSubmit= async (event)=>{
       const errors=validate();
@@ -91,7 +91,12 @@ function Auth(){
          <div className="container">
           {alerta && (
             <>
-            <Alert severity='error'>
+            <Alert severity='error' style={{
+              marginTop:'20px',
+              marginLeft:'550px',
+              width:'250px',
+              
+            }}>
               {alerta}
             </Alert>
             </>
