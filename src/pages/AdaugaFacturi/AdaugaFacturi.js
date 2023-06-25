@@ -8,7 +8,7 @@ import Card from '@mui/material/Card';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import Typography from '@mui/material/Typography';
 import CardContent from '@mui/material/CardContent';
-import { db, storage } from "../../firebase/firebase";
+import { db, storage } from "../../firebaseUtils/firebase_ut";
 
 function AdaugaFacturi(){
   const [selectedFiles, setSelectedFiles]=useState();
