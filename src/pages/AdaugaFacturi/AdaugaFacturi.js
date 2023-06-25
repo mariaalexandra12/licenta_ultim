@@ -10,6 +10,8 @@ import Typography from '@mui/material/Typography';
 import CardContent from '@mui/material/CardContent';
 import { db, storage } from "../../firebaseUtils/firebase_ut";
 
+import TextField from '@mui/material/TextField';
+
 function AdaugaFacturi(){
   const [selectedFiles, setSelectedFiles]=useState();
   const onDrop = useCallback(acceptedFiles => {
@@ -62,34 +64,45 @@ function AdaugaFacturi(){
     </Card>
 
       </div>
-      <Button variant="contained" color="secondary">Incarca</Button>
+     
       {selected_file}
        
       
       </Box>
-      <div className="extractedData" style={{flexDirection: 'column',
-      display:'flex',
-      marginTop:'50px',
-      marginLeft:'50px',}}>
-        <div className="furnizor" style={{flexDirection: 'row',}}>
-      <label>Numele furnizorului</label>
-      <input type="text" name="numeFurnz"></input>
-      </div>
+      <Box component="form">
+      <form>
 
-       
-       <div className="total" style={{flexDirection:'row',}}>
-      <label>Total de plata</label>
-      <input type="text" name="totalPlata"></input>
-      </div>
+      <TextField type="text" 
+      id="numeFurn" 
+      label="Numele furnizorului" 
+      variant="outlined" 
+      color="secondary"
+      style={{flexDirection:'row'}}
+      />
 
-       
-       <div className="dataSc" style={{flexDirection:'row',}}>
-      <label>Data Scadenta</label>
-      <input type="text" name="dataScadenta"></input>
-      </div>
+      <TextField type="text" 
+      id="totalPlat" 
+      label="Total de plata" 
+      variant="outlined" 
+      color="secondary"
+      style={{flexDirection:'row'}}
+      />
 
 
-      </div>
+      <TextField type="text" 
+      id="dataSc" 
+      label="Data Scadenta" 
+      variant="outlined" 
+      color="secondary"
+      style={{flexDirection:'row'}} />
+      
+     <Button variant="contained" color="secondary" style={{flexDirection:'column',
+      marginTop:'20px',
+    }}>Extrage datele si incarca</Button>
+
+      </form>
+      </Box>
+      
     </Box>
 
     </Box>
