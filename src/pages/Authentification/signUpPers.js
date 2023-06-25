@@ -51,6 +51,9 @@ export default function SignUpPers() {
   const [password, setPassword] = useState('')
   const [confirmPass, setConfirmPass]=useState('')
   const [ errors , setErrors] = useState([])
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  
+
   const handleSubmit=(event)=>{
     event.preventDefault();
     const errors=validate();
@@ -172,6 +175,7 @@ export default function SignUpPers() {
                   InputProps={{
                     endAdornment:<Icon/>,
                   }}
+                  value={email}
                   onChange={(e)=>setEmail(e.target.value)}></TextField>
                 {errors.email && (
               <div>
@@ -196,6 +200,7 @@ export default function SignUpPers() {
                     endAdornment: <EndAdornment/>,
                   }}
                   onChange={(e)=>setPassword(e.target.value)}
+                  value={password}
                   />
                   {errors.password && (
               <div>
@@ -220,6 +225,7 @@ export default function SignUpPers() {
                   InputProps={{
                     endAdornment: <EndAdornment/>,
                   }}
+                  value={confirmPass}
                   onChange={(e)=>setConfirmPass(e.target.value)}/>
                    {errors.confirmPass && (
                   <div>
@@ -238,6 +244,7 @@ export default function SignUpPers() {
               sx={{ mt: 3, mb: 2 }}
               color="secondary"
               onClick={handleSubmit}
+              onLoad={isSubmitting}
             >
               Intra in cont
             </Button>
