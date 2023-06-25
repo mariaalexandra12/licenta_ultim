@@ -12,6 +12,7 @@ import { db, storage } from "../../firebaseUtils/firebase_ut";
 import DocumentScannerIcon from '@mui/icons-material/DocumentScanner';
 import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
+import firebase from 'firebase/app';
 
 
 import TextField from '@mui/material/TextField';
@@ -37,8 +38,49 @@ function AdaugaFacturi(){
     </div>
   ))
 
-  const [data , setData]=useState();
-  
+  const [result , setResult]=useState('');
+  const [numeFur,setNumeFur]=useState('');
+  const [dataSc,setDataSc]=useState('');
+  const [val,setVal]=useState('');
+  const [eroareExtras,setEroareExtras]=useState('');
+
+  const extrageDateFactura= async (file)=>{
+       if(selected_file){
+        setEroareExtras('');
+        const formData=new FormData();
+        try {
+          const response = await fetch('http://localhost:3001/upload', {
+          method: 'POST',
+          body: formData,
+        });
+        if(response.ok){
+           const data = await response.json();
+          const { nume, dataS, valDePlata } = data;
+          setNumeFur(nume);
+          setDataSc(dataS);
+          setVal(valDePlata);
+          const imageRef = storage.ref(`invoices/${file.name}`);
+        await imageRef.put(file);
+
+        const imageUrl = await imageRef.getDownloadURL();
+
+        // Salvare în baza de date Firebase
+        const invoiceRef = await db.collection('facturi').add({
+          numeFurnizor: '',
+          dataScadenta: '',
+          valoareTotala: 0,
+          urlImagine: imageUrl,
+        });
+        }else{
+          console.error('Cerere respinsa:',response.status);
+        }
+        }catch(err){
+
+        }
+         }
+       
+  }
+
 
   return(    
     <>
@@ -88,7 +130,7 @@ function AdaugaFacturi(){
         width:'90px',
         height:'90px',
       }}
-      onClick={()=>console.log('buna')}
+      onClick={extrageDateFactura}
       >
       <DocumentScannerIcon color="secondary" style={{
         width:'70px',
@@ -106,6 +148,7 @@ function AdaugaFacturi(){
               autoComplete="email"
               autoFocus
               color='secondary'
+              value={numeFur}
                ></TextField>
            
 
@@ -117,6 +160,7 @@ function AdaugaFacturi(){
               type="text"
               id="totalPlata"
               color='secondary'
+              value={val}
              ></TextField>
 
               <TextField
@@ -126,7 +170,8 @@ function AdaugaFacturi(){
               label="Data Sacdenta"
               type="text"
               id="dataSc"
-              color='secondary'></TextField>
+              color='secondary'
+              value={dataSc}></TextField>
 
 
               <Button
