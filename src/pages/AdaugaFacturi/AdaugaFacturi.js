@@ -70,7 +70,12 @@ function AdaugaFacturi(){
     </Box>
     </Box>
 
-    <Box component="form" noValidate sx={{ mt: 1 }}>
+    <Box component="form" noValidate sx={{ 
+      mt: 1 ,
+      marginTop:'100px',
+      marginLeft:'40px',
+      width:'40px',
+     }}>
             <TextField
               margin="normal"
               fullWidth
@@ -79,8 +84,8 @@ function AdaugaFacturi(){
               name="numeFurnizor"
               autoComplete="email"
               autoFocus
-              color='secondary'>
-            </TextField>
+              color='secondary'
+               ></TextField>
            
 
             <TextField
@@ -90,8 +95,8 @@ function AdaugaFacturi(){
               label="Total de Plata"
               type="text"
               id="totalPlata"
-              color='secondary'>
-              </TextField>
+              color='secondary'
+             ></TextField>
 
               <TextField
               margin="normal"
@@ -100,8 +105,16 @@ function AdaugaFacturi(){
               label="Data Sacdenta"
               type="text"
               id="dataSc"
-              color='secondary'>
-              </TextField>
+              color='secondary'></TextField>
+
+
+              <Button
+              fullWidth
+            variant="contained"
+            sx={{ mt: 3, mb: 2 }}
+            color="secondary">
+            Inregistreaza datele facturii 
+          </Button>
 
         </Box>
 
