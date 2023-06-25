@@ -134,7 +134,7 @@ function AdaugaFacturi(){
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
             color="secondary">
-            Inregistreaza datele facturii 
+            Inregistreaza factura 
           </Button>
 
         </Box>
