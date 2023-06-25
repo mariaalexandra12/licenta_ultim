@@ -1,7 +1,7 @@
 const express = require('express');
 const multer = require('multer');
 const Tesseract = require('tesseract.js');
-const admin = require('firebase-admin');
+const admin = require('firebase/firebase')
 const serviceAccount = require('./serviceAccountKey.json');
 
 admin.initializeApp({
@@ -37,14 +37,12 @@ app.post('/upload', upload.single('invoice'), async (req, res) => {
       // Salvare în baza de date Firebase
       const database = admin.firestore();
       const invoiceRef = await database.collection('invoices').add({
-        numeFurn,
-        dataSc,
-        valTotal,
-        imageUrl,
-        timestamp: admin.firestore.FieldValue.serverTimestamp(),
+        numeFurnizor: '',
+        dataScadenta: '',
+        valoareTotala: 0,
+        urlImagine: imageUrl,
       });
 
-      res.json({ invoiceId: invoiceRef.id });
     });
 
     stream.on('error', (error) => {
