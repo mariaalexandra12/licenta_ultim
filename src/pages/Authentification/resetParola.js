@@ -26,11 +26,12 @@ export default function ResetPass(){
     const [ errors , setErrors] = useState([])
     const [password, setPassword] = useState('')
     const [confirmPass, setConfirmPass]=useState('')
+
     const handleSubmit=(event)=>{
       event.preventDefault();
       const errors=validate();
       setErrors(errors);
-      if(!errors.email && !errors.password && !errors.confirmPass){
+      if(!errors.password && !errors.confirmPass){
         nav('/');
       }
     }
@@ -60,14 +61,15 @@ export default function ResetPass(){
       
       return eroare;
     };
+    
     return (
      <>
      
      <Paper elevation={24} style={{
                marginLeft:"350px",
                marginTop:"55px",
-               width:"450px",
-               height:'450px',
+               width:"650px",
+               height:'600px',
                color:"primary",
                padding:"10px",
                background: "rgba( 189, 16, 224,0.10)",
@@ -78,18 +80,17 @@ export default function ResetPass(){
                 border: "1px solid rgba( 255, 255, 255, 0.18 )",}} square="true">
 
                      <Box
-                       component="form"
                         sx={{
                         '& > :not(style)': { m: 1, width: '25ch' },
                        }}
                        noValidate
                       autoComplete="off"
+                      
                          >
-        <LockResetIcon sx={{
-            width:'50px',
-            height:'50px',
-            
-            }}></LockResetIcon>        
+                   <LockResetIcon sx={{
+                    width:'50px',
+                     height:'50px',
+                     }}></LockResetIcon>        
         <Typography variant="h5" sx={{marginLeft:'100px'}}>Probleme la conectare?</Typography>   
         <Box style={{display:'flex',flexDirection:'column'}}>    
 
@@ -104,6 +105,7 @@ export default function ResetPass(){
               InputProps={{
              endAdornment: <EndAdornment/>,
             }}
+            onChange={(e)=>setPassword(e.target.value)}
            ></TextField>
           {errors.password && (
               <div>
@@ -123,6 +125,7 @@ export default function ResetPass(){
             InputProps={{
            endAdornment: <EndAdornment/>,
            }}
+           onChange={(e)=>setConfirmPass(e.target.value)}
            ></TextField>
            {errors.confirmPass && (
               <div>
@@ -139,7 +142,7 @@ export default function ResetPass(){
      
         
         
-      <Button variant="contained" color="secondary" onClick={()=>nav('/')}
+      <Button variant="contained" color="secondary" onClick={handleSubmit}
       style={{
         marginTop:'100px',
         width:'75%',
