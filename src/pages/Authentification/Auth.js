@@ -131,7 +131,7 @@ function Auth(){
               InputProps={{
                 endAdornment:<Icon/>,
               }}
-              
+                color="secondary"
                  onChange={(e)=>setEmail(e.target.value)}>
             </TextField>
             {errors.email && (
@@ -154,6 +154,7 @@ function Auth(){
               InputProps={{
                 endAdornment: <EndAdornment/>,
               }}
+              color="secondary"
               onChange={(e)=>setPassword(e.target.value)}
               >
               </TextField>
