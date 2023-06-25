@@ -10,13 +10,12 @@ admin.initializeApp({
 });
 
 const app = express();
-const upload = multer();
+const upload = multer().single('invoice');
 
-//upload.single('invoice'),
-app.post('/upload',  async (req, res) => {
+app.post('/upload',upload,async (req, res) => {
 
   try {
-    const image = req.body;
+    const image = req.file;
     const result = await Tesseract.recognize(image);
     const extractedText = result.data.text;
 

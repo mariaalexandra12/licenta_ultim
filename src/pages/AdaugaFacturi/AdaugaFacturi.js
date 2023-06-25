@@ -13,8 +13,6 @@ import DocumentScannerIcon from '@mui/icons-material/DocumentScanner';
 import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
 import firebase from 'firebase/app';
-
-
 import TextField from '@mui/material/TextField';
 
 function AdaugaFacturi(){
@@ -30,7 +28,7 @@ function AdaugaFacturi(){
 
   const {getRootProps, getInputProps} = useDropzone({onDrop})
   const selected_file=selectedFiles?.map(file=>(
-    <div>
+    <div key={file.name}>
       <img src={file.preview} style={{
         width:"450px",
         height:"500px",
@@ -47,14 +45,13 @@ function AdaugaFacturi(){
   const [stareIncarca,setStareIncarca]=useState('');
 
   const extrageDateFactura= async ()=>{
-       if(selected_file){
-        setEroareExtras('');
+       if(selectedFiles.length>0){
         try {
-          // const formData=new FormData();
-          // formData.append('invoice',selected_file);
+          const formData=new FormData();
+          formData.append('invoice',selectedFiles[0]);
           const response = await fetch('http://localhost:3001/upload', {
           method: 'POST',
-          body:selected_file[0].file,
+          body:formData,
         });
         if(response.ok){
            const data = await response.json();
@@ -67,9 +64,6 @@ function AdaugaFacturi(){
          }catch(err){
           setEroareExtras(err.message);
          }}
-         else{
-          setEroareExtras('');
-         }
 }
 
   const handleInregistrare=async ()=>{
@@ -79,11 +73,12 @@ function AdaugaFacturi(){
         dataSc,
         val,
         urlImage,
-      })}catch(err){
+      });
+      }catch(err){
         setStareIncarca(err.message);
       // Succes! Datele au fost încărcate în baza de date Firebase
     } 
-  }
+  };
 
 
   return(    
@@ -158,6 +153,7 @@ function AdaugaFacturi(){
               autoFocus
               color='secondary'
               value={numeFur}
+              onChange={(e)=>setNumeFur(e.target.value)}
                ></TextField>
            
 
@@ -170,6 +166,7 @@ function AdaugaFacturi(){
               id="totalPlata"
               color='secondary'
               value={val}
+              onChange={(e)=>setVal(e.target.value)}
              ></TextField>
 
               <TextField
@@ -180,7 +177,9 @@ function AdaugaFacturi(){
               type="text"
               id="dataSc"
               color='secondary'
-              value={dataSc}></TextField>
+              value={dataSc}
+              onChange={(e)=>setDataSc(e.target.value)}
+              ></TextField>
 
 
               <Button
