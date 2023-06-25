@@ -10,7 +10,8 @@ import Typography from '@mui/material/Typography';
 import CardContent from '@mui/material/CardContent';
 import { db, storage } from "../../firebaseUtils/firebase_ut";
 import DocumentScannerIcon from '@mui/icons-material/DocumentScanner';
-import Popover from '@mui/material/Popover';
+import Tooltip from '@mui/material/Tooltip';
+import IconButton from '@mui/material/IconButton';
 
 
 import TextField from '@mui/material/TextField';
@@ -37,17 +38,7 @@ function AdaugaFacturi(){
   ))
 
   const [data , setData]=useState();
-  const [anchorEl, setAnchorEl] = React.useState(null);
-
-  const handlePopoverOpen = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handlePopoverClose = () => {
-    setAnchorEl(null);
-  };
-
-  const open = Boolean(anchorEl);
+  
 
   return(    
     <>
@@ -91,38 +82,21 @@ function AdaugaFacturi(){
       width:'400px',
      }}>
       
-      <DocumentScannerIcon color="secondary" style={{
-        marginLeft:'170px',
-        width:'50px',
-        height:'50px',
+      <Tooltip title="Extrage datele facturii">
+        <IconButton  style={{
+        marginLeft:'140px',
+        width:'90px',
+        height:'90px',
       }}
-      aria-owns={open ? 'mouse-over-popover' : undefined}
-      aria-haspopup="true"
-      onMouseEnter={handlePopoverOpen}
-      onMouseLeave={handlePopoverClose}>
-
-        <Popover
-        id="mouse-over-popover"
-        sx={{
-          pointerEvents: 'none',
-        }}
-        open={open}
-        anchorEl={anchorEl}
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'left',
-        }}
-        transformOrigin={{
-          vertical: 'top',
-          horizontal: 'left',
-        }}
-        onClose={handlePopoverClose}
-        disableRestoreFocus
+      onClick={()=>console.log('buna')}
       >
-        <Typography sx={{ p: 1 }}>Extrage datele facturii</Typography>
-      </Popover>
-     
+      <DocumentScannerIcon color="secondary" style={{
+        width:'70px',
+        height:'70px',
+      }}>
       </DocumentScannerIcon>
+      </IconButton>
+      </Tooltip>
             <TextField
               margin="normal"
               fullWidth
