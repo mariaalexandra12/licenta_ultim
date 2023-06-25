@@ -1,8 +1,8 @@
 const express = require('express');
 const multer = require('multer');
 const Tesseract = require('tesseract.js');
-const admin = require('firebase/firebase')
-const serviceAccount = require('./serviceAccountKey.json');
+const admin = require("firebase-admin");
+const serviceAccount = require('../../serviceAccount.json');
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
@@ -20,7 +20,7 @@ app.post('/upload', upload.single('invoice'), async (req, res) => {
     const extractedText = result.data.text;
 
     // Extrage numele furnizorului, data scadentă și valoarea totală
-    const { numeFurn, dataSc, valTotal } = extractInvoiceData(extractedText);
+    const { supplierName, dueDate, totalValue } = extractInvoiceData(extractedText);
 
     const bucket = admin.storage().bucket();
     const file = bucket.file(`invoices/${req.file.originalname}`);
@@ -32,26 +32,18 @@ app.post('/upload', upload.single('invoice'), async (req, res) => {
     stream.end(image);
 
     stream.on('finish', async () => {
-      const imageUrl = `https://storage.googleapis.com/${bucket.name}/${file.name}`;
+      const imageUrl = `https://storage.googleapis.com/gs://invoice-reader-4b865.appspot.com/invoices/`;
 
-      // Salvare în baza de date Firebase
-      const database = admin.firestore();
-      const invoiceRef = await database.collection('invoices').add({
-        numeFurnizor: '',
-        dataScadenta: '',
-        valoareTotala: 0,
-        urlImagine: imageUrl,
-      });
-
+      res.json({ supplierName, dueDate, totalValue, imageUrl });
     });
 
     stream.on('error', (error) => {
-      console.error('Nu am putut incarca imaginea in Firebase:', error);
-      res.status(500).json({ error: 'A aparut o eroare' });
+      console.error('Error uploading image to Firebase:', error);
+      res.status(500).json({ error: 'An error occurred' });
     });
   } catch (error) {
-    console.error('Eroare procesare factura', error);
-    res.status(500).json({ error: 'A aparut o eroare' });
+    console.error('Error processing invoice:', error);
+    res.status(500).json({ error: 'An error occurred' });
   }
 });
 
@@ -61,7 +53,7 @@ function extractInvoiceData(text) {
   // În acest exemplu, vom utiliza o expresie regulată simplă pentru a extrage numele furnizorului, data scadentă și valoarea totală
   const numeFurnRegex = /Nume furnizor: (.+)/;
   const dataScRegex = /Data scadenta: (.+)/;
-  const valTotalaRegex = /Valoare totala: (\d+)/;
+  const valTotalaRegex = /(Total de plata)*[0-9].*/gmi;
 
   const numeFurnMatch = text.match(numeFurnRegex);
   const dataScMatch = text.match(dataScRegex);
