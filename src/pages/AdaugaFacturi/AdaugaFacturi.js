@@ -67,43 +67,43 @@ function AdaugaFacturi(){
      
       {selected_file}
        
-      
-      </Box>
-      <Box component="form">
-      <form>
-
-      <TextField type="text" 
-      id="numeFurn" 
-      label="Numele furnizorului" 
-      variant="outlined" 
-      color="secondary"
-      style={{flexDirection:'row'}}
-      />
-
-      <TextField type="text" 
-      id="totalPlat" 
-      label="Total de plata" 
-      variant="outlined" 
-      color="secondary"
-      style={{flexDirection:'row'}}
-      />
-
-
-      <TextField type="text" 
-      id="dataSc" 
-      label="Data Scadenta" 
-      variant="outlined" 
-      color="secondary"
-      style={{flexDirection:'row'}} />
-      
-     <Button variant="contained" color="secondary" style={{flexDirection:'column',
-      marginTop:'20px',
-    }}>Extrage datele si incarca</Button>
-
-      </form>
-      </Box>
-      
     </Box>
+    </Box>
+
+    <Box component="form" noValidate sx={{ mt: 1 }}>
+            <TextField
+              margin="normal"
+              fullWidth
+              id="numeFurnizor"
+              label="Numele Furnizorului"
+              name="numeFurnizor"
+              autoComplete="email"
+              autoFocus
+              color='secondary'>
+            </TextField>
+           
+
+            <TextField
+              margin="normal"
+              fullWidth
+              name="totalPlata"
+              label="Total de Plata"
+              type="text"
+              id="totalPlata"
+              color='secondary'>
+              </TextField>
+
+              <TextField
+              margin="normal"
+              fullWidth
+              name="dataSc"
+              label="Data Sacdenta"
+              type="text"
+              id="dataSc"
+              color='secondary'>
+              </TextField>
+
+        </Box>
 
     </Box>
     </>
