@@ -37,8 +37,10 @@ function AdaugaFacturi(){
     <>
     <Box sx={{display: 'flex'}}>
     <Navig/>
-    <Box sx={{marginTop: '50px',}}>
-      <Box sx={{marginLeft:'15px',display: 'flex',flexDirection: 'column'}}>
+    <Box sx={{marginTop: '50px',
+    display:'flex',
+     }}>
+      <Box sx={{marginLeft:'15px',flexDirection: 'column'}}>
 
       <div {...getRootProps()}>
       <input {...getInputProps()} />
@@ -65,7 +67,29 @@ function AdaugaFacturi(){
        
       
       </Box>
-      
+      <div className="extractedData" style={{flexDirection: 'column',
+      display:'flex',
+      marginTop:'50px',
+      marginLeft:'50px',}}>
+        <div className="furnizor" style={{flexDirection: 'row',}}>
+      <label>Numele furnizorului</label>
+      <input type="text" name="numeFurnz"></input>
+      </div>
+
+       
+       <div className="total" style={{flexDirection:'row',}}>
+      <label>Total de plata</label>
+      <input type="text" name="totalPlata"></input>
+      </div>
+
+       
+       <div className="dataSc" style={{flexDirection:'row',}}>
+      <label>Data Scadenta</label>
+      <input type="text" name="dataScadenta"></input>
+      </div>
+
+
+      </div>
     </Box>
 
     </Box>

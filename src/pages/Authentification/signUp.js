@@ -1,5 +1,4 @@
 import * as React from 'react';
-import './signUp.css';
 import { useNavigate } from 'react-router-dom';
 import Paper from '@mui/material/Paper';
 import { Button } from '@mui/material';
