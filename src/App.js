@@ -12,11 +12,10 @@ import SignUpPers from "./pages/Authentification/signUpPers";
 import ResetPass from "./pages/Authentification/resetParola";
 import ForgetPass from "./pages/Authentification/forgetParola";
 import SignUpFirma from "./pages/Authentification/signUpFirma";
-import AuthContextProvider from "./pages/Authentification/context/AuthContext";
 
 function App() {
   return (
-    <AuthContextProvider>
+    
     <BrowserRouter >
           <Routes> 
          
@@ -35,7 +34,7 @@ function App() {
             </Routes>
 
     </BrowserRouter>
-    </AuthContextProvider>
+    
    
   );
 }
