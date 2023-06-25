@@ -83,9 +83,9 @@ function Auth(){
          <div className="container">
             <Paper elevation={24} style={{
                marginLeft:"400px",
-               marginTop:"40px",
+               marginTop:'30px',
                width:"550px",
-               height:'590px',
+               height:'580px',
                color:"primary",
                padding:"10px",
                background: "rgba( 21, 19, 19, 0.25 )",
@@ -100,7 +100,7 @@ function Auth(){
                 
                 >
             
-             <Container component="main" maxWidth="xs">
+             <Container >
         <CssBaseline />
         <form onSubmit={handleSubmit}>
            <Box
@@ -110,10 +110,10 @@ function Auth(){
              flexDirection: 'column',
              alignItems: 'center',
             }}>
-           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+           <Avatar sx={{ m: 1,bgcolor:'secondary.main' }}>
              <LockOutlinedIcon />
             </Avatar>
-           <Typography component="h1" variant="h5">
+           <Typography component="h1" variant="h5" color="white">
             Sign in
           </Typography>
 
@@ -131,7 +131,7 @@ function Auth(){
               InputProps={{
                 endAdornment:<Icon/>,
               }}
-                color="secondary"
+              color='primary'
                  onChange={(e)=>setEmail(e.target.value)}>
             </TextField>
             {errors.email && (
@@ -154,7 +154,7 @@ function Auth(){
               InputProps={{
                 endAdornment: <EndAdornment/>,
               }}
-              color="secondary"
+              color='primary'
               onChange={(e)=>setPassword(e.target.value)}
               >
               </TextField>
@@ -183,18 +183,18 @@ function Auth(){
             marginLeft:'90px'
           }}>
               <Grid item xs>
-                <Link href="/forget" color="black" underline="hover">
+                <Link href="/forget" color="white" underline="hover">
                   Ai uitat parola?
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="/signUp" color="black" underline="hover">
+                <Link href="/signUp" color="white" underline="hover">
                   {"Nu ai un cont?Creeaza-ti unul!"}
                 </Link>
               </Grid>
 
               <Grid item xs>
-                <Link href="/reset"  color="black" underline="hover">
+                <Link href="/reset"  color="white" underline="hover">
                   Reseteaza parola
                 </Link>
               </Grid>

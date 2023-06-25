@@ -18,10 +18,10 @@ export default function SignUp() {
       padding:"10px",
       marginLeft:'450px',
       marginTop:'100px',
-      background: "rgba( 189, 16, 224,0.10)",
+      background: "rgba( 21, 19, 19, 0.25 )",
        boxShadow: "0 8px 32px 0 rgba( 31, 38, 135, 0.37 )",
-       backdropFilter: "blur( 0px )",
-       WebkitBackdropFilter: "blur( 0px )",
+       backdropFilter: "blur( 8px )",
+       WebkitBackdropFilter: "blur( 8px )",
        borderRadius:" 10px",
        border: "1px solid rgba( 255, 255, 255, 0.18 )",}} square="true">
       <Box style={{display:"flex",flexDirection:"column"}}>
