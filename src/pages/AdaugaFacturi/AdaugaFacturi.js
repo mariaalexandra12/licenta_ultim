@@ -13,6 +13,16 @@ import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
 import firebase from 'firebase/app';
 import TextField from '@mui/material/TextField';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import { collection ,
+  getDoc,
+  getDocs,
+   addDoc,
+   updateDoc, 
+   doc} from "firebase/firestore";
 
 function AdaugaFacturi(){
   const [selectedFile, setSelectedFile]=useState();
@@ -174,6 +184,20 @@ function AdaugaFacturi(){
               ></input>
             </div>
 
+            <FormControl fullWidth style={{marginTop:'10px'}}>
+      <InputLabel id="categorieFactura">Categorie Factura</InputLabel>
+       <Select
+    labelId="categorieFactura"
+    id="demo-simple-select"
+    //value={age}
+    label="Age"
+    // onChange={handleChange}
+  >
+    {/* <MenuItem value={10}>Ten</MenuItem>
+    <MenuItem value={20}>Twenty</MenuItem>
+    <MenuItem value={30}>Thirty</MenuItem> */}
+  </Select>
+</FormControl>
               <Button
               fullWidth
             variant="contained"
