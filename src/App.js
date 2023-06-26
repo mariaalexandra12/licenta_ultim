@@ -12,30 +12,26 @@ import SignUpPers from "./pages/Authentification/signUpPers";
 import ResetPass from "./pages/Authentification/resetParola";
 import ForgetPass from "./pages/Authentification/forgetParola";
 import SignUpFirma from "./pages/Authentification/signUpFirma";
-import { UserAuthContextProvider } from "./pages/Authentification/context/UserAuthContext";
+
 
 function App() {
   return (
     <BrowserRouter>
-      <UserAuthContextProvider>
-        <>
+     
+        
           <Routes>
             <Route path="/" element={<Auth />} />
             <Route path="/navig" element={<Navig />} />
             <Route path="/analiza" element={<Analiza />} />
             <Route path="/adaugaFacturi" element={<AdaugaFacturi />} />
             <Route path="/facturi" element={<Facturi />} />
-          </Routes>
-        </>
-
-        <Routes>
           <Route path="/signUp" exact element={<SignUp />} />
           <Route path="/signUpFirma" exact element={<SignUpFirma />} />
           <Route path="/reset" exact element={<ResetPass />} />
           <Route path="/forget" exact element={<ForgetPass />} />
           <Route path="/sPers" exact element={<SignUpPers />} />
         </Routes>
-      </UserAuthContextProvider>
+    
     </BrowserRouter>
   );
 }

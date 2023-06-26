@@ -3,7 +3,6 @@ import "./uploader.css";
 import { Alert, Box, Button } from '@mui/material';
 import LinearProgress from '@mui/material/LinearProgress';
 import Navig from "../../components/Navig";
-import {useDropzone} from 'react-dropzone'
 import Card from '@mui/material/Card';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import Typography from '@mui/material/Typography';
@@ -17,17 +16,7 @@ import TextField from '@mui/material/TextField';
 
 function AdaugaFacturi(){
   const [selectedFile, setSelectedFile]=useState();
-  const onDrop = useCallback(acceptedFiles => {
-    if(acceptedFiles.length > 0){
-      const file=acceptedFiles[0];
-      setSelectedFile(file);
-    }
-  }, []);
-
-  const {getRootProps, getInputProps} = useDropzone({onDrop,
-     accept:"image/jpeg",
-     multiple:false,
-  })
+  
   
 
   const [result , setResult]=useState('');
@@ -40,6 +29,7 @@ function AdaugaFacturi(){
 
   const extrageDateFactura= async ()=>{
        if(selectedFile){
+        console.log(selectedFile);
         try {
           const formData=new FormData();
           formData.append('invoice',selectedFile);
@@ -85,8 +75,8 @@ function AdaugaFacturi(){
      }}>
       <Box sx={{marginLeft:'15px',flexDirection: 'column'}}>
 
-      <div {...getRootProps()}>
-      <input {...getInputProps()} />
+      <div >
+      <input type="file" onChange={(e)=>setSelectedFile(e.target.files[0])} style={{display:'none'}} />
         <Card sx={{ minWidth: 275 , marginTop:"50px" ,
       background: 'rgba( 177, 94, 241, 0.25 )',
       boxShadow:' 0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
@@ -95,13 +85,12 @@ function AdaugaFacturi(){
       borderRadius:' 10px',
       border: '1px solid rgba( 255, 255, 255, 0.18 )'}}>
         <CardContent>
-        <Typography sx={{ fontSize: 18 , marginLeft:"80px" }} color="text.secondary" gutterBottom variant="h5">
-          <CloudUploadIcon sx={{marginLeft:"90px"}}></CloudUploadIcon>
-          <br/>
-          Incarca o factura aici
-        </Typography>
-        
-      </CardContent>
+         <form>
+          <input type="file" onChange={(e)=>setSelectedFile(e.target.files[0])}
+          ></input>
+          
+         </form>
+       </CardContent>
     </Card>
 
       </div>

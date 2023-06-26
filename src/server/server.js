@@ -1,5 +1,6 @@
 const express = require('express');
 const multer = require('multer');
+const cors=require('cors');
 const Tesseract = require('tesseract.js');
 const admin = require("firebase-admin");
 const serviceAccount = require('../../serviceAccount.json');
@@ -11,11 +12,12 @@ admin.initializeApp({
 
 const app = express();
 const upload = multer().single('invoice');
+app.use(cors());
 
 app.post('/upload',upload,async (req, res) => {
 
   try {
-    const image = req.file;
+    const image = req.file.buffer;
     const result = await Tesseract.recognize(image);
     const extractedText = result.data.text;
 
