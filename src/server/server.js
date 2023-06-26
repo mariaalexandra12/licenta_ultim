@@ -23,26 +23,26 @@ app.post('/upload',upload,async (req, res) => {
 
     
     const { supplierName, dueDate, totalValue } = extractInvoiceData(extractedText);
+    res.json({ supplierName, dueDate, totalValue});
+    // const bucket = admin.storage().bucket();
+    // const file = bucket.file(`invoices/${req.file.originalname}`);
+    // const stream = file.createWriteStream({
+    //   metadata: {
+    //     contentType: req.mimetype,
+    //   },
+    // });
+    // stream.end(image);
 
-    const bucket = admin.storage().bucket();
-    const file = bucket.file(`invoices/${req.file.originalname}`);
-    const stream = file.createWriteStream({
-      metadata: {
-        contentType: req.mimetype,
-      },
-    });
-    stream.end(image);
+    // stream.on('finish', async () => {
+    //   const imageUrl = `https://storage.googleapis.com/gs://invoice-reader-4b865.appspot.com/invoices/`;
 
-    stream.on('finish', async () => {
-      const imageUrl = `https://storage.googleapis.com/gs://invoice-reader-4b865.appspot.com/invoices/`;
-
-      res.json({ supplierName, dueDate, totalValue, imageUrl });
-    });
-
-    stream.on('error', (error) => {
-      console.error('Error uploading image to Firebase:', error);
-      res.status(500).json({ error: 'An error occurred' });
-    });
+     
+    // });
+  
+    // stream.on('error', (error) => {
+    //   console.error('Error uploading image to Firebase:', error);
+    //   res.status(500).json({ error: 'An error occurred' });
+    // });
   } catch (error) {
     console.error('Error processing invoice:', error);
     res.status(500).json({ error: 'An error occurred' });
@@ -50,9 +50,7 @@ app.post('/upload',upload,async (req, res) => {
 });
 
 function extractInvoiceData(text) {
-  // Implementează logica de extragere a datelor din textul facturii
-  // Aici poți utiliza expresii regulate (RegEx) sau alte metode pentru a identifica și extrage informațiile dorite
-  // În acest exemplu, vom utiliza o expresie regulată simplă pentru a extrage numele furnizorului, data scadentă și valoarea totală
+  console.log(text);
   const numeFurnRegex = /Nume furnizor: (.+)/;
   const dataScRegex = /Data scadenta: (.+)/;
   const valTotalaRegex = /(Total de plata)*[0-9].*/gmi;
@@ -63,8 +61,10 @@ function extractInvoiceData(text) {
 
   const nume = numeFurnMatch ? numeFurnMatch[1] : '';
   const data = dataScMatch ? dataScMatch[1] : '';
-  const valoare = valTotalaMatch ? parseInt(valTotalaMatch[1], 10) : 0;
+  const valoare = valTotalaMatch ? valTotalaMatch[1]:'';
 
+
+  console.log('------',nume,data,valoare);
   return { nume, data, valoare };
 }
 

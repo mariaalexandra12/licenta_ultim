@@ -16,14 +16,11 @@ import TextField from '@mui/material/TextField';
 
 function AdaugaFacturi(){
   const [selectedFile, setSelectedFile]=useState();
-  
-  
 
-  const [result , setResult]=useState('');
   const [numeFur,setNumeFur]=useState('');
   const [dataSc,setDataSc]=useState('');
   const [val,setVal]=useState('');
-  const [urlImage,setUrlImage]=useState('');
+  //const [urlImage,setUrlImage]=useState('');
   const [eroareExtras,setEroareExtras]=useState('');
   const [stareIncarca,setStareIncarca]=useState('');
 
@@ -33,18 +30,22 @@ function AdaugaFacturi(){
         try {
           const formData=new FormData();
           formData.append('invoice',selectedFile);
-          const response = await fetch('http://localhost:3001/upload', {
-          method: 'POST',//send to server 
+          await fetch('http://localhost:3001/upload', {
+          method: 'POST',
           body:formData,
-        });
-        if(response.ok){
-           const data = await response.json();
-          const { nume, dataS, valDePlata,imagine } = data;
-          setNumeFur(nume);
-          setDataSc(dataS);
-          setVal(valDePlata);
-          setUrlImage(imagine);
-        }
+        }).then(response => response.json())
+        .then(data=>{
+          console.log(data);
+        })
+        // if(response.ok){
+        //    const data =response.json();
+        //   const { nume, dataS, valDePlata} = data;
+        //   setNumeFur(nume);
+        //   setDataSc(dataS);
+        //   setVal(valDePlata);
+        //   //setUrlImage(imagine);
+        // }
+        console.log(numeFur,dataSc,val);
          }catch(err){
           setEroareExtras(err.message);
          }}
@@ -57,7 +58,7 @@ function AdaugaFacturi(){
         numeFur,
         dataSc,
         val,
-        urlImage,
+        //urlImage,
       });
       }catch(err){
         setStareIncarca(err.message);
@@ -134,44 +135,39 @@ function AdaugaFacturi(){
           {eroareExtras}
         </Alert>
       </>)}
-            <TextField
-              margin="normal"
-              fullWidth
-              id="numeFurnizor"
-              label="Numele Furnizorului"
-              name="numeFurnizor"
-              autoComplete="email"
-              autoFocus
-              color='secondary'
-              value={numeFur}
-              onChange={(e)=>setNumeFur(e.target.value)}
-               ></TextField>
-           
+      <div className="dSc" style={{display:'flex',flexDirection:'row'}}>
+              <label style={{marginTop:'20px'}}>Denumire Furnizor</label>
+              <input type="text" defaultValue={numeFur} style={{
+                width:'300px',
+                height:'50px',
+                borderRadius:'5px',
+                background:'aliceblue',
+              }}
+              ></input>
+           </div>
 
-            <TextField
-              margin="normal"
-              fullWidth
-              name="totalPlata"
-              label="Total de Plata"
-              type="text"
-              id="totalPlata"
-              color='secondary'
-              value={val}
-              onChange={(e)=>setVal(e.target.value)}
-             ></TextField>
+           <div className="dSc" style={{display:'flex',flexDirection:'row',marginTop:'10px'}}>
+              <label style={{marginTop:'20px'}}>Total de plata</label>
+              <input type="text" defaultValue={val} style={{
+                width:'300px',
+                height:'50px',
+                borderRadius:'5px',
+                background:'aliceblue',
+              }}
+              ></input>
+             </div>
 
-              <TextField
-              margin="normal"
-              fullWidth
-              name="dataSc"
-              label="Data Sacdenta"
-              type="text"
-              id="dataSc"
-              color='secondary'
-              value={dataSc}
-              onChange={(e)=>setDataSc(e.target.value)}
-              ></TextField>
-
+            <div className="dSc" style={{display:'flex',flexDirection:'row',marginTop:'10px'}}>
+              <label style={{marginTop:'10px'}}>Data Scadenta</label>
+              <input type="text" defaultValue={dataSc} style={{
+                width:'300px',
+                height:'50px',
+                borderRadius:'5px',
+                background:'aliceblue',
+              }}
+              
+              ></input>
+            </div>
 
               <Button
               fullWidth
