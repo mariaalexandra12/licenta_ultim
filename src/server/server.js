@@ -22,11 +22,11 @@ app.post('/upload',upload,async (req, res) => {
     const extractedText = result.data.text;
 
     
-    const { supplierName, dueDate, totalValue } = extractInvoiceData(extractedText);
-    console.log(supplierName);
-    console.log(dueDate);
-    console.log(totalValue);
-    res.json({ supplierName, dueDate, totalValue});
+    const dat= extractInvoiceData(extractedText);
+    console.log(dat.nume);
+    console.log(dat.data);
+    console.log(dat.valoare);
+    res.json({dat});
     // const bucket = admin.storage().bucket();
     // const file = bucket.file(`invoices/${req.file.originalname}`);
     // const stream = file.createWriteStream({
@@ -54,22 +54,26 @@ app.post('/upload',upload,async (req, res) => {
 
 function extractInvoiceData(text) {
   console.log(text);
-  const numeFurnRegex = /Nume furnizor: (.+)/;
-  const dataScRegex = /Data scadenta: (.+)/;
-  const valTotalaRegex = /(Total de plata)*[0-9].*/gmi;
+  const numeFurnRegex = /(Enel Energie Muntenia SA)/gmi;
+  const dataScRegex = /Data scadenti: (\d{2}\.\d{2}\.\d{4})/;
+  const valTotalaRegex = /Valoare factura curenta \s*(\d{2},\d{2}) lei/gmi;
 
   const numeFurnMatch = text.match(numeFurnRegex);
   const dataScMatch = text.match(dataScRegex);
   const valTotalaMatch = text.match(valTotalaRegex);
 
-  // const nume =  numeFurnMatch[1];
-  // const data =  dataScMatch[1] ;
-  // const valoare =  valTotalaMatch[1];
+  const nume = numeFurnMatch? numeFurnMatch[0]:'';
+  const data =  dataScMatch? dataScMatch[0]:'' ;
+  const valoare =  valTotalaMatch? valTotalaMatch[0]:'';
 
 
- // console.log('------',nume,data,valoare);
-  //return { nume, data, valoare };
-  return { numeFurnMatch , dataScMatch, valTotalaMatch};
+ //console.log('------',nume,data,valoare);
+ console.log(nume);
+ console.log(data);
+ console.log(valoare);
+ const ras={nume,data,valoare};
+  return ras;
+  //return { numeFurnMatch , dataScMatch, valTotalaMatch};
 }
 
 app.listen(3001, () => {

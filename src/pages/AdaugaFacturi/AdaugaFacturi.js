@@ -30,31 +30,34 @@ function AdaugaFacturi(){
         try {
           const formData=new FormData();
           formData.append('invoice',selectedFile);
-           await fetch('http://localhost:3001/upload', {
+          const raspuns= await fetch('http://localhost:3001/upload', {
           method: 'POST',
           body:formData,
-        }).then(response => response.json())
-        .then(data=>{
-          console.log(data)
-        })
-        // if(response.ok){
-        //    const data =response.json();
-        //   const { nume, dataS, valDePlata} = data;
-        //   setNumeFur(nume);
-        //   setDataSc(dataS);
-        //   setVal(valDePlata);
-        //   //setUrlImage(imagine);
-        // }
-       // console.log(numeFur,dataSc,val);
-         }catch(err){
-          setEroareExtras(err.message);
-         }}
+        });
+        // console.log(res);
+        if(raspuns.ok){
+           raspuns.json().then(matr=>{
+            const array=Object.keys(matr).map(key=>
+              [key,matr[key]]);
+              const d=array[0];
+              const o=JSON.stringify(d[1]);
+              const jsonObj=JSON.parse(o);
+              setNumeFur(jsonObj.nume);
+              setDataSc(jsonObj.data);
+              setVal(jsonObj.valoare);
+              });
+            }
+          }catch(err){
+            setEroareExtras(err.message);
+          }
+         }
+         }
      
-}
 
-  const handleInregistrare=async ()=>{
+
+  const handleInregistrare=()=>{
     try {
-      const invoiceRef = await db.collection('facturi').add({
+      const invoiceRef =db.collection('facturi').add({
         numeFur,
         dataSc,
         val,
@@ -143,6 +146,7 @@ function AdaugaFacturi(){
                 borderRadius:'5px',
                 background:'aliceblue',
               }}
+              onChange={(e)=>setNumeFur(e.target.value)}
               ></input>
            </div>
 
@@ -154,6 +158,7 @@ function AdaugaFacturi(){
                 borderRadius:'5px',
                 background:'aliceblue',
               }}
+              onChange={(e)=>setVal(e.target.value)}
               ></input>
              </div>
 
@@ -165,7 +170,7 @@ function AdaugaFacturi(){
                 borderRadius:'5px',
                 background:'aliceblue',
               }}
-              
+              onChange={(e)=>setDataSc(e.target.value)}
               ></input>
             </div>
 
