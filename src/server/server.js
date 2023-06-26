@@ -27,25 +27,7 @@ app.post('/upload',upload,async (req, res) => {
     console.log(dat.data);
     console.log(dat.valoare);
     res.json({dat});
-    // const bucket = admin.storage().bucket();
-    // const file = bucket.file(`invoices/${req.file.originalname}`);
-    // const stream = file.createWriteStream({
-    //   metadata: {
-    //     contentType: req.mimetype,
-    //   },
-    // });
-    // stream.end(image);
-
-    // stream.on('finish', async () => {
-    //   const imageUrl = `https://storage.googleapis.com/gs://invoice-reader-4b865.appspot.com/invoices/`;
-
-     
-    // });
-  
-    // stream.on('error', (error) => {
-    //   console.error('Error uploading image to Firebase:', error);
-    //   res.status(500).json({ error: 'An error occurred' });
-    // });
+   
   } catch (error) {
     console.error('Error processing invoice:', error);
     res.status(500).json({ error: 'An error occurred' });

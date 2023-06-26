@@ -92,9 +92,6 @@ const defaultTheme = createTheme();
 
 export default function Navig() {
   
-
-
-
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
     setOpen(!open);

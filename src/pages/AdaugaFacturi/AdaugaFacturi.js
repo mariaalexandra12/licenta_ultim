@@ -1,4 +1,4 @@
-import React,{ useState , useCallback} from "react";
+import React,{ useState , useCallback,useEffect} from "react";
 import "./uploader.css";
 import { Alert, Box, Button } from '@mui/material';
 import LinearProgress from '@mui/material/LinearProgress';
@@ -23,6 +23,7 @@ import { collection ,
    addDoc,
    updateDoc, 
    doc} from "firebase/firestore";
+import { firestore } from "firebase-admin";
 
 function AdaugaFacturi(){
   const [selectedFile, setSelectedFile]=useState();
@@ -34,6 +35,19 @@ function AdaugaFacturi(){
   const [eroareExtras,setEroareExtras]=useState('');
   const [stareIncarca,setStareIncarca]=useState('');
 
+  
+    // const afisCategorii=()=>{
+    //     const catRef=doc(db,'categorie');
+    //     const catSnap=getDoc(catRef);
+    //     if(catSnap.exists()){
+    //       console.log(catSnap.data());
+    //     }
+    //     else{
+    //       console.log('no cat');
+    //     }
+    //     //setCategorii(catData);
+    // }
+   
   const extrageDateFactura= async ()=>{
        if(selectedFile){
         console.log(selectedFile);
@@ -135,7 +149,7 @@ function AdaugaFacturi(){
       }}
       onClick={extrageDateFactura}
       >
-      <DocumentScannerIcon color="secondary" style={{
+      <DocumentScannerIcon color="primary" style={{
         width:'70px',
         height:'70px',
       }}>
@@ -183,20 +197,18 @@ function AdaugaFacturi(){
               ></input>
             </div>
 
-            <FormControl fullWidth style={{marginTop:'10px'}}>
-      <InputLabel id="categorieFactura">Categorie Factura</InputLabel>
-       <Select
-    labelId="categorieFactura"
-    id="demo-simple-select"
-    //value={age}
-    label="Age"
-    // onChange={handleChange}
-  >
-    {/* <MenuItem value={10}>Ten</MenuItem>
-    <MenuItem value={20}>Twenty</MenuItem>
-    <MenuItem value={30}>Thirty</MenuItem> */}
-  </Select>
-</FormControl>
+            {/* <FormControl fullWidth style={{marginTop:'10px'}}>
+          <InputLabel id="categorieFactura">Categorie Factura</InputLabel>
+            <Select
+             labelId="categorieFactura"
+             id="demo-simple-select"
+             label="Age"
+             color="secondary">
+             {categorii.map((cat)=>(
+             <MenuItem key={cat} value={cat}>{cat}</MenuItem>
+              ))}
+             </Select>
+               </FormControl> */}
               <Button
               fullWidth
             variant="contained"
@@ -209,6 +221,8 @@ function AdaugaFacturi(){
             {stareIncarca}
           </Alert>
           </>)}
+
+        {/* <Button color="secondary" onClick={afisCategorii}>categorii</Button> */}
 
         </Box>
 
