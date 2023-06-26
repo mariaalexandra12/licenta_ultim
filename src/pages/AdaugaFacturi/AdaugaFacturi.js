@@ -17,7 +17,8 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import { collection , getDoc, getDocs} from "firebase/firestore";
+import { collection , doc ,getDoc, getDocs} from "firebase/firestore";
+import { get } from "react-hook-form";
 
 
 function AdaugaFacturi(){
@@ -32,11 +33,16 @@ function AdaugaFacturi(){
 
   
     const afisCategorii=()=>{
-        const querySnapshot=getDocs(collection(db,"categorie"));
-        querySnapshot.then(result=>{
-          console.log(result);
-        }).catch(err=>{console.log(err);});
-        //setCategorii(catData);
+        const categorieRef=collection(db,'categorie');
+        const docRef=doc(categorieRef,'jTFKu2tvZWZhD9fua4uz');
+        getDoc(docRef).then((d)=>{
+          if(d.exists()){
+            setCategorii(Object.values(d.data()));
+          }
+          else{
+            console.log('nu exista doc')
+          }
+        }).catch(err=>{console.log(err)});
     }
    
   const extrageDateFactura= async ()=>{
