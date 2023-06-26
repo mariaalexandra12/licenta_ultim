@@ -16,7 +16,6 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import { IconButton , InputAdornment } from '@mui/material';
 import PersonIcon from '@mui/icons-material/Person';
 import Alert from '@mui/material/Alert';
-import './auth.css';
 
 function Auth(){
 

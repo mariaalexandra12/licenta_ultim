@@ -17,13 +17,8 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import { collection ,
-  getDoc,
-  getDocs,
-   addDoc,
-   updateDoc, 
-   doc} from "firebase/firestore";
-import { firestore } from "firebase-admin";
+import { collection , getDoc, getDocs} from "firebase/firestore";
+
 
 function AdaugaFacturi(){
   const [selectedFile, setSelectedFile]=useState();
@@ -36,17 +31,13 @@ function AdaugaFacturi(){
   const [stareIncarca,setStareIncarca]=useState('');
 
   
-    // const afisCategorii=()=>{
-    //     const catRef=doc(db,'categorie');
-    //     const catSnap=getDoc(catRef);
-    //     if(catSnap.exists()){
-    //       console.log(catSnap.data());
-    //     }
-    //     else{
-    //       console.log('no cat');
-    //     }
-    //     //setCategorii(catData);
-    // }
+    const afisCategorii=()=>{
+        const querySnapshot=getDocs(collection(db,"categorie"));
+        querySnapshot.then(result=>{
+          console.log(result);
+        }).catch(err=>{console.log(err);});
+        //setCategorii(catData);
+    }
    
   const extrageDateFactura= async ()=>{
        if(selectedFile){
@@ -197,7 +188,7 @@ function AdaugaFacturi(){
               ></input>
             </div>
 
-            {/* <FormControl fullWidth style={{marginTop:'10px'}}>
+            <FormControl fullWidth style={{marginTop:'10px'}}>
           <InputLabel id="categorieFactura">Categorie Factura</InputLabel>
             <Select
              labelId="categorieFactura"
@@ -208,7 +199,7 @@ function AdaugaFacturi(){
              <MenuItem key={cat} value={cat}>{cat}</MenuItem>
               ))}
              </Select>
-               </FormControl> */}
+               </FormControl>
               <Button
               fullWidth
             variant="contained"
@@ -222,7 +213,7 @@ function AdaugaFacturi(){
           </Alert>
           </>)}
 
-        {/* <Button color="secondary" onClick={afisCategorii}>categorii</Button> */}
+        <Button color="secondary" onClick={afisCategorii}>categorii</Button>
 
         </Box>
 
