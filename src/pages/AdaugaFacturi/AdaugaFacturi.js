@@ -88,7 +88,7 @@ function AdaugaFacturi(){
         //urlImage,
       });
       }catch(err){
-        setStareIncarca(err.message);
+        setStareIncarca(err.message)
     } 
   };
 
