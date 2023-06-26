@@ -26,7 +26,7 @@ import { collection ,
 
 function AdaugaFacturi(){
   const [selectedFile, setSelectedFile]=useState();
-
+  const [categorii,setCategorii]=useState([]);
   const [numeFur,setNumeFur]=useState('');
   const [dataSc,setDataSc]=useState('');
   const [val,setVal]=useState('');
@@ -75,7 +75,6 @@ function AdaugaFacturi(){
       });
       }catch(err){
         setStareIncarca(err.message);
-      // Succes! Datele au fost încărcate în baza de date Firebase
     } 
   };
 

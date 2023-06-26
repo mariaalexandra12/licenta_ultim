@@ -146,7 +146,7 @@ export default function Navig() {
               
             </IconButton>
             <Stack direction="row" spacing={1}>
-            <Chip onClick={()=>{<Settings/>}} 
+            <Chip color='secondary'
              icon={<Face6Icon/>}
              label="Profil"
              variant="contained"
