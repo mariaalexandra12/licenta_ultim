@@ -18,12 +18,12 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { collection , doc ,getDoc, getDocs} from "firebase/firestore";
-import { get } from "react-hook-form";
+
 
 
 function AdaugaFacturi(){
   const [selectedFile, setSelectedFile]=useState();
-  const [categorii,setCategorii]=useState([]);
+  //const [categorii,setCategorii]=useState([]);
   const [numeFur,setNumeFur]=useState('');
   const [dataSc,setDataSc]=useState('');
   const [val,setVal]=useState('');
@@ -32,18 +32,18 @@ function AdaugaFacturi(){
   const [stareIncarca,setStareIncarca]=useState('');
 
   
-    const afisCategorii=()=>{
+       const categorii=[];
         const categorieRef=collection(db,'categorie');
         const docRef=doc(categorieRef,'jTFKu2tvZWZhD9fua4uz');
         getDoc(docRef).then((d)=>{
           if(d.exists()){
-            setCategorii(Object.values(d.data()));
+            categorii.push(Object.values(d.data()));
           }
           else{
             console.log('nu exista doc')
           }
         }).catch(err=>{console.log(err)});
-    }
+    
    
   const extrageDateFactura= async ()=>{
        if(selectedFile){
@@ -146,7 +146,7 @@ function AdaugaFacturi(){
       }}
       onClick={extrageDateFactura}
       >
-      <DocumentScannerIcon color="primary" style={{
+      <DocumentScannerIcon color="secondary" style={{
         width:'70px',
         height:'70px',
       }}>
@@ -200,7 +200,7 @@ function AdaugaFacturi(){
              labelId="categorieFactura"
              id="demo-simple-select"
              label="Age"
-             color="secondary" onChange={(e)=>setCategorii(e.target.value)}>
+             color="secondary">
              {
              categorii.map((cat)=>(
              <MenuItem key={cat} value={cat}>{cat}</MenuItem>
