@@ -1,4 +1,4 @@
-import React,{ useState } from "react";
+import React,{ useState ,useEffect} from "react";
 import "./uploader.css";
 import { Alert, Box, Button } from '@mui/material';
 import LinearProgress from '@mui/material/LinearProgress';
@@ -30,22 +30,24 @@ function AdaugaFacturi(){
   //const [urlImage,setUrlImage]=useState('');
   const [eroareExtras,setEroareExtras]=useState('');
   const [stareIncarca,setStareIncarca]=useState('');
-
+  const [categorii, setCategorii]=useState([]);
   
-       const categorii=[];
+      useEffect(()=>{
         const categorieRef=collection(db,'categorie');
         const docRef=doc(categorieRef,'jTFKu2tvZWZhD9fua4uz');
         getDoc(docRef).then((d)=>{
           if(d.exists()){
-            categorii.push(Object.values(d.data()));
+            setCategorii(Object.values(d.data()));
           }
           else{
             console.log('nu exista doc')
           }
         }).catch(err=>{console.log(err)});
-    
+       
+      },[]);
    
   const extrageDateFactura= async ()=>{
+      categorii.forEach(el=>console.log(el));
        if(selectedFile){
         console.log(selectedFile);
         try {
@@ -193,27 +195,18 @@ function AdaugaFacturi(){
               onChange={(e)=>setDataSc(e.target.value)}
               ></input>
             </div>
-
+ //
             <FormControl fullWidth style={{marginTop:'10px'}}>
           <InputLabel id="categorieFactura">Categorie Factura</InputLabel>
-            <Select
-             labelId="categorieFactura"
-             id="demo-simple-select"
-             label="Age"
-             color="secondary">
-             {
-             categorii.map((cat)=>(
-             <MenuItem key={cat} value={cat}>{cat}</MenuItem>
-              ))
-              }
-
-             </Select>
+          <Select value></Select>
                </FormControl>
               <Button
               fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
-            color="secondary" onClick={handleInregistrare}>
+            color="secondary" onClick={handleInregistrare}
+            
+            >
             Inregistreaza factura 
           </Button>
           {stareIncarca && (<>
