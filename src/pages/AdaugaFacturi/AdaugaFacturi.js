@@ -200,10 +200,13 @@ function AdaugaFacturi(){
              labelId="categorieFactura"
              id="demo-simple-select"
              label="Age"
-             color="secondary">
-             {categorii.map((cat)=>(
+             color="secondary" onChange={(e)=>setCategorii(e.target.value)}>
+             {
+             categorii.map((cat)=>(
              <MenuItem key={cat} value={cat}>{cat}</MenuItem>
-              ))}
+              ))
+              }
+
              </Select>
                </FormControl>
               <Button
@@ -219,7 +222,7 @@ function AdaugaFacturi(){
           </Alert>
           </>)}
 
-        <Button color="secondary" onClick={afisCategorii}>categorii</Button>
+        {/* <Button color="secondary" onClick={afisCategorii}>categorii</Button> */}
 
         </Box>
 
