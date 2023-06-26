@@ -17,7 +17,6 @@ import { IconButton , InputAdornment } from '@mui/material';
 import PersonIcon from '@mui/icons-material/Person';
 import Alert from '@mui/material/Alert';
 import './auth.css';
-import { useUserAuth } from './context/UserAuthContext';
 
 function Auth(){
 
@@ -46,7 +45,6 @@ function Auth(){
     const [email , setEmail]=useState('');
     const [password, setPassword] = useState('');
     const [ errors , setErrors] = useState([]);
-    const  { signUp } =useUserAuth();
     const [alerta,setAlerta]=useState('');
     const handleSubmit= async (event)=>{
       const errors=validate();

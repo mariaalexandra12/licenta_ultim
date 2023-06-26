@@ -30,12 +30,12 @@ function AdaugaFacturi(){
         try {
           const formData=new FormData();
           formData.append('invoice',selectedFile);
-          await fetch('http://localhost:3001/upload', {
+           await fetch('http://localhost:3001/upload', {
           method: 'POST',
           body:formData,
         }).then(response => response.json())
         .then(data=>{
-          console.log(data);
+          console.log(data)
         })
         // if(response.ok){
         //    const data =response.json();
@@ -45,7 +45,7 @@ function AdaugaFacturi(){
         //   setVal(valDePlata);
         //   //setUrlImage(imagine);
         // }
-        console.log(numeFur,dataSc,val);
+       // console.log(numeFur,dataSc,val);
          }catch(err){
           setEroareExtras(err.message);
          }}
