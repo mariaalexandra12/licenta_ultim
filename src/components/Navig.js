@@ -37,6 +37,9 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
 import Settings from './Settings';
 import DescriptionIcon from '@mui/icons-material/Description';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
 
 
 const drawerWidth = 200;
@@ -113,7 +116,10 @@ export default function Navig() {
     setOpenDilalog(false);
   }
 
+  
+
   return (
+    <>
     <ThemeProvider theme={defaultTheme}>
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
@@ -147,6 +153,14 @@ export default function Navig() {
              icon={<Face6Icon/>}
              label="Profil"
              variant="contained"
+             onClick={()=>{
+              <Card>
+                <Typography>Buna</Typography>
+              </Card>
+             }}
+             style={{
+              marginLeft:'1000px'
+             }}
             />
            </Stack>
           </Toolbar>
@@ -258,9 +272,12 @@ export default function Navig() {
 
                  </List>
         </Drawer>
-
-       
+  
       </Box>
+      
     </ThemeProvider>
+    
+
+    </>
   );
 }
