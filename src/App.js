@@ -12,10 +12,8 @@ import SignUpPers from "./pages/Authentification/signUpPers";
 import ResetPass from "./pages/Authentification/resetParola";
 import ForgetPass from "./pages/Authentification/forgetParola";
 import SignUpFirma from "./pages/Authentification/signUpFirma";
-import Settings from "./components/Settings";
 import Profil from "./components/Profil";
-import ContPers from "./components/contPers";
-import ContFirma from "./components/contFirma";
+
 
 function App() {
   return (
@@ -33,10 +31,7 @@ function App() {
           <Route path="/reset" exact element={<ResetPass />} />
           <Route path="/forget" exact element={<ForgetPass />} />
           <Route path="/sPers" exact element={<SignUpPers />} />
-          <Route path="/settings" exact element={<Settings/>}/>
           <Route path="/profil" exact element={<Profil/>}/>
-          <Route path="/contPers" exact element={<ContPers/>}/>
-          <Route path="/contFirma" exact element={<ContFirma/>}/>
 
         </Routes>
     

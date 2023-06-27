@@ -35,7 +35,6 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
-import Settings from './Settings';
 import DescriptionIcon from '@mui/icons-material/Description';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';

@@ -9,41 +9,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import PersonPinIcon from '@mui/icons-material/PersonPin';
 import { alignProperty } from "@mui/material/styles/cssUtils";
-import ContPers from "./contPers";
-import ContFirma from "./contFirma";
 
-function TabPanel(props) {
-    const { children, value, index, ...other } = props;
-  
-    return (
-      <div
-        role="tabpanel"
-        hidden={value !== index}
-        id={`simple-tabpanel-${index}`}
-        aria-labelledby={`simple-tab-${index}`}
-        {...other}
-      >
-        {value === index && (
-          <Box sx={{ p: 3 }}>
-            <Typography>{children}</Typography>
-          </Box>
-        )}
-      </div>
-    );
-  }
-
-  TabPanel.propTypes = {
-    children: PropTypes.node,
-    index: PropTypes.number.isRequired,
-    value: PropTypes.number.isRequired,
-  };
-
-  function a11yProps(index) {
-    return {
-      id: `simple-tab-${index}`,
-      'aria-controls': `simple-tabpanel-${index}`,
-    };
-  }
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -54,6 +20,7 @@ const Item = styled(Paper)(({ theme }) => ({
   }));
 
 const Profil=()=>{
+
     const [value, setValue] = React.useState(0);
 
     const handleChange = (event, newValue) => {
@@ -73,7 +40,7 @@ const Profil=()=>{
               <Grid container  direction="rows" xs>
                 <Grid item>
                 <Item style={{
-                    width:'1050px',
+                    width:'1000px',
                     display:'flex',
                     flexDirection:'row',
                 }}>
@@ -87,27 +54,41 @@ const Profil=()=>{
               <Grid item >
               <Item style={{
                 marginTop:'50px',
-                width:'1050px',
+                width:'1000px',
+                height:'550px',
               }}>
        
        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-          <Tab label="Cont Personal" {...a11yProps(0)} />
-          <Tab label="Cont Firma" {...a11yProps(1)} />
-          <Tab label="Setari Cont" {...a11yProps(2)} />
+        <Tabs value={value} onChange={handleChange} >
+          <Tab label="Cont Personal"/>
+          <Tab label="Cont Firma"  />
+          <Tab label="Setari Cont"  />
         </Tabs>
       </Box>
-      <TabPanel value={value} index={0}>
-        <ContPers/>
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        <ContFirma/>
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        Item Three
-      </TabPanel>
+      {value===0 &&(
+        <>
+          <Box sx={{marginTop: '80px'}}>
+             <h1>Cont personal</h1>
+          </Box>
+        </>
+      )}
 
+       {value===1 &&(
+        <>
+          <Box sx={{marginTop: '80px'}}>
+             <h1>Cont firma</h1>
+          </Box>
+        </>
+      )}  
 
+       {value===2 &&(
+        <>
+          <Box sx={{marginTop: '80px'}}>
+             <h1>settings</h1>
+          </Box>
+        </>
+      )}     
+      
               </Item>
               </Grid>
              
