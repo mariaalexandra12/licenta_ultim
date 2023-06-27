@@ -12,6 +12,7 @@ import SignUpPers from "./pages/Authentification/signUpPers";
 import ForgetPass from "./pages/Authentification/forgetParola";
 import SignUpFirma from "./pages/Authentification/signUpFirma";
 import Profil from "./components/Profil";
+import './App.css';
 
 
 function App() {
