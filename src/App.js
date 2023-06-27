@@ -9,7 +9,7 @@ import Facturi from "./pages/Facturi/Facturi"
 import Auth from "./pages/Authentification/Auth";
 import SignUp from "./pages/Authentification/signUp";
 import SignUpPers from "./pages/Authentification/signUpPers";
-import ResetPass from "./pages/Authentification/resetParola";
+
 import ForgetPass from "./pages/Authentification/forgetParola";
 import SignUpFirma from "./pages/Authentification/signUpFirma";
 import Profil from "./components/Profil";
@@ -28,7 +28,7 @@ function App() {
             <Route path="/facturi" element={<Facturi />} />
           <Route path="/signUp" exact element={<SignUp />} />
           <Route path="/signUpFirma" exact element={<SignUpFirma />} />
-          <Route path="/reset" exact element={<ResetPass />} />
+          
           <Route path="/forget" exact element={<ForgetPass />} />
           <Route path="/sPers" exact element={<SignUpPers />} />
           <Route path="/profil" exact element={<Profil/>}/>

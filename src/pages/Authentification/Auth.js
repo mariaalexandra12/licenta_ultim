@@ -211,12 +211,7 @@ function Auth(){
                 </Link>
               </Grid>
 
-              <Grid item xs>
-                <Link href="/reset"  color="white" underline="hover">
-                  Reseteaza parola
-                </Link>
-              </Grid>
-
+             
              </Grid>
             </Box>
           </Box>

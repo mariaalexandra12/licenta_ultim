@@ -3,7 +3,8 @@ import Paper from '@mui/material/Paper';
 import { TextField, Typography } from '@mui/material';
 import { Button } from '@mui/material';
 import ReceiptIcon from '@mui/icons-material/Receipt';
-
+import {  useNavigate } from 'react-router-dom';
+import Link from '@mui/material/Link';
 
 export default function Pass(){
     return (
@@ -41,6 +42,11 @@ export default function Pass(){
                 <Button color="secondary" variant="contained" fullWidth
                  style={{marginTop:'10px'}}
                 >Trimite mail</Button>
+
+               <Link href="/" underline='hover' color="secondary"
+               style={{marginLeft:'180px',}}
+               >Inapoi la conectare</Link>
+               
     </Paper>
      
      </div>
