@@ -23,11 +23,9 @@ import { collection , doc ,getDoc, getDocs} from "firebase/firestore";
 
 function AdaugaFacturi(){
   const [selectedFile, setSelectedFile]=useState();
-  //const [categorii,setCategorii]=useState([]);
   const [numeFur,setNumeFur]=useState('');
   const [dataSc,setDataSc]=useState('');
   const [val,setVal]=useState('');
-  //const [urlImage,setUrlImage]=useState('');
   const [eroareExtras,setEroareExtras]=useState('');
   const [stareIncarca,setStareIncarca]=useState('');
   const [categorii, setCategorii]=useState([]);
@@ -57,7 +55,6 @@ function AdaugaFacturi(){
           method: 'POST',
           body:formData,
         });
-        // console.log(res);
         if(raspuns.ok){
            raspuns.json().then(matr=>{
             const array=Object.keys(matr).map(key=>
@@ -91,6 +88,7 @@ function AdaugaFacturi(){
     } 
   };
 
+  const [catFactura , setCatFactura]=useState('');
 
   return(    
     <>
@@ -124,8 +122,8 @@ function AdaugaFacturi(){
       {selectedFile && (
         <div>
           <img src={URL.createObjectURL(selectedFile)} alt="" style={{
-        width:"450px",
-        height:"500px",
+        width:"600px",
+        height:"600px",
         }}></img>
         </div>
       )}
@@ -195,27 +193,39 @@ function AdaugaFacturi(){
               onChange={(e)=>setDataSc(e.target.value)}
               ></input>
             </div>
- //
+ 
             <FormControl fullWidth style={{marginTop:'10px'}}>
-          <InputLabel id="categorieFactura">Categorie Factura</InputLabel>
-          <Select value></Select>
-               </FormControl>
+               <InputLabel id="categorieFactura">Categorie Factura</InputLabel>
+                  <Select value={catFactura}
+                  labelId="catFactura"
+                  required
+                  onChange={(e)=>setCatFactura(e.target.value)}>
+                  
+                  {
+                  categorii.map((loc)=>(
+                    <MenuItem key={loc} value={loc}>{loc}</MenuItem>
+                  ))
+                  }
+
+                  </Select>
+
+            </FormControl>
+
+
               <Button
               fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
-            color="secondary" onClick={handleInregistrare}
-            
-            >
+            color="secondary" onClick={handleInregistrare}>
             Inregistreaza factura 
           </Button>
+
           {stareIncarca && (<>
           <Alert severity="warning">
             {stareIncarca}
           </Alert>
           </>)}
 
-        {/* <Button color="secondary" onClick={afisCategorii}>categorii</Button> */}
 
         </Box>
 
