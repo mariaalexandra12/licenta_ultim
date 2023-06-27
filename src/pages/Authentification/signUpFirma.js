@@ -23,6 +23,9 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import FormControl from '@mui/material/FormControl';
+import { getAuth ,createUserWithEmailAndPassword } from 'firebase/auth';
+import { collection,addDoc } from "firebase/firestore";
+import { db } from '../../firebaseUtils/firebase_ut';
 
 
 export default function SignUpPers() {
@@ -59,14 +62,31 @@ export default function SignUpPers() {
   const [capSoc,setCapSoc]=useState('')
   const [judet,setJudet]=useState('')
   const [ errors , setErrors] = useState([])
+  const [authError,setAuthError] = useState('')
+
   const handleSubmit=(event)=>{
     event.preventDefault();
     const errors=validate();
+    const auth=getAuth();
     setErrors(errors);
-    if(!errors.email && !errors.password && !errors.confirmPass && !errors.adresa 
-      && !errors.capSoc && !errors.cif && !errors.denumireFirma){
-      nav('/');
-    }
+    createUserWithEmailAndPassword(auth,email,password)
+    .then((userCredential)=>{
+      const user=userCredential.user;
+      if(!errors.email && !errors.password && !errors.confirmPass && !errors.adresa 
+        && !errors.capSoc && !errors.cif && !errors.denumireFirma && !errors.judet && !errors.localitate){
+          const firmaRef=addDoc(collection(db,'firma'),{
+            CIF:cif,
+            denumire:denumireFirma,
+            emailFirma:email,
+            judet:judet,
+            localitate:localitate,
+            parolaFirma:password
+          });
+        nav('/');
+      }
+    }).catch((err)=>{
+      setAuthError(err.message);
+    })
   }
 
   const validate=()=>{
@@ -136,6 +156,20 @@ export default function SignUpPers() {
     }
     else{
       eroare.adresa="";
+    }
+
+    if(!judet){
+      eroare.judet="Nu ai selectat un judet din lista";
+    }
+    else{
+      eroare.judet="";
+    }
+
+    if(!localitate){
+      eroare.localitate="Nu ai selectat o localiate din lista";
+    }
+    else{
+      eroare.localitate="";
     }
     
     return eroare;
@@ -326,6 +360,15 @@ export default function SignUpPers() {
   const local=judet ? judete.find((jud) => jud.nume===judet).localitati : [];
    
   return (
+    <>
+    {
+      authError && (
+        <div>
+          <Alert severity='error'>{authError}</Alert>
+        </div>
+      )
+    }
+
     <Paper elevation={24} style={{
       marginLeft:"350px",
       marginTop:"55px",
@@ -408,6 +451,7 @@ export default function SignUpPers() {
               <FormControl fullWidth>
                <InputLabel>Judet</InputLabel>
                <Select
+               required
                  labelId="judet"
                  id="judet"
                  value={judet}
@@ -420,12 +464,20 @@ export default function SignUpPers() {
                  }
                </Select>
                </FormControl>
+               {errors.judet && (
+              <div>
+              <Alert severity="error">
+                {errors.judet}
+              </Alert>
+              </div>
+             )}
               </Grid>
 
               <Grid item xs={12} sm={6}>
               <FormControl fullWidth>
               <InputLabel id="local">Localitate</InputLabel>
               <Select
+              required
                  labelId="local"
                  id="demo-simple-select"
                 value={localitate}
@@ -439,6 +491,13 @@ export default function SignUpPers() {
 
                </Select>
                </FormControl>
+               {errors.localitate && (
+              <div>
+              <Alert severity="error">
+                {errors.localitate}
+              </Alert>
+              </div>
+             )}
               </Grid>
 
               <Grid item xs={12} sm={6}>
@@ -579,5 +638,6 @@ export default function SignUpPers() {
       </Container>
 
     </Paper>
+    </>
   );
 }

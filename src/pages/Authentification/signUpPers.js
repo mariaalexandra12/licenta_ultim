@@ -75,7 +75,6 @@ export default function SignUpPers() {
               prenume:prename
           });
           nav('/');
-        setSucces('Utilizatorul cu adresa de email ${user.email} a fost autentificat cu succes');
         }    
       }).catch((err)=>{
         setAuthError(err.message);
