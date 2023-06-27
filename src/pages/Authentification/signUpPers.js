@@ -21,7 +21,8 @@ import ClearIcon from '@mui/icons-material/Clear';
 import LinearProgress from '@mui/material/LinearProgress';
 import Alert from '@mui/material/Alert';
 import { getAuth ,createUserWithEmailAndPassword } from 'firebase/auth';
-
+import { collection,addDoc } from "firebase/firestore";
+import { db } from '../../firebaseUtils/firebase_ut';
 
 export default function SignUpPers() {
 
@@ -54,8 +55,8 @@ export default function SignUpPers() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [authError,setAuthError] = useState('')
   const [succes,setSucces]=useState('')
-  const [nume,setNume] = useState('')
-  const [prenume,setPrenume]=useState('')
+  const [name,setNume] = useState('')
+  const [prename,setPrenume]=useState('')
 
   const handleSubmit=(event)=>{
     event.preventDefault();
@@ -65,7 +66,14 @@ export default function SignUpPers() {
     createUserWithEmailAndPassword(auth,email,password)
       .then((userCredential)=>{
         const user=userCredential.user;
-        if(!errors.email && !errors.password && !errors.confirmPass){
+        if(!errors.email && !errors.password && !errors.confirmPass && !errors.nume
+          && !errors.prenume){
+          const utilizatorRef= addDoc(collection(db,'utilizator'),{
+              emailUtilizator:email,
+              nume:name,
+              parolaUtilizator:password,
+              prenume:prename
+          });
           nav('/');
         setSucces('Utilizatorul cu adresa de email ${user.email} a fost autentificat cu succes');
         }    
@@ -108,18 +116,18 @@ export default function SignUpPers() {
       eroare.confirmPass='';
     }
 
-    if(!nume){
-      eroare.nume="Nu ai introdus numele";
+    if(!name){
+      eroare.name="Nu ai introdus numele";
     }
     else{
-      eroare.nume="";
+      eroare.name="";
     }
     
-    if(!prenume){
-      eroare.prenume="Nu ai introdus numele";
+    if(!prename){
+      eroare.prename="Nu ai introdus numele";
     }
     else{
-      eroare.prenume="";
+      eroare.prename="";
     }
 
     return eroare;
@@ -183,7 +191,7 @@ export default function SignUpPers() {
                   id="firstName"
                   label="Nume"
                   autoFocus
-                  value={nume}
+                  value={name}
                   onChange={(e)=>setNume(e.target.value)}
                  ></TextField>
                  {errors.nume && (
@@ -203,7 +211,7 @@ export default function SignUpPers() {
                   label="Prenume"
                   name="lastName"
                   autoComplete="family-name"
-                  value={prenume}
+                  value={prename}
                   onChange={(e)=>setPrenume(e.target.value)}
                  ></TextField>
                   {errors.prenume && (
