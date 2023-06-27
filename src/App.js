@@ -9,7 +9,6 @@ import Facturi from "./pages/Facturi/Facturi"
 import Auth from "./pages/Authentification/Auth";
 import SignUp from "./pages/Authentification/signUp";
 import SignUpPers from "./pages/Authentification/signUpPers";
-
 import ForgetPass from "./pages/Authentification/forgetParola";
 import SignUpFirma from "./pages/Authentification/signUpFirma";
 import Profil from "./components/Profil";
