@@ -1,21 +1,20 @@
-import React from 'react';
-import Navig from "../../components/Navig";
+import React from "react";
 import { Box, Button } from '@mui/material';
+import Navig from "./Navig";
 
-const Analiza=()=>{
-
+const Profil=()=>{
+    
     return (
         <>
         <Box sx={{display: 'flex'}}>
         <Navig/>
         <Box sx={{marginTop: '80px'}}>
-          <h1>Analiza</h1>
+          <h1>Profil</h1>
         </Box>
     
         </Box>
         </>
     )
-
 }
 
-export default Analiza
+export default Profil

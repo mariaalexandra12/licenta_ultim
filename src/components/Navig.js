@@ -40,7 +40,8 @@ import DescriptionIcon from '@mui/icons-material/Description';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import SettingsApplicationsIcon from '@mui/icons-material/SettingsApplications';
 
 const drawerWidth = 200;
 
@@ -116,7 +117,10 @@ export default function Navig() {
     setOpenDilalog(false);
   }
 
-  
+  const [showCard,setShowCard]=React.useState(false);
+  const handleChipProfile=()=>{
+       setShowCard(!showCard);
+  }
 
   return (
     <>
@@ -153,15 +157,12 @@ export default function Navig() {
              icon={<Face6Icon/>}
              label="Profil"
              variant="contained"
-             onClick={()=>{
-              <Card>
-                <Typography>Buna</Typography>
-              </Card>
-             }}
+             onClick={handleChipProfile}
              style={{
               marginLeft:'1000px'
              }}
             />
+
            </Stack>
           </Toolbar>
 
@@ -186,7 +187,6 @@ export default function Navig() {
     
           </Toolbar>
         
-         
 
           <List style={{ 
           
@@ -237,16 +237,48 @@ export default function Navig() {
                   <Divider></Divider>
                   </ListItem>
 
-                 <ListItem  onClick={handleClickOpen}>
-                  <ListItemButton style={{
-                    marginTop:'300px',
-                    marginBottom:'0px',
-                    }}>
+                
+                 </List>
+        </Drawer>
 
+         
+        {showCard && (
+           <div>
+             <Card style={{
+                  marginLeft:'950px',
+                  marginTop:'50px',
+                  background: 'rgba( 170, 29, 155, 0.35 )',
+                  boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )', 
+                  backDropFilter: 'blur( 4px )',
+                  WebkitBackdropFilter: 'blur( 4px )',
+                  borderRadius:'30px',
+                  border: '1px solid rgba( 255, 255, 255, 0.18 )',
+                  position:'fixed',}}>
+          
+          <List>
+          <ListItem disablePadding >
+            <ListItemButton>
+              <ListItemIcon  style={{color:"rgba(138, 5, 186)"}}>
+                <AccountCircleIcon/>
+              </ListItemIcon>
+              <ListItemText primary="Profil" />
+            </ListItemButton>
+          </ListItem>
+          <Divider/>
+          <ListItem disablePadding onClick={()=>navigate("/settings")}>
+            <ListItemButton >
+              <ListItemIcon style={{color:"rgba(138, 5, 186)"}}>
+                <SettingsApplicationsIcon/>
+              </ListItemIcon>
+              <ListItemText primary="Setari" />
+            </ListItemButton>
+          </ListItem>
+      <Divider />
+      <ListItem  onClick={handleClickOpen}>
+                  <ListItemButton>
                     <Dialog
                          TransitionComponent={Transition}
                          open={openDialog}
-                         
                         aria-describedby="alert-dialog-slide-description">
       
                         <DialogTitle>{"Log Out?"}</DialogTitle>
@@ -269,9 +301,11 @@ export default function Navig() {
                       }}>Log Out</ListItemText> 
                   </ListItemButton>
                   </ListItem>
-
-                 </List>
-        </Drawer>
+                  </List>
+                  </Card>
+               </div>
+              )
+            }
   
       </Box>
       
