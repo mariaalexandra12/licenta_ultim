@@ -70,7 +70,7 @@ export default function SignUpPers() {
     const errors=validate();
     const auth=getAuth();
     setErrors(errors);
-      if(!errors.email && !errors.password && !errors.confirmPass && !errors.adresa 
+    if(!errors.email && !errors.password && !errors.confirmPass && !errors.adresa 
         && !errors.capSoc && !errors.cif && !errors.denumireFirma && !errors.judet && !errors.localitate){
           createUserWithEmailAndPassword(auth,email,password)
           .then((userCredential)=>{
@@ -86,9 +86,10 @@ export default function SignUpPers() {
           });
          }).catch((err)=>{
             setAuthError(err.message);
-          })
+          });
+          nav('/');
       }
-      nav('/');
+      
   }
 
   const validate=()=>{

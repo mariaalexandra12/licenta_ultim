@@ -23,6 +23,9 @@ import Alert from '@mui/material/Alert';
 import { getAuth ,createUserWithEmailAndPassword } from 'firebase/auth';
 import { collection,addDoc } from "firebase/firestore";
 import { db } from '../../firebaseUtils/firebase_ut';
+import CloseIcon from '@mui/icons-material/Close';
+import Collapse from '@mui/material/Collapse';
+
 
 export default function SignUpPers() {
 
@@ -57,6 +60,8 @@ export default function SignUpPers() {
   const [succes,setSucces]=useState('')
   const [name,setNume] = useState('')
   const [prename,setPrenume]=useState('')
+  const [open, setOpen] = React.useState(true);
+
 
   const handleSubmit=(event)=>{
     event.preventDefault();
@@ -137,13 +142,28 @@ export default function SignUpPers() {
 
   return (
     <>
-    {
-      authError && (
-        <div>
-          <Alert severity='error'>{authError}</Alert>
-        </div>
-      )
-    }
+    {authError && (
+            <>
+           <Collapse in={open}>
+            <Alert severity='error' style={{
+              width:'300px',
+              marginTop:'10px',
+              marginLeft:'500px',
+              display:'hover',
+            }}  
+            action={
+              <IconButton
+                aria-label="close"
+                color="inherit"
+                size="small"
+                onClick={() => {
+                  setOpen(false);
+                }}> 
+                <CloseIcon fontSize="inherit"/>  
+              </IconButton>}>{authError}</Alert>
+              </Collapse>
+              </>
+          )}
 
     <Paper elevation={24} style={{
       marginLeft:"350px",

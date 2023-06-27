@@ -18,6 +18,8 @@ import PersonIcon from '@mui/icons-material/Person';
 import Alert from '@mui/material/Alert';
 import './auth.css';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import CloseIcon from '@mui/icons-material/Close';
+import Collapse from '@mui/material/Collapse';
 
 function Auth(){
 
@@ -48,6 +50,7 @@ function Auth(){
     const [ errors , setErrors] = useState([]);
     const [alerta,setAlerta]=useState('');
     const [firebaseAuthError,setFirebaseAuthError] = useState('');
+    const [open, setOpen] = React.useState(true);
     const auth=getAuth();
 
     const handleSubmit= async (event)=>{
@@ -97,7 +100,26 @@ function Auth(){
       <div className="auth" >   
          <div className="container">
           {firebaseAuthError && (
-            <Alert severity='error'>{firebaseAuthError}</Alert>
+            <>
+           <Collapse in={open}>
+            <Alert severity='error' style={{
+              width:'300px',
+              marginTop:'10px',
+              marginLeft:'500px',
+              display:'hover',
+            }}  
+            action={
+              <IconButton
+                aria-label="close"
+                color="inherit"
+                size="small"
+                onClick={() => {
+                  setOpen(false);
+                }}> 
+                <CloseIcon fontSize="inherit"/>  
+              </IconButton>}>{firebaseAuthError}</Alert>
+              </Collapse>
+              </>
           )}
           {alerta && (
             <>
