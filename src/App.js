@@ -15,7 +15,7 @@ import SignUpFirma from "./pages/Authentification/signUpFirma";
 import Settings from "./components/Settings";
 import Profil from "./components/Profil";
 import ContPers from "./components/contPers";
-import ContFirma from "./components/constFirma";
+import ContFirma from "./components/contFirma";
 
 function App() {
   return (
