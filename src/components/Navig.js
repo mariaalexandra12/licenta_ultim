@@ -256,24 +256,15 @@ export default function Navig() {
                   position:'fixed',}}>
           
           <List>
-          <ListItem disablePadding >
-            <ListItemButton>
-              <ListItemIcon  style={{color:"rgba(138, 5, 186)"}}>
-                <AccountCircleIcon/>
-              </ListItemIcon>
-              <ListItemText primary="Profil" />
-            </ListItemButton>
-          </ListItem>
-          <Divider/>
-          <ListItem disablePadding onClick={()=>navigate("/settings")}>
+
+          <ListItem disablePadding onClick={()=>navigate("/profil")}>
             <ListItemButton >
               <ListItemIcon style={{color:"rgba(138, 5, 186)"}}>
                 <SettingsApplicationsIcon/>
               </ListItemIcon>
-              <ListItemText primary="Setari" />
+              <ListItemText primary="Setari Cont" />
             </ListItemButton>
           </ListItem>
-      <Divider />
       <ListItem  onClick={handleClickOpen}>
                   <ListItemButton>
                     <Dialog
