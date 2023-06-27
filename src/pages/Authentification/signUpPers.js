@@ -18,9 +18,9 @@ import { useState } from 'react';
 import PersonIcon from '@mui/icons-material/Person';
 import CheckIcon from '@mui/icons-material/Check';
 import ClearIcon from '@mui/icons-material/Clear';
-
 import LinearProgress from '@mui/material/LinearProgress';
 import Alert from '@mui/material/Alert';
+import { getAuth ,createUserWithEmailAndPassword } from 'firebase/auth';
 
 
 export default function SignUpPers() {
@@ -52,15 +52,22 @@ export default function SignUpPers() {
   const [confirmPass, setConfirmPass]=useState('')
   const [ errors , setErrors] = useState([])
   const [isSubmitting, setIsSubmitting] = useState(false)
-  
+  const [authError,setAuthError] = useState('')
 
   const handleSubmit=(event)=>{
     event.preventDefault();
     const errors=validate();
     setErrors(errors);
-    if(!errors.email && !errors.password && !errors.confirmPass){
-      nav('/');
-    }
+    const auth=getAuth();
+    createUserWithEmailAndPassword(auth,email,password)
+      .then((userCredential)=>{
+        const user=userCredential.user;
+        if(!errors.email && !errors.password && !errors.confirmPass){
+          nav('/');
+        }    
+      }).catch((err)=>{
+        setAuthError(err.message);
+      })
   }
 
   const validate=()=>{
@@ -104,6 +111,14 @@ export default function SignUpPers() {
  
 
   return (
+    <>
+    {
+      authError && (
+        <div>
+          <Alert severity='error'>{authError}</Alert>
+        </div>
+      )
+    }
     <Paper elevation={24} style={{
       marginLeft:"350px",
       marginTop:"55px",
@@ -264,5 +279,6 @@ export default function SignUpPers() {
       </Container>
 
     </Paper>
+    </>
   );
 }
