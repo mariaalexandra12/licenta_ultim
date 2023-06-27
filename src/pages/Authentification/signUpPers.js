@@ -53,6 +53,9 @@ export default function SignUpPers() {
   const [ errors , setErrors] = useState([])
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [authError,setAuthError] = useState('')
+  const [succes,setSucces]=useState('')
+  const [nume,setNume] = useState('')
+  const [prenume,setPrenume]=useState('')
 
   const handleSubmit=(event)=>{
     event.preventDefault();
@@ -64,6 +67,7 @@ export default function SignUpPers() {
         const user=userCredential.user;
         if(!errors.email && !errors.password && !errors.confirmPass){
           nav('/');
+        setSucces('Utilizatorul cu adresa de email ${user.email} a fost autentificat cu succes');
         }    
       }).catch((err)=>{
         setAuthError(err.message);
@@ -103,7 +107,21 @@ export default function SignUpPers() {
     else{
       eroare.confirmPass='';
     }
+
+    if(!nume){
+      eroare.nume="Nu ai introdus numele";
+    }
+    else{
+      eroare.nume="";
+    }
     
+    if(!prenume){
+      eroare.prenume="Nu ai introdus numele";
+    }
+    else{
+      eroare.prenume="";
+    }
+
     return eroare;
   };
   
@@ -119,6 +137,7 @@ export default function SignUpPers() {
         </div>
       )
     }
+
     <Paper elevation={24} style={{
       marginLeft:"350px",
       marginTop:"55px",
@@ -157,24 +176,44 @@ export default function SignUpPers() {
               <Grid item xs={12} sm={6}>
              
                 <TextField
+                required
                   autoComplete="given-name"
                   name="firstName"
                   fullWidth
                   id="firstName"
                   label="Nume"
                   autoFocus
+                  value={nume}
+                  onChange={(e)=>setNume(e.target.value)}
                  ></TextField>
+                 {errors.nume && (
+              <div>
+              <Alert severity="error">
+                {errors.nume}
+              </Alert>
+              </div>
+             )}
             
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
-                  
+                  required
                   fullWidth
                   id="lastName"
                   label="Prenume"
                   name="lastName"
                   autoComplete="family-name"
+                  value={prenume}
+                  onChange={(e)=>setPrenume(e.target.value)}
                  ></TextField>
+                  {errors.prenume && (
+              <div>
+              <Alert severity="error">
+                {errors.prenume}
+              </Alert>
+              </div>
+             )}
+                 
                 
               </Grid>
 

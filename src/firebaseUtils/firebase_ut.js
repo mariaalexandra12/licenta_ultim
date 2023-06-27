@@ -8,7 +8,7 @@ import { getAuth } from 'firebase/auth';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBj-1iw_5zOCZE-RZ1kzuy_wcb58XuW_1M",
+  apiKey: "AIzaSyBlkF5WPDfIjFzf4PU1z-il-VAWbmkk0XE",
   authDomain: "invoice-reader-4b865.firebaseapp.com",
   databaseURL: "https://invoice-reader-4b865-default-rtdb.firebaseio.com",
   projectId: "invoice-reader-4b865",
@@ -18,7 +18,7 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
+const app =initializeApp(firebaseConfig);
 const db=getFirestore(app);
 const storage=getStorage();
 const auth=getAuth();

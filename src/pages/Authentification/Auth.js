@@ -17,6 +17,7 @@ import { IconButton , InputAdornment } from '@mui/material';
 import PersonIcon from '@mui/icons-material/Person';
 import Alert from '@mui/material/Alert';
 import './auth.css';
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 function Auth(){
 
@@ -46,14 +47,22 @@ function Auth(){
     const [password, setPassword] = useState('');
     const [ errors , setErrors] = useState([]);
     const [alerta,setAlerta]=useState('');
+    const [firebaseAuthError,setFirebaseAuthError] = useState('');
+    const auth=getAuth();
+
     const handleSubmit= async (event)=>{
       const errors=validate();
       setErrors(errors);
       try{
         //await signUp(email,password);
-         if(!errors.email && !errors.password){
-        nav('/navig');
-      }}catch(err){
+        signInWithEmailAndPassword(auth,email,password)
+        .then((userCredential)=>{
+          if(!errors.email && !errors.password){
+            nav('/navig');
+        }}).catch((err)=>{
+           setFirebaseAuthError(err.message);
+        })
+      }catch(err){
         setAlerta(err.message);
       }
       
@@ -87,6 +96,9 @@ function Auth(){
     return (
       <div className="auth" >   
          <div className="container">
+          {firebaseAuthError && (
+            <Alert severity='error'>{firebaseAuthError}</Alert>
+          )}
           {alerta && (
             <>
             <Alert severity='error' style={{
