@@ -3,7 +3,7 @@ const multer = require('multer');
 const cors=require('cors');
 const Tesseract = require('tesseract.js');
 const admin = require("firebase-admin");
-const serviceAccount = require('../../serviceAccount.json');
+const serviceAccount = require('../../../serviceAccount.json');
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
