@@ -63,30 +63,32 @@ export default function SignUpPers() {
   const [judet,setJudet]=useState('')
   const [ errors , setErrors] = useState([])
   const [authError,setAuthError] = useState('')
+  const [platitTVA,setPlatitorTVA] = useState(false)
 
   const handleSubmit=(event)=>{
     event.preventDefault();
     const errors=validate();
     const auth=getAuth();
     setErrors(errors);
-    createUserWithEmailAndPassword(auth,email,password)
-    .then((userCredential)=>{
-      const user=userCredential.user;
       if(!errors.email && !errors.password && !errors.confirmPass && !errors.adresa 
         && !errors.capSoc && !errors.cif && !errors.denumireFirma && !errors.judet && !errors.localitate){
+          createUserWithEmailAndPassword(auth,email,password)
+          .then((userCredential)=>{
+           const user=userCredential.user;
           const firmaRef=addDoc(collection(db,'firma'),{
             CIF:cif,
             denumire:denumireFirma,
             emailFirma:email,
             judet:judet,
             localitate:localitate,
-            parolaFirma:password
+            parolaFirma:password,
+            platitorTVA:platitTVA
           });
-        nav('/');
+         }).catch((err)=>{
+            setAuthError(err.message);
+          })
       }
-    }).catch((err)=>{
-      setAuthError(err.message);
-    })
+      nav('/');
   }
 
   const validate=()=>{
@@ -608,7 +610,8 @@ export default function SignUpPers() {
              
              <div style={{marginLeft:'20px',marginTop:'10px',fontSize:'18px'}}>
               <label>Platitor de TVA</label>
-              <Checkbox defaultChecked color="secondary">
+              <Checkbox checked={platitTVA} color="secondary" onChange={(e)=>
+                setPlatitorTVA(e.target.value)}>
               </Checkbox>
               </div>
 
