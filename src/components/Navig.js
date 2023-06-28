@@ -195,8 +195,8 @@ export default function Navig() {
           marginTop:'0px',
           background: 'rgba( 135, 54, 212, 0.45 )',
       boxShadow:'0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
-      backdropFilter: 'blur( 10px )',
-      WebkitBackdropFilter:' blur( 10px )',
+      backdropFilter: 'blur( 5px )',
+      WebkitBackdropFilter:' blur( 5px )',
      
           height:'660px',
         }} >
@@ -205,8 +205,8 @@ export default function Navig() {
               marginTop:'0px',
               background: 'rgba( 168, 100, 235, 0.55 )',
           boxShadow:'0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
-          backdropFilter: 'blur( 10px )',
-          WebkitBackdropFilter:' blur( 10px )',
+          backdropFilter: 'blur( 5px )',
+          WebkitBackdropFilter:' blur( 5px )',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'flex-end',

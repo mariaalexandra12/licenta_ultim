@@ -22,6 +22,7 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import CloseIcon from '@mui/icons-material/Close';
 import Collapse from '@mui/material/Collapse';
 import { createTheme } from '@mui/material/styles';
+import Paper from '@mui/material/Paper';
 
 
 const theme = createTheme();
@@ -109,15 +110,29 @@ const [open, setOpen] = React.useState(true);
   const fileInputRef = React.useRef(null);
 
   return(    
-    <>
+    <div style={{background:"url('./daniele-levis-pelusi-Vey6fioB1eI-unsplash.jpg')",}}>
     <Box sx={{display: 'flex'}}>
     <Navig/>
-    <Box sx={{marginTop: '50px',
+    <Paper elevation={24} style={{
+      marginTop:'80px',
+      marginLeft:'20px',
+      width:'calc(100% + 600px)',
+      borderRadius:'30px',
+      display:'flex',
+      background: 'rgb(138,80,237)',
+      background: 'linear-gradient(360deg, rgba(138,80,237,1) 0%, rgba(247,195,246,1) 50%)',
+      boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
+      backdropFilter:' blur( 4px )',
+      WebkitBackdropFilter: 'blur( 4px )',
+    }} >
+    <Box sx={{marginTop: '-40px',
     display:'flex',
      }}>
+     
       <Box sx={{marginLeft:'15px',flexDirection: 'column'}}>
-
+      
       <div >      
+      
       {
         <>
         <input
@@ -152,9 +167,10 @@ const [open, setOpen] = React.useState(true);
 
     <Box component="form" noValidate sx={{ 
       mt: 1 ,
-      marginTop:'100px',
-      marginLeft:'150px',
+      marginTop:'10px',
+      marginLeft:'80px',
       width:'400px',
+      flexDirection: 'column'
      }}>
       
       
@@ -190,7 +206,7 @@ const [open, setOpen] = React.useState(true);
                 width:'300px',
                 height:'50px',
                 borderRadius:'5px',
-                background:'aliceblue',
+                background:'transparent',
               }}
               onChange={(e)=>setNumeFur(e.target.value)}
               ></input>
@@ -202,7 +218,7 @@ const [open, setOpen] = React.useState(true);
                 width:'300px',
                 height:'50px',
                 borderRadius:'5px',
-                background:'aliceblue',
+                background:'transparent',
               }}
               onChange={(e)=>setVal(e.target.value)}
               ></input>
@@ -214,7 +230,7 @@ const [open, setOpen] = React.useState(true);
                 width:'300px',
                 height:'50px',
                 borderRadius:'5px',
-                background:'aliceblue',
+                background:'transparent',
               }}
               onChange={(e)=>setDataSc(e.target.value)}
               ></input>
@@ -279,12 +295,12 @@ const [open, setOpen] = React.useState(true);
           )}
           
           
-      
+          
         
         </Box>
-
+        </Paper>
        </Box>
-    </>
+    </div>
 )
 
 }
