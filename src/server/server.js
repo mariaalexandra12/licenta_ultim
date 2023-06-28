@@ -38,7 +38,9 @@ function extractInvoiceData(text) {
   console.log(text);
   const numeFurnRegex = /(Enel Energie Muntenia SA)/gmi;
   const dataScRegex = /Data scadenti: (\d{2}\.\d{2}\.\d{4})/;
-  const valTotalaRegex = /Valoare factura curenta \s*(\d{2},\d{2}) lei/gmi;
+  // const valTotalaRegex = /Valoare factura curenta \s*(\d{2},\d{2}) lei/gmi;
+  const valTotalaRegex=/\d{0,3}?[,]?\d{0,3}?[,]?\d{0,3}?[,]?\d{0,3}?[,]?\d{0,3}[.]\d{2}/g;
+
 
   const numeFurnMatch = text.match(numeFurnRegex);
   const dataScMatch = text.match(dataScRegex);
@@ -49,7 +51,6 @@ function extractInvoiceData(text) {
   const valoare =  valTotalaMatch? valTotalaMatch[0]:'';
 
 
- //console.log('------',nume,data,valoare);
  console.log(nume);
  console.log(data);
  console.log(valoare);

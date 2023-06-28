@@ -35,13 +35,14 @@ function AdaugaFacturi(){
         const docRef=doc(categorieRef,'jTFKu2tvZWZhD9fua4uz');
         getDoc(docRef).then((d)=>{
           if(d.exists()){
-            setCategorii(Object.values(d.data()));
+            setCategorii(Object.values(d.data()))
+            
           }
           else{
             console.log('nu exista doc')
           }
         }).catch(err=>{console.log(err)});
-       
+        
       },[]);
    
   const extrageDateFactura= async ()=>{
@@ -158,7 +159,11 @@ function AdaugaFacturi(){
           {eroareExtras}
         </Alert>
       </>)}
-      <div className="dSc" style={{display:'flex',flexDirection:'row'}}>
+      {/* <div className="dSc" style={{display:'flex',flexDirection:'row'}}> */}
+      
+      <FormControl fullWidth style={{marginTop:'10px'}}>
+           
+           <div className="nFunr" style={{display:'flex',flexDirection:'row',marginTop:'10px'}}>
               <label style={{marginTop:'20px'}}>Denumire Furnizor</label>
               <input type="text" defaultValue={numeFur} style={{
                 width:'300px',
@@ -170,7 +175,7 @@ function AdaugaFacturi(){
               ></input>
            </div>
 
-           <div className="dSc" style={{display:'flex',flexDirection:'row',marginTop:'10px'}}>
+           <div className="totPlata" style={{display:'flex',flexDirection:'row',marginTop:'10px'}}>
               <label style={{marginTop:'20px'}}>Total de plata</label>
               <input type="text" defaultValue={val} style={{
                 width:'300px',
@@ -193,7 +198,7 @@ function AdaugaFacturi(){
               onChange={(e)=>setDataSc(e.target.value)}
               ></input>
             </div>
- 
+     
             <FormControl fullWidth style={{marginTop:'10px'}}>
                <InputLabel id="categorieFactura">Categorie Factura</InputLabel>
                   <Select value={catFactura}
@@ -208,10 +213,8 @@ function AdaugaFacturi(){
                   }
 
                   </Select>
-
-            </FormControl>
-
-
+              </FormControl>
+            
               <Button
               fullWidth
             variant="contained"
@@ -220,16 +223,19 @@ function AdaugaFacturi(){
             Inregistreaza factura 
           </Button>
 
+          
+          </FormControl>
+
           {stareIncarca && (<>
           <Alert severity="warning">
             {stareIncarca}
           </Alert>
           </>)}
-
+        
 
         </Box>
 
-    </Box>
+       </Box>
     </>
 )
 
