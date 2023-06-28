@@ -60,6 +60,7 @@ function Auth(){
         //await signUp(email,password);
         signInWithEmailAndPassword(auth,email,password)
         .then((userCredential)=>{
+          const user=userCredential.user;
           if(!errors.email && !errors.password){
             nav('/navig');
         }}).catch((err)=>{
@@ -121,6 +122,7 @@ function Auth(){
               </Collapse>
               </>
           )}
+
           {alerta && (
             <>
             <Alert severity='error' style={{
@@ -133,6 +135,7 @@ function Auth(){
             </Alert>
             </>
           )}
+          
             <Paper elevation={24} style={{
                marginLeft:"400px",
                marginTop:'30px',

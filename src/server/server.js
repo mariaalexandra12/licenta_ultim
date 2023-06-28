@@ -44,7 +44,8 @@ function extractInvoiceData(text) {
 
   const numeFurnMatch = text.match(numeFurnRegex);
   const dataScMatch = text.match(dataScRegex);
-  const valTotalaMatch = text.match(valTotalaRegex);
+  //const valTotalaMatch = text(valTotalaRegex);
+  const valTotalaMatch=text.match(valTotalaRegex);
 
   const nume = numeFurnMatch? numeFurnMatch[0]:'';
   const data =  dataScMatch? dataScMatch[0]:'' ;
