@@ -36,7 +36,6 @@ function AdaugaFacturi(){
         getDoc(docRef).then((d)=>{
           if(d.exists()){
             setCategorii(Object.values(d.data()))
-            
           }
           else{
             console.log('nu exista doc')
@@ -207,10 +206,12 @@ function AdaugaFacturi(){
                   onChange={(e)=>setCatFactura(e.target.value)}>
                   
                   {
-                  categorii.map((loc)=>(
-                    <MenuItem key={loc} value={loc}>{loc}</MenuItem>
-                  ))
+                    categorii.map((loc)=>{
+                        <MenuItem value={loc[0]} key={loc[0]}>{loc[0]}</MenuItem>
+                    })
                   }
+
+                 
 
                   </Select>
               </FormControl>
