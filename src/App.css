@@ -1,4 +1,5 @@
 body {
-    background:linear-gradient(rgb(112, 14, 112),white,violet);
+    background-image: url('./fundal_01.jpg');
+    background-size: cover;
     background-repeat: no-repeat;
 }
