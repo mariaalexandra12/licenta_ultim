@@ -41,8 +41,11 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import SettingsApplicationsIcon from '@mui/icons-material/SettingsApplications';
+import { makeStyles} from '@mui/styles';
 
 const drawerWidth = 200;
+
+
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
@@ -51,6 +54,7 @@ const AppBar = styled(MuiAppBar, {
   transition: theme.transitions.create(['width', 'margin'], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
+    
   }),
   ...(open && {
     marginLeft: drawerWidth,
@@ -65,6 +69,7 @@ const AppBar = styled(MuiAppBar, {
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({
     '& .MuiDrawer-paper': {
+      
       position: 'relative',
       whiteSpace: 'nowrap',
       width: drawerWidth,
@@ -86,7 +91,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
           
         },
       }),
-      
+     
     },
    
   }),
@@ -94,9 +99,21 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 
 const defaultTheme = createTheme();
+const useStyles = makeStyles({
+  root: {
+    background: 'rgba( 151, 49, 182, 0.25 )',
+    boxShadow:'0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
+    backdropFilter: 'blur( 4px )',
+    WebkitBackdropFilter:' blur( 4px )',
+    borderRadius: '10px',
+    border: '1px solid rgba( 255, 255, 255, 0.18 )',
+    
+  },
+});
 
 export default function Navig() {
-  
+
+
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
@@ -129,7 +146,10 @@ export default function Navig() {
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
         <AppBar position="absolute" open={open} style={{
-         background: 'rgba( 177, 94, 241, 0.25 )',
+         background: 'rgba( 135, 54, 212, 0.45 )',
+         boxShadow:'0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
+         backdropFilter: 'blur( 10px )',
+         WebkitBackdropFilter:' blur( 10px )',
         }}>
           <Toolbar
             sx={{
@@ -169,10 +189,24 @@ export default function Navig() {
 
          
         </AppBar>
-        <Drawer variant="permanent" open={open} style={{height:'815px',
-          }} className='drawerTool'>
+        <Drawer variant="permanent" open={open} style={{
+          borderRadius: '20px',
+          border: '2px solid rgba( 255, 255, 255, 0.18 )',
+          marginTop:'0px',
+          background: 'rgba( 135, 54, 212, 0.45 )',
+      boxShadow:'0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
+      backdropFilter: 'blur( 10px )',
+      WebkitBackdropFilter:' blur( 10px )',
+     
+          height:'660px',
+        }} >
           <Toolbar
             sx={{
+              marginTop:'0px',
+              background: 'rgba( 135, 54, 212, 0.45 )',
+          boxShadow:'0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
+          backdropFilter: 'blur( 10px )',
+          WebkitBackdropFilter:' blur( 10px )',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'flex-end',
@@ -191,7 +225,11 @@ export default function Navig() {
         
 
           <List style={{ 
-          
+               marginTop:'0px',
+               background: 'rgba( 135, 54, 212, 0.45 )',
+           boxShadow:'0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
+           backdropFilter: 'blur( 10px )',
+           WebkitBackdropFilter:' blur( 10px )',
           }}>
              <ListItem onClick={()=>navigate("/navig")}>
                      <ListItemButton >
