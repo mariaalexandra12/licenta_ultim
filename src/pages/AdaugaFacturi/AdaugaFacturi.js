@@ -151,7 +151,7 @@ const [open, setOpen] = React.useState(true);
     <Box component="form" noValidate sx={{ 
       mt: 1 ,
       marginTop:'100px',
-      marginLeft:'200px',
+      marginLeft:'150px',
       width:'400px',
      }}>
       
