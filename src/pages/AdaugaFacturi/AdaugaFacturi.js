@@ -17,13 +17,14 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import { collection , doc ,getDoc, getDocs} from "firebase/firestore";
+import { collection , doc ,getDoc, getDocs,addDoc} from "firebase/firestore";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import {addDoc } from "firebase/firestore";
 import CloseIcon from '@mui/icons-material/Close';
 import Collapse from '@mui/material/Collapse';
+import { createTheme } from '@mui/material/styles';
 
 
+const theme = createTheme();
 
 function AdaugaFacturi(){
 const [open, setOpen] = React.useState(true);
@@ -88,9 +89,9 @@ const [open, setOpen] = React.useState(true);
      
 
 
-  const handleInregistrare=(event)=>{
-    event.preventDefault();
-    try {
+  const handleInregistrare=()=>{
+    //event.preventDefault();
+    // try {
       const facturaRef=addDoc(collection(db,'factura'),{
         dataScadenta:dataSc,
         imgUrl:URL.createObjectURL(selectedFile),
@@ -99,9 +100,9 @@ const [open, setOpen] = React.useState(true);
         valoareTotala:val
       });
       setSucces('Factura a fost inregistrata cu succes!');
-      }catch(err){
-        setStareIncarca(err.message)
-    } 
+    //   }catch(err){
+    //     setStareIncarca(err.message)
+    // } 
   };
 
   const [catFactura , setCatFactura]=useState('');
@@ -242,9 +243,8 @@ const [open, setOpen] = React.useState(true);
               fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
-            color="secondary" onClick={handleInregistrare}>
-            Inregistreaza factura 
-          </Button>
+             color="secondary" 
+             onClick={handleInregistrare}>Inregistreaza factura </Button>
 
           
           </FormControl>
@@ -258,7 +258,7 @@ const [open, setOpen] = React.useState(true);
           {succes && (
             <>
            <Collapse in={open}>
-            <Alert severity='succes' style={{
+            <Alert severity="success" style={{
               width:'300px',
               marginTop:'10px',
               marginLeft:'500px',
