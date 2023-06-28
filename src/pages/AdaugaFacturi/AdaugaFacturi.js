@@ -18,6 +18,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { collection , doc ,getDoc, getDocs} from "firebase/firestore";
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 
 
@@ -29,6 +30,13 @@ function AdaugaFacturi(){
   const [eroareExtras,setEroareExtras]=useState('');
   const [stareIncarca,setStareIncarca]=useState('');
   const [categorii, setCategorii]=useState([]);
+
+  const [fileInputVisible, setFileInputVisible] = useState(false);
+
+  const handleButtonClick = () => {
+    setFileInputVisible(true);
+  };
+
   
       useEffect(()=>{
         const categorieRef=collection(db,'categorie');
@@ -100,22 +108,28 @@ function AdaugaFacturi(){
       <Box sx={{marginLeft:'15px',flexDirection: 'column'}}>
 
       <div >
-      <input type="file" onChange={(e)=>setSelectedFile(e.target.files[0])} style={{display:'none'}} />
-        <Card sx={{ minWidth: 275 , marginTop:"50px" ,
-      background: 'rgba( 177, 94, 241, 0.25 )',
-      boxShadow:' 0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
-      backdropFilter:' blur( 4px )',
-      WebkitBackdropFilter: 'blur( 4px )',
-      borderRadius:' 10px',
-      border: '1px solid rgba( 255, 255, 255, 0.18 )'}}>
-        <CardContent>
-         <form>
-          <input type="file" onChange={(e)=>setSelectedFile(e.target.files[0])}
-          ></input>
-          
-         </form>
-       </CardContent>
-    </Card>
+
+      
+      {
+        <>
+        <Tooltip title="Adauga o factura">
+        <IconButton onClick={handleButtonClick} style={{
+        marginLeft:'140px',
+        width:'90px',
+        height:'90px',
+        marginTop:'50px'}}>
+           <AddCircleIcon color="secondary" style={{
+        width:'70px',
+        height:'70px',
+      }}>
+      </AddCircleIcon>
+        </IconButton>
+        </Tooltip>
+      
+        <input type="file" onChange={(e)=>setSelectedFile(e.target.files[0])} style={{ display: 'none' }} />
+        </>
+      }
+    
 
       </div>
      
@@ -134,7 +148,7 @@ function AdaugaFacturi(){
     <Box component="form" noValidate sx={{ 
       mt: 1 ,
       marginTop:'100px',
-      marginLeft:'200px',
+      marginLeft:'300px',
       width:'400px',
      }}>
       
@@ -204,14 +218,15 @@ function AdaugaFacturi(){
                   labelId="catFactura"
                   required
                   onChange={(e)=>setCatFactura(e.target.value)}>
-                  
-                  {
-                    categorii.map((loc)=>{
-                        <MenuItem value={loc[0]} key={loc[0]}>{loc[0]}</MenuItem>
-                    })
-                  }
-
-                 
+                 {
+                   categorii.map((loc) => {
+                  return loc.map((el) => (
+                    <MenuItem key={el} value={el}>
+                        {el}
+                      </MenuItem>
+                    ));
+                   })
+                 }
 
                   </Select>
               </FormControl>
@@ -233,7 +248,6 @@ function AdaugaFacturi(){
           </Alert>
           </>)}
         
-
         </Box>
 
        </Box>
