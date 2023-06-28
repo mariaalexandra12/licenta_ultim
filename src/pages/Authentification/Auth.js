@@ -54,6 +54,7 @@ function Auth(){
     const auth=getAuth();
 
     const handleSubmit= async (event)=>{
+      event.preventDefault();
       const errors=validate();
       setErrors(errors);
       try{
@@ -135,7 +136,7 @@ function Auth(){
             </Alert>
             </>
           )}
-          
+
             <Paper elevation={24} style={{
                marginLeft:"400px",
                marginTop:'30px',

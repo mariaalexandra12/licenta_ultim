@@ -88,7 +88,8 @@ const [open, setOpen] = React.useState(true);
      
 
 
-  const handleInregistrare=()=>{
+  const handleInregistrare=(event)=>{
+    event.preventDefault();
     try {
       const facturaRef=addDoc(collection(db,'factura'),{
         dataScadenta:dataSc,
