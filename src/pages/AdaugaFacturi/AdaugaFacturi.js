@@ -19,6 +19,8 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { collection , doc ,getDoc, getDocs} from "firebase/firestore";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
+import { collection,addDoc } from "firebase/firestore";
+import { db } from '../../firebaseUtils/firebase_ut';
 
 
 
@@ -30,11 +32,11 @@ function AdaugaFacturi(){
   const [eroareExtras,setEroareExtras]=useState('');
   const [stareIncarca,setStareIncarca]=useState('');
   const [categorii, setCategorii]=useState([]);
+  const [succes, setSucces]=useState('');
 
-  const [fileInputVisible, setFileInputVisible] = useState(false);
 
   const handleButtonClick = () => {
-    setFileInputVisible(true);
+    fileInputRef.current.click();
   };
 
   
@@ -85,18 +87,20 @@ function AdaugaFacturi(){
 
   const handleInregistrare=()=>{
     try {
-      const invoiceRef =db.collection('facturi').add({
-        numeFur,
-        dataSc,
-        val,
-        //urlImage,
-      });
+      const facturaRef=addDoc(collection(db,'factura'),{
+        dataScadenta:dataSc,
+        imgUrl:URL.createObjectURL(selectedFile),
+        numeFurnizor:numeFur,
+        tipFactura:catFactura,
+        valoareTotala:val
+      })
       }catch(err){
         setStareIncarca(err.message)
     } 
   };
 
   const [catFactura , setCatFactura]=useState('');
+  const fileInputRef = React.useRef(null);
 
   return(    
     <>
@@ -107,29 +111,24 @@ function AdaugaFacturi(){
      }}>
       <Box sx={{marginLeft:'15px',flexDirection: 'column'}}>
 
-      <div >
-
-      
+      <div >      
       {
         <>
-        <Tooltip title="Adauga o factura">
-        <IconButton onClick={handleButtonClick} style={{
-        marginLeft:'140px',
-        width:'90px',
-        height:'90px',
-        marginTop:'50px'}}>
-           <AddCircleIcon color="secondary" style={{
-        width:'70px',
-        height:'70px',
-      }}>
-      </AddCircleIcon>
-        </IconButton>
+        <input
+          type="file"
+          onChange={(e) => setSelectedFile(e.target.files[0])}
+          style={{ display: 'none' }}
+          ref={fileInputRef}
+        />
+        <Tooltip title="Adaugă o factură">
+          <IconButton onClick={handleButtonClick} style={{ marginLeft: '140px', width: '90px', height: '90px', marginTop: '50px' }}>
+            <AddCircleIcon color="secondary" style={{ width: '70px', height: '70px' }} />
+          </IconButton>
         </Tooltip>
-      
-        <input type="file" onChange={(e)=>setSelectedFile(e.target.files[0])} style={{ display: 'none' }} />
-        </>
+      </>
       }
-    
+      <Typography color="secondary" sx={{marginLeft:'50px'}}
+      >Apasa aici pentru a adauga o factura</Typography>
 
       </div>
      
@@ -148,9 +147,10 @@ function AdaugaFacturi(){
     <Box component="form" noValidate sx={{ 
       mt: 1 ,
       marginTop:'100px',
-      marginLeft:'300px',
+      marginLeft:'200px',
       width:'400px',
      }}>
+      
       
       <Tooltip title="Extrage datele facturii">
         <IconButton  style={{
@@ -167,6 +167,8 @@ function AdaugaFacturi(){
       </DocumentScannerIcon>
       </IconButton>
       </Tooltip>
+      <Typography color="secondary" sx={{marginLeft:'50px'}}
+      >Apasa aici pentru a extrage datele facturii</Typography>
       {eroareExtras && (<>
         <Alert severity="warning">
           {eroareExtras}
