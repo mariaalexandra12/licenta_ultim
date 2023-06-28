@@ -78,12 +78,15 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
         transition: theme.transitions.create('width', {
           easing: theme.transitions.easing.sharp,
           duration: theme.transitions.duration.leavingScreen,
+          
         }),
         width: theme.spacing(7),
         [theme.breakpoints.up('sm')]: {
           width: theme.spacing(9),
+          
         },
       }),
+      
     },
    
   }),
@@ -166,7 +169,8 @@ export default function Navig() {
 
          
         </AppBar>
-        <Drawer variant="permanent" open={open} sx={{height:'815px', }}>
+        <Drawer variant="permanent" open={open} style={{height:'815px',
+          }} className='drawerTool'>
           <Toolbar
             sx={{
               display: 'flex',
