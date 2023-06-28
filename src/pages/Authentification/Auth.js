@@ -141,7 +141,7 @@ function Auth(){
                marginLeft:"400px",
                marginTop:'30px',
                width:"550px",
-               height:'580px',
+               height:'615px',
                color:"primary",
                padding:"10px",
                background: "rgba( 21, 19, 19, 0.25 )",

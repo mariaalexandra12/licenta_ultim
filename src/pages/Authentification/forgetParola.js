@@ -14,7 +14,7 @@ export default function Pass(){
                marginLeft:"350px",
                marginTop:"55px",
                width:"500px",
-               height:'400px',
+               height:'569px',
                color:"primary",
                padding:"10px",
                background: "rgba( 189, 16, 224,0.10)",

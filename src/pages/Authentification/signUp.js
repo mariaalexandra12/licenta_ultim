@@ -12,7 +12,7 @@ export default function SignUp() {
     <div className="signUp">
     <Paper elevation={24} style={{
       width:"300px",
-      height:'300px',
+      height:'523px',
       color:"primary",
       padding:"10px",
       marginLeft:'450px',
