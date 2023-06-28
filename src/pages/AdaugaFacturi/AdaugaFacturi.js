@@ -19,12 +19,15 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { collection , doc ,getDoc, getDocs} from "firebase/firestore";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import { collection,addDoc } from "firebase/firestore";
-import { db } from '../../firebaseUtils/firebase_ut';
+import {addDoc } from "firebase/firestore";
+import CloseIcon from '@mui/icons-material/Close';
+import Collapse from '@mui/material/Collapse';
 
 
 
 function AdaugaFacturi(){
+const [open, setOpen] = React.useState(true);
+
   const [selectedFile, setSelectedFile]=useState();
   const [numeFur,setNumeFur]=useState('');
   const [dataSc,setDataSc]=useState('');
@@ -34,7 +37,7 @@ function AdaugaFacturi(){
   const [categorii, setCategorii]=useState([]);
   const [succes, setSucces]=useState('');
 
-
+  
   const handleButtonClick = () => {
     fileInputRef.current.click();
   };
@@ -93,7 +96,8 @@ function AdaugaFacturi(){
         numeFurnizor:numeFur,
         tipFactura:catFactura,
         valoareTotala:val
-      })
+      });
+      setSucces('Factura a fost inregistrata cu succes!');
       }catch(err){
         setStareIncarca(err.message)
     } 
@@ -249,6 +253,32 @@ function AdaugaFacturi(){
             {stareIncarca}
           </Alert>
           </>)}
+
+          {succes && (
+            <>
+           <Collapse in={open}>
+            <Alert severity='succes' style={{
+              width:'300px',
+              marginTop:'10px',
+              marginLeft:'500px',
+              display:'hover',
+            }}  
+            action={
+              <IconButton
+                aria-label="close"
+                color="inherit"
+                size="small"
+                onClick={() => {
+                  setOpen(false);
+                }}> 
+                <CloseIcon fontSize="inherit"/>  
+              </IconButton>}>{succes}</Alert>
+              </Collapse>
+              </>
+          )}
+          
+          
+      
         
         </Box>
 
