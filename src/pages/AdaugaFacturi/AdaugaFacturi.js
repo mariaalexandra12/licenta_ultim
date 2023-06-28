@@ -261,7 +261,7 @@ const [open, setOpen] = React.useState(true);
             <Alert severity="success" style={{
               width:'300px',
               marginTop:'10px',
-              marginLeft:'500px',
+              marginLeft:'50px',
               display:'hover',
             }}  
             action={
