@@ -84,7 +84,6 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
           width: theme.spacing(9),
         },
       }),
-      
     },
    
   }),
@@ -167,7 +166,7 @@ export default function Navig() {
 
          
         </AppBar>
-        <Drawer variant="permanent" open={open}>
+        <Drawer variant="permanent" open={open} sx={{height:'815px', }}>
           <Toolbar
             sx={{
               display: 'flex',

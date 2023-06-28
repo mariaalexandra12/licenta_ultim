@@ -20,38 +20,31 @@ app.post('/upload',upload,async (req, res) => {
     const image = req.file.buffer;
     const result = await Tesseract.recognize(image);
     const extractedText = result.data.text;
-
-    
     const dat= extractInvoiceData(extractedText);
     console.log(dat.nume);
     console.log(dat.data);
     console.log(dat.valoare);
     res.json({dat});
-   
   } catch (error) {
     console.error('Error processing invoice:', error);
     res.status(500).json({ error: 'An error occurred' });
+  //const valTotalaRegex=/\d{0,3}?[,]?\d{0,3}?[,]?\d{0,3}?[,]?\d{0,3}?[,]?\d{0,3}[.]\d{2}/g;
+
   }
 });
-
 function extractInvoiceData(text) {
   console.log(text);
   const numeFurnRegex = /(FURNIZOR:)\s*[a-z]*\s*[a-z]*\s*[a-z]*\s*[a-z]*/gmi;
   const dataScRegex = /Data scadenti: (\d{2}\.\d{2}\.\d{4})/;
   const valTotalaRegex = /(Total de plata \s*\d{2},\d{2} lei)/;
-  //const valTotalaRegex=/\d{0,3}?[,]?\d{0,3}?[,]?\d{0,3}?[,]?\d{0,3}?[,]?\d{0,3}[.]\d{2}/g;
-
-
   const numeFurnMatch = text.match(numeFurnRegex);
   const dataScMatch = text.match(dataScRegex);
   //const valTotalaMatch = text(valTotalaRegex);
   const valTotalaMatch=text.match(valTotalaRegex);
-
   const nume = numeFurnMatch? numeFurnMatch[0]:'';
   const data =  dataScMatch? dataScMatch[0]:'' ;
   const valoare =  valTotalaMatch[0] ? valTotalaMatch[0]:'';
   // const valoare=valTotalaMatch;
-
  console.log(nume);
  console.log(data);
  console.log(valoare);
@@ -59,7 +52,6 @@ function extractInvoiceData(text) {
   return ras;
   //return { numeFurnMatch , dataScMatch, valTotalaMatch};
 }
-
 app.listen(3001, () => {
   console.log('Server merge pe portul 3001');
 });

@@ -374,7 +374,6 @@ export default function SignUpPers() {
 
     <Paper elevation={24} style={{
       marginLeft:"350px",
-      marginTop:"55px",
       width:"50%",
       height:'full',
       color:"primary",
