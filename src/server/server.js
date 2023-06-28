@@ -38,7 +38,7 @@ function extractInvoiceData(text) {
   console.log(text);
   const numeFurnRegex = /(FURNIZOR:)\s*[a-z]*\s*[a-z]*\s*[a-z]*\s*[a-z]*/gmi;
   const dataScRegex = /Data scadenti: (\d{2}\.\d{2}\.\d{4})/;
-  const valTotalaRegex = /(Total de plata \d{2},\d{2} lei)/gmi;
+  const valTotalaRegex = /(Total de plata \s*\d{2},\d{2} lei)/;
   //const valTotalaRegex=/\d{0,3}?[,]?\d{0,3}?[,]?\d{0,3}?[,]?\d{0,3}?[,]?\d{0,3}[.]\d{2}/g;
 
 
