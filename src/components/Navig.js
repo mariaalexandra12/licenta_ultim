@@ -203,7 +203,7 @@ export default function Navig() {
           <Toolbar
             sx={{
               marginTop:'0px',
-              background: 'rgba( 135, 54, 212, 0.45 )',
+              background: 'rgba( 168, 100, 235, 0.55 )',
           boxShadow:'0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
           backdropFilter: 'blur( 10px )',
           WebkitBackdropFilter:' blur( 10px )',
@@ -226,7 +226,7 @@ export default function Navig() {
 
           <List style={{ 
                marginTop:'0px',
-               background: 'rgba( 135, 54, 212, 0.45 )',
+               background: 'rgba( 168, 100, 235, 0.55 )',
            boxShadow:'0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
            backdropFilter: 'blur( 10px )',
            WebkitBackdropFilter:' blur( 10px )',
