@@ -289,12 +289,12 @@ export default function Navig() {
            <div>
              <Card style={{
                   marginLeft:'950px',
-                  marginTop:'50px',
-                  background: 'rgba( 170, 29, 155, 0.35 )',
-                  boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )', 
-                  backDropFilter: 'blur( 4px )',
-                  WebkitBackdropFilter: 'blur( 4px )',
-                  borderRadius:'30px',
+                  marginTop:'60px',
+                  background: 'rgba( 186, 152, 224, 0.7 )',
+                  boxShadow:'0 8px 32px 0 rgba( 31, 38, 135, 0.37 )', 
+                  backdropFilter:' blur( 11px )',
+                  WebkitBackdropFilter:' blur( 11px )',
+                  borderRadius:' 50px',
                   border: '1px solid rgba( 255, 255, 255, 0.18 )',
                   position:'fixed',}}>
           

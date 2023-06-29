@@ -46,9 +46,15 @@ const Profil=()=>{
               <Grid container  direction="rows" xs>
                 <Grid item>
                 <Item style={{
-                    width:'1000px',
+                    width:'850px',
                     display:'flex',
                     flexDirection:'row',
+                    background: 'rgba( 186, 152, 224, 0.7 )',
+                    boxShadow:'0 8px 32px 0 rgba( 31, 38, 135, 0.37 )', 
+                    backdropFilter:' blur( 11px )',
+                    WebkitBackdropFilter:' blur( 11px )',
+                    borderRadius:' 10px',
+                    border: '1px solid rgba( 255, 255, 255, 0.18 )',
                 }}>
                     <Typography style={{fontSize:'35px'}}>Profil</Typography>
                     <IconButton style={{marginLeft:'450px',}}><PersonPinIcon/></IconButton>
@@ -60,8 +66,14 @@ const Profil=()=>{
               <Grid item >
               <Item style={{
                 marginTop:'50px',
-                width:'1000px',
-                height:'550px',
+                width:'850px',
+                height:'400px',
+                background: 'rgba( 186, 152, 224, 0.7 )',
+                boxShadow:'0 8px 32px 0 rgba( 31, 38, 135, 0.37 )', 
+                backdropFilter:' blur( 11px )',
+                WebkitBackdropFilter:' blur( 11px )',
+                borderRadius:' 10px',
+                border: '1px solid rgba( 255, 255, 255, 0.18 )',
               }}>
        
        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
@@ -76,15 +88,19 @@ const Profil=()=>{
           {/* <Box sx={{marginTop: '80px'}}>
              <h1>Cont personal</h1>
           </Box> */}
-           <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+           <Box sx={{ display: 'flex', alignItems: 'flex-end',}}>
               <EmailIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
-              <TextField id="input-with-sx" 
-              label="Adresa de email" 
+              <TextField id="adresaEmail" 
+              type='text'
               variant="standard" 
+              // value={JSON.stringify(currentUser.email,null,2)}
+              style={{
+                width:'350px',
+                marginTop: '30px'
+              }}
               />
            </Box>
 
-            <Typography>The current User is : {currentUser}</Typography>
            <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
               <EmailIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
               <TextField id="input-with-sx" label="Parola" 
