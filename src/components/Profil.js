@@ -8,14 +8,13 @@ import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import PersonPinIcon from '@mui/icons-material/PersonPin';
-import { alignProperty } from "@mui/material/styles/cssUtils";
 import EmailIcon from '@mui/icons-material/Email';
 import TextField from '@mui/material/TextField';
 import { useUserAuth } from "../context/userAuthContext";
 import HttpsIcon from '@mui/icons-material/Https';
 import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew';
 import { db } from "../firebaseUtils/firebase_ut";
-import { collection, query, where, getDocs } from "firebase/firestore";
+import { collection, query, where, getDocs,onSnapshot} from "firebase/firestore";
 
 
 
@@ -44,14 +43,20 @@ const Profil=()=>{
 
    useEffect(()=>{
     const q = query(collection(db, "utilizator"), where("emailUtilizator", "==", currentUser));
-    const querySnapshot =  getDocs(q);
-    querySnapshot.forEach((doc) => {
-      console.log(doc.id, " => ", doc.data());
-    });
-   },[])
- 
-
-
+    onSnapshot(q,(snapshot)=>{
+      let userData=[];
+      snapshot.docs.forEach((doc)=>{
+        userData.push({...doc.data(), id:doc.id})
+      })   
+     userData.forEach((el)=>{
+     setPass(Object.values(el)[0]);
+     setPrenume(Object.values(el)[1]);
+     setNume(Object.values(el)[3]);
+     })
+     }
+     );
+    },[])
+  
 
     return (
         <>
@@ -105,15 +110,14 @@ const Profil=()=>{
       </Box>
       {value===0 &&(
         <>
-          {/* <Box sx={{marginTop: '80px'}}>
-             <h1>Cont personal</h1>
-          </Box> */}
+          {/* CONT PERSONAL  */}
            <Box sx={{ display: 'flex', alignItems: 'flex-end',}}>
-              <EmailIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
+              <Typography >Adresa de Email</Typography>
+              <EmailIcon sx={{ color: 'action.active', mr: 1, my: 0.2,marginLeft:'10px' }} />
               <TextField id="adresaEmail" 
               type='text'
               variant="standard" 
-              value={JSON.stringify(currentUser)}
+              value={currentUser}
               style={{
                 width:'300px',
                 marginTop: '30px'
@@ -121,19 +125,26 @@ const Profil=()=>{
               />
            </Box>
 
+             
            <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
-              <HttpsIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
-              <TextField id="input-with-sx" label="Parola" 
+              <Typography >Parola Cont</Typography>
+              <HttpsIcon sx={{ color: 'action.active', mr: 1, my: 0.2,marginLeft:'40px' }} />
+              <TextField id="input-with-sx" 
+              type="text"
               variant="standard" 
               style={{
                 width:'300px',
               }}
+              value={pass}
               />
            </Box>
 
            <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
-              <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
-              <TextField id="input-with-sx" label="Nume" variant="standard" 
+              <Typography >Nume Utilizator</Typography>
+              <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1,  my: 0.2,marginLeft:'10px' }} />
+              <TextField id="input-with-sx" variant="standard" 
+               type="text"
+               value={nume}
                style={{
                 width:'300px',
               }}/>
@@ -141,8 +152,11 @@ const Profil=()=>{
 
            
            <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
-              <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
-              <TextField id="input-with-sx" label="Prenume" variant="standard"
+              <Typography >Nume Utilizator</Typography>
+              <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.2,marginLeft:'10px' }} />
+              <TextField id="input-with-sx"  variant="standard"
+              type="text"
+              value={prenume}
                style={{
                 width:'300px',
               }} />
@@ -152,9 +166,53 @@ const Profil=()=>{
 
        {value===1 &&(
         <>
-          <Box sx={{marginTop: '80px'}}>
-             <h1>Cont firma</h1>
-          </Box>
+          {/* CONT FIRMA */}
+           <Box sx={{ display: 'flex', alignItems: 'flex-end',}}>
+              
+              <EmailIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
+              <TextField id="adresaEmail" 
+              type='text'
+              variant="standard" 
+              value={currentUser}
+              style={{
+                width:'300px',
+                marginTop: '30px'
+              }}
+              />
+           </Box>
+
+           <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+              <HttpsIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
+              <TextField id="input-with-sx" 
+              type="text"
+              variant="standard" 
+              style={{
+                width:'300px',
+              }}
+              value={pass}
+              />
+           </Box>
+
+           <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+              <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
+              <TextField id="input-with-sx" variant="standard" 
+               type="text"
+               value={nume}
+               style={{
+                width:'300px',
+              }}/>
+           </Box>
+
+           
+           <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+              <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
+              <TextField id="input-with-sx"  variant="standard"
+              type="text"
+              value={prenume}
+               style={{
+                width:'300px',
+              }} />
+           </Box>
         </>
       )}  
 
@@ -171,9 +229,6 @@ const Profil=()=>{
              
            </Grid>
            
-
-
-
         </Box>
     
         </Box>
