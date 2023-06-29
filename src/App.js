@@ -13,12 +13,12 @@ import ForgetPass from "./pages/Authentification/forgetParola";
 import SignUpFirma from "./pages/Authentification/signUpFirma";
 import Profil from "./components/Profil";
 import './App.css';
-import { UserAuthContextProvider } from "./context/userAuthContext";
+import { AuthContextProvider } from "./context/userAuthContext";
 
 
 function App() {
   return (
-    <UserAuthContextProvider>
+    <AuthContextProvider>
     <BrowserRouter>
           <Routes>
             <Route path="/" element={<Auth />} />
@@ -33,7 +33,7 @@ function App() {
             <Route path="/facturi" element={<Facturi />} />
         </Routes>
     </BrowserRouter>
-    </UserAuthContextProvider>
+    </AuthContextProvider>
   );
 }
 

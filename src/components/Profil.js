@@ -81,10 +81,10 @@ const Profil=()=>{
               <TextField id="input-with-sx" 
               label="Adresa de email" 
               variant="standard" 
-              value={currentUser} 
               />
            </Box>
 
+            <Typography>The current User is : {currentUser}</Typography>
            <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
               <EmailIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
               <TextField id="input-with-sx" label="Parola" 

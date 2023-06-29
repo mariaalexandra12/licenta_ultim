@@ -1,11 +1,11 @@
 import { createContext, useContext,useEffect,useState} from "react";
 import {auth} from '../firebaseUtils/firebase_ut';
 
-const userAuthContext = createContext({
+const AuthContext = createContext({
     currentUser:null,
 });
 
-export function UserAuthContextProvider({children}) {
+export function AuthContextProvider({children}) {
     
     const [currentUser,setCurrentUser]=useState(null) 
 
@@ -14,12 +14,12 @@ export function UserAuthContextProvider({children}) {
     }
 
     return (
-        <userAuthContext.Provider value={value}>
+        <AuthContext.Provider value={value}>
             {children}
-        </userAuthContext.Provider> 
+        </AuthContext.Provider> 
     )
 }
 
 export function useUserAuth(){
-    return useContext(userAuthContext);
+    return useContext(AuthContext);
 }
