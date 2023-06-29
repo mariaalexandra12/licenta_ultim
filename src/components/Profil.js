@@ -42,11 +42,8 @@ const Profil=()=>{
    const[prenume,setPrenume]=useState('')
 
 
-   useEffect(()=>{
-      const q=
+ 
 
-
-   },[])
 
 
     return (
