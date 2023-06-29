@@ -23,15 +23,17 @@ function App() {
           <Routes>
             <Route path="/" element={<Auth />} />
             <Route path="/navig" element={<Navig />} />
+            <Route path="/signUp" exact element={<SignUp />} />
+            <Route path="/signUpFirma" exact element={<SignUpFirma />} />
+            <Route path="/profil" exact element={<Profil/>}/>
+              
+          <Route path="/forget" exact element={<ForgetPass />} />
+          <Route path="/sPers" exact element={<SignUpPers />} />
             <Route path="/analiza" element={<Analiza />} />
             <Route path="/adaugaFacturi" element={<AdaugaFacturi />} />
             <Route path="/facturi" element={<Facturi />} />
-          <Route path="/signUp" exact element={<SignUp />} />
-          <Route path="/signUpFirma" exact element={<SignUpFirma />} />
-          
-          <Route path="/forget" exact element={<ForgetPass />} />
-          <Route path="/sPers" exact element={<SignUpPers />} />
-          <Route path="/profil" exact element={<Profil/>}/>
+        
+         
 
         </Routes>
     
