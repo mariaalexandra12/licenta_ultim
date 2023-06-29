@@ -9,6 +9,9 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import PersonPinIcon from '@mui/icons-material/PersonPin';
 import { alignProperty } from "@mui/material/styles/cssUtils";
+import EmailIcon from '@mui/icons-material/Email';
+import TextField from '@mui/material/TextField';
+import { useUserAuth } from "../context/userAuthContext";
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -26,6 +29,9 @@ const Profil=()=>{
     const handleChange = (event, newValue) => {
       setValue(newValue);
     };
+
+   const { currentUser }= useUserAuth()
+
 
     return (
         <>
@@ -67,9 +73,30 @@ const Profil=()=>{
       </Box>
       {value===0 &&(
         <>
-          <Box sx={{marginTop: '80px'}}>
+          {/* <Box sx={{marginTop: '80px'}}>
              <h1>Cont personal</h1>
-          </Box>
+          </Box> */}
+           <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+              <EmailIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
+              <TextField id="input-with-sx" 
+              label="Adresa de email" 
+              variant="standard" 
+              value={currentUser} 
+              />
+           </Box>
+
+           <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+              <EmailIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
+              <TextField id="input-with-sx" label="Parola" 
+              variant="standard" 
+            
+              />
+           </Box>
+
+           <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+              <EmailIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
+              <TextField id="input-with-sx" label="With sx" variant="standard" />
+           </Box>
         </>
       )}
 
