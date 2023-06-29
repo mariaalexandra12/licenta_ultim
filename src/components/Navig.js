@@ -42,6 +42,7 @@ import CardContent from '@mui/material/CardContent';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import SettingsApplicationsIcon from '@mui/icons-material/SettingsApplications';
 import { makeStyles} from '@mui/styles';
+import { UserAuthContextProvider, useUserAuth } from '../context/userAuthContext';
 
 const drawerWidth = 200;
 
@@ -114,9 +115,11 @@ const useStyles = makeStyles({
 export default function Navig() {
 
 
+
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
+    
   };
 
   const navigate=useNavigate();
