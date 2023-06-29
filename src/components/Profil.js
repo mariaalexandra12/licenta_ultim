@@ -1,4 +1,4 @@
-import React from "react";
+import React,{ useState,useEffect } from "react";
 import { Box, Button, Divider, Icon, IconButton, Typography } from '@mui/material';
 import Navig from "./Navig";
 import Paper from '@mui/material/Paper';
@@ -12,6 +12,11 @@ import { alignProperty } from "@mui/material/styles/cssUtils";
 import EmailIcon from '@mui/icons-material/Email';
 import TextField from '@mui/material/TextField';
 import { useUserAuth } from "../context/userAuthContext";
+import HttpsIcon from '@mui/icons-material/Https';
+import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew';
+import { db } from "../firebaseUtils/firebase_ut";
+import { collection, query, where, getDocs } from "firebase/firestore";
+
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -31,6 +36,17 @@ const Profil=()=>{
     };
 
    const { currentUser }= useUserAuth()
+
+   const [pass,setPass]=useState('')
+   const [nume,setNume]=useState('')
+   const[prenume,setPrenume]=useState('')
+
+
+   useEffect(()=>{
+      const q=
+
+
+   },[])
 
 
     return (
@@ -77,8 +93,8 @@ const Profil=()=>{
               }}>
        
        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={value} onChange={handleChange} >
-          <Tab label="Cont Personal"/>
+        <Tabs value={value} onChange={handleChange} textColor="secondary" >
+          <Tab label="Cont Personal" />
           <Tab label="Cont Firma"  />
           <Tab label="Setari Cont"  />
         </Tabs>
@@ -93,25 +109,39 @@ const Profil=()=>{
               <TextField id="adresaEmail" 
               type='text'
               variant="standard" 
-              // value={JSON.stringify(currentUser.email,null,2)}
+              value={JSON.stringify(currentUser)}
               style={{
-                width:'350px',
+                width:'300px',
                 marginTop: '30px'
               }}
               />
            </Box>
 
            <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
-              <EmailIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
+              <HttpsIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
               <TextField id="input-with-sx" label="Parola" 
               variant="standard" 
-            
+              style={{
+                width:'300px',
+              }}
               />
            </Box>
 
            <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
-              <EmailIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
-              <TextField id="input-with-sx" label="With sx" variant="standard" />
+              <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
+              <TextField id="input-with-sx" label="Nume" variant="standard" 
+               style={{
+                width:'300px',
+              }}/>
+           </Box>
+
+           
+           <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+              <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
+              <TextField id="input-with-sx" label="Prenume" variant="standard"
+               style={{
+                width:'300px',
+              }} />
            </Box>
         </>
       )}
