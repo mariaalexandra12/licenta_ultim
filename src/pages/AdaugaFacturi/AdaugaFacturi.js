@@ -110,15 +110,15 @@ const [open, setOpen] = React.useState(true);
   const fileInputRef = React.useRef(null);
 
   return(    
-    <div style={{background:"url('./daniele-levis-pelusi-Vey6fioB1eI-unsplash.jpg')",}}>
+    <div >
     <Box sx={{display: 'flex'}}>
     <Navig/>
     <Paper elevation={24} style={{
       marginTop:'80px',
-      marginLeft:'20px',
+      // marginLeft:'20px',
       width:'calc(100% + 600px)',
       display:'flex',
-      background: 'rgba( 186, 152, 224, 0.7 )',
+      background: 'rgba( 24, 4, 4, 0.3 )',
       boxShadow:'0 8px 32px 0 rgba( 31, 38, 135, 0.37 )', 
       backdropFilter:' blur( 11px )',
       WebkitBackdropFilter:' blur( 11px )',
@@ -129,7 +129,7 @@ const [open, setOpen] = React.useState(true);
     display:'flex',
      }}>
      
-      <Box sx={{marginLeft:'15px',flexDirection: 'column'}}>
+      <Box sx={{flexDirection: 'column'}}>
       
       <div >      
       
@@ -158,6 +158,7 @@ const [open, setOpen] = React.useState(true);
           <img src={URL.createObjectURL(selectedFile)} alt="" style={{
         width:"600px",
         height:"600px",
+        marginLeft:'15px',
         }}></img>
         </div>
       )}

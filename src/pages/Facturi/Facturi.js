@@ -14,16 +14,12 @@ const Facturi=()=>{
         <Box sx={{display: 'flex'}}>
         <Navig/>
         <Box sx={{marginTop: '80px'}}>
-        <h2 style={{marginLeft:'50px'}}>Vizualizare istoric facturi</h2>
+        <h2>Vizualizare istoric facturi</h2>
         
 
 
-
-
- 
       <Button onClick={()=>{nav('/adaugaFacturi')}} color="secondary" 
-       sx={{marginLeft:'150px',marginTop:'30px'}}>Adauga facturi</Button>
-        
+       sx={{marginTop:'30px'}}>Adauga facturi</Button>
         
         
         </Box>

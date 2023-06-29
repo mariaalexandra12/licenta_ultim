@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React,{ useEffect, useState } from 'react';
 import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiDrawer from '@mui/material/Drawer';
@@ -43,8 +43,15 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import SettingsApplicationsIcon from '@mui/icons-material/SettingsApplications';
 import { makeStyles} from '@mui/styles';
 import { UserAuthContextProvider, useUserAuth } from '../context/userAuthContext';
+import CloseIcon from '@mui/icons-material/Close';
+import { db } from "../firebaseUtils/firebase_ut";
+import { collection, query, where,onSnapshot} from "firebase/firestore";
+import Collapse from '@mui/material/Collapse';
+import Alert from '@mui/material/Alert';
 
-const drawerWidth = 200;
+
+
+const drawerWidth = 210;
 
 
 
@@ -59,18 +66,21 @@ const AppBar = styled(MuiAppBar, {
   }),
   ...(open && {
     marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
+    width: `calc(100% - ${drawerWidth}px +30px)`,
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
+    
   }),
 }));
 
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({
     '& .MuiDrawer-paper': {
-      
+      marginTop:'150px',
+      borderRadius:'30px',
+      marginBottom:'0px',
       position: 'relative',
       whiteSpace: 'nowrap',
       width: drawerWidth,
@@ -92,7 +102,6 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
           
         },
       }),
-     
     },
    
   }),
@@ -100,21 +109,29 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 
 const defaultTheme = createTheme();
-const useStyles = makeStyles({
-  root: {
-    background: 'rgba( 151, 49, 182, 0.25 )',
-    boxShadow:'0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
-    backdropFilter: 'blur( 4px )',
-    WebkitBackdropFilter:' blur( 4px )',
-    borderRadius: '10px',
-    border: '1px solid rgba( 255, 255, 255, 0.18 )',
-    
-  },
-});
+
 
 export default function Navig() {
 
+  const [openAlert, setOpenAlert] = React.useState(true);
+  const { currentUser }= useUserAuth()
+  const [nume,setNume]=useState('')
+   const[prenume,setPrenume]=useState('')
 
+   useEffect(()=>{
+    const q = query(collection(db, "utilizator"), where("emailUtilizator", "==", currentUser));
+    onSnapshot(q,(snapshot)=>{
+      let userData=[];
+      snapshot.docs.forEach((doc)=>{
+        userData.push({...doc.data(), id:doc.id})
+      })   
+     userData.forEach((el)=>{
+     setPrenume(Object.values(el)[1]);
+     setNume(Object.values(el)[3]);
+     })
+     }
+     );
+   },[])
 
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
@@ -149,7 +166,7 @@ export default function Navig() {
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
         <AppBar position="absolute" open={open} style={{
-         background: 'rgba( 135, 54, 212, 0.45 )',
+          background: 'rgba( 24, 4, 4, 0.3 )',
          boxShadow:'0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
          backdropFilter: 'blur( 10px )',
          WebkitBackdropFilter:' blur( 10px )',
@@ -189,27 +206,21 @@ export default function Navig() {
 
            </Stack>
           </Toolbar>
-
-         
         </AppBar>
+
+
         <Drawer variant="permanent" open={open} style={{
-          borderRadius: '20px',
-          border: '2px solid rgba( 255, 255, 255, 0.18 )',
-          marginTop:'0px',
-          background: 'rgba( 135, 54, 212, 0.45 )',
-      boxShadow:'0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
-      backdropFilter: 'blur( 5px )',
-      WebkitBackdropFilter:' blur( 5px )',
-     
-          height:'660px',
+          marginTop:'0px',     
+          height:'338px',
+          marginLeft:'30px'
         }} >
           <Toolbar
             sx={{
               marginTop:'0px',
-              background: 'rgba( 168, 100, 235, 0.55 )',
-          boxShadow:'0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
-          backdropFilter: 'blur( 5px )',
-          WebkitBackdropFilter:' blur( 5px )',
+              background: 'rgba( 24, 4, 4, 0.3 )',
+              boxShadow:'0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
+              backdropFilter: 'blur( 10px )',
+              WebkitBackdropFilter:' blur( 10px )',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'flex-end',
@@ -229,10 +240,10 @@ export default function Navig() {
 
           <List style={{ 
                marginTop:'0px',
-               background: 'rgba( 168, 100, 235, 0.55 )',
-           boxShadow:'0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
-           backdropFilter: 'blur( 10px )',
-           WebkitBackdropFilter:' blur( 10px )',
+               background: 'rgba( 24, 4, 4, 0.3 )',
+              boxShadow:'0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
+              backdropFilter: 'blur( 10px )',
+              WebkitBackdropFilter:' blur( 10px )',
           }}>
              <ListItem onClick={()=>navigate("/navig")}>
                      <ListItemButton >
@@ -340,7 +351,32 @@ export default function Navig() {
                </div>
               )
             }
-  
+         
+         <>
+           <Collapse in={openAlert}>
+            <Alert severity='success' style={{
+              width:'300px',
+              marginTop:'90px',
+              marginLeft:'500px',
+              display:'hover',
+              borderRadius:'20px'
+
+            }}  
+            action={
+              <IconButton
+                aria-label="close"
+                color="inherit"
+                size="small"
+                onClick={() => {
+                  setOpenAlert(false);
+                }}> 
+                <CloseIcon fontSize="inherit"/>  
+              </IconButton>}>
+                Bine ai venit ,{nume} {prenume}!
+                </Alert>
+              </Collapse>
+      </>
+         
       </Box>
       
     </ThemeProvider>
