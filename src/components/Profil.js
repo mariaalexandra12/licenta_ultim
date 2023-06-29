@@ -42,6 +42,13 @@ const Profil=()=>{
    const[prenume,setPrenume]=useState('')
 
 
+   useEffect(()=>{
+    const q = query(collection(db, "utilizator"), where("emailUtilizator", "==", currentUser));
+    const querySnapshot =  getDocs(q);
+    querySnapshot.forEach((doc) => {
+      console.log(doc.id, " => ", doc.data());
+    });
+   },[])
  
 
 
