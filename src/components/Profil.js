@@ -136,27 +136,32 @@ const Profil=()=>{
             const cifReg=/("CIF":")\s*[0-9]*/gmi;
             const cifMatch=dateFirma.match(cifReg);
             const cifFirma=cifMatch && cifMatch[0] ? cifMatch[0] : '';
-            setCIF(cifFirma);
+            setCIF(cifFirma.replace('"CIF":"',''));
 
             const judetReg=/("judet":")\s*[a-zA-Z]*/gmi;
             const judetMatch=dateFirma.match(judetReg);
-            const judetFirma=dateFirma && dateFirma[0] ? dateFirma[0] : '';
-            setJudet(judetFirma);
+            const judetFirma=judetMatch && judetMatch[0] ? judetMatch[0] : '';
+            setJudet(judetFirma.replace('"judet":"',''));
 
             const localitateRegex=/("localitate":")\s*[a-zA-Z]*/gmi;
             const localitateMatch=dateFirma.match(localitateRegex);
             const localFirma=localitateMatch && localitateMatch[0] ? localitateMatch[0] : '';
-            setLocal(localFirma);
+            setLocal(localFirma.replace('"localitate":"',''));
 
             const parolaFirmaRegex=/("parolaFirma":")\s*[a-zA-Z]*/gmi;
             const parolaFirmaMatch=dateFirma.match(parolaFirmaRegex);
             const parolFir=parolaFirmaMatch && parolaFirmaMatch[0] ? parolaFirmaMatch[0] : '';
-            setParolaFirma(parolFir);
+            setParolaFirma(parolFir.replace('"parolaFirma":"',''));
 
             const platTVARegex=/("platitorTva":")\s*[a-zA-Z]*/gmi;
             const platTVAMatch=dateFirma.match(platTVARegex);
             const platTVA=platTVAMatch && platTVAMatch[0] ? platTVAMatch[0] : '';
-            setPlatitor(platTVA);
+            if(platTVA.replace('"platitorTVA":"','') === "on"){
+              setPlatitor("DA");
+            }
+            else{
+              setPlatitor("NU");
+            }
          });
        }
 
@@ -344,6 +349,17 @@ const Profil=()=>{
               <TextField id="input-with-sx"  variant="standard"
               type="text"
               defaultValue={local}
+               style={{
+                width:'300px',
+              }} />
+           </Box>
+
+           <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+              <Typography >Platitor TVA</Typography>
+              <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
+              <TextField id="input-with-sx"  variant="standard"
+              type="text"
+              defaultValue={platitor}
                style={{
                 width:'300px',
               }} />
