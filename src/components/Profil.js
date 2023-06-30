@@ -56,17 +56,12 @@ const Profil=()=>{
     onSnapshot(q,(snapshot)=>{
       let userData=[];
       snapshot.docs.forEach((doc)=>{
-        // userData.push({...doc.data(), id:doc.id})
         for(let key in doc.data()){
           userData.push(doc.data()[key]);
         }
       })   
       if(userData.length>0){
-          setContPers(true);
-          setPass(userData[2]);
-          setPrenume(userData[0]);
-          setNume(userData[1]);
-          console.log('iuhu')
+          window.localStorage.setItem('utilizator',userData);
        }
       else{
          setContPers(false);}
@@ -84,23 +79,25 @@ const Profil=()=>{
             // userData.push({...doc.data(), id:doc.id})
             for(let key in doc.data()){
               firmaData.push(doc.data()[key]);
+            
             }
           })   
           //console.log(firmaData);
-         
           if(firmaData.length>0){
-              setParolaFirma(firmaData[0]);
-              setCIF(firmaData[1]);
-              setJudet(firmaData[2]);
-              setDenumire(firmaData[3]); 
-              setLocal(firmaData[4]);
-              setPlatitor(firmaData[5]);
-           }
-        
+              window.localStorage.setItem('firma',firmaData);
+           }   
        });
      }
-      
+    },[currentUser])
+
+
+    useEffect(()=>{
+      const fD=window.localStorage.getItem('firma'); 
+      const uD=window.localStorage.getItem('utilizator');
+      console.log(fD);
+      console.log(uD);
     },[])
+
   
 
     return (
