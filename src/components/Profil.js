@@ -39,8 +39,7 @@ const Profil=()=>{
    const [pass,setPass]=useState('')
    const [nume,setNume]=useState('')
    const[prenume,setPrenume]=useState('')
-   const [contPers,setContPers]=useState(false)
-
+  
   //  DATE FIRMA
 
   const [cif,setCIF]=useState('');
@@ -55,23 +54,23 @@ const Profil=()=>{
 
    useEffect(()=>{
     let id;
+    let existaPers=false;
     const q = query(collection(db, "utilizator"), where("emailUtilizator", "==", currentUser));
     const qResult=getDocs(q);
     onSnapshot(q,(snapshot)=>{
       let userData=[];
       snapshot.docs.forEach((doc)=>{
-        if(doc.exists()){
-          setContPers(true);
-        }
-        // userData.push(Object.values(doc.data()));
-        // id=doc.id;
-   })
-     console.log(contPers)
-    // window.localStorage.setItem(id,JSON.stringify(userData));
-  }) 
+        if(doc.data()){
+          existaPers=true;
+          userData.push(Object.values(doc.data()));
+          id=doc.id;
+        }  
+      })
+    window.localStorage.setItem(id,JSON.stringify(userData));
+     }) 
 
 
-      if(contPers.valueOf() === false){
+      if(existaPers.valueOf() === false){
          let idF;
         const q = query(collection(db, "firma"), where("emailFirma", "==", currentUser));
         const qResult=getDocs(q);
@@ -81,9 +80,10 @@ const Profil=()=>{
             firmaData.push({...doc.data(), id:doc.id})
             idF=doc.id;
           })   
-          // window.localStorage.setItem(idF,JSON.stringify(firmaData));
+          window.localStorage.setItem(idF,JSON.stringify(firmaData));
        });
-     }},[])
+     }
+    },[])
   
 
     // useEffect(()=>{
