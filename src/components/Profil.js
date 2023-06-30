@@ -15,7 +15,7 @@ import HttpsIcon from '@mui/icons-material/Https';
 import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew';
 import { db } from "../firebaseUtils/firebase_ut";
 import { collection, query, where, getDocs,onSnapshot, QuerySnapshot} from "firebase/firestore";
-
+import { getFromLocalStorage } from "../context/userAuthContext";
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -53,9 +53,10 @@ const Profil=()=>{
   // const [idFirma,setIdFirma]=useState('');
 
    useEffect(()=>{
+    let itemMail=getFromLocalStorage(currentUser);
     let id;
     let existaPers=false;
-    const q = query(collection(db, "utilizator"), where("emailUtilizator", "==", currentUser));
+    const q = query(collection(db, "utilizator"), where("emailUtilizator", "==", itemMail));
     const qResult=getDocs(q);
     onSnapshot(q,(snapshot)=>{
       let userData=[];
@@ -72,7 +73,7 @@ const Profil=()=>{
 
       if(existaPers.valueOf() === false){
          let idF;
-        const q = query(collection(db, "firma"), where("emailFirma", "==", currentUser));
+        const q = query(collection(db, "firma"), where("emailFirma", "==", itemMail));
         const qResult=getDocs(q);
         onSnapshot(q,(snapshot)=>{
           let firmaData=[];
@@ -87,10 +88,10 @@ const Profil=()=>{
   
 
     useEffect(()=>{
-    
+      let itemMail=getFromLocalStorage(currentUser);
       let id;
       let existaPers=false;
-      const q = query(collection(db, "utilizator"), where("emailUtilizator", "==", currentUser));
+      const q = query(collection(db, "utilizator"), where("emailUtilizator", "==",itemMail));
       const qResult=getDocs(q);
       onSnapshot(q,(snapshot)=>{
         snapshot.docs.forEach((doc)=>{
@@ -108,13 +109,17 @@ const Profil=()=>{
         const prenumeMatch=dateUser.match(prenumeReg);
         const parolaMatch=dateUser.match(parolaReg);
 
-        const nume=numeMatch && numeMatch[0] ? (numeMatch[0].replace('"nume":"','')) : ' ';
-        const prenume=prenumeMatch && prenumeMatch[0] ? (prenumeMatch[0].replace('"prenume":"','')) : ' ';
+        const numeU=numeMatch && numeMatch[0] ? (numeMatch[0].replace('"nume":"','')) : ' ';
+        const prenumeU=prenumeMatch && prenumeMatch[0] ? (prenumeMatch[0].replace('"prenume":"','')) : ' ';
         const parola=parolaMatch && parolaMatch[0] ? (parolaMatch[0].replace('"parolaUtilizator":"','')) : ' ';
 
-        setNume(nume);
-        setPrenume(prenume);
-        setPass(parola);
+        // setNume(numeU);
+        // setPrenume(prenumeU);
+        // setPass(parola);
+
+        console.log(numeU);
+        console.log(prenumeU);
+        console.log(parola);
        }) 
   
   
@@ -132,6 +137,10 @@ const Profil=()=>{
       //    });
       //  }
 
+      // }
+      // else{
+      //   console.log('nu exista currentUser');
+      // }
     },[])
 
   
