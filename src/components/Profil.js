@@ -50,21 +50,23 @@ const Profil=()=>{
   const [parolaFirma,setParolaFirma]=useState('');
   const [platitor,setPlatitor]=useState('');
 
+  const [idPers,setIdPers]=useState('');
+  const [idFirma,setIdFirma]=useState('');
+
    useEffect(()=>{
     const q = query(collection(db, "utilizator"), where("emailUtilizator", "==", currentUser));
     const qResult=getDocs(q);
     onSnapshot(q,(snapshot)=>{
       let userData=[];
       snapshot.docs.forEach((doc)=>{
-        for(let key in doc.data()){
-          userData.push(doc.data()[key]);
-        }
+          userData.push({...doc.data(), id:doc.id
       })   
-      if(userData.length>0){
-          window.localStorage.setItem('utilizator',userData);
-       }
-      else{
-         setContPers(false);}
+      console.log(userData);
+      // if(userData.length>0){
+      //     // window.localStorage.setItem('utilizator',userData);
+      //  }
+      // else{
+      //    setContPers(false);}
    });
    
       if(contPers.valueOf() === false){
@@ -88,7 +90,7 @@ const Profil=()=>{
            }   
        });
      }
-    },[currentUser])
+    }) },[])
 
 
     useEffect(()=>{
