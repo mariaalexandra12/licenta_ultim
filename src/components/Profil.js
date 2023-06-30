@@ -1,4 +1,4 @@
-import React,{ useState,useEffect } from "react";
+import React,{ useState,useEffect,useRef } from "react";
 import { Box, Button, Divider, Icon, IconButton, Typography } from '@mui/material';
 import Navig from "./Navig";
 import Paper from '@mui/material/Paper';
@@ -48,65 +48,59 @@ const Profil=()=>{
   const [parolaFirma,setParolaFirma]=useState('');
   const [platitor,setPlatitor]=useState('');
 
+  const existaPers=useRef(false);
 
    const [existaContPers,setExistaContPers]=useState(false);
 
    useEffect(()=>{
     let id;
-    let existaPers=false;
     const q = query(collection(db, "utilizator"), where("emailUtilizator", "==", currentUser));
-    const qResult=getDocs(q);
     onSnapshot(q,(snapshot)=>{
       let userData=[];
       snapshot.docs.forEach((doc)=>{
         if(doc.data()){
-          existaPers=true;
+          existaPers.current=true;
           userData.push({...doc.data(), id:doc.id})
           id=doc.id;
           setExistaContPers(true);
         }  
       })
-      //aici am modificat 
-      if(id){
          localStorage.setItem(id,JSON.stringify(userData));
-        }
      }) 
+    },[currentUser,existaPers])
 
 
-      if(existaPers.valueOf() === false){
+     useEffect(()=>{
+      if(existaPers.current.valueOf() === false){
          let idF;
         const q = query(collection(db, "firma"), where("emailFirma", "==", currentUser));
-        const qResult=getDocs(q);
         onSnapshot(q,(snapshot)=>{
           let firmaData=[];
           snapshot.docs.forEach((doc)=>{
             firmaData.push({...doc.data(), id:doc.id})
             idF=doc.id;
           })   
-          //aici am modificat 
-          if(idF){
+          
           localStorage.setItem(idF,JSON.stringify(firmaData));
-          }
+          
        });
-     }
-    },[currentUser])
+     } 
+    },[currentUser,existaPers])
   
 
     useEffect(()=>{
       let id;
-      let existaPers=false;
       const q = query(collection(db, "utilizator"), where("emailUtilizator", "==",currentUser));
-      const qResult=getDocs(q);
       onSnapshot(q,(snapshot)=>{
         snapshot.docs.forEach((doc)=>{
           if(doc.data()){
-            existaPers=true;
+            // existaPers.current=true;
             id=doc.id;
           }  
         })
         const dateUser= id ? localStorage.getItem(id) : null;
 
-        if(dateUser === null){
+        if(dateUser !== null){
 
         const numeReg=/("nume":")([a-zA-Z]+)/gmi;
         const prenumeReg=/("prenume":")([a-zA-Z]+)/gmi;
@@ -129,12 +123,14 @@ const Profil=()=>{
        }
 
        }) 
+
+      },[currentUser,existaPers])
   
   
-        if(existaPers.valueOf() === false){
+      useEffect(()=>{
+        // if(existaPers.current.valueOf() === false){
            let idF;
           const q = query(collection(db, "firma"), where("emailFirma", "==", currentUser));
-          const qResult=getDocs(q);
           onSnapshot(q,(snapshot)=>{
             snapshot.docs.forEach((doc)=>{
               if(doc.data()){
@@ -144,7 +140,7 @@ const Profil=()=>{
             
             const dateFirma=idF ?  localStorage.getItem(idF): null;
 
-            if(dateFirma === null){
+            if(dateFirma !== null){
             
             const denumireFirmaReg=/([a-zA-Z])+\s+.*SRL/gmi;
             const denumireFirmaMatch=dateFirma.match(denumireFirmaReg);
@@ -187,12 +183,11 @@ const Profil=()=>{
           }
 
          });
-       }
+       
 
-      },[currentUser])
+      },[currentUser,existaPers])
 
-    
-  
+
 
     return (
         <>
