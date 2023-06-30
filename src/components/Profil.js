@@ -66,7 +66,7 @@ const Profil=()=>{
           id=doc.id;
         }  
       })
-    window.localStorage.setItem(id,JSON.stringify(userData));
+   localStorage.setItem(id,JSON.stringify(userData));
      }) 
 
 
@@ -80,13 +80,14 @@ const Profil=()=>{
             firmaData.push({...doc.data(), id:doc.id})
             idF=doc.id;
           })   
-          window.localStorage.setItem(idF,JSON.stringify(firmaData));
+          localStorage.setItem(idF,JSON.stringify(firmaData));
        });
      }
-    },[])
+    },[currentUser])
   
 
     useEffect(()=>{
+    
       let id;
       let existaPers=false;
       const q = query(collection(db, "utilizator"), where("emailUtilizator", "==", currentUser));
@@ -98,13 +99,22 @@ const Profil=()=>{
             id=doc.id;
           }  
         })
-        const dateUser=window.localStorage.getItem(id);
+        const dateUser=localStorage.getItem(id);
         const numeReg=/("nume":")([a-zA-Z]+)/gmi;
         const prenumeReg=/("prenume":")([a-zA-Z]+)/gmi;
         const parolaReg=/"parolaUtilizator":"([^"]+)"/gmi;
-        setNume(dateUser.match(numeReg)[0].replace('"nume":"',''));
-        setPrenume(dateUser.match(prenumeReg)[0].replace('"prenume":"',''));
-        setPass(dateUser.match(parolaReg)[0].replace('"parolaUtilizator":"',''));
+
+        const numeMatch=dateUser.match(numeReg);
+        const prenumeMatch=dateUser.match(prenumeReg);
+        const parolaMatch=dateUser.match(parolaReg);
+
+        const nume=numeMatch && numeMatch[0] ? (numeMatch[0].replace('"nume":"','')) : ' ';
+        const prenume=prenumeMatch && prenumeMatch[0] ? (prenumeMatch[0].replace('"prenume":"','')) : ' ';
+        const parola=parolaMatch && parolaMatch[0] ? (parolaMatch[0].replace('"parolaUtilizator":"','')) : ' ';
+
+        setNume(nume);
+        setPrenume(prenume);
+        setPass(parola);
        }) 
   
   
