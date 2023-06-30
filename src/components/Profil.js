@@ -39,24 +39,35 @@ const Profil=()=>{
    const [pass,setPass]=useState('')
    const [nume,setNume]=useState('')
    const[prenume,setPrenume]=useState('')
-   const [conPers,setContPers]=useState(true)
+   const [contPers,setContPers]=useState(true)
 
 
    useEffect(()=>{
-    const q = query(collection(db, "utilizator"), where("emailUtilizator", "==", "gigi"));
+    const q = query(collection(db, "utilizator"), where("emailUtilizator", "==", currentUser));
     const qResult=getDocs(q);
     onSnapshot(q,(snapshot)=>{
       let userData=[];
       snapshot.docs.forEach((doc)=>{
-        userData.push({...doc.data(), id:doc.id})
+        // userData.push({...doc.data(), id:doc.id})
+        for(let key in doc.data()){
+          userData.push(doc.data()[key]);
+        }
       })   
-     userData.forEach((el)=>{
-    //  setPass(Object.values(el)[0]);
-    //  setPrenume(Object.values(el)[2]);
-    //  setNume(Object.values(el)[1]);
-     console.log(Object.values(el).length() === 0);
-     })
-     }
+      if(userData.length>0){
+             setContPers(true);
+       }
+      else{
+         setContPers(false);
+      }
+   
+      if(contPers == true){
+          setPass(userData[2]);
+          setPrenume(userData[0]);
+          setNume(userData[1]);
+          console.log('iuhu')
+      }
+
+    }
      );
     },[])
   
