@@ -59,8 +59,12 @@ const Profil=()=>{
     onSnapshot(q,(snapshot)=>{
       let userData=[];
       snapshot.docs.forEach((doc)=>{
-          userData.push({...doc.data(), id:doc.id})   
-   })});
+        userData.push({...doc.data(), id:doc.id})  
+   })
+  
+ 
+    //window.localStorage.setItem('userData',JSON.stringify(userData));
+  });
    
       if(contPers.valueOf() === false){
         setPass('');
@@ -77,9 +81,9 @@ const Profil=()=>{
             }
           })   
           //console.log(firmaData);
-          if(firmaData.length>0){
-              window.localStorage.setItem('firma',firmaData);
-           }   
+          // if(firmaData.length>0){
+          //     window.localStorage.setItem('firma',firmaData);
+          //  }   
        });
      }
    },[])
@@ -87,10 +91,8 @@ const Profil=()=>{
 
 
     useEffect(()=>{
-      const fD=window.localStorage.getItem('firma'); 
-      const uD=window.localStorage.getItem('utilizator');
-      console.log(fD);
-      console.log(uD);
+      // const uD=window.localStorage.getItem('userData');
+      console.log(5);
     },[])
 
   
