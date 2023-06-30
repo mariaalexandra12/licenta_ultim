@@ -99,7 +99,12 @@ const Profil=()=>{
           }  
         })
         const dateUser=window.localStorage.getItem(id);
-    
+        const numeReg=/("nume":")([a-zA-Z]+)/gmi;
+        const prenumeReg=/("prenume":")([a-zA-Z]+)/gmi;
+        const parolaReg=/"parolaUtilizator":"([^"]+)"/gmi;
+        setNume(dateUser.match(numeReg)[0].replace('"nume":"',''));
+        setPrenume(dateUser.match(prenumeReg)[0].replace('"prenume":"',''));
+        setPass(dateUser.match(parolaReg)[0].replace('"parolaUtilizator":"',''));
        }) 
   
   
