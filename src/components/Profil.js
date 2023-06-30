@@ -59,15 +59,15 @@ const Profil=()=>{
     onSnapshot(q,(snapshot)=>{
       let userData=[];
       snapshot.docs.forEach((doc)=>{
-          userData.push({...doc.data(), id:doc.id
-      })   
+          userData.push({...doc.data(), id:doc.id})   
       console.log(userData);
+      console.log(5);
       // if(userData.length>0){
       //     // window.localStorage.setItem('utilizator',userData);
       //  }
       // else{
       //    setContPers(false);}
-   });
+   })});
    
       if(contPers.valueOf() === false){
         setPass('');
@@ -81,7 +81,6 @@ const Profil=()=>{
             // userData.push({...doc.data(), id:doc.id})
             for(let key in doc.data()){
               firmaData.push(doc.data()[key]);
-            
             }
           })   
           //console.log(firmaData);
@@ -90,7 +89,8 @@ const Profil=()=>{
            }   
        });
      }
-    }) },[])
+   },[])
+
 
 
     useEffect(()=>{
