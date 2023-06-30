@@ -54,13 +54,7 @@ const Profil=()=>{
     //  setPass(Object.values(el)[0]);
     //  setPrenume(Object.values(el)[2]);
     //  setNume(Object.values(el)[1]);
-     if(el !== null){
-      console.log(Object.values(el));
-     }
-     else
-     {
-      console.log('nu exista valori');
-     }
+     console.log(Object.values(el).length() === 0);
      })
      }
      );
