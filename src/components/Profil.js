@@ -62,33 +62,42 @@ const Profil=()=>{
         }
       })   
       if(userData.length>0){
-             setContPers(true);
-       }
-      else{
-         setContPers(false);
-   }
-   
-      if(contPers.valueOf() === true){
+          setContPers(true);
           setPass(userData[2]);
           setPrenume(userData[0]);
           setNume(userData[1]);
           console.log('iuhu')
-      }
-
+       }
       else{
+         setContPers(false);}
+   });
+   
+      if(contPers.valueOf() === false){
+        setPass('');
+        setPrenume('');
+        setNume('');
         const q = query(collection(db, "firma"), where("emailFirma", "==", currentUser));
-         const qResult=getDocs(q);
-        let firmaData=[];
-      snapshot.docs.forEach((doc)=>{
-        for(let key in doc.data()){
-          firmaData.push(doc.data()[key]);
-        }
-      console.log(firmaData);
-      })
+        const qResult=getDocs(q);
+        onSnapshot(q,(snapshot)=>{
+          let firmaData=[];
+          snapshot.docs.forEach((doc)=>{
+            // userData.push({...doc.data(), id:doc.id})
+            for(let key in doc.data()){
+              firmaData.push(doc.data()[key]);
+            }
+          })   
+          console.log(firmaData);
+          // if(userData.length>0){
+          //     setContPers(true);
+          //     setPass(userData[2]);
+          //     setPrenume(userData[0]);
+          //     setNume(userData[1]);
+          //     console.log('iuhu')
+          //  }
+        
+       });
+     }
       
-    }
-  })
-     
     },[])
   
 
