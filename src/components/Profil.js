@@ -43,7 +43,7 @@ const Profil=()=>{
 
   //  DATE FIRMA
 
-  const [cif,setCIF]=useState(0);
+  const [cif,setCIF]=useState('');
   const [denumire,setDenumire]=useState('');
   const[judet,setJudet]=useState('');
   const[local,setLocal]=useState('');
@@ -86,14 +86,16 @@ const Profil=()=>{
               firmaData.push(doc.data()[key]);
             }
           })   
-          console.log(firmaData);
-          // if(userData.length>0){
-          //     setContPers(true);
-          //     setPass(userData[2]);
-          //     setPrenume(userData[0]);
-          //     setNume(userData[1]);
-          //     console.log('iuhu')
-          //  }
+          //console.log(firmaData);
+         
+          if(firmaData.length>0){
+              setParolaFirma(firmaData[0]);
+              setCIF(firmaData[1]);
+              setJudet(firmaData[2]);
+              setDenumire(firmaData[3]); 
+              setLocal(firmaData[4]);
+              setPlatitor(firmaData[5]);
+           }
         
        });
      }
