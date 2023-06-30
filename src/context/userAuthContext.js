@@ -1,20 +1,23 @@
 import { createContext, useContext,useEffect,useState} from "react";
 import {auth} from '../firebaseUtils/firebase_ut';
 import {createUserWithEmailAndPassword,
-    onAuthStateChanged 
+    onAuthStateChanged ,
+   
 } from 'firebase/auth'
 
 import * as firebase from 'firebase/auth';
 
-const AuthContext = createContext();
+const AuthContext = createContext({
+    currentUser:null,
+});
 
 export function AuthContextProvider({children}) {
     
     const [currentUser,setCurrentUser]=useState(null) 
-    const [email,setEmail]=useState('')
-    const [password,setPassword]=useState('') 
+   
 
     useEffect(()=>{
+     
     
       const unsubscribe=onAuthStateChanged(auth,user=>{
         if(user){
@@ -37,6 +40,7 @@ export function AuthContextProvider({children}) {
     }
 
     return (
+        // value={currentUser}
         <AuthContext.Provider value={value}>
             {children}
         </AuthContext.Provider> 
@@ -50,13 +54,12 @@ export function useUserAuth(){
 export function getFromLocalStorage(mail){
     for (let i=0;i<localStorage.length;i++){
         const key=localStorage.key(i);
-        if(key.includes('@gmail.com')){
-            const getEmail=localStorage.getItem(key);
+        const getEmail=localStorage.getItem(key);
             if(getEmail === mail)
             {
                  return getEmail;
             }
         }
+        return null;
     }
-     return null;
-}
+   

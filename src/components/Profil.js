@@ -15,7 +15,6 @@ import HttpsIcon from '@mui/icons-material/Https';
 import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew';
 import { db } from "../firebaseUtils/firebase_ut";
 import { collection, query, where, getDocs,onSnapshot, QuerySnapshot} from "firebase/firestore";
-import { getFromLocalStorage } from "../context/userAuthContext";
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -49,14 +48,11 @@ const Profil=()=>{
   const [parolaFirma,setParolaFirma]=useState('');
   const [platitor,setPlatitor]=useState('');
 
-  // const [idPers,setIdPers]=useState('');
-  // const [idFirma,setIdFirma]=useState('');
 
    useEffect(()=>{
-    let itemMail=getFromLocalStorage(currentUser);
     let id;
     let existaPers=false;
-    const q = query(collection(db, "utilizator"), where("emailUtilizator", "==", itemMail));
+    const q = query(collection(db, "utilizator"), where("emailUtilizator", "==", currentUser));
     const qResult=getDocs(q);
     onSnapshot(q,(snapshot)=>{
       let userData=[];
@@ -73,7 +69,7 @@ const Profil=()=>{
 
       if(existaPers.valueOf() === false){
          let idF;
-        const q = query(collection(db, "firma"), where("emailFirma", "==", itemMail));
+        const q = query(collection(db, "firma"), where("emailFirma", "==", currentUser));
         const qResult=getDocs(q);
         onSnapshot(q,(snapshot)=>{
           let firmaData=[];
@@ -88,10 +84,9 @@ const Profil=()=>{
   
 
     useEffect(()=>{
-      let itemMail=getFromLocalStorage(currentUser);
       let id;
       let existaPers=false;
-      const q = query(collection(db, "utilizator"), where("emailUtilizator", "==",itemMail));
+      const q = query(collection(db, "utilizator"), where("emailUtilizator", "==",currentUser));
       const qResult=getDocs(q);
       onSnapshot(q,(snapshot)=>{
         snapshot.docs.forEach((doc)=>{
@@ -113,36 +108,61 @@ const Profil=()=>{
         const prenumeU=prenumeMatch && prenumeMatch[0] ? (prenumeMatch[0].replace('"prenume":"','')) : ' ';
         const parola=parolaMatch && parolaMatch[0] ? (parolaMatch[0].replace('"parolaUtilizator":"','')) : ' ';
 
-        // setNume(numeU);
-        // setPrenume(prenumeU);
-        // setPass(parola);
-
-        console.log(numeU);
-        console.log(prenumeU);
-        console.log(parola);
+        setNume(numeU);
+        setPrenume(prenumeU);
+        setPass(parola);
        }) 
   
   
-      //   if(existaPers.valueOf() === false){
-      //      let idF;
-      //     const q = query(collection(db, "firma"), where("emailFirma", "==", currentUser));
-      //     const qResult=getDocs(q);
-      //     onSnapshot(q,(snapshot)=>{
-      //       let firmaData=[];
-      //       snapshot.docs.forEach((doc)=>{
-      //         firmaData.push({...doc.data(), id:doc.id})
-      //         idF=doc.id;
-      //       })   
-      //       window.localStorage.setItem(idF,JSON.stringify(firmaData));
-      //    });
-      //  }
+        if(existaPers.valueOf() === false){
+           let idF;
+          const q = query(collection(db, "firma"), where("emailFirma", "==", currentUser));
+          const qResult=getDocs(q);
+          onSnapshot(q,(snapshot)=>{
+            snapshot.docs.forEach((doc)=>{
+              if(doc.data()){
+              idF=doc.id;
+              }
+            })  
+            
+            const dateFirma=localStorage.getItem(idF);
+            
+            const denumireFirmaReg=/([a-zA-Z])+\s+.*SRL/gmi;
+            const denumireFirmaMatch=dateFirma.match(denumireFirmaReg);
+            const denFirma=denumireFirmaMatch && denumireFirmaMatch[0] ? denumireFirmaMatch[0]:'';
+            setDenumire(denFirma);
 
-      // }
-      // else{
-      //   console.log('nu exista currentUser');
-      // }
-    },[])
 
+            const cifReg=/("CIF":")\s*[0-9]*/gmi;
+            const cifMatch=dateFirma.match(cifReg);
+            const cifFirma=cifMatch && cifMatch[0] ? cifMatch[0] : '';
+            setCIF(cifFirma);
+
+            const judetReg=/("judet":")\s*[a-zA-Z]*/gmi;
+            const judetMatch=dateFirma.match(judetReg);
+            const judetFirma=dateFirma && dateFirma[0] ? dateFirma[0] : '';
+            setJudet(judetFirma);
+
+            const localitateRegex=/("localitate":")\s*[a-zA-Z]*/gmi;
+            const localitateMatch=dateFirma.match(localitateRegex);
+            const localFirma=localitateMatch && localitateMatch[0] ? localitateMatch[0] : '';
+            setLocal(localFirma);
+
+            const parolaFirmaRegex=/("parolaFirma":")\s*[a-zA-Z]*/gmi;
+            const parolaFirmaMatch=dateFirma.match(parolaFirmaRegex);
+            const parolFir=parolaFirmaMatch && parolaFirmaMatch[0] ? parolaFirmaMatch[0] : '';
+            setParolaFirma(parolFir);
+
+            const platTVARegex=/("platitorTva":")\s*[a-zA-Z]*/gmi;
+            const platTVAMatch=dateFirma.match(platTVARegex);
+            const platTVA=platTVAMatch && platTVAMatch[0] ? platTVAMatch[0] : '';
+            setPlatitor(platTVA);
+         });
+       }
+
+      },[currentUser])
+
+    
   
 
     return (
