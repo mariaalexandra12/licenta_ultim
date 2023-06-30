@@ -39,7 +39,7 @@ const Profil=()=>{
    const [pass,setPass]=useState('')
    const [nume,setNume]=useState('')
    const[prenume,setPrenume]=useState('')
-   const [contPers,setContPers]=useState(true)
+   const [contPers,setContPers]=useState(false)
 
   //  DATE FIRMA
 
@@ -50,50 +50,46 @@ const Profil=()=>{
   const [parolaFirma,setParolaFirma]=useState('');
   const [platitor,setPlatitor]=useState('');
 
-  const [idPers,setIdPers]=useState('');
-  const [idFirma,setIdFirma]=useState('');
+  // const [idPers,setIdPers]=useState('');
+  // const [idFirma,setIdFirma]=useState('');
 
    useEffect(()=>{
+    let id;
     const q = query(collection(db, "utilizator"), where("emailUtilizator", "==", currentUser));
     const qResult=getDocs(q);
     onSnapshot(q,(snapshot)=>{
       let userData=[];
       snapshot.docs.forEach((doc)=>{
-        userData.push({...doc.data(), id:doc.id})  
+        if(doc.exists()){
+          setContPers(true);
+        }
+        // userData.push(Object.values(doc.data()));
+        // id=doc.id;
    })
-  
- 
-    //window.localStorage.setItem('userData',JSON.stringify(userData));
-  });
-   
+     console.log(contPers)
+    // window.localStorage.setItem(id,JSON.stringify(userData));
+  }) 
+
+
       if(contPers.valueOf() === false){
-        setPass('');
-        setPrenume('');
-        setNume('');
+         let idF;
         const q = query(collection(db, "firma"), where("emailFirma", "==", currentUser));
         const qResult=getDocs(q);
         onSnapshot(q,(snapshot)=>{
           let firmaData=[];
           snapshot.docs.forEach((doc)=>{
-            // userData.push({...doc.data(), id:doc.id})
-            for(let key in doc.data()){
-              firmaData.push(doc.data()[key]);
-            }
+            firmaData.push({...doc.data(), id:doc.id})
+            idF=doc.id;
           })   
-          //console.log(firmaData);
-          // if(firmaData.length>0){
-          //     window.localStorage.setItem('firma',firmaData);
-          //  }   
+          // window.localStorage.setItem(idF,JSON.stringify(firmaData));
        });
-     }
-   },[])
+     }},[])
+  
 
-
-
-    useEffect(()=>{
-      // const uD=window.localStorage.getItem('userData');
-      console.log(5);
-    },[])
+    // useEffect(()=>{
+    //   // const uD=window.localStorage.getItem('userData');
+    //   console.log(5);
+    // },[])
 
   
 
