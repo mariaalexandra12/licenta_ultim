@@ -50,10 +50,7 @@ import Collapse from '@mui/material/Collapse';
 import Alert from '@mui/material/Alert';
 
 
-
 const drawerWidth = 210;
-
-
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',

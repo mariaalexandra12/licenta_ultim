@@ -60,9 +60,9 @@ const Profil=()=>{
 
     return (
         <>
-        <Box sx={{display: 'flex'}}>
+        {/* <Box sx={{display: 'flex'}}> */}
         <Navig/>
-        <Box sx={{marginTop: '80px' , marginLeft: '80px'}}>
+        <Box sx={{marginTop: '80px'}}>
         <Grid
          container
            direction="column"
@@ -111,7 +111,8 @@ const Profil=()=>{
       {value===0 &&(
         <>
           {/* CONT PERSONAL  */}
-           <Box sx={{ display: 'flex', alignItems: 'flex-end',}}>
+          {/**/}
+           <Box  sx={{ display: 'flex', alignItems: 'flex-end',}}  >
               <Typography >Adresa de Email</Typography>
               <EmailIcon sx={{ color: 'action.active', mr: 1, my: 0.2,marginLeft:'10px' }} />
               <TextField id="adresaEmail" 
@@ -231,7 +232,7 @@ const Profil=()=>{
            
         </Box>
     
-        </Box>
+        {/* </Box> */}
         </>
     )
 }
