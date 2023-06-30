@@ -66,7 +66,10 @@ const Profil=()=>{
           setExistaContPers(true);
         }  
       })
-   localStorage.setItem(id,JSON.stringify(userData));
+      //aici am modificat 
+      if(id){
+         localStorage.setItem(id,JSON.stringify(userData));
+        }
      }) 
 
 
@@ -80,7 +83,10 @@ const Profil=()=>{
             firmaData.push({...doc.data(), id:doc.id})
             idF=doc.id;
           })   
+          //aici am modificat 
+          if(idF){
           localStorage.setItem(idF,JSON.stringify(firmaData));
+          }
        });
      }
     },[currentUser])
@@ -98,7 +104,10 @@ const Profil=()=>{
             id=doc.id;
           }  
         })
-        const dateUser=localStorage.getItem(id);
+        const dateUser= id ? localStorage.getItem(id) : null;
+
+        if(dateUser === null){
+
         const numeReg=/("nume":")([a-zA-Z]+)/gmi;
         const prenumeReg=/("prenume":")([a-zA-Z]+)/gmi;
         const parolaReg=/"parolaUtilizator":"([^"]+)"/gmi;
@@ -114,6 +123,11 @@ const Profil=()=>{
         setNume(numeU);
         setPrenume(prenumeU);
         setPass(parola);
+       }
+       else{
+        console.log('nu exista date personale');
+       }
+
        }) 
   
   
@@ -128,7 +142,9 @@ const Profil=()=>{
               }
             })  
             
-            const dateFirma=localStorage.getItem(idF);
+            const dateFirma=idF ?  localStorage.getItem(idF): null;
+
+            if(dateFirma === null){
             
             const denumireFirmaReg=/([a-zA-Z])+\s+.*SRL/gmi;
             const denumireFirmaMatch=dateFirma.match(denumireFirmaReg);
@@ -165,6 +181,11 @@ const Profil=()=>{
             else{
               setPlatitor("NU");
             }
+          }
+          else{
+            console.log('nu exista date firma');
+          }
+
          });
        }
 
