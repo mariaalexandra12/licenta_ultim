@@ -41,6 +41,14 @@ const Profil=()=>{
    const[prenume,setPrenume]=useState('')
    const [contPers,setContPers]=useState(true)
 
+  //  DATE FIRMA
+
+  const [cif,setCIF]=useState(0);
+  const [denumire,setDenumire]=useState('');
+  const[judet,setJudet]=useState('');
+  const[local,setLocal]=useState('');
+  const [parolaFirma,setParolaFirma]=useState('');
+  const [platitor,setPlatitor]=useState('');
 
    useEffect(()=>{
     const q = query(collection(db, "utilizator"), where("emailUtilizator", "==", currentUser));
@@ -58,17 +66,29 @@ const Profil=()=>{
        }
       else{
          setContPers(false);
-      }
+   }
    
-      if(contPers == true){
+      if(contPers.valueOf() === true){
           setPass(userData[2]);
           setPrenume(userData[0]);
           setNume(userData[1]);
           console.log('iuhu')
       }
 
+      else{
+        const q = query(collection(db, "firma"), where("emailFirma", "==", currentUser));
+         const qResult=getDocs(q);
+        let firmaData=[];
+      snapshot.docs.forEach((doc)=>{
+        for(let key in doc.data()){
+          firmaData.push(doc.data()[key]);
+        }
+      console.log(firmaData);
+      })
+      
     }
-     );
+  })
+     
     },[])
   
 
@@ -186,6 +206,7 @@ const Profil=()=>{
            <Box sx={{ display: 'flex', alignItems: 'flex-end',}}>
               
               <EmailIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
+              <Typography >Adresa de email Firma</Typography>
               <TextField id="adresaEmail" 
               type='text'
               variant="standard" 
@@ -198,6 +219,7 @@ const Profil=()=>{
            </Box>
 
            <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+              <Typography >Parola Cont Firma</Typography>
               <HttpsIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
               <TextField id="input-with-sx" 
               type="text"
@@ -205,15 +227,16 @@ const Profil=()=>{
               style={{
                 width:'300px',
               }}
-              value={pass}
+              value={parolaFirma}
               />
            </Box>
 
            <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+              <Typography >Denumire Firma</Typography>
               <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
               <TextField id="input-with-sx" variant="standard" 
                type="text"
-               value={nume}
+               value={denumire}
                style={{
                 width:'300px',
               }}/>
@@ -221,10 +244,33 @@ const Profil=()=>{
 
            
            <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+              <Typography >Cod Inregistrare Fiscala</Typography>
               <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
               <TextField id="input-with-sx"  variant="standard"
               type="text"
-              value={prenume}
+              value={cif}
+               style={{
+                width:'300px',
+              }} />
+           </Box>
+
+           <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+              <Typography>Judet</Typography>
+              <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
+              <TextField id="input-with-sx"  variant="standard"
+              type="text"
+              value={judet}
+               style={{
+                width:'300px',
+              }} />
+           </Box>
+
+           <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+              <Typography >Localitate</Typography>
+              <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
+              <TextField id="input-with-sx"  variant="standard"
+              type="text"
+              value={local}
                style={{
                 width:'300px',
               }} />
