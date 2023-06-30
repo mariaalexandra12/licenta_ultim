@@ -14,7 +14,7 @@ import { useUserAuth } from "../context/userAuthContext";
 import HttpsIcon from '@mui/icons-material/Https';
 import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew';
 import { db } from "../firebaseUtils/firebase_ut";
-import { collection, query, where, getDocs,onSnapshot} from "firebase/firestore";
+import { collection, query, where, getDocs,onSnapshot, QuerySnapshot} from "firebase/firestore";
 
 
 
@@ -39,20 +39,28 @@ const Profil=()=>{
    const [pass,setPass]=useState('')
    const [nume,setNume]=useState('')
    const[prenume,setPrenume]=useState('')
+   const [conPers,setContPers]=useState(true)
 
 
    useEffect(()=>{
-    const q = query(collection(db, "utilizator"), where("emailUtilizator", "==", currentUser));
+    const q = query(collection(db, "utilizator"), where("emailUtilizator", "==", "gigi"));
+    const qResult=getDocs(q);
     onSnapshot(q,(snapshot)=>{
       let userData=[];
       snapshot.docs.forEach((doc)=>{
         userData.push({...doc.data(), id:doc.id})
       })   
      userData.forEach((el)=>{
-     setPass(Object.values(el)[0]);
-     setPrenume(Object.values(el)[2]);
-     setNume(Object.values(el)[1]);
-    //  console.log(Object.values(el));
+    //  setPass(Object.values(el)[0]);
+    //  setPrenume(Object.values(el)[2]);
+    //  setNume(Object.values(el)[1]);
+     if(el !== null){
+      console.log(Object.values(el));
+     }
+     else
+     {
+      console.log('nu exista valori');
+     }
      })
      }
      );
@@ -93,7 +101,7 @@ const Profil=()=>{
               <Grid item >
               <Item style={{
                 marginTop:'50px',
-                width:'850px',
+                width:'1000px',
                 height:'400px',
                 background: 'rgba( 186, 152, 224, 0.7 )',
                 boxShadow:'0 8px 32px 0 rgba( 31, 38, 135, 0.37 )', 
@@ -116,7 +124,7 @@ const Profil=()=>{
           {/**/}
            <Box  sx={{ display: 'flex', alignItems: 'flex-end',}}  >
               <Typography >Adresa de Email</Typography>
-              <EmailIcon sx={{ color: 'action.active', mr: 1, my: 0.2,marginLeft:'10px' }} />
+              <EmailIcon sx={{ color: 'action.active', mr: 1, my: 0.2,marginLeft:'30px' }} />
               <TextField id="adresaEmail" 
               type='text'
               variant="standard" 
@@ -131,7 +139,7 @@ const Profil=()=>{
              
            <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
               <Typography >Parola Cont</Typography>
-              <HttpsIcon sx={{ color: 'action.active', mr: 1, my: 0.2,marginLeft:'40px' }} />
+              <HttpsIcon sx={{ color: 'action.active', mr: 1, my: 0.2,marginLeft:'60px' }} />
               <TextField id="input-with-sx" 
               type="text"
               variant="standard" 
@@ -144,7 +152,7 @@ const Profil=()=>{
 
            <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
               <Typography >Nume Utilizator</Typography>
-              <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1,  my: 0.2,marginLeft:'10px' }} />
+              <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1,  my: 0.2,marginLeft:'33px' }} />
               <TextField id="input-with-sx" variant="standard" 
                type="text"
                value={nume}
