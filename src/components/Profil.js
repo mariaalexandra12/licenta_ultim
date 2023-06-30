@@ -62,7 +62,7 @@ const Profil=()=>{
       snapshot.docs.forEach((doc)=>{
         if(doc.data()){
           existaPers=true;
-          userData.push(Object.values(doc.data()));
+          userData.push({...doc.data(), id:doc.id})
           id=doc.id;
         }  
       })
@@ -86,10 +86,38 @@ const Profil=()=>{
     },[])
   
 
-    // useEffect(()=>{
-    //   // const uD=window.localStorage.getItem('userData');
-    //   console.log(5);
-    // },[])
+    useEffect(()=>{
+      let id;
+      let existaPers=false;
+      const q = query(collection(db, "utilizator"), where("emailUtilizator", "==", currentUser));
+      const qResult=getDocs(q);
+      onSnapshot(q,(snapshot)=>{
+        snapshot.docs.forEach((doc)=>{
+          if(doc.data()){
+            existaPers=true;
+            id=doc.id;
+          }  
+        })
+        const dateUser=window.localStorage.getItem(id);
+    
+       }) 
+  
+  
+      //   if(existaPers.valueOf() === false){
+      //      let idF;
+      //     const q = query(collection(db, "firma"), where("emailFirma", "==", currentUser));
+      //     const qResult=getDocs(q);
+      //     onSnapshot(q,(snapshot)=>{
+      //       let firmaData=[];
+      //       snapshot.docs.forEach((doc)=>{
+      //         firmaData.push({...doc.data(), id:doc.id})
+      //         idF=doc.id;
+      //       })   
+      //       window.localStorage.setItem(idF,JSON.stringify(firmaData));
+      //    });
+      //  }
+
+    },[])
 
   
 
@@ -205,16 +233,16 @@ const Profil=()=>{
         <>
           {/* CONT FIRMA */}
            <Box sx={{ display: 'flex', alignItems: 'flex-end',}}>
-              
+           <Typography >Adresa de email Firma</Typography>
               <EmailIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
-              <Typography >Adresa de email Firma</Typography>
-              <input id="adresaEmail" 
+              <TextField id="adresaEmail" 
               type='text'
               variant="standard" 
               defaultValue={currentUser}
               style={{
                 width:'300px',
-                marginTop: '30px'
+                marginTop: '30px',
+                
               }}
               />
            </Box>
@@ -228,7 +256,7 @@ const Profil=()=>{
               style={{
                 width:'300px',
               }}
-              value={parolaFirma}
+              defaultValue={parolaFirma}
               />
            </Box>
 
@@ -237,7 +265,7 @@ const Profil=()=>{
               <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
               <TextField id="input-with-sx" variant="standard" 
                type="text"
-               value={denumire}
+               defaultValue={denumire}
                style={{
                 width:'300px',
               }}/>
@@ -249,7 +277,7 @@ const Profil=()=>{
               <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
               <TextField id="input-with-sx"  variant="standard"
               type="text"
-              value={cif}
+              defaultValue={cif}
                style={{
                 width:'300px',
               }} />
@@ -260,7 +288,7 @@ const Profil=()=>{
               <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
               <TextField id="input-with-sx"  variant="standard"
               type="text"
-              value={judet}
+              defaultValue={judet}
                style={{
                 width:'300px',
               }} />
@@ -271,7 +299,7 @@ const Profil=()=>{
               <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
               <TextField id="input-with-sx"  variant="standard"
               type="text"
-              value={local}
+              defaultValue={local}
                style={{
                 width:'300px',
               }} />
