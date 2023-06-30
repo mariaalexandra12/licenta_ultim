@@ -49,6 +49,8 @@ const Profil=()=>{
   const [platitor,setPlatitor]=useState('');
 
 
+   const [existaContPers,setExistaContPers]=useState(false);
+
    useEffect(()=>{
     let id;
     let existaPers=false;
@@ -61,6 +63,7 @@ const Profil=()=>{
           existaPers=true;
           userData.push({...doc.data(), id:doc.id})
           id=doc.id;
+          setExistaContPers(true);
         }  
       })
    localStorage.setItem(id,JSON.stringify(userData));
@@ -214,14 +217,16 @@ const Profil=()=>{
                 border: '1px solid rgba( 255, 255, 255, 0.18 )',
               }}>
        
+       { (existaContPers.valueOf() === true) ? 
+        <>
        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={value} onChange={handleChange} textColor="secondary" >
           <Tab label="Cont Personal" />
           <Tab label="Cont Firma"  />
-          <Tab label="Setari Cont"  />
         </Tabs>
       </Box>
-      {value===0 &&(
+
+      { value===0 &&(
         <>
           {/* CONT PERSONAL  */}
           {/**/}
@@ -365,16 +370,109 @@ const Profil=()=>{
               }} />
            </Box>
         </>
-      )}  
-
-       {value===2 &&(
-        <>
-          <Box sx={{marginTop: '80px'}}>
-             <h1>settings</h1>
-          </Box>
-        </>
-      )}     
+      )}        
+      </>  
       
+      :
+
+      <>
+       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+        <Tabs value={value} onChange={handleChange} textColor="secondary" >
+          <Tab label="Cont Firma"  />
+        </Tabs>
+      </Box>
+
+       {value===0 &&(
+        <>
+          {/* CONT FIRMA */}
+           <Box sx={{ display: 'flex', alignItems: 'flex-end',}}>
+           <Typography >Adresa de email Firma</Typography>
+              <EmailIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
+              <TextField id="adresaEmail" 
+              type='text'
+              variant="standard" 
+              defaultValue={currentUser}
+              style={{
+                width:'300px',
+                marginTop: '30px',
+                
+              }}
+              />
+           </Box>
+
+           <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+              <Typography >Parola Cont Firma</Typography>
+              <HttpsIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
+              <TextField id="input-with-sx" 
+              type="text"
+              variant="standard" 
+              style={{
+                width:'300px',
+              }}
+              defaultValue={parolaFirma}
+              />
+           </Box>
+
+           <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+              <Typography >Denumire Firma</Typography>
+              <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
+              <TextField id="input-with-sx" variant="standard" 
+               type="text"
+               defaultValue={denumire}
+               style={{
+                width:'300px',
+              }}/>
+           </Box>
+
+           
+           <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+              <Typography >Cod Inregistrare Fiscala</Typography>
+              <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
+              <TextField id="input-with-sx"  variant="standard"
+              type="text"
+              defaultValue={cif}
+               style={{
+                width:'300px',
+              }} />
+           </Box>
+
+           <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+              <Typography>Judet</Typography>
+              <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
+              <TextField id="input-with-sx"  variant="standard"
+              type="text"
+              defaultValue={judet}
+               style={{
+                width:'300px',
+              }} />
+           </Box>
+
+           <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+              <Typography >Localitate</Typography>
+              <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
+              <TextField id="input-with-sx"  variant="standard"
+              type="text"
+              defaultValue={local}
+               style={{
+                width:'300px',
+              }} />
+           </Box>
+
+           <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+              <Typography >Platitor TVA</Typography>
+              <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
+              <TextField id="input-with-sx"  variant="standard"
+              type="text"
+              defaultValue={platitor}
+               style={{
+                width:'300px',
+              }} />
+           </Box>
+        </>
+      )}        
+      </>
+
+      }
               </Item>
               </Grid>
              
