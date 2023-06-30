@@ -349,7 +349,7 @@ export default function Navig() {
               )
             }
          
-         <>
+         {/* <>
            <Collapse in={openAlert}>
             <Alert severity='success' style={{
               width:'300px',
@@ -372,7 +372,7 @@ export default function Navig() {
                 Bine ai venit ,{nume} {prenume}!
                 </Alert>
               </Collapse>
-      </>
+      </> */}
          
       </Box>
       

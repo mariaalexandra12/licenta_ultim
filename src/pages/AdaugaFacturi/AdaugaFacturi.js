@@ -23,7 +23,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import Collapse from '@mui/material/Collapse';
 import { createTheme } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
-
+import { useUserAuth } from "../../context/userAuthContext";
 
 const theme = createTheme();
 
@@ -98,7 +98,8 @@ const [open, setOpen] = React.useState(true);
         imgUrl:URL.createObjectURL(selectedFile),
         numeFurnizor:numeFur,
         tipFactura:catFactura,
-        valoareTotala:val
+        valoareTotala:val,
+        emailUtilizator:currentUser
       });
       setSucces('Factura a fost inregistrata cu succes!');
     //   }catch(err){
@@ -109,14 +110,18 @@ const [open, setOpen] = React.useState(true);
   const [catFactura , setCatFactura]=useState('');
   const fileInputRef = React.useRef(null);
 
+  const { currentUser }= useUserAuth()
+
+
   return(    
-    <div >
-    <Box sx={{display: 'flex'}}>
+    <div style={{display:'flex',}}>
+    {/* <Box sx={{display: 'block'}}> */}
     <Navig/>
     <Paper elevation={24} style={{
       marginTop:'80px',
-      // marginLeft:'20px',
+      marginLeft:'20px',
       width:'calc(100% + 600px)',
+      // width:'1000px',
       display:'flex',
       background: 'rgba( 24, 4, 4, 0.3 )',
       boxShadow:'0 8px 32px 0 rgba( 31, 38, 135, 0.37 )', 
@@ -126,7 +131,7 @@ const [open, setOpen] = React.useState(true);
       border: '1px solid rgba( 255, 255, 255, 0.18 )',
     }} >
     <Box sx={{marginTop: '-40px',
-    display:'flex',
+        display:'flex'
      }}>
      
       <Box sx={{flexDirection: 'column'}}>
@@ -143,13 +148,12 @@ const [open, setOpen] = React.useState(true);
         />
         <Tooltip title="Adaugă o factură">
           <IconButton onClick={handleButtonClick} style={{ marginLeft: '140px', width: '90px', height: '90px', marginTop: '50px' }}>
-            <AddCircleIcon color="secondary" style={{ width: '70px', height: '70px' }} />
+            <AddCircleIcon style={{ width: '70px', height: '70px', color:'violet' }} />
           </IconButton>
         </Tooltip>
       </>
       }
-      <Typography color="secondary" sx={{marginLeft:'50px'}}
-      >Apasa aici pentru a adauga o factura</Typography>
+      <Typography sx={{marginLeft:'50px',color:'white'}}>Apasa aici pentru a adauga o factura</Typography>
 
       </div>
      
@@ -183,14 +187,15 @@ const [open, setOpen] = React.useState(true);
       }}
       onClick={extrageDateFactura}
       >
-      <DocumentScannerIcon color="secondary" style={{
+      <DocumentScannerIcon style={{
         width:'70px',
         height:'70px',
+        color:'violet'
       }}>
       </DocumentScannerIcon>
       </IconButton>
       </Tooltip>
-      <Typography color="secondary" sx={{marginLeft:'50px'}}
+      <Typography sx={{marginLeft:'50px',color:'white'}}
       >Apasa aici pentru a extrage datele facturii</Typography>
       {eroareExtras && (<>
         <Alert severity="warning">
@@ -300,7 +305,7 @@ const [open, setOpen] = React.useState(true);
         
         </Box>
         </Paper>
-       </Box>
+       {/* </Box> */}
     </div>
 )
 

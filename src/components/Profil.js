@@ -50,8 +50,9 @@ const Profil=()=>{
       })   
      userData.forEach((el)=>{
      setPass(Object.values(el)[0]);
-     setPrenume(Object.values(el)[1]);
-     setNume(Object.values(el)[3]);
+     setPrenume(Object.values(el)[2]);
+     setNume(Object.values(el)[1]);
+    //  console.log(Object.values(el));
      })
      }
      );
@@ -60,9 +61,10 @@ const Profil=()=>{
 
     return (
         <>
-        {/* <Box sx={{display: 'flex'}}> */}
+        <Box sx={{display: 'flex'}}>
         <Navig/>
-        <Box sx={{marginTop: '80px'}}>
+        <Box sx={{  marginTop:'80px',
+      marginLeft:'20px',}}>
         <Grid
          container
            direction="column"
@@ -71,7 +73,7 @@ const Profil=()=>{
               <Grid container  direction="rows" xs>
                 <Grid item>
                 <Item style={{
-                    width:'850px',
+                    width:'1000px',
                     display:'flex',
                     flexDirection:'row',
                     background: 'rgba( 186, 152, 224, 0.7 )',
@@ -153,7 +155,7 @@ const Profil=()=>{
 
            
            <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
-              <Typography >Nume Utilizator</Typography>
+              <Typography >Prenume Utilizator</Typography>
               <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.2,marginLeft:'10px' }} />
               <TextField id="input-with-sx"  variant="standard"
               type="text"
@@ -232,7 +234,7 @@ const Profil=()=>{
            
         </Box>
     
-        {/* </Box> */}
+        </Box>
         </>
     )
 }
