@@ -208,10 +208,10 @@ const Profil=()=>{
               
               <EmailIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
               <Typography >Adresa de email Firma</Typography>
-              <TextField id="adresaEmail" 
+              <input id="adresaEmail" 
               type='text'
               variant="standard" 
-              value={currentUser}
+              defaultValue={currentUser}
               style={{
                 width:'300px',
                 marginTop: '30px'

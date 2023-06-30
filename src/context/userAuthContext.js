@@ -17,7 +17,7 @@ export function AuthContextProvider({children}) {
     useEffect(()=>{
       const unsubscribe=onAuthStateChanged(auth,user=>{
         if(user){
-            setCurrentUser(user.email.replace('"',' '))
+            setCurrentUser(user.email)
         }
       })
       return ()=>{
