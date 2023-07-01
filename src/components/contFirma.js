@@ -45,29 +45,29 @@ const ContFirma=()=>{
 
  const { currentUser }= useUserAuth()
 
+ const [dateFirma,setDateFirma]=useState('');
+
 
   useEffect(() => {
-
-    
     const q2 = query(collection(db, "firma"),where("emailFirma","==",currentUser));
     onSnapshot(q2,(snapshot)=>{
-   let idF;
    let firmaData=[];
    snapshot.docs.forEach((doc)=>{
      if(doc.data()){
        firmaData.push({...doc.data(), id:doc.id});
-       idF=doc.id;
-       localStorage.setItem(doc.id, JSON.stringify(doc.data()));
+    //    idF=doc.id;
+    //    localStorage.setItem(doc.id, JSON.stringify(doc.data()));
        // localStorage.setItem()
      }
-       })
+    },
+      setDateFirma(firmaData) 
+   )
   
    
-    const dateFirma=localStorage.getItem(idF);     
           const denumireFirmaReg=/([a-zA-Z])+\s+.*SRL/gmi;
            const denumireFirmaMatch=dateFirma.match(denumireFirmaReg);
            const denFirma=denumireFirmaMatch && denumireFirmaMatch[0] ? denumireFirmaMatch[0]:'';
-           // setDenumire(denFirma);
+           setDenumire(denFirma);
            console.log(denFirma)
 
             
