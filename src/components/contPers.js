@@ -39,37 +39,41 @@ const ContPers=()=>{
  const [name, setName]=useState('');
  const [prename, setPrename]=useState('');
 
- useEffect(() => {
+ const [dateLogare,setDateLogare]=useState('');
 
+ useEffect(() => {
     const q2 = query(collection(db, "utilizator"),where('emailUtilizator','==',currentUser));
     onSnapshot(q2,(snapshot)=>{
-     let idU;
    let userData=[];
    snapshot.docs.forEach((doc)=>{
      if(doc.data()){
        userData.push({...doc.data(), id:doc.id});
-       idU=doc.id;
-       localStorage.setItem(doc.id, JSON.stringify(doc.data()));
+    //    idU=doc.id;
+    //    localStorage.setItem(doc.id, JSON.stringify(doc.data()));
        // localStorage.setItem()
      }
-       })
+    },
+    setDateLogare(userData),
+    )
   
    
-    const dateUser=localStorage.getItem(idU);     
     const prenameRegex=/(prenume:)\s*(")[a-zA-Z]*/gmi;
-    const prenameMatch=dateUser.match(prenameRegex);
+    const prenameMatch=dateLogare.match(prenameRegex);
     const prename=prenameMatch && prenameMatch[0] ? prenameMatch[0] : '';
     console.log(prename);
+    setPrename(prename);
     
     const nameRegex=/(prenume:)\s*(")[a-zA-Z]*/gmi;
-    const nameMatch=dateUser.match(nameRegex);
+    const nameMatch=dateLogare.match(nameRegex);
     const name=nameMatch && nameMatch[0] ? nameMatch[0] : '';
     console.log(name);
+    setName(name);
 
     const parolaRegex=/(prenume:)\s*(")[a-zA-Z]*/gmi;
-    const parolaMatch=dateUser.match(parolaRegex);
+    const parolaMatch=dateLogare.match(parolaRegex);
     const parola=parolaMatch && parolaMatch[0] ? parolaMatch[0] : '';
     console.log(parola);
+    setPass(parola);
 
          })
 
