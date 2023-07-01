@@ -87,6 +87,13 @@ const Profil=()=>{
           setNume(numeU);
           setPrenume(prenumeU);
           setPass(parola);
+          setDenumire('');
+          setCIF('');
+          setJudet('');
+          setLocal('');
+          setParolaFirma('');
+          setPlatitor('');
+        
      }
      }
      ) 
@@ -105,7 +112,7 @@ const Profil=()=>{
       }
         })
    
-        
+    if(existaPers.current.valueOf() === false){
      const dateFirma=localStorage.getItem(idF);     
            const denumireFirmaReg=/([a-zA-Z])+\s+.*SRL/gmi;
             const denumireFirmaMatch=dateFirma.match(denumireFirmaReg);
@@ -152,6 +159,7 @@ const Profil=()=>{
             else{
               setPlatitor("NU");
             }
+          }
         }
      ) 
   }
