@@ -122,15 +122,20 @@ export default function Navig() {
   const [dateLogare,setDateLogare]=useState('')
 
    useEffect(()=>{
+       try{
         const q=query(collection(db,'utilizator'),where('emailUtilizator','==',currentUser));
         onSnapshot(q,(snapshot)=>{
           snapshot.forEach((doc)=>{
-              if(doc.data()){
-                console.log(doc.data());
+              if(doc.exists()){
+                console.log(JSON.stringify(doc.data()));
               }
           })
-        
         })
+
+      }
+      catch(e) {
+        console.log('cont firma ')
+      }
    },[])
 
 
