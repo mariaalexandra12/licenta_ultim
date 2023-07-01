@@ -15,7 +15,7 @@ import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew';
 import { db } from "../firebaseUtils/firebase_ut";
 import { collection, query, where, getDocs,onSnapshot, QuerySnapshot} from "firebase/firestore";
 import BusinessIcon from '@mui/icons-material/Business';
-
+import SourceIcon from '@mui/icons-material/Source';
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -51,69 +51,74 @@ const ContFirma=()=>{
 
   useEffect(() => {
     const q2 = query(collection(db, "firma"),where("emailFirma","==",currentUser));
-    onSnapshot(q2,(snapshot)=>{
-   let firmaData=[];
-   snapshot.docs.forEach((doc)=>{
-     if(doc.data()){
-       firmaData.push({...doc.data(), id:doc.id});
-    //    idF=doc.id;
-    //    localStorage.setItem(doc.id, JSON.stringify(doc.data()));
-       // localStorage.setItem()
-     }
-    },
-      setDateFirma(firmaData) 
-   )
+    
+
+
+
+
+//     onSnapshot(q2,(snapshot)=>{
+//    let firmaData=[];
+//    snapshot.docs.forEach((doc)=>{
+//      if(doc.data()){
+//        firmaData.push({...doc.data(), id:doc.id});
+//     //    idF=doc.id;
+//     //    localStorage.setItem(doc.id, JSON.stringify(doc.data()));
+//        // localStorage.setItem()
+//      }
+//     },
+//       setDateFirma(firmaData) 
+//    )
   
     
-         const DF=JSON.stringify(dateFirma[0]);
+//          const DF=JSON.stringify(dateFirma[0]);
          
-          const denumireFirmaReg=/("nume":")+[a-zA-z\s]*(SRL)/gmi;
-           const denumireFirmaMatch=DF.match(denumireFirmaReg);
-           const denFirma=denumireFirmaMatch && denumireFirmaMatch[0] ? denumireFirmaMatch[0]:'';
-           setDenumire(denFirma.replace('"nume":"',''));
-           console.log(denFirma.replace('"nume":"',''));
+//           const denumireFirmaReg=/("nume":")+[a-zA-z\s]*(SRL)/gmi;
+//            const denumireFirmaMatch=DF.match(denumireFirmaReg);
+//            const denFirma=denumireFirmaMatch && denumireFirmaMatch[0] ? denumireFirmaMatch[0]:'';
+//            setDenumire(denFirma.replace('"nume":"',''));
+//            console.log(denFirma.replace('"nume":"',''));
 
             
-           const cifReg=/("CIF":")\s*[0-9]*/gmi;
-           const cifMatch=DF.match(cifReg);
-           const cifFirma=cifMatch && cifMatch[0] ? cifMatch[0] : '';
-           setCIF(cifFirma.replace('"CIF":"',''));
-           console.log(cifFirma.replace('"CIF":"',''))
+//            const cifReg=/("CIF":")\s*[0-9]*/gmi;
+//            const cifMatch=DF.match(cifReg);
+//            const cifFirma=cifMatch && cifMatch[0] ? cifMatch[0] : '';
+//            setCIF(cifFirma.replace('"CIF":"',''));
+//            console.log(cifFirma.replace('"CIF":"',''))
 
 
-           const judetReg=/("judet":")[a-zA-Z]*/gmi;
-           const judetMatch=DF.match(judetReg);
-           const judetFirma=judetMatch && judetMatch[0] ? judetMatch[0] : '';
-           setJudet(judetFirma.replace('"judet":"',''));
-           console.log(judetFirma.replace('"judet":"',''))
+//            const judetReg=/("judet":")[a-zA-Z]*/gmi;
+//            const judetMatch=DF.match(judetReg);
+//            const judetFirma=judetMatch && judetMatch[0] ? judetMatch[0] : '';
+//            setJudet(judetFirma.replace('"judet":"',''));
+//            console.log(judetFirma.replace('"judet":"',''))
     
 
-           const localitateRegex=/("localitate":")[a-zA-z\s]*/gmi;
-           const localitateMatch=DF.match(localitateRegex);
-           const localFirma=localitateMatch && localitateMatch[0] ? localitateMatch[0] : '';
-           setLocal(localFirma.replace('"localitate":"',''));
-           console.log(localFirma.replace('"localitate":"',''))
+//            const localitateRegex=/("localitate":")[a-zA-z\s]*/gmi;
+//            const localitateMatch=DF.match(localitateRegex);
+//            const localFirma=localitateMatch && localitateMatch[0] ? localitateMatch[0] : '';
+//            setLocal(localFirma.replace('"localitate":"',''));
+//            console.log(localFirma.replace('"localitate":"',''))
 
 
-           const parolaFirmaRegex=/("parolaFirma":")[a-zA-z\W\d]+(,)/gmi;
-           const parolaFirmaMatch=DF.match(parolaFirmaRegex);
-           const parolFir=parolaFirmaMatch && parolaFirmaMatch[0] ? parolaFirmaMatch[0] : '';
-          setParolaFirma(parolFir.replace('"parolaFirma":"',''));
-           console.log(parolFir.replace('"parolaFirma":"',''))
+//            const parolaFirmaRegex=/("parolaFirma":")[a-zA-z\W\d]+(,)/gmi;
+//            const parolaFirmaMatch=DF.match(parolaFirmaRegex);
+//            const parolFir=parolaFirmaMatch && parolaFirmaMatch[0] ? parolaFirmaMatch[0] : '';
+//           setParolaFirma(parolFir.replace('"parolaFirma":"',''));
+//            console.log(parolFir.replace('"parolaFirma":"',''))
 
 
-           const platTVARegex=/("platitorTVA":")\s*[a-zA-Z]*/gmi;
-           const platTVAMatch=DF.match(platTVARegex);
-           const platTVA=platTVAMatch && platTVAMatch[0] ? platTVAMatch[0] : '';
-           if(platTVA.replace('"platitorTVA":"','') === "on"){
+//            const platTVARegex=/("platitorTVA":")\s*[a-zA-Z]*/gmi;
+//            const platTVAMatch=DF.match(platTVARegex);
+//            const platTVA=platTVAMatch && platTVAMatch[0] ? platTVAMatch[0] : '';
+//            if(platTVA.replace('"platitorTVA":"','') === "on"){
              
-             setPlatitor("DA");
-           }
-           else{
-             setPlatitor("NU");
-           }
+//              setPlatitor("DA");
+//            }
+//            else{
+//              setPlatitor("NU");
+//            }
 
-         })
+//          })
 
        },[currentUser]) 
 
@@ -170,9 +175,11 @@ const ContFirma=()=>{
        {value===0 &&(
         <>
           {/* CONT FIRMA */}
+          
            <Box sx={{ display: 'flex', alignItems: 'flex-end',}}>
            <Typography >Adresa de email Firma</Typography>
-              <EmailIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
+              <EmailIcon sx={{ color: 'action.active', mr: 1, my: 0.5, 
+               marginLeft:'14px'}} />
               <TextField id="adresaEmail" 
               type='text'
               variant="standard" 
@@ -187,7 +194,8 @@ const ContFirma=()=>{
 
            <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
               <Typography >Parola Cont Firma</Typography>
-              <HttpsIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
+              <HttpsIcon sx={{ color: 'action.active', mr: 1, my: 0.5,
+              marginLeft:'45px' }} />
               <TextField id="input-with-sx" 
               type="text"
               variant="standard" 
@@ -200,7 +208,8 @@ const ContFirma=()=>{
 
            <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
               <Typography >Denumire Firma</Typography>
-              <BusinessIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
+              <BusinessIcon sx={{ color: 'action.active', mr: 1, my: 0.5 ,
+               marginLeft:'58px'}} />
               <TextField id="input-with-sx" variant="standard" 
                type="text"
                defaultValue={denumire}
@@ -212,7 +221,8 @@ const ContFirma=()=>{
            
            <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
               <Typography >Cod Inregistrare Fiscala</Typography>
-              <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
+              <SourceIcon sx={{ color: 'action.active', mr: 1, my: 0.5 ,
+            marginLeft:'3px'}} />
               <TextField id="input-with-sx"  variant="standard"
               type="text"
               defaultValue={cif}
@@ -223,7 +233,8 @@ const ContFirma=()=>{
 
            <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
               <Typography>Judet</Typography>
-              <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
+              <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5,
+              marginLeft:'130px' }} />
               <TextField id="input-with-sx"  variant="standard"
               type="text"
               defaultValue={judet}
@@ -234,7 +245,8 @@ const ContFirma=()=>{
 
            <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
               <Typography >Localitate</Typography>
-              <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
+              <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5,
+              marginLeft:'98px' }} />
               <TextField id="input-with-sx"  variant="standard"
               type="text"
               defaultValue={local}
@@ -245,7 +257,8 @@ const ContFirma=()=>{
 
            <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
               <Typography >Platitor TVA</Typography>
-              <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
+              <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5,
+              marginLeft:'85px'}} />
               <TextField id="input-with-sx"  variant="standard"
               type="text"
               defaultValue={platitor}
@@ -254,6 +267,9 @@ const ContFirma=()=>{
               }} />
            </Box>
           
+          <Button variant="contained" color="secondary"
+          style={{marginTop:'20px'}}
+          >Actualizeaza datele firmei</Button>
         </>
       )}     
 

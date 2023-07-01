@@ -187,6 +187,10 @@ const ContPers=()=>{
                 width:'300px',
               }} />
            </Box>
+
+           <Button variant="contained" color="secondary"
+          style={{marginTop:'20px'}}
+          >Actualizeaza datele contului personal</Button>
         </>
       )}
 
@@ -195,7 +199,8 @@ const ContPers=()=>{
           {/* CONT FIRMA */}
            <Box sx={{ display: 'flex', alignItems: 'flex-end',}}>
            <Typography >Adresa de email Firma</Typography>
-              <EmailIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
+              <EmailIcon sx={{ color: 'action.active', mr: 1, my: 0.5 ,
+              marginLeft:'14px'}} />
               <TextField id="adresaEmail" 
               type='text'
               variant="standard" 
@@ -209,7 +214,7 @@ const ContPers=()=>{
 
            <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
               <Typography >Parola Cont Firma</Typography>
-              <HttpsIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
+              <HttpsIcon sx={{ color: 'action.active', mr: 1, my: 0.5,marginLeft:'45px' }} />
               <TextField id="input-with-sx" 
               type="text"
               variant="standard" 
@@ -221,7 +226,7 @@ const ContPers=()=>{
 
            <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
               <Typography >Denumire Firma</Typography>
-              <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
+              <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5,marginLeft:'58px' }} />
               <TextField id="input-with-sx" variant="standard" 
                type="text"
                style={{
@@ -232,7 +237,7 @@ const ContPers=()=>{
            
            <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
               <Typography >Cod Inregistrare Fiscala</Typography>
-              <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
+              <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5,marginLeft:'3px' }} />
               <TextField id="input-with-sx"  variant="standard"
               type="text"
                style={{
@@ -242,7 +247,7 @@ const ContPers=()=>{
 
            <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
               <Typography>Judet</Typography>
-              <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
+              <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5,marginLeft:'98px' }} />
               <TextField id="input-with-sx"  variant="standard"
               type="text"
                style={{
@@ -252,7 +257,7 @@ const ContPers=()=>{
 
            <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
               <Typography >Localitate</Typography>
-              <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
+              <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5,marginLeft:'130px' }} />
               <TextField id="input-with-sx"  variant="standard"
               type="text"
                style={{
@@ -262,13 +267,17 @@ const ContPers=()=>{
 
            <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
               <Typography >Platitor TVA</Typography>
-              <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
+              <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5,marginLeft:'85px' }} />
               <TextField id="input-with-sx"  variant="standard"
               type="text"
                style={{
                 width:'300px',
               }} />
            </Box>
+
+           <Button variant="contained" color="secondary"
+          style={{marginTop:'20px'}}
+          >Actualizeaza datele firmei</Button>
 
         </>
       )}        
