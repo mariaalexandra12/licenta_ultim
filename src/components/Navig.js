@@ -308,14 +308,16 @@ export default function Navig() {
           
           <List>
 
-          <ListItem disablePadding onClick={()=>navigate("/profil")}>
+          {/* <ListItem disablePadding onClick={()=>navigate("/profil")}>
             <ListItemButton >
               <ListItemIcon style={{color:"rgba(138, 5, 186)"}}>
                 <SettingsApplicationsIcon/>
               </ListItemIcon>
               <ListItemText primary="Setari Cont" />
             </ListItemButton>
-          </ListItem>
+          </ListItem> */}
+
+
       <ListItem  onClick={handleClickOpen}>
                   <ListItemButton>
                     <Dialog

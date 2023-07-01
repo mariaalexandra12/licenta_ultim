@@ -11,9 +11,10 @@ import SignUp from "./pages/Authentification/signUp";
 import SignUpPers from "./pages/Authentification/signUpPers";
 import ForgetPass from "./pages/Authentification/forgetParola";
 import SignUpFirma from "./pages/Authentification/signUpFirma";
-import Profil from "./components/Profil";
 import './App.css';
 import { AuthContextProvider } from "./context/userAuthContext";
+import ContFirma from "./components/contFirma";
+import ContPers from "./components/contPers";
 
 
 function App() {
@@ -25,7 +26,8 @@ function App() {
             <Route path="/navig" element={<Navig />} />
             <Route path="/signUp" exact element={<SignUp />} />
             <Route path="/signUpFirma" exact element={<SignUpFirma />} />
-            <Route path="/profil" exact element={<Profil/>}/>
+            <Route path="/contPers" exact element={<ContPers/>}/>
+            <Route path="/contFirma" exact element={<ContFirma/>}/>
             <Route path="/forget" exact element={<ForgetPass />} />
             <Route path="/sPers" exact element={<SignUpPers />} />
             <Route path="/analiza" element={<Analiza />} />

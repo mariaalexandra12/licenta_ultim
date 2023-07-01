@@ -14,7 +14,7 @@ import HttpsIcon from '@mui/icons-material/Https';
 import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew';
 import { db } from "../firebaseUtils/firebase_ut";
 import { collection, query, where, getDocs,onSnapshot, QuerySnapshot} from "firebase/firestore";
-import Profil from "./Profil";
+
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -117,12 +117,34 @@ const ContFirma=()=>{
     return (
         <>
 
-     <Box sx={{display: 'flex'}}>
-        {/* <Navig/> */}
+<Box sx={{display: 'flex'}}>
+        <Navig/>
         <Box sx={{  marginTop:'80px',
       marginLeft:'20px',}}>
-       <Profil/>
-
+        <Grid
+         container
+           direction="column"
+            justifyContent="center"
+           alignItems="center">
+              <Grid container  direction="rows" xs>
+                <Grid item>
+                <Item style={{
+                    width:'1000px',
+                    display:'flex',
+                    flexDirection:'row',
+                    background: 'rgba( 186, 152, 224, 0.7 )',
+                    boxShadow:'0 8px 32px 0 rgba( 31, 38, 135, 0.37 )', 
+                    backdropFilter:' blur( 11px )',
+                    WebkitBackdropFilter:' blur( 11px )',
+                    borderRadius:' 10px',
+                    border: '1px solid rgba( 255, 255, 255, 0.18 )',
+                }}>
+                    <Typography style={{fontSize:'35px'}}>Profil</Typography>
+                    <IconButton style={{marginLeft:'450px',}}><PersonPinIcon/></IconButton>
+                </Item>
+                </Grid>
+              
+              </Grid>
               <Grid item >
               <Item style={{
                 marginTop:'50px',
@@ -244,10 +266,10 @@ const ContFirma=()=>{
         
         </Item>
       </Grid>
-       </Box>
-    
-        </Box>
-    
+     
+     </Grid>
+     </Box>
+     </Box>
         </>
     )
 }
