@@ -44,7 +44,7 @@ import SettingsApplicationsIcon from '@mui/icons-material/SettingsApplications';
 import { makeStyles} from '@mui/styles';
 import { useUserAuth } from '../context/userAuthContext';
 import CloseIcon from '@mui/icons-material/Close';
-import { collection, query, where,onSnapshot} from "firebase/firestore";
+import { collection, query, where,onSnapshot, getDocs} from "firebase/firestore";
 import Collapse from '@mui/material/Collapse';
 import Alert from '@mui/material/Alert';
 import { auth, db } from "../firebaseUtils/firebase_ut";
@@ -122,17 +122,23 @@ export default function Navig() {
   const [dateLogare,setDateLogare]=useState('')
 
    useEffect(()=>{
-       while(true){
+
         const q=query(collection(db,'utilizator'),where('emailUtilizator','==',currentUser));
-        onSnapshot(q,(snapshot)=>{
-          snapshot.forEach((doc)=>{
-              if(doc.exists()){
-                console.log(JSON.stringify(doc.data()));
-              }
-          })
-        })
+      //   onSnapshot(q,(snapshot)=>{
+      //     snapshot.forEach((doc)=>{
+      //         if(doc.exists()){
+      //           console.log(JSON.stringify(doc.data()));
+      //         }
+      //     })
+      //   })
+      // }
+      const docsUser=getDocs(q).then((documentUser)=>{
+        if(documentUser.empty()){
+          console.log('cont firma')
+        }
       }
-      console.log('cont firma');
+      )
+      // console.log('cont firma');
    },[])
 
 
