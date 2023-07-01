@@ -27,7 +27,7 @@ const Item = styled(Paper)(({ theme }) => ({
 
 
 
-export default function ContPers(){
+const ContPers=()=>{
    
     const [value, setValue] = React.useState(0);
 
@@ -258,3 +258,4 @@ export default function ContPers(){
     )
 
 }
+export default ContPers

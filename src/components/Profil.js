@@ -14,6 +14,9 @@ import HttpsIcon from '@mui/icons-material/Https';
 import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew';
 import { db } from "../firebaseUtils/firebase_ut";
 import { collection, query, where, getDocs,onSnapshot, QuerySnapshot} from "firebase/firestore";
+import ContPers from "./contPers";
+import ContFirma from "./contFirma";
+
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -30,9 +33,22 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const Profil=()=>{
 
+  const [existaPers,setExistaPers]=useState(false)
+  const { currentUser }=useUserAuth();
+
+  useEffect(()=>{
+
+    const q=query(collection(db,'utilizator'),where('emailUtilizator','==',currentUser));
+    onSnapshot(q,(snapshot)=>{
+      snapshot.forEach((doc)=>{
+        if(doc.exists()){
+          setExistaPers(true);
+        }
+      })
+    })
+
+  },[existaPers])
     
-
-
 
     return (
         <>
@@ -80,7 +96,12 @@ const Profil=()=>{
               </Item>
               </Grid> */}
 
-
+           {
+            existaPers.valueOf() === true ? 
+             <ContPers/>
+             :
+             <ContFirma/>
+           }
              
            </Grid>
            
