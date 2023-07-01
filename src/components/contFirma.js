@@ -60,56 +60,56 @@ const ContFirma=()=>{
        // localStorage.setItem()
      }
     },
-      setDateFirma(firmaData) 
+      setDateFirma(JSON.stringify(firmaData[0])) 
    )
   
-   console.log(dateFirma);
+//    console.log(JSON.stringify(dateFirma[0]));
    
-        //   const denumireFirmaReg=/([a-zA-Z])+\s+.*SRL/gmi;
-        //    const denumireFirmaMatch=dateFirma.match(denumireFirmaReg);
-        //    const denFirma=denumireFirmaMatch && denumireFirmaMatch[0] ? denumireFirmaMatch[0]:'';
-        //    setDenumire(denFirma);
-        //    console.log(denFirma)
+          const denumireFirmaReg=/([a-zA-Z])+\s+.*SRL/gmi;
+           const denumireFirmaMatch=dateFirma.match(denumireFirmaReg);
+           const denFirma=denumireFirmaMatch && denumireFirmaMatch[0] ? denumireFirmaMatch[0]:'';
+           setDenumire(denFirma);
+           console.log(denFirma)
 
             
-        //    const cifReg=/("CIF":")\s*[0-9]*/gmi;
-        //    const cifMatch=dateFirma.match(cifReg);
-        //    const cifFirma=cifMatch && cifMatch[0] ? cifMatch[0] : '';
-        //    setCIF(cifFirma.replace('"CIF":"',''));
-        //    console.log(cifFirma.replace('"CIF":"',''))
+           const cifReg=/("CIF":")\s*[0-9]*/gmi;
+           const cifMatch=dateFirma.match(cifReg);
+           const cifFirma=cifMatch && cifMatch[0] ? cifMatch[0] : '';
+           setCIF(cifFirma.replace('"CIF":"',''));
+           console.log(cifFirma.replace('"CIF":"',''))
 
 
-        //    const judetReg=/("judet":")\s*[a-zA-Z]*/gmi;
-        //    const judetMatch=dateFirma.match(judetReg);
-        //    const judetFirma=judetMatch && judetMatch[0] ? judetMatch[0] : '';
-        //    setJudet(judetFirma.replace('"judet":"',''));
-        //    console.log(judetFirma.replace('"judet":"',''))
+           const judetReg=/("judet":")\s*[a-zA-Z]*/gmi;
+           const judetMatch=dateFirma.match(judetReg);
+           const judetFirma=judetMatch && judetMatch[0] ? judetMatch[0] : '';
+           setJudet(judetFirma.replace('"judet":"',''));
+           console.log(judetFirma.replace('"judet":"',''))
     
 
-        //    const localitateRegex=/("localitate":")\s*[a-zA-Z]*/gmi;
-        //    const localitateMatch=dateFirma.match(localitateRegex);
-        //    const localFirma=localitateMatch && localitateMatch[0] ? localitateMatch[0] : '';
-        //    setLocal(localFirma.replace('"localitate":"',''));
-        //    console.log(localFirma.replace('"localitate":"',''))
+           const localitateRegex=/("localitate":")\s*[a-zA-Z]*/gmi;
+           const localitateMatch=dateFirma.match(localitateRegex);
+           const localFirma=localitateMatch && localitateMatch[0] ? localitateMatch[0] : '';
+           setLocal(localFirma.replace('"localitate":"',''));
+           console.log(localFirma.replace('"localitate":"',''))
 
 
-        //    const parolaFirmaRegex=/("parolaFirma":")\s*[a-zA-Z]*/gmi;
-        //    const parolaFirmaMatch=dateFirma.match(parolaFirmaRegex);
-        //    const parolFir=parolaFirmaMatch && parolaFirmaMatch[0] ? parolaFirmaMatch[0] : '';
-        //   setParolaFirma(parolFir.replace('"parolaFirma":"',''));
-        //    console.log(parolFir.replace('"parolaFirma":"',''))
+           const parolaFirmaRegex=/("parolaFirma":")\s*[a-zA-Z]*/gmi;
+           const parolaFirmaMatch=dateFirma.match(parolaFirmaRegex);
+           const parolFir=parolaFirmaMatch && parolaFirmaMatch[0] ? parolaFirmaMatch[0] : '';
+          setParolaFirma(parolFir.replace('"parolaFirma":"',''));
+           console.log(parolFir.replace('"parolaFirma":"',''))
 
 
-        //    const platTVARegex=/("platitorTva":")\s*[a-zA-Z]*/gmi;
-        //    const platTVAMatch=dateFirma.match(platTVARegex);
-        //    const platTVA=platTVAMatch && platTVAMatch[0] ? platTVAMatch[0] : '';
-        //    if(platTVA.replace('"platitorTVA":"','') === "on"){
+           const platTVARegex=/("platitorTva":")\s*[a-zA-Z]*/gmi;
+           const platTVAMatch=dateFirma.match(platTVARegex);
+           const platTVA=platTVAMatch && platTVAMatch[0] ? platTVAMatch[0] : '';
+           if(platTVA.replace('"platitorTVA":"','') === "on"){
              
-        //      setPlatitor("DA");
-        //    }
-        //    else{
-        //      setPlatitor("NU");
-        //    }
+             setPlatitor("DA");
+           }
+           else{
+             setPlatitor("NU");
+           }
 
          })
 

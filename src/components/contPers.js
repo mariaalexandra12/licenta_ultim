@@ -53,7 +53,7 @@ const ContPers=()=>{
        // localStorage.setItem()
      }
     },
-    setDateLogare(userData),
+    setDateLogare(JSON.stringify(userData[0])),
     )
   
    
