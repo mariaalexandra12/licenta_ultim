@@ -41,22 +41,21 @@ const ContPers=()=>{
 
  useEffect(() => {
 
-    const q2 = query(collection(db, "utilizator"));
-    let idF;
-    where("emailUtilizator","==",currentUser);
+    const q2 = query(collection(db, "utilizator"),where('emailUtilizator','==',currentUser));
     onSnapshot(q2,(snapshot)=>{
+     let idU;
    let userData=[];
    snapshot.docs.forEach((doc)=>{
      if(doc.data()){
        userData.push({...doc.data(), id:doc.id});
-       idF=doc.id;
+       idU=doc.id;
        localStorage.setItem(doc.id, JSON.stringify(doc.data()));
        // localStorage.setItem()
      }
        })
   
    
-    const dateUser=localStorage.getItem(idF);     
+    const dateUser=localStorage.getItem(idU);     
     const prenameRegex=/(prenume:)\s*(")[a-zA-Z]*/gmi;
     const prenameMatch=dateUser.match(prenameRegex);
     const prename=prenameMatch && prenameMatch[0] ? prenameMatch[0] : '';

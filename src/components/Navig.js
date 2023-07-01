@@ -49,6 +49,8 @@ import Collapse from '@mui/material/Collapse';
 import Alert from '@mui/material/Alert';
 import { auth, db } from "../firebaseUtils/firebase_ut";
 import { signOut } from 'firebase/auth';
+import ContPers from './contPers';
+import ContFirma from './contFirma';
 
 const drawerWidth = 210;
 
@@ -115,31 +117,29 @@ export default function Navig() {
   const { currentUser }= useUserAuth();
 
   const [nume,setNume]=useState('')
-   const[prenume,setPrenume]=useState('')
+   const[prenume,setPrenume]=useState(false);
 
-  const [existaPers,setExistaPers]=useState(false)
+  const [existaPers,setExistaPers]=useState('')
 
   const [dateLogare,setDateLogare]=useState('')
 
    useEffect(()=>{
-
+    const verificaAdresa=()=>{
         const q=query(collection(db,'utilizator'),where('emailUtilizator','==',currentUser));
-      //   onSnapshot(q,(snapshot)=>{
-      //     snapshot.forEach((doc)=>{
-      //         if(doc.exists()){
-      //           console.log(JSON.stringify(doc.data()));
-      //         }
-      //     })
-      //   })
-      // }
       const docsUser=getDocs(q).then((documentUser)=>{
-        if(documentUser.empty()){
-          console.log('cont firma')
+        if(documentUser.empty){
+          setExistaPers(false);
+        }
+        else{
+          setExistaPers(true);
+         
         }
       }
       )
-      // console.log('cont firma');
+    }
+    verificaAdresa();
    },[])
+
 
 
   const [open, setOpen] = React.useState(true);
@@ -320,7 +320,13 @@ export default function Navig() {
           
           <List>
 
-            {/* { (existaPers.valueOf() === true) ? console.log('utilizator') : console.log('firma')} */}
+            { existaPers ? 
+              // <p>Cont pers</p>
+              <ContPers/>
+            : 
+            // <p>Cont frima</p>
+             <ContFirma/>
+            }
 
           {/* <ListItem disablePadding onClick={()=>navigate("/profil")}>
             <ListItemButton >
