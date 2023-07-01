@@ -42,7 +42,7 @@ import CardContent from '@mui/material/CardContent';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import SettingsApplicationsIcon from '@mui/icons-material/SettingsApplications';
 import { makeStyles} from '@mui/styles';
-import { UserAuthContextProvider, useUserAuth } from '../context/userAuthContext';
+import { useUserAuth } from '../context/userAuthContext';
 import CloseIcon from '@mui/icons-material/Close';
 import { collection, query, where,onSnapshot} from "firebase/firestore";
 import Collapse from '@mui/material/Collapse';
@@ -111,7 +111,9 @@ const defaultTheme = createTheme();
 export default function Navig() {
 
   const [openAlert, setOpenAlert] = React.useState(true);
-  const { currentUser ,dateLogare }= useUserAuth()
+
+  const { currentUser ,dateLogare }= useUserAuth();
+
   const [nume,setNume]=useState('')
    const[prenume,setPrenume]=useState('')
 

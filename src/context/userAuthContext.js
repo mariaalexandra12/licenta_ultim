@@ -27,9 +27,9 @@ export function AuthContextProvider({children}) {
                 onSnapshot(q2,(snapshot)=>{
                let userData=[];
                snapshot.docs.forEach((doc)=>{
-                if(doc.data()){
-                    userData.push({...doc.data(),id:doc.id});
-               } 
+                // if(doc.data()){
+                    userData.push({...doc.data,id:doc.id});
+            //    } 
               }
              )
               setDateLogare(userData);
@@ -48,7 +48,8 @@ export function AuthContextProvider({children}) {
 
                 }
       return ()=>{
-        unsubscribe();}
+        unsubscribe();
+        setDateLogare([]);}
     })
 },[])
 
