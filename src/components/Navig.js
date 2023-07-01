@@ -111,27 +111,16 @@ const defaultTheme = createTheme();
 export default function Navig() {
 
   const [openAlert, setOpenAlert] = React.useState(true);
-  const { currentUser }= useUserAuth()
+  const { currentUser ,dateLogare }= useUserAuth()
   const [nume,setNume]=useState('')
    const[prenume,setPrenume]=useState('')
 
   const [existaPers,setExistaPers]=useState(false)
 
    useEffect(()=>{
-    const q = query(collection(db, "utilizator"), where("emailUtilizator", "==", currentUser));
-    onSnapshot(q,(snapshot)=>{
-      let userData=[];
-      snapshot.docs.forEach((doc)=>{
-       if(doc.exists()){
-         setExistaPers(true);
-       }
-      })   
-     }
-     );
-     
+        console.log(currentUser);
+        console.log(dateLogare)
    },[])
-
-
 
 
   const [open, setOpen] = React.useState(true);
@@ -312,7 +301,7 @@ export default function Navig() {
           
           <List>
 
-            { (existaPers.valueOf() === true) ? console.log('utilizator') : console.log('firma')}
+            {/* { (existaPers.valueOf() === true) ? console.log('utilizator') : console.log('firma')} */}
 
           {/* <ListItem disablePadding onClick={()=>navigate("/profil")}>
             <ListItemButton >
