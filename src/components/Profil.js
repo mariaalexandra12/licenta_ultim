@@ -55,21 +55,103 @@ const Profil=()=>{
    
    useEffect(() => {
     if (currentUser) {
-      const collectionRef =collection(db,'firma');
-  
-      const q = query(collection(db, "utilizator"), where("emailUtilizator", "==", currentUser));
+      let idU;
+      const q = query(collection(db, "utilizator"), 
+         where("emailUtilizator","==",currentUser));
       onSnapshot(q,(snapshot)=>{
         let userData=[];
         snapshot.docs.forEach((doc)=>{
           if(doc.data()){
-            existaPers.current=true;
+            idU=doc.id;
+           existaPers.current=true;
             userData.push({...doc.data(), id:doc.id})
+            localStorage.setItem(doc.id, JSON.stringify(doc.data()));
             setExistaContPers(true);
           } 
      })
-     console.log(userData);
+     console.log("date utilizator:"+JSON.stringify(userData));
      }
      ) 
+
+
+     const q2 = query(collection(db, "firma"));
+     let idF;
+     where("emailFirma","==",currentUser);
+     onSnapshot(q2,(snapshot)=>{
+    let firmaData=[];
+    snapshot.docs.forEach((doc)=>{
+      if(doc.data()){
+        firmaData.push({...doc.data(), id:doc.id});
+        idF=doc.id;
+        localStorage.setItem(doc.id, JSON.stringify(doc.data()));
+      }
+        })
+     console.log("date firma:"+JSON.stringify(firmaData));
+
+        }
+     ) 
+
+    //  if(existaPers.current.valueOf() === true){
+
+     const dateFirma=localStorage.getItem(idF);     
+           const denumireFirmaReg=/([a-zA-Z])+\s+.*SRL/gmi;
+            const denumireFirmaMatch=dateFirma.match(denumireFirmaReg);
+            const denFirma=denumireFirmaMatch && denumireFirmaMatch[0] ? denumireFirmaMatch[0]:'';
+            console.log(denFirma);
+
+
+            const cifReg=/("CIF":")\s*[0-9]*/gmi;
+            const cifMatch=dateFirma.match(cifReg);
+            const cifFirma=cifMatch && cifMatch[0] ? cifMatch[0] : '';
+            console.log(cifFirma.replace('"CIF":"',''));
+
+            const judetReg=/("judet":")\s*[a-zA-Z]*/gmi;
+            const judetMatch=dateFirma.match(judetReg);
+            const judetFirma=judetMatch && judetMatch[0] ? judetMatch[0] : '';
+            console.log(judetFirma.replace('"judet":"',''));
+
+            const localitateRegex=/("localitate":")\s*[a-zA-Z]*/gmi;
+            const localitateMatch=dateFirma.match(localitateRegex);
+            const localFirma=localitateMatch && localitateMatch[0] ? localitateMatch[0] : '';
+            console.log(localFirma.replace('"localitate":"',''));
+
+            const parolaFirmaRegex=/("parolaFirma":")\s*[a-zA-Z]*/gmi;
+            const parolaFirmaMatch=dateFirma.match(parolaFirmaRegex);
+            const parolFir=parolaFirmaMatch && parolaFirmaMatch[0] ? parolaFirmaMatch[0] : '';
+            console.log(parolFir.replace('"parolaFirma":"',''));
+
+            const platTVARegex=/("platitorTva":")\s*[a-zA-Z]*/gmi;
+            const platTVAMatch=dateFirma.match(platTVARegex);
+            const platTVA=platTVAMatch && platTVAMatch[0] ? platTVAMatch[0] : '';
+            if(platTVA.replace('"platitorTVA":"','') === "on"){
+              console.log("DA");
+            }
+            else{
+              console.log("NU");
+            }
+    //  }
+    //  else{
+    //   const dateUser=localStorage.getItem(idU);  
+    //       const numeReg=/("nume":")([a-zA-Z]+)/gmi;
+    //       const prenumeReg=/("prenume":")([a-zA-Z]+)/gmi;
+    //       const parolaReg=/"parolaUtilizator":"([^"]+)"/gmi;
+  
+    //       const numeMatch=dateUser.match(numeReg);
+    //       const prenumeMatch=dateUser.match(prenumeReg);
+    //       const parolaMatch=dateUser.match(parolaReg);
+  
+    //       const numeU=numeMatch && numeMatch[0] ? (numeMatch[0].replace('"nume":"','')) : ' ';
+    //       const prenumeU=prenumeMatch && prenumeMatch[0] ? (prenumeMatch[0].replace('"prenume":"','')) : ' ';
+    //       const parola=parolaMatch && parolaMatch[0] ? (parolaMatch[0].replace('"parolaUtilizator":"','')) : ' ';
+  
+    //       setNume(numeU);
+    //       setPrenume(prenumeU);
+    //       setPass(parola);
+    //      }
+     
+ 
+
+
   }
   }, [currentUser]);
 
@@ -114,104 +196,43 @@ const Profil=()=>{
     // },[currentUser,existaPers])
   
 
-    useEffect(()=>{
-      let id;
-      const q = query(collection(db, "utilizator"), where("emailUtilizator", "==",currentUser));
-      onSnapshot(q,(snapshot)=>{
-        snapshot.docs.forEach((doc)=>{
-          if(doc.data()){
-            existaPers.current=true;
-            id=doc.id;
-          }  
-        })
-        const dateUser= id ? localStorage.getItem(id) : null;
+    // useEffect(()=>{
+    //   let id;
+    //   const q = query(collection(db, "utilizator"), where("emailUtilizator", "==",currentUser));
+    //   onSnapshot(q,(snapshot)=>{
+    //     snapshot.docs.forEach((doc)=>{
+    //       if(doc.data()){
+    //         existaPers.current=true;
+    //         id=doc.id;
+    //       }  
+    //     })
+    //     
+    //    else{
+    //     console.log('nu exista date personale');
+    //    }
 
-        if(dateUser !== null){
+    //    }) 
 
-        const numeReg=/("nume":")([a-zA-Z]+)/gmi;
-        const prenumeReg=/("prenume":")([a-zA-Z]+)/gmi;
-        const parolaReg=/"parolaUtilizator":"([^"]+)"/gmi;
-
-        const numeMatch=dateUser.match(numeReg);
-        const prenumeMatch=dateUser.match(prenumeReg);
-        const parolaMatch=dateUser.match(parolaReg);
-
-        const numeU=numeMatch && numeMatch[0] ? (numeMatch[0].replace('"nume":"','')) : ' ';
-        const prenumeU=prenumeMatch && prenumeMatch[0] ? (prenumeMatch[0].replace('"prenume":"','')) : ' ';
-        const parola=parolaMatch && parolaMatch[0] ? (parolaMatch[0].replace('"parolaUtilizator":"','')) : ' ';
-
-        setNume(numeU);
-        setPrenume(prenumeU);
-        setPass(parola);
-       }
-       else{
-        console.log('nu exista date personale');
-       }
-
-       }) 
-
-      },[currentUser,existaPers])
+    //   },[currentUser,existaPers])
   
   
-      useEffect(()=>{
-        if(existaPers.current.valueOf() === false){
-           let idF;
-          const q = query(collection(db, "firma"), where("emailFirma", "==", currentUser));
-          onSnapshot(q,(snapshot)=>{
-            snapshot.docs.forEach((doc)=>{
-              if(doc.data()){
-              idF=doc.id;
-              }
-            })  
+      // useEffect(()=>{
+      //   if(existaPers.current.valueOf() === false){
+      //      let idF;
+      //     const q = query(collection(db, "firma"), where("emailFirma", "==", currentUser));
+      //     onSnapshot(q,(snapshot)=>{
+      //       snapshot.docs.forEach((doc)=>{
+      //         if(doc.data()){
+      //         idF=doc.id;
+      //         }
+      //       })  
             
-            const dateFirma=idF ?  localStorage.getItem(idF): null;
+      //       
 
-            if(dateFirma !== null){
-            
-            const denumireFirmaReg=/([a-zA-Z])+\s+.*SRL/gmi;
-            const denumireFirmaMatch=dateFirma.match(denumireFirmaReg);
-            const denFirma=denumireFirmaMatch && denumireFirmaMatch[0] ? denumireFirmaMatch[0]:'';
-            setDenumire(denFirma);
-
-
-            const cifReg=/("CIF":")\s*[0-9]*/gmi;
-            const cifMatch=dateFirma.match(cifReg);
-            const cifFirma=cifMatch && cifMatch[0] ? cifMatch[0] : '';
-            setCIF(cifFirma.replace('"CIF":"',''));
-
-            const judetReg=/("judet":")\s*[a-zA-Z]*/gmi;
-            const judetMatch=dateFirma.match(judetReg);
-            const judetFirma=judetMatch && judetMatch[0] ? judetMatch[0] : '';
-            setJudet(judetFirma.replace('"judet":"',''));
-
-            const localitateRegex=/("localitate":")\s*[a-zA-Z]*/gmi;
-            const localitateMatch=dateFirma.match(localitateRegex);
-            const localFirma=localitateMatch && localitateMatch[0] ? localitateMatch[0] : '';
-            setLocal(localFirma.replace('"localitate":"',''));
-
-            const parolaFirmaRegex=/("parolaFirma":")\s*[a-zA-Z]*/gmi;
-            const parolaFirmaMatch=dateFirma.match(parolaFirmaRegex);
-            const parolFir=parolaFirmaMatch && parolaFirmaMatch[0] ? parolaFirmaMatch[0] : '';
-            setParolaFirma(parolFir.replace('"parolaFirma":"',''));
-
-            const platTVARegex=/("platitorTva":")\s*[a-zA-Z]*/gmi;
-            const platTVAMatch=dateFirma.match(platTVARegex);
-            const platTVA=platTVAMatch && platTVAMatch[0] ? platTVAMatch[0] : '';
-            if(platTVA.replace('"platitorTVA":"','') === "on"){
-              setPlatitor("DA");
-            }
-            else{
-              setPlatitor("NU");
-            }
-          }
-          else{
-            console.log('nu exista date firma');
-          }
-
-         });
+      //    });
        
-        }
-      },[currentUser,existaPers])
+      //   }
+      // },[currentUser,existaPers])
 
 
 
