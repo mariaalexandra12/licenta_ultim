@@ -44,10 +44,10 @@ import SettingsApplicationsIcon from '@mui/icons-material/SettingsApplications';
 import { makeStyles} from '@mui/styles';
 import { UserAuthContextProvider, useUserAuth } from '../context/userAuthContext';
 import CloseIcon from '@mui/icons-material/Close';
-import { db } from "../firebaseUtils/firebase_ut";
 import { collection, query, where,onSnapshot} from "firebase/firestore";
 import Collapse from '@mui/material/Collapse';
 import Alert from '@mui/material/Alert';
+import { db } from "../firebaseUtils/firebase_ut";
 
 
 const drawerWidth = 210;
@@ -115,20 +115,24 @@ export default function Navig() {
   const [nume,setNume]=useState('')
    const[prenume,setPrenume]=useState('')
 
+  const [existaPers,setExistaPers]=useState(false)
+
    useEffect(()=>{
     const q = query(collection(db, "utilizator"), where("emailUtilizator", "==", currentUser));
     onSnapshot(q,(snapshot)=>{
       let userData=[];
       snapshot.docs.forEach((doc)=>{
-        userData.push({...doc.data(), id:doc.id})
+       if(doc.exists()){
+         setExistaPers(true);
+       }
       })   
-     userData.forEach((el)=>{
-     setPrenume(Object.values(el)[1]);
-     setNume(Object.values(el)[3]);
-     })
      }
      );
+     
    },[])
+
+
+
 
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
@@ -307,6 +311,8 @@ export default function Navig() {
                   position:'fixed',}}>
           
           <List>
+
+            { (existaPers.valueOf() === true) ? console.log('utilizator') : console.log('firma')}
 
           {/* <ListItem disablePadding onClick={()=>navigate("/profil")}>
             <ListItemButton >
