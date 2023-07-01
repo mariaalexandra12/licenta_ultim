@@ -21,29 +21,43 @@ export function AuthContextProvider({children}) {
     useEffect(()=>{
       const unsubscribe=onAuthStateChanged(auth,user=>{
         if(user){
-            setCurrentUser(user.email);
+            // setCurrentUser(user.email);
+            localStorage.setItem(user.uid,user.email);
+                let idUser='';
                 const q2 = query(collection(db, "utilizator"),where("emailUtilizator","==",user.email));
-                let idF;
                 onSnapshot(q2,(snapshot)=>{
                let userData=[];
                snapshot.docs.forEach((doc)=>{
                 if(doc.exists()){
-                    setDateLogare(JSON.stringify(doc.data()));
+                    idUser=doc.id;
+                    // setDateLogare(JSON.stringify(doc.data()));
+                    localStorage.setItem(doc.id,JSON.stringify(doc.data()));
                }
              })});
 
                  const q=query(collection(db,"firma"),where("emailFirma","==",user.email));
+                 let idFirma='';
                  onSnapshot(q,(snapshot)=>{
                     snapshot.docs.forEach((doc)=>{
                     if(doc.exists()){
-                        setDateLogare(JSON.stringify(doc.data()));
+                        idFirma=doc.id;
+                        localStorage.setItem(doc.id,JSON.stringify(doc.data()));
+                        // setDateLogare(JSON.stringify(doc.data()));
                    }
                  })})
+
+                 setCurrentUser(localStorage.getItem(user.uid));
+                 if (idUser !== ''){
+                    setDateLogare(localStorage.getItem(idUser));
+                 }
+                 else{
+                    setDateLogare(localStorage.getItem(idFirma));
+                 }
                 }
       return ()=>{
         unsubscribe();}
     })
-},[currentUser])
+},[currentUser,dateLogare])
 
     // const value={
     //     currentUser,
