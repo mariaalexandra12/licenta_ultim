@@ -112,16 +112,26 @@ export default function Navig() {
 
   const [openAlert, setOpenAlert] = React.useState(true);
 
-  const { currentUser ,dateLogare }= useUserAuth();
+  const { currentUser }= useUserAuth();
 
   const [nume,setNume]=useState('')
    const[prenume,setPrenume]=useState('')
 
   const [existaPers,setExistaPers]=useState(false)
 
+  const [dateLogare,setDateLogare]=useState('')
+
    useEffect(()=>{
         console.log(currentUser);
-        console.log(dateLogare)
+        const q=query(collection(db,'utilizator'),where('emailUtilizator','==',currentUser));
+        onSnapshot(q,(snapshot)=>{
+          snapshot.forEach((doc)=>{
+              if(doc.data()){
+                console.log(doc.data());
+              }
+          })
+        
+        })
    },[])
 
 
