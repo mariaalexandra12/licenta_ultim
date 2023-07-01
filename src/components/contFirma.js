@@ -118,7 +118,7 @@ const ContFirma=()=>{
         <>
 
      <Box sx={{display: 'flex'}}>
-        <Navig/>
+        {/* <Navig/> */}
         <Box sx={{  marginTop:'80px',
       marginLeft:'20px',}}>
        <Profil/>

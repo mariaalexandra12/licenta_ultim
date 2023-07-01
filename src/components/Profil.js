@@ -41,7 +41,7 @@ const Profil=()=>{
     const q=query(collection(db,'utilizator'),where('emailUtilizator','==',currentUser));
     onSnapshot(q,(snapshot)=>{
       snapshot.forEach((doc)=>{
-        if(doc.exists()){
+        if(doc.data()){
           setExistaPers(true);
         }
       })

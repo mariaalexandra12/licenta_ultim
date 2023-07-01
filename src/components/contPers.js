@@ -80,9 +80,10 @@ const ContPers=()=>{
 
     return (
         <>
-        <Box sx={{display: 'flex'}}>
+        {/* <Box sx={{display: 'flex'}}>
          <Box sx={{  marginTop:'80px',
-      marginLeft:'20px',}}>
+      marginLeft:'20px',}}> */}
+
         <Profil/>
 
               <Grid item >
@@ -250,9 +251,9 @@ const ContPers=()=>{
               </Item>
               </Grid>
              
-           </Box>
+           {/* </Box>
            
-        </Box>
+        </Box> */}
     
         </>
     )
