@@ -19,15 +19,15 @@ export function AuthContextProvider({children}) {
     useEffect(()=>{
       const unsubscribe=onAuthStateChanged(auth,user=>{
         if(user){
-            // const userKey=user.uid;
-            // localStorage.setItem(userKey,user.email);
+            const userKey=user.uid;
+            localStorage.setItem(userKey,user.email);
             setCurrentUser(user.email)
         }
-        // else{
-        //     setCurrentUser('');
-        //     const key=user.uid;
-        //     localStorage.removeItem(key);
-        // }
+        else{
+            setCurrentUser('');
+            const key=user.uid;
+            localStorage.removeItem(key);
+        }
       })
       return ()=>{
         unsubscribe();}

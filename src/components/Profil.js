@@ -10,7 +10,7 @@ import Tab from '@mui/material/Tab';
 import PersonPinIcon from '@mui/icons-material/PersonPin';
 import EmailIcon from '@mui/icons-material/Email';
 import TextField from '@mui/material/TextField';
-import { useUserAuth } from "../context/userAuthContext";
+import { useUserAuth} from "../context/userAuthContext";
 import HttpsIcon from '@mui/icons-material/Https';
 import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew';
 import { db } from "../firebaseUtils/firebase_ut";
@@ -54,8 +54,11 @@ const Profil=()=>{
 
    
    useEffect(() => {
+
     if (currentUser) {
       let idU;
+
+
       const q = query(collection(db, "utilizator"), 
          where("emailUtilizator","==",currentUser));
       onSnapshot(q,(snapshot)=>{
@@ -87,18 +90,19 @@ const Profil=()=>{
           setNume(numeU);
           setPrenume(prenumeU);
           setPass(parola);
-          setDenumire('');
-          setCIF('');
-          setJudet('');
-          setLocal('');
-          setParolaFirma('');
-          setPlatitor('');
+          // setDenumire('');
+          // setCIF('');
+          // setJudet('');
+          // setLocal('');
+          // setParolaFirma('');
+          // setPlatitor('');
+          console.log('am intrat pe eixstaPers TRUE ');
         
      }
      }
      ) 
 
-    existaPers.current=false;     
+    // existaPers.current=false;     
 
      const q2 = query(collection(db, "firma"));
      let idF;
@@ -110,6 +114,7 @@ const Profil=()=>{
         firmaData.push({...doc.data(), id:doc.id});
         idF=doc.id;
         localStorage.setItem(doc.id, JSON.stringify(doc.data()));
+        // localStorage.setItem()
       }
         })
    
@@ -118,10 +123,10 @@ const Profil=()=>{
            const denumireFirmaReg=/([a-zA-Z])+\s+.*SRL/gmi;
             const denumireFirmaMatch=dateFirma.match(denumireFirmaReg);
             const denFirma=denumireFirmaMatch && denumireFirmaMatch[0] ? denumireFirmaMatch[0]:'';
-            setDenumire(denFirma);
-            // console.log(denFirma)
+            // setDenumire(denFirma);
+            console.log(denFirma)
 
-
+              // console.log('am intrat pe existPers FALSE');
             const cifReg=/("CIF":")\s*[0-9]*/gmi;
             const cifMatch=dateFirma.match(cifReg);
             const cifFirma=cifMatch && cifMatch[0] ? cifMatch[0] : '';
@@ -230,7 +235,7 @@ const Profil=()=>{
               <TextField id="adresaEmail" 
               type='text'
               variant="standard" 
-              value={currentUser}
+              defaultValue={currentUser}
               style={{
                 width:'300px',
                 marginTop: '30px'
@@ -248,7 +253,7 @@ const Profil=()=>{
               style={{
                 width:'300px',
               }}
-              value={pass}
+              defaultValue={pass}
               />
            </Box>
 
@@ -257,7 +262,7 @@ const Profil=()=>{
               <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1,  my: 0.2,marginLeft:'33px' }} />
               <TextField id="input-with-sx" variant="standard" 
                type="text"
-               value={nume}
+               defaultValue={nume}
                style={{
                 width:'300px',
               }}/>
@@ -269,7 +274,7 @@ const Profil=()=>{
               <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.2,marginLeft:'10px' }} />
               <TextField id="input-with-sx"  variant="standard"
               type="text"
-              value={prenume}
+              defaultValue={prenume}
                style={{
                 width:'300px',
               }} />
@@ -286,7 +291,7 @@ const Profil=()=>{
               <TextField id="adresaEmail" 
               type='text'
               variant="standard" 
-              defaultValue={currentUser}
+              // defaultValue={currentUser}
               style={{
                 width:'300px',
                 marginTop: '30px',
@@ -304,7 +309,7 @@ const Profil=()=>{
               style={{
                 width:'300px',
               }}
-              defaultValue={parolaFirma}
+              // defaultValue={parolaFirma}
               />
            </Box>
 
@@ -313,7 +318,7 @@ const Profil=()=>{
               <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
               <TextField id="input-with-sx" variant="standard" 
                type="text"
-               defaultValue={denumire}
+              //  defaultValue={denumire}
                style={{
                 width:'300px',
               }}/>
@@ -325,7 +330,7 @@ const Profil=()=>{
               <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
               <TextField id="input-with-sx"  variant="standard"
               type="text"
-              defaultValue={cif}
+              // defaultValue={cif}
                style={{
                 width:'300px',
               }} />
@@ -336,7 +341,7 @@ const Profil=()=>{
               <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
               <TextField id="input-with-sx"  variant="standard"
               type="text"
-              defaultValue={judet}
+              // defaultValue={judet}
                style={{
                 width:'300px',
               }} />
@@ -347,7 +352,7 @@ const Profil=()=>{
               <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
               <TextField id="input-with-sx"  variant="standard"
               type="text"
-              defaultValue={local}
+              // defaultValue={local}
                style={{
                 width:'300px',
               }} />
@@ -358,7 +363,7 @@ const Profil=()=>{
               <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
               <TextField id="input-with-sx"  variant="standard"
               type="text"
-              defaultValue={platitor}
+              // defaultValue={platitor}
                style={{
                 width:'300px',
               }} />
