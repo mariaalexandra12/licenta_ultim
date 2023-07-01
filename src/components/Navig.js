@@ -304,6 +304,15 @@ export default function Navig() {
                  </List>
         </Drawer>
 
+
+
+        { existaPers ? 
+              // <p>Cont pers</p>
+              <ContPers/>
+            : 
+            // <p>Cont frima</p>
+             <ContFirma/>
+            }
          
         {showCard && (
            <div>
@@ -320,13 +329,6 @@ export default function Navig() {
           
           <List>
 
-            { existaPers ? 
-              // <p>Cont pers</p>
-              <ContPers/>
-            : 
-            // <p>Cont frima</p>
-             <ContFirma/>
-            }
 
           {/* <ListItem disablePadding onClick={()=>navigate("/profil")}>
             <ListItemButton >
