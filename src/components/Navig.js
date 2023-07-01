@@ -47,8 +47,8 @@ import CloseIcon from '@mui/icons-material/Close';
 import { collection, query, where,onSnapshot} from "firebase/firestore";
 import Collapse from '@mui/material/Collapse';
 import Alert from '@mui/material/Alert';
-import { db } from "../firebaseUtils/firebase_ut";
-
+import { auth, db } from "../firebaseUtils/firebase_ut";
+import { signOut } from 'firebase/auth';
 
 const drawerWidth = 210;
 
@@ -328,7 +328,8 @@ export default function Navig() {
                         </DialogContent>
                         <DialogActions>
                         
-                         <Button onClick={()=>{navigate("/")}}>Da</Button>
+                         <Button onClick={()=>{signOut(auth)
+                           .then(navigate("/"))}}>Da</Button>
                         </DialogActions>
                         </Dialog> 
                    

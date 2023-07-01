@@ -16,53 +16,39 @@ const AuthContext = createContext({
 export function AuthContextProvider({children}) {
     
     const [currentUser,setCurrentUser]=useState(null) 
-    const [dateLogare,setDateLogare]=useState([]) 
+    const [dateLogare,setDateLogare]=useState('') 
 
     useEffect(()=>{
       const unsubscribe=onAuthStateChanged(auth,user=>{
         if(user){
-            // setCurrentUser(user.email);
+            setCurrentUser(user.email);
             localStorage.setItem(user.uid,user.email);
-                let idUser='';
+                //let idUser='';
                 const q2 = query(collection(db, "utilizator"),where("emailUtilizator","==",user.email));
                 onSnapshot(q2,(snapshot)=>{
                let userData=[];
                snapshot.docs.forEach((doc)=>{
-                if(doc.exists()){
-                    idUser=doc.id;
-                    // setDateLogare(JSON.stringify(doc.data()));
-                    localStorage.setItem(doc.id,JSON.stringify(doc.data()));
+                if(doc.data()){
+                    setDateLogare(JSON.stringify(doc.data()));
                }
+            
              })});
 
                  const q=query(collection(db,"firma"),where("emailFirma","==",user.email));
                  let idFirma='';
                  onSnapshot(q,(snapshot)=>{
                     snapshot.docs.forEach((doc)=>{
-                    if(doc.exists()){
-                        idFirma=doc.id;
-                        localStorage.setItem(doc.id,JSON.stringify(doc.data()));
-                        // setDateLogare(JSON.stringify(doc.data()));
+                    if(doc.data()){
+                        setDateLogare(JSON.stringify(doc.data()));
                    }
                  })})
 
-                 setCurrentUser(localStorage.getItem(user.uid));
-                 if (idUser !== ''){
-                    setDateLogare(localStorage.getItem(idUser));
-                 }
-                 else{
-                    setDateLogare(localStorage.getItem(idFirma));
-                 }
                 }
       return ()=>{
         unsubscribe();}
     })
 },[currentUser,dateLogare])
 
-    // const value={
-    //     currentUser,
-    //     dateLogare
-    // }
 
     return (
         // value={currentUser}
