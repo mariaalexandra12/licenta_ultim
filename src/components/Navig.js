@@ -304,16 +304,7 @@ export default function Navig() {
                  </List>
         </Drawer>
 
-
-
-        { existaPers ? 
-              // <p>Cont pers</p>
-              <ContPers/>
-            : 
-            // <p>Cont frima</p>
-             <ContFirma/>
-            }
-         
+     
         {showCard && (
            <div>
              <Card style={{
@@ -330,14 +321,29 @@ export default function Navig() {
           <List>
 
 
-          {/* <ListItem disablePadding onClick={()=>navigate("/profil")}>
-            <ListItemButton >
-              <ListItemIcon style={{color:"rgba(138, 5, 186)"}}>
-                <SettingsApplicationsIcon/>
+          { existaPers ? 
+           <ListItem disablePadding onClick={()=>navigate("/contPers")}>
+             <ListItemButton >
+            <ListItemIcon style={{color:"rgba(138, 5, 186)"}}>
+               <SettingsApplicationsIcon/>
               </ListItemIcon>
-              <ListItemText primary="Setari Cont" />
-            </ListItemButton>
-          </ListItem> */}
+               <ListItemText primary="Setari Cont" />
+          </ListItemButton>
+          </ListItem> 
+             
+             :
+         
+             <ListItem disablePadding onClick={()=>navigate("/contFirma")}>
+             <ListItemButton >
+            <ListItemIcon style={{color:"rgba(138, 5, 186)"}}>
+               <SettingsApplicationsIcon/>
+              </ListItemIcon>
+               <ListItemText primary="Setari Cont" />
+          </ListItemButton>
+          </ListItem> 
+
+          }
+         
 
 
       <ListItem  onClick={handleClickOpen}>

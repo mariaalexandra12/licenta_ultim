@@ -117,8 +117,8 @@ const ContFirma=()=>{
     return (
         <>
 
-<Box sx={{display: 'flex'}}>
-        <Navig/>
+         <Box sx={{display: 'flex'}}>
+         <Navig/>
         <Box sx={{  marginTop:'80px',
       marginLeft:'20px',}}>
         <Grid
