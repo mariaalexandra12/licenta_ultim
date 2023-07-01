@@ -10,16 +10,19 @@ import { collection, query, where, getDocs,onSnapshot, QuerySnapshot} from "fire
 
 const AuthContext = createContext({
     currentUser:null,
+    userId:null,
 });
 
 export function AuthContextProvider({children}) {
     
     const [currentUser,setCurrentUser]=useState(null) 
+    // const [userID,setUserID]=useState(null) 
 
     useEffect(()=>{
       const unsubscribe=onAuthStateChanged(auth,user=>{
         if(user){
             setCurrentUser(user.email);
+            // setUserID(user.uid);
                 }
       return ()=>{
         unsubscribe();
@@ -27,9 +30,9 @@ export function AuthContextProvider({children}) {
     })
 },[])
 
-const value={
+   const value={
     currentUser
-}
+   }
 
     return (
         // value={currentUser}

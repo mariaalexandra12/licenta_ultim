@@ -35,6 +35,7 @@ const ContFirma=()=>{
   const[local,setLocal]=useState('');
   const [parolaFirma,setParolaFirma]=useState('');
   const [platitor,setPlatitor]=useState('');
+  const [adresaFirma,setAdresaFirma]=useState('');
 
 
 
@@ -46,82 +47,42 @@ const ContFirma=()=>{
 
  const { currentUser }= useUserAuth()
 
- const [dateFirma,setDateFirma]=useState('');
+ const [dateFirma,setDateFirma]=useState([]);
 
+ 
 
   useEffect(() => {
+    // const adresaEmail=localStorage.getItem(currentUserID);
+    setAdresaFirma(currentUser);
     const q2 = query(collection(db, "firma"),where("emailFirma","==",currentUser));
+    onSnapshot(q2,(snapshot) => {
+        const items=[];
+        snapshot.forEach((doc)=>{
+            items.push(doc.data());
+        });
+        setDateFirma(items);
+    })
     
+    dateFirma.forEach((el)=>{
+        console.log(el['CIF']);
+        setCIF(el['CIF']);
 
+        console.log(el['judet']);
+        setJudet(el['judet']);
 
+        console.log(el['localitate']);
+        setJudet(el['localitate']);
 
+        console.log(el['nume']);
+        setDenumire(el['nume']);
 
-//     onSnapshot(q2,(snapshot)=>{
-//    let firmaData=[];
-//    snapshot.docs.forEach((doc)=>{
-//      if(doc.data()){
-//        firmaData.push({...doc.data(), id:doc.id});
-//     //    idF=doc.id;
-//     //    localStorage.setItem(doc.id, JSON.stringify(doc.data()));
-//        // localStorage.setItem()
-//      }
-//     },
-//       setDateFirma(firmaData) 
-//    )
-  
-    
-//          const DF=JSON.stringify(dateFirma[0]);
-         
-//           const denumireFirmaReg=/("nume":")+[a-zA-z\s]*(SRL)/gmi;
-//            const denumireFirmaMatch=DF.match(denumireFirmaReg);
-//            const denFirma=denumireFirmaMatch && denumireFirmaMatch[0] ? denumireFirmaMatch[0]:'';
-//            setDenumire(denFirma.replace('"nume":"',''));
-//            console.log(denFirma.replace('"nume":"',''));
+        console.log(el['parolaFirma']);
+        setParolaFirma(el['parolaFirma']);
 
-            
-//            const cifReg=/("CIF":")\s*[0-9]*/gmi;
-//            const cifMatch=DF.match(cifReg);
-//            const cifFirma=cifMatch && cifMatch[0] ? cifMatch[0] : '';
-//            setCIF(cifFirma.replace('"CIF":"',''));
-//            console.log(cifFirma.replace('"CIF":"',''))
-
-
-//            const judetReg=/("judet":")[a-zA-Z]*/gmi;
-//            const judetMatch=DF.match(judetReg);
-//            const judetFirma=judetMatch && judetMatch[0] ? judetMatch[0] : '';
-//            setJudet(judetFirma.replace('"judet":"',''));
-//            console.log(judetFirma.replace('"judet":"',''))
-    
-
-//            const localitateRegex=/("localitate":")[a-zA-z\s]*/gmi;
-//            const localitateMatch=DF.match(localitateRegex);
-//            const localFirma=localitateMatch && localitateMatch[0] ? localitateMatch[0] : '';
-//            setLocal(localFirma.replace('"localitate":"',''));
-//            console.log(localFirma.replace('"localitate":"',''))
-
-
-//            const parolaFirmaRegex=/("parolaFirma":")[a-zA-z\W\d]+(,)/gmi;
-//            const parolaFirmaMatch=DF.match(parolaFirmaRegex);
-//            const parolFir=parolaFirmaMatch && parolaFirmaMatch[0] ? parolaFirmaMatch[0] : '';
-//           setParolaFirma(parolFir.replace('"parolaFirma":"',''));
-//            console.log(parolFir.replace('"parolaFirma":"',''))
-
-
-//            const platTVARegex=/("platitorTVA":")\s*[a-zA-Z]*/gmi;
-//            const platTVAMatch=DF.match(platTVARegex);
-//            const platTVA=platTVAMatch && platTVAMatch[0] ? platTVAMatch[0] : '';
-//            if(platTVA.replace('"platitorTVA":"','') === "on"){
-             
-//              setPlatitor("DA");
-//            }
-//            else{
-//              setPlatitor("NU");
-//            }
-
-//          })
-
-       },[currentUser]) 
-
+        console.log(el['platitorTVA']);
+        setPlatitor(el['platitorTVA']);
+    })
+},[currentUser])
 
     return (
         <>
@@ -175,7 +136,7 @@ const ContFirma=()=>{
        {value===0 &&(
         <>
           {/* CONT FIRMA */}
-          
+          <form>
            <Box sx={{ display: 'flex', alignItems: 'flex-end',}}>
            <Typography >Adresa de email Firma</Typography>
               <EmailIcon sx={{ color: 'action.active', mr: 1, my: 0.5, 
@@ -183,7 +144,7 @@ const ContFirma=()=>{
               <TextField id="adresaEmail" 
               type='text'
               variant="standard" 
-              defaultValue={currentUser}
+              defaultValue={adresaFirma}
               style={{
                 width:'300px',
                 marginTop: '30px',
@@ -270,6 +231,7 @@ const ContFirma=()=>{
           <Button variant="contained" color="secondary"
           style={{marginTop:'20px'}}
           >Actualizeaza datele firmei</Button>
+          </form>
         </>
       )}     
 
