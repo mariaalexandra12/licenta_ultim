@@ -22,32 +22,35 @@ export function AuthContextProvider({children}) {
       const unsubscribe=onAuthStateChanged(auth,user=>{
         if(user){
             setCurrentUser(user.email);
-            localStorage.setItem(user.uid,user.email);
-                //let idUser='';
+            // localStorage.setItem(user.uid,user.email);
                 const q2 = query(collection(db, "utilizator"),where("emailUtilizator","==",user.email));
                 onSnapshot(q2,(snapshot)=>{
                let userData=[];
                snapshot.docs.forEach((doc)=>{
                 if(doc.data()){
-                    setDateLogare(JSON.stringify(doc.data()));
-               }
-            
-             })});
+                    userData.push({...doc.data(),id:doc.id});
+               } 
+              }
+             )
+              setDateLogare(userData);
+            });
 
-                 const q=query(collection(db,"firma"),where("emailFirma","==",user.email));
-                 let idFirma='';
-                 onSnapshot(q,(snapshot)=>{
-                    snapshot.docs.forEach((doc)=>{
-                    if(doc.data()){
-                        setDateLogare(JSON.stringify(doc.data()));
-                   }
-                 })})
+                //  const q=query(collection(db,"firma"),where("emailFirma","==",user.email));
+                //  let dateFirma=[];
+                //  onSnapshot(q,(snapshot)=>{
+                //     snapshot.docs.forEach((doc)=>{
+                //     if(doc.data()){
+                //         dateFirma.push({...doc.data(),id:doc.id});
+                //    }
+                //  })
+                // setDateLogare(JSON.stringify(dateFirma));
+                // })
 
                 }
       return ()=>{
         unsubscribe();}
     })
-},[currentUser,dateLogare])
+},[])
 
 
     return (
