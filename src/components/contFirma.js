@@ -14,6 +14,7 @@ import HttpsIcon from '@mui/icons-material/Https';
 import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew';
 import { db } from "../firebaseUtils/firebase_ut";
 import { collection, query, where, getDocs,onSnapshot, QuerySnapshot} from "firebase/firestore";
+import BusinessIcon from '@mui/icons-material/Business';
 
 
 
@@ -60,48 +61,49 @@ const ContFirma=()=>{
        // localStorage.setItem()
      }
     },
-      setDateFirma(JSON.stringify(firmaData[0])) 
+      setDateFirma(firmaData) 
    )
   
-//    console.log(JSON.stringify(dateFirma[0]));
-   
-          const denumireFirmaReg=/([a-zA-Z])+\s+.*SRL/gmi;
-           const denumireFirmaMatch=dateFirma.match(denumireFirmaReg);
+    
+         const DF=JSON.stringify(dateFirma[0]);
+         
+          const denumireFirmaReg=/("nume":")+[a-zA-z\s]*(SRL)/gmi;
+           const denumireFirmaMatch=DF.match(denumireFirmaReg);
            const denFirma=denumireFirmaMatch && denumireFirmaMatch[0] ? denumireFirmaMatch[0]:'';
-           setDenumire(denFirma);
-           console.log(denFirma)
+           setDenumire(denFirma.replace('"nume":"',''));
+           console.log(denFirma.replace('"nume":"',''));
 
             
            const cifReg=/("CIF":")\s*[0-9]*/gmi;
-           const cifMatch=dateFirma.match(cifReg);
+           const cifMatch=DF.match(cifReg);
            const cifFirma=cifMatch && cifMatch[0] ? cifMatch[0] : '';
            setCIF(cifFirma.replace('"CIF":"',''));
            console.log(cifFirma.replace('"CIF":"',''))
 
 
-           const judetReg=/("judet":")\s*[a-zA-Z]*/gmi;
-           const judetMatch=dateFirma.match(judetReg);
+           const judetReg=/("judet":")[a-zA-Z]*/gmi;
+           const judetMatch=DF.match(judetReg);
            const judetFirma=judetMatch && judetMatch[0] ? judetMatch[0] : '';
            setJudet(judetFirma.replace('"judet":"',''));
            console.log(judetFirma.replace('"judet":"',''))
     
 
-           const localitateRegex=/("localitate":")\s*[a-zA-Z]*/gmi;
-           const localitateMatch=dateFirma.match(localitateRegex);
+           const localitateRegex=/("localitate":")[a-zA-z\s]*/gmi;
+           const localitateMatch=DF.match(localitateRegex);
            const localFirma=localitateMatch && localitateMatch[0] ? localitateMatch[0] : '';
            setLocal(localFirma.replace('"localitate":"',''));
            console.log(localFirma.replace('"localitate":"',''))
 
 
-           const parolaFirmaRegex=/("parolaFirma":")\s*[a-zA-Z]*/gmi;
-           const parolaFirmaMatch=dateFirma.match(parolaFirmaRegex);
+           const parolaFirmaRegex=/("parolaFirma":")[a-zA-z\W\d]+(,)/gmi;
+           const parolaFirmaMatch=DF.match(parolaFirmaRegex);
            const parolFir=parolaFirmaMatch && parolaFirmaMatch[0] ? parolaFirmaMatch[0] : '';
           setParolaFirma(parolFir.replace('"parolaFirma":"',''));
            console.log(parolFir.replace('"parolaFirma":"',''))
 
 
-           const platTVARegex=/("platitorTva":")\s*[a-zA-Z]*/gmi;
-           const platTVAMatch=dateFirma.match(platTVARegex);
+           const platTVARegex=/("platitorTVA":")\s*[a-zA-Z]*/gmi;
+           const platTVAMatch=DF.match(platTVARegex);
            const platTVA=platTVAMatch && platTVAMatch[0] ? platTVAMatch[0] : '';
            if(platTVA.replace('"platitorTVA":"','') === "on"){
              
@@ -162,7 +164,6 @@ const ContFirma=()=>{
        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={value} onChange={handleChange} textColor="secondary" >
           <Tab label="Cont Firma"  />
-          <Tabs label="Settings"/>
         </Tabs>
       </Box>
 
@@ -199,7 +200,7 @@ const ContFirma=()=>{
 
            <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
               <Typography >Denumire Firma</Typography>
-              <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
+              <BusinessIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
               <TextField id="input-with-sx" variant="standard" 
                type="text"
                defaultValue={denumire}
@@ -256,15 +257,6 @@ const ContFirma=()=>{
         </>
       )}     
 
-        {value===1 &&(
-         <>
-          {/* CONT FIRMA */}
-           <Box sx={{ display: 'flex', alignItems: 'flex-end',}}>
-           <Typography >Setari cont Firma</Typography>
-               
-           </Box>
-         </> 
-        )}
         
         </Item>
       </Grid>
