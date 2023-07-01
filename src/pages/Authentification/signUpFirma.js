@@ -75,7 +75,7 @@ export default function SignUpPers() {
           createUserWithEmailAndPassword(auth,email,password)
           .then((userCredential)=>{
            const user=userCredential.user;
-          const firmaRef=addDoc(collection(db,'firma'),{
+           addDoc(collection(db,'firma'),{
             CIF:cif,
             emailFirma:email,
             judet:judet,

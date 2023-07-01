@@ -98,6 +98,7 @@ const Profil=()=>{
      }
      ) 
 
+    existaPers.current=false;     
 
      const q2 = query(collection(db, "firma"));
      let idF;
