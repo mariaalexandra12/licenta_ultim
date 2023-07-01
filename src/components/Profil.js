@@ -52,140 +52,140 @@ const Profil=()=>{
 
    const [existaContPers,setExistaContPers]=useState(false);
 
-   useEffect(()=>{
-    let id;
-    const q = query(collection(db, "utilizator"), where("emailUtilizator", "==", currentUser));
-    onSnapshot(q,(snapshot)=>{
-      let userData=[];
-      snapshot.docs.forEach((doc)=>{
-        if(doc.data()){
-          existaPers.current=true;
-          userData.push({...doc.data(), id:doc.id})
-          id=doc.id;
-          setExistaContPers(true);
-        }  
-      })
-         localStorage.setItem(id,JSON.stringify(userData));
-     }) 
-    },[currentUser,existaPers])
+  //  useEffect(()=>{
+  //   let id;
+  //   const q = query(collection(db, "utilizator"), where("emailUtilizator", "==", currentUser));
+  //   onSnapshot(q,(snapshot)=>{
+  //     let userData=[];
+  //     snapshot.docs.forEach((doc)=>{
+  //       if(doc.data()){
+  //         existaPers.current=true;
+  //         userData.push({...doc.data(), id:doc.id})
+  //         id=doc.id;
+  //         setExistaContPers(true);
+  //       }  
+  //     })
+  //        localStorage.setItem(id,JSON.stringify(userData));
+  //    }) 
+  //   },[currentUser,existaPers])
 
 
-     useEffect(()=>{
-      if(existaPers.current.valueOf() === false){
-         let idF;
-        const q = query(collection(db, "firma"), where("emailFirma", "==", currentUser));
-        onSnapshot(q,(snapshot)=>{
-          let firmaData=[];
-          snapshot.docs.forEach((doc)=>{
-            firmaData.push({...doc.data(), id:doc.id})
-            idF=doc.id;
-          })   
+  //    useEffect(()=>{
+  //     if(existaPers.current.valueOf() === false){
+  //        let idF;
+  //       const q = query(collection(db, "firma"), where("emailFirma", "==", currentUser));
+  //       onSnapshot(q,(snapshot)=>{
+  //         let firmaData=[];
+  //         snapshot.docs.forEach((doc)=>{
+  //           firmaData.push({...doc.data(), id:doc.id})
+  //           idF=doc.id;
+  //         })   
           
-          localStorage.setItem(idF,JSON.stringify(firmaData));
+  //         localStorage.setItem(idF,JSON.stringify(firmaData));
           
-       });
-     } 
-    },[currentUser,existaPers])
+  //      });
+  //    } 
+  //   },[currentUser,existaPers])
   
 
-    useEffect(()=>{
-      let id;
-      const q = query(collection(db, "utilizator"), where("emailUtilizator", "==",currentUser));
-      onSnapshot(q,(snapshot)=>{
-        snapshot.docs.forEach((doc)=>{
-          if(doc.data()){
-            // existaPers.current=true;
-            id=doc.id;
-          }  
-        })
-        const dateUser= id ? localStorage.getItem(id) : null;
+  //   useEffect(()=>{
+  //     let id;
+  //     const q = query(collection(db, "utilizator"), where("emailUtilizator", "==",currentUser));
+  //     onSnapshot(q,(snapshot)=>{
+  //       snapshot.docs.forEach((doc)=>{
+  //         if(doc.data()){
+  //           existaPers.current=true;
+  //           id=doc.id;
+  //         }  
+  //       })
+  //       const dateUser= id ? localStorage.getItem(id) : null;
 
-        if(dateUser !== null){
+  //       if(dateUser !== null){
 
-        const numeReg=/("nume":")([a-zA-Z]+)/gmi;
-        const prenumeReg=/("prenume":")([a-zA-Z]+)/gmi;
-        const parolaReg=/"parolaUtilizator":"([^"]+)"/gmi;
+  //       const numeReg=/("nume":")([a-zA-Z]+)/gmi;
+  //       const prenumeReg=/("prenume":")([a-zA-Z]+)/gmi;
+  //       const parolaReg=/"parolaUtilizator":"([^"]+)"/gmi;
 
-        const numeMatch=dateUser.match(numeReg);
-        const prenumeMatch=dateUser.match(prenumeReg);
-        const parolaMatch=dateUser.match(parolaReg);
+  //       const numeMatch=dateUser.match(numeReg);
+  //       const prenumeMatch=dateUser.match(prenumeReg);
+  //       const parolaMatch=dateUser.match(parolaReg);
 
-        const numeU=numeMatch && numeMatch[0] ? (numeMatch[0].replace('"nume":"','')) : ' ';
-        const prenumeU=prenumeMatch && prenumeMatch[0] ? (prenumeMatch[0].replace('"prenume":"','')) : ' ';
-        const parola=parolaMatch && parolaMatch[0] ? (parolaMatch[0].replace('"parolaUtilizator":"','')) : ' ';
+  //       const numeU=numeMatch && numeMatch[0] ? (numeMatch[0].replace('"nume":"','')) : ' ';
+  //       const prenumeU=prenumeMatch && prenumeMatch[0] ? (prenumeMatch[0].replace('"prenume":"','')) : ' ';
+  //       const parola=parolaMatch && parolaMatch[0] ? (parolaMatch[0].replace('"parolaUtilizator":"','')) : ' ';
 
-        setNume(numeU);
-        setPrenume(prenumeU);
-        setPass(parola);
-       }
-       else{
-        console.log('nu exista date personale');
-       }
+  //       setNume(numeU);
+  //       setPrenume(prenumeU);
+  //       setPass(parola);
+  //      }
+  //      else{
+  //       console.log('nu exista date personale');
+  //      }
 
-       }) 
+  //      }) 
 
-      },[currentUser,existaPers])
+  //     },[currentUser,existaPers])
   
   
-      useEffect(()=>{
-        // if(existaPers.current.valueOf() === false){
-           let idF;
-          const q = query(collection(db, "firma"), where("emailFirma", "==", currentUser));
-          onSnapshot(q,(snapshot)=>{
-            snapshot.docs.forEach((doc)=>{
-              if(doc.data()){
-              idF=doc.id;
-              }
-            })  
+  //     useEffect(()=>{
+  //       if(existaPers.current.valueOf() === false){
+  //          let idF;
+  //         const q = query(collection(db, "firma"), where("emailFirma", "==", currentUser));
+  //         onSnapshot(q,(snapshot)=>{
+  //           snapshot.docs.forEach((doc)=>{
+  //             if(doc.data()){
+  //             idF=doc.id;
+  //             }
+  //           })  
             
-            const dateFirma=idF ?  localStorage.getItem(idF): null;
+  //           const dateFirma=idF ?  localStorage.getItem(idF): null;
 
-            if(dateFirma !== null){
+  //           if(dateFirma !== null){
             
-            const denumireFirmaReg=/([a-zA-Z])+\s+.*SRL/gmi;
-            const denumireFirmaMatch=dateFirma.match(denumireFirmaReg);
-            const denFirma=denumireFirmaMatch && denumireFirmaMatch[0] ? denumireFirmaMatch[0]:'';
-            setDenumire(denFirma);
+  //           const denumireFirmaReg=/([a-zA-Z])+\s+.*SRL/gmi;
+  //           const denumireFirmaMatch=dateFirma.match(denumireFirmaReg);
+  //           const denFirma=denumireFirmaMatch && denumireFirmaMatch[0] ? denumireFirmaMatch[0]:'';
+  //           setDenumire(denFirma);
 
 
-            const cifReg=/("CIF":")\s*[0-9]*/gmi;
-            const cifMatch=dateFirma.match(cifReg);
-            const cifFirma=cifMatch && cifMatch[0] ? cifMatch[0] : '';
-            setCIF(cifFirma.replace('"CIF":"',''));
+  //           const cifReg=/("CIF":")\s*[0-9]*/gmi;
+  //           const cifMatch=dateFirma.match(cifReg);
+  //           const cifFirma=cifMatch && cifMatch[0] ? cifMatch[0] : '';
+  //           setCIF(cifFirma.replace('"CIF":"',''));
 
-            const judetReg=/("judet":")\s*[a-zA-Z]*/gmi;
-            const judetMatch=dateFirma.match(judetReg);
-            const judetFirma=judetMatch && judetMatch[0] ? judetMatch[0] : '';
-            setJudet(judetFirma.replace('"judet":"',''));
+  //           const judetReg=/("judet":")\s*[a-zA-Z]*/gmi;
+  //           const judetMatch=dateFirma.match(judetReg);
+  //           const judetFirma=judetMatch && judetMatch[0] ? judetMatch[0] : '';
+  //           setJudet(judetFirma.replace('"judet":"',''));
 
-            const localitateRegex=/("localitate":")\s*[a-zA-Z]*/gmi;
-            const localitateMatch=dateFirma.match(localitateRegex);
-            const localFirma=localitateMatch && localitateMatch[0] ? localitateMatch[0] : '';
-            setLocal(localFirma.replace('"localitate":"',''));
+  //           const localitateRegex=/("localitate":")\s*[a-zA-Z]*/gmi;
+  //           const localitateMatch=dateFirma.match(localitateRegex);
+  //           const localFirma=localitateMatch && localitateMatch[0] ? localitateMatch[0] : '';
+  //           setLocal(localFirma.replace('"localitate":"',''));
 
-            const parolaFirmaRegex=/("parolaFirma":")\s*[a-zA-Z]*/gmi;
-            const parolaFirmaMatch=dateFirma.match(parolaFirmaRegex);
-            const parolFir=parolaFirmaMatch && parolaFirmaMatch[0] ? parolaFirmaMatch[0] : '';
-            setParolaFirma(parolFir.replace('"parolaFirma":"',''));
+  //           const parolaFirmaRegex=/("parolaFirma":")\s*[a-zA-Z]*/gmi;
+  //           const parolaFirmaMatch=dateFirma.match(parolaFirmaRegex);
+  //           const parolFir=parolaFirmaMatch && parolaFirmaMatch[0] ? parolaFirmaMatch[0] : '';
+  //           setParolaFirma(parolFir.replace('"parolaFirma":"',''));
 
-            const platTVARegex=/("platitorTva":")\s*[a-zA-Z]*/gmi;
-            const platTVAMatch=dateFirma.match(platTVARegex);
-            const platTVA=platTVAMatch && platTVAMatch[0] ? platTVAMatch[0] : '';
-            if(platTVA.replace('"platitorTVA":"','') === "on"){
-              setPlatitor("DA");
-            }
-            else{
-              setPlatitor("NU");
-            }
-          }
-          else{
-            console.log('nu exista date firma');
-          }
+  //           const platTVARegex=/("platitorTva":")\s*[a-zA-Z]*/gmi;
+  //           const platTVAMatch=dateFirma.match(platTVARegex);
+  //           const platTVA=platTVAMatch && platTVAMatch[0] ? platTVAMatch[0] : '';
+  //           if(platTVA.replace('"platitorTVA":"','') === "on"){
+  //             setPlatitor("DA");
+  //           }
+  //           else{
+  //             setPlatitor("NU");
+  //           }
+  //         }
+  //         else{
+  //           console.log('nu exista date firma');
+  //         }
 
-         });
+  //        });
        
-
-      },[currentUser,existaPers])
+  //       }
+  //     },[currentUser,existaPers])
 
 
 

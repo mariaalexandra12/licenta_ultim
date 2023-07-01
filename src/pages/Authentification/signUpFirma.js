@@ -77,10 +77,10 @@ export default function SignUpPers() {
            const user=userCredential.user;
           const firmaRef=addDoc(collection(db,'firma'),{
             CIF:cif,
-            denumire:denumireFirma,
             emailFirma:email,
             judet:judet,
             localitate:localitate,
+            nume:denumireFirma,
             parolaFirma:password,
             platitorTVA:platitTVA
           });

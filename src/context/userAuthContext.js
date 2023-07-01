@@ -17,8 +17,6 @@ export function AuthContextProvider({children}) {
    
 
     useEffect(()=>{
-     
-    
       const unsubscribe=onAuthStateChanged(auth,user=>{
         if(user){
             const userKey=user.uid;
