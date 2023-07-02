@@ -139,9 +139,9 @@ const ContFirma=()=>{
     </Tabs>
   </Box>
 
-   {value===0 &&
+   {value===0 && 
     
-    { dateFirma.foreach((el)=>{
+    ( dateFirma.forEach((el)=>{
         <>
        <Box sx={{ display: 'flex', alignItems: 'flex-end',}}>
        <Typography >Adresa de email Firma</Typography>
@@ -169,7 +169,7 @@ const ContFirma=()=>{
           style={{
             width:'300px',
           }}
-          defaultValue={parolaFirma}
+          defaultValue={el['parolaFirma']}
           />
        </Box>
 
@@ -179,7 +179,7 @@ const ContFirma=()=>{
            marginLeft:'58px'}} />
           <TextField id="input-with-sx" variant="standard" 
            type="text"
-           defaultValue={denumire}
+           defaultValue={el['nume']}
            style={{
             width:'300px',
           }}/>
@@ -192,7 +192,7 @@ const ContFirma=()=>{
         marginLeft:'3px'}} />
           <TextField id="input-with-sx"  variant="standard"
           type="text"
-          defaultValue={cif}
+          defaultValue={el['CIF']}
            style={{
             width:'300px',
           }} />
@@ -204,7 +204,7 @@ const ContFirma=()=>{
           marginLeft:'130px' }} />
           <TextField id="input-with-sx"  variant="standard"
           type="text"
-          defaultValue={judet}
+          defaultValue={el['judet']}
            style={{
             width:'300px',
           }} />
@@ -216,7 +216,7 @@ const ContFirma=()=>{
           marginLeft:'98px' }} />
           <TextField id="input-with-sx"  variant="standard"
           type="text"
-          defaultValue={local}
+          defaultValue={el['localitate']}
            style={{
             width:'300px',
           }} />
@@ -228,7 +228,7 @@ const ContFirma=()=>{
           marginLeft:'85px'}} />
           <TextField id="input-with-sx"  variant="standard"
           type="text"
-          defaultValue={platitor}
+          defaultValue={el['platitorTVA']}
            style={{
             width:'300px',
           }} />
@@ -238,7 +238,7 @@ const ContFirma=()=>{
       style={{marginTop:'20px'}}
       >Actualizeaza datele firmei</Button>
       </>
-    })}
+    } ) )
     
   }     
 
