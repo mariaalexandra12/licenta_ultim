@@ -174,7 +174,7 @@ const ContPers=()=>{
        {value===1 &&(
         <>
           {/* CONT FIRMA */}
-           <Typography sx={{marginLeft:'25px', marginTop:'25px'}}>Poti configura datele firmei pentru care vrei sa inregistrezi facturi
+           <Typography sx={{marginLeft:'25px'}}>Poti configura datele firmei pentru care vrei sa inregistrezi facturi
             sau poti continua cu datele personale 
            </Typography>
            <Box sx={{ display: 'flex', alignItems: 'flex-end',}}>
