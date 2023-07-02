@@ -11,20 +11,14 @@ import FileCopyIcon from '@mui/icons-material/FileCopyOutlined';
 import SaveIcon from '@mui/icons-material/Save';
 import PrintIcon from '@mui/icons-material/Print';
 import ShareIcon from '@mui/icons-material/Share';
-import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import PropTypes from 'prop-types';
-
+import { Table } from './table'
+import { Modal } from "./modal";
 
 
 const actions = [
@@ -38,7 +32,52 @@ const actions = [
 
 const Facturi=()=>{
 
+    useEffect(()=>{
 
+
+    },[])
+
+    const [modalOpen, setModalOpen] = useState(false);
+  const [rows, setRows] = useState([
+    {
+      page: "Home",
+      description: "This is the main page of the website",
+      status: "live",
+    },
+    {
+      page: "About Us",
+      description: "This page has details about the company",
+      status: "draft",
+    },
+    {
+      page: "Pricing",
+      description: "Prices for different subscriptions",
+      status: "error",
+    },
+  ]);
+
+  const [rowToEdit, setRowToEdit] = useState(null);
+  const handleDeleteRow = (targetIndex) => {
+    setRows(rows.filter((_, idx) => idx !== targetIndex));
+  };
+
+  const handleEditRow = (idx) => {
+    setRowToEdit(idx);
+
+    setModalOpen(true);
+  };
+
+  const handleSubmit = (newRow) => {
+    rowToEdit === null
+      ? setRows([...rows, newRow])
+      : setRows(
+          rows.map((currRow, idx) => {
+            if (idx !== rowToEdit) return currRow;
+
+            return newRow;
+          })
+        );
+  };
 
    const { currentUser }=useUserAuth();
 
@@ -52,13 +91,15 @@ const Facturi=()=>{
     return(
          <Box sx={{display: 'flex'}}>
            <Navig/>
-            <Box sx={{marginTop: '80px'}}> 
-       
-        {/* <Button onClick={()=>{nav('/adaugaFacturi')}} color="secondary" variant="contained"
-       sx={{marginTop:'30px'}}>Adauga facturi</Button> */}
+             <Box sx={{marginTop: '80px'}}> 
+
+     <div className="Facturi">
+        <Table rows={rows} deleteRow={handleDeleteRow} editRow={handleEditRow} />
+        <Button onClick={()=>{nav('/adaugaFacturi')}} color="secondary" variant="contained"
+       sx={{marginTop:'30px',marginLeft:'500px'}}>Adauga facturi</Button> 
         
-        {/* <Box sx={{ height: 320, transform: 'translateZ(0px)', flexGrow: 1 ,
-       marginLeft:'1000px',marginTop:'100px'}} >
+         <Box sx={{ height: 120, transform: 'translateZ(0px)', flexGrow: 1 ,
+       marginLeft:'1100px'}} >
       <SpeedDial
         ariaLabel="SpeedDial basic example"
         sx={{ position: 'absolute', bottom: 16, right: 16, }}
@@ -72,13 +113,12 @@ const Facturi=()=>{
           />
         ))}
       </SpeedDial>
-    </Box> */}
-
+    </Box>
+    </div>
 
         
         </Box>
     </Box>
-
 
     )
     
