@@ -56,15 +56,16 @@ export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
       <div className="modal">
         <form>
           <div className="form-group">
-            <label htmlFor="dataScadenta">Data Scadenta</label> 
-             <input type="" name="page" onChange={handleChange} value={formState.dataScadenta} />
+            <label>Data Scadenta</label> 
+             <input type="text" name="dataSc" onChange={handleChange}  />
+             {/* value={formState.dataScadenta} */}
           </div>
           <div className="form-group">
             <label htmlFor="valoareTotala">Valoare Totala</label>
-            <textarea
-              name="description"
+            <input type="text" name="Valoare totala"
+              
               onChange={handleChange}
-              value={formState.valoareTotala}
+              // value={formState.valoareTotala}
             />
           </div>
           <div className="form-group">

@@ -108,13 +108,13 @@ const Facturi=()=>{
         <Button onClick={()=>{nav('/adaugaFacturi')}} color="secondary" variant="contained"
        sx={{marginTop:'30px',marginLeft:'500px'}}>Adauga facturi</Button> 
 
-
+{/* 
         <Modal
           closeModal={() => setModalOpen(false)}
           onSubmit={handleSubmit}
           defaultValue={rowToEdit !== null ? rows[rowToEdit] : null}
-          open={modalOpen} // Adăugați această linie
-        /> 
+          open={!modalOpen} 
+        />  */}
         
          <Box sx={{ height: 120, transform: 'translateZ(0px)', flexGrow: 1 ,
        marginLeft:'1100px'}} >
