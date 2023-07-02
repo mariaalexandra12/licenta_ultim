@@ -25,13 +25,15 @@ export const Table = ({ rows, deleteRow, editRow }) => {
   
               return (
                 <tr key={idx}>
-                  <td>{row.page}</td>
+                  <td className="index">{idx+1}</td>
                   <td className="expand">{row.numeFurnizor}</td>
                   <td>
-                    <span className={`label label-${row.status}`}>
-                      {statusText}
+                    <span className="dataScadenta">
+                      {row.dataScadenta}
                     </span>
                   </td>
+                  <td className="tipFact">{row.tipFact}</td>
+                  <td className="valTotala">{row.valoareaTotala}</td>
                   <td className="fit">
                     <span className="actions">
                         <IconButton className="delete-btn">

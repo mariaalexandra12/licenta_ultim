@@ -38,6 +38,7 @@ const Facturi=()=>{
 
     const [indexFact,setIndexFact]=useState(0);
     const [dateFactura,setDateFactura]=useState([]);
+    const [rows, setRows] = useState([])
 
     useEffect(()=>{
         console.log(currentUser);
@@ -57,47 +58,28 @@ const Facturi=()=>{
 
     useEffect(()=>{
         console.log(dateFactura);
-    })
+        const newRows=dateFactura.map((fact)=>({
+          numeFurnizor:fact['numeFurnizor'],
+          dataScadenta:fact['dataScadenta'],
+          tipFact:fact['tipFactura'],
+          valoareaTotala:fact['valoareTotala'],
+        }));
+        setRows(newRows);
+    },[dateFactura]);
 
 
     const [modalOpen, setModalOpen] = useState(false);
 
-    const [rows, setRows] = useState([
-
-        dateFactura.map((fact)=>(
-            {
-                numeFurnizor:fact['numeFurnizor'],
-                dataScadenta:fact['dataScadenta'],
-                tipFact:fact['tipFactura'],
-                valoareaTotala:fact['valoareTotala'],
-            }
-        ))
-
-        // {
-        //   nrIndex: "Home",
-        //   numeFurnizor: "This is the main page of the website",
-        //   tipFactura: "live",
-        // },
-        // {
-        //   page: "About Us",
-        //   description: "This page has details about the company",
-        //   status: "draft",
-        // },
-        // {
-        //   page: "Pricing",
-        //   description: "Prices for different subscriptions",
-        //   status: "error",
-        // },
-      ]);
-
+    
   const [rowToEdit, setRowToEdit] = useState(null);
   const handleDeleteRow = (targetIndex) => {
     setRows(rows.filter((_, idx) => idx !== targetIndex));
+    setRowToEdit(null);//asta am adaugat
+    setModalOpen(false);//adaugata
   };
 
   const handleEditRow = (idx) => {
     setRowToEdit(idx);
-
     setModalOpen(true);
   };
 
@@ -114,7 +96,6 @@ const Facturi=()=>{
   };
 
 
-
     const nav=useNavigate();
 
     return(
@@ -126,6 +107,14 @@ const Facturi=()=>{
         <Table rows={rows} deleteRow={handleDeleteRow} editRow={handleEditRow} />
         <Button onClick={()=>{nav('/adaugaFacturi')}} color="secondary" variant="contained"
        sx={{marginTop:'30px',marginLeft:'500px'}}>Adauga facturi</Button> 
+
+
+        <Modal
+          closeModal={() => setModalOpen(false)}
+          onSubmit={handleSubmit}
+          defaultValue={rowToEdit !== null ? rows[rowToEdit] : null}
+          open={modalOpen} // Adăugați această linie
+        /> 
         
          <Box sx={{ height: 120, transform: 'translateZ(0px)', flexGrow: 1 ,
        marginLeft:'1100px'}} >
@@ -145,7 +134,11 @@ const Facturi=()=>{
     </Box>
     </div>
 
-        
+            
+       
+
+
+
         </Box>
     </Box>
 

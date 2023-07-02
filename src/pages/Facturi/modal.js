@@ -1,19 +1,26 @@
 import React, { useState } from "react";
-
 import "./modal.css";
+import { Button } from "@mui/material";
+import CloseIcon from '@mui/icons-material/Close';
+import UpgradeIcon from '@mui/icons-material/Upgrade';
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+
 
 export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
   const [formState, setFormState] = useState(
     defaultValue || {
-      page: "",
-      description: "",
-      status: "live",
+      dataScadenta: "",
+      valoareTotala:"",
+      tip: "utilitati",
     }
   );
   const [errors, setErrors] = useState("");
 
   const validateForm = () => {
-    if (formState.page && formState.description && formState.status) {
+    if (formState.dataScadenta && formState.valoareaTotala && formState.tip) {
       setErrors("");
       return true;
     } else {
@@ -52,33 +59,41 @@ export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
       <div className="modal">
         <form>
           <div className="form-group">
-            <label htmlFor="page">Page</label>
-            <input name="page" onChange={handleChange} value={formState.page} />
+            {/* <label htmlFor="dataScadenta">Data Scadenta</label> */}
+            {/* <input type="" name="page" onChange={handleChange} value={formState.dataScadenta} /> */}
+          
+            <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="ro">
+                <DemoContainer components={['DatePicker']} >
+                   <DatePicker label="Data Scadenta" onChange={handleChange} value={formState.dataScadenta}/>
+                </DemoContainer>
+           </LocalizationProvider>
           </div>
           <div className="form-group">
-            <label htmlFor="description">Description</label>
+            <label htmlFor="valoareTotala">Valoare Totala</label>
             <textarea
               name="description"
               onChange={handleChange}
-              value={formState.description}
+              value={formState.valoareTotala}
             />
           </div>
           <div className="form-group">
-            <label htmlFor="status">Status</label>
+            <label htmlFor="status">Tip Factura</label>
             <select
               name="status"
               onChange={handleChange}
-              value={formState.status}
+              value={formState.tipFactura}
             >
-              <option value="live">Live</option>
-              <option value="draft">Draft</option>
-              <option value="error">Error</option>
+              <option value="utilitati">Utilitati</option>
+              <option value="mentenanta">Mentenanta</option>
+              <option value="inventar">Inventar</option>
+              <option value="materii prime">Materii prime</option>
+              <option value="nedefinit">Nedefinit</option>
             </select>
           </div>
-          {errors && <div className="error">{`Please include: ${errors}`}</div>}
-          <button type="submit" className="btn" onClick={handleSubmit}>
-            Submit
-          </button>
+          {errors && <div className="error">{`Nu ai completat: ${errors}`}</div>}
+          <Button color="secondary" variant="contained" type="submit" className="btn" onClick={handleSubmit} startIcon={<UpgradeIcon/>}>
+            Actualizeaza datele facturii
+          </Button>
         </form>
       </div>
     </div>
