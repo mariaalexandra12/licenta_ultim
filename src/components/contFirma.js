@@ -65,28 +65,28 @@ const ContFirma=()=>{
         setLoad(false);
         dateFirma.forEach((el)=>{
             console.log(el['CIF']);
-            // setCIF(el['CIF']);
+            setCIF(el['CIF']);
     
             console.log(el['judet']);
-            // setJudet(el['judet']);
+            setJudet(el['judet']);
     
             console.log(el['localitate']);
-            // setLocal(el['localitate']);
+            setLocal(el['localitate']);
     
             console.log(el['nume']);
-            // setDenumire(el['nume']);
+            setDenumire(el['nume']);
     
             console.log(el['parolaFirma']);
-            // setParolaFirma(el['parolaFirma']);
+            setParolaFirma(el['parolaFirma']);
     
             console.log(el['platitorTVA']);
-            // setPlatitor(el['platitorTVA']);
+            setPlatitor(el['platitorTVA']);
        })
     })
     return ()=>{
         unsub();
     }
-    },[])
+    },[currentUser])
 
 
       return (   
@@ -141,7 +141,6 @@ const ContFirma=()=>{
 
    {value===0 && 
     
-    ( dateFirma.forEach((el)=>{
         <>
        <Box sx={{ display: 'flex', alignItems: 'flex-end',}}>
        <Typography >Adresa de email Firma</Typography>
@@ -150,11 +149,10 @@ const ContFirma=()=>{
           <TextField id="adresaEmail" 
           type='text'
           variant="standard" 
-          defaultValue={currentUser}
+          value={currentUser}
           style={{
             width:'300px',
-            marginTop: '30px',
-            
+            marginTop: '30px', 
           }}
           />
        </Box>
@@ -163,13 +161,13 @@ const ContFirma=()=>{
           <Typography >Parola Cont Firma</Typography>
           <HttpsIcon sx={{ color: 'action.active', mr: 1, my: 0.5,
           marginLeft:'45px' }} />
-          <TextField id="input-with-sx" 
+          <TextField id="parolaFirma" 
           type="text"
           variant="standard" 
           style={{
             width:'300px',
           }}
-          defaultValue={el['parolaFirma']}
+          value={parolaFirma}
           />
        </Box>
 
@@ -177,9 +175,9 @@ const ContFirma=()=>{
           <Typography >Denumire Firma</Typography>
           <BusinessIcon sx={{ color: 'action.active', mr: 1, my: 0.5 ,
            marginLeft:'58px'}} />
-          <TextField id="input-with-sx" variant="standard" 
+          <TextField id="denumire" variant="standard" 
            type="text"
-           defaultValue={el['nume']}
+           value={denumire}
            style={{
             width:'300px',
           }}/>
@@ -190,9 +188,9 @@ const ContFirma=()=>{
           <Typography >Cod Inregistrare Fiscala</Typography>
           <SourceIcon sx={{ color: 'action.active', mr: 1, my: 0.5 ,
         marginLeft:'3px'}} />
-          <TextField id="input-with-sx"  variant="standard"
+          <TextField id="cif"  variant="standard"
           type="text"
-          defaultValue={el['CIF']}
+          value={cif}
            style={{
             width:'300px',
           }} />
@@ -202,9 +200,9 @@ const ContFirma=()=>{
           <Typography>Judet</Typography>
           <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5,
           marginLeft:'130px' }} />
-          <TextField id="input-with-sx"  variant="standard"
+          <TextField id="judet"  variant="standard"
           type="text"
-          defaultValue={el['judet']}
+          value={judet}
            style={{
             width:'300px',
           }} />
@@ -214,9 +212,9 @@ const ContFirma=()=>{
           <Typography >Localitate</Typography>
           <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5,
           marginLeft:'98px' }} />
-          <TextField id="input-with-sx"  variant="standard"
+          <TextField id="localitate"  variant="standard"
           type="text"
-          defaultValue={el['localitate']}
+          value={local}
            style={{
             width:'300px',
           }} />
@@ -226,9 +224,9 @@ const ContFirma=()=>{
           <Typography >Platitor TVA</Typography>
           <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5,
           marginLeft:'85px'}} />
-          <TextField id="input-with-sx"  variant="standard"
+          <TextField id="platitorTVA"  variant="standard"
           type="text"
-          defaultValue={el['platitorTVA']}
+          value={platitor}
            style={{
             width:'300px',
           }} />
@@ -238,9 +236,8 @@ const ContFirma=()=>{
       style={{marginTop:'20px'}}
       >Actualizeaza datele firmei</Button>
       </>
-    } ) )
-    
-  }     
+    } 
+        
 
     </Item>
   </Grid>
