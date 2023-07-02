@@ -63,24 +63,24 @@ const ContFirma=()=>{
         });
         setDateFirma(items);
         setLoad(false);
-        dateFirma.forEach((el)=>{
+        dateFirma.map((el)=>{
             console.log(el['CIF']);
-            setCIF(el['CIF']);
+            // setCIF(el['CIF']);
     
             console.log(el['judet']);
-            setJudet(el['judet']);
+            // setJudet(el['judet']);
     
             console.log(el['localitate']);
-            setLocal(el['localitate']);
+            // setLocal(el['localitate']);
     
             console.log(el['nume']);
-            setDenumire(el['nume']);
+            // setDenumire(el['nume']);
     
             console.log(el['parolaFirma']);
-            setParolaFirma(el['parolaFirma']);
+            // setParolaFirma(el['parolaFirma']);
     
             console.log(el['platitorTVA']);
-            setPlatitor(el['platitorTVA']);
+            // setPlatitor(el['platitorTVA']);
        })
     })
     return ()=>{
@@ -139,8 +139,22 @@ const ContFirma=()=>{
     </Tabs>
   </Box>
 
-   {value===0 && 
-    
+  
+  {
+    dateFirma.map((el)=>{
+      setCIF(el['CIF']);
+       setJudet(el['judet']);
+      setLocal(el['localitate']);
+      setDenumire(el['nume']);
+      setParolaFirma(el['parolaFirma']);
+      setPlatitor(el['platitorTVA']);
+    })
+  }
+
+
+   {value===0 && (
+   
+   
         <>
        <Box sx={{ display: 'flex', alignItems: 'flex-end',}}>
        <Typography >Adresa de email Firma</Typography>
@@ -236,6 +250,8 @@ const ContFirma=()=>{
       style={{marginTop:'20px'}}
       >Actualizeaza datele firmei</Button>
       </>
+     
+   )
     } 
         
 
