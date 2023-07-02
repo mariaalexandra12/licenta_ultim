@@ -10,9 +10,11 @@
     box-shadow: 0px 10px 10px #ccc;
     border-radius: 10px;
     white-space: nowrap;
-    width: 100em;
-    max-width: 80%;
-    margin: auto;
+    margin-top:80px;
+    width:1000px;
+    margin-left: 100px;
+    /* max-width: 80%; */
+    /* margin: auto; */
     table-layout: auto;
     overflow-x: auto;
   }

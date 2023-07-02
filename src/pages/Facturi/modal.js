@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import "./Modal.css";
+import "./modal.css";
 
 export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
   const [formState, setFormState] = useState(
