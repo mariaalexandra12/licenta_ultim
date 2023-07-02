@@ -79,8 +79,18 @@ const Facturi=()=>{
   };
 
   const handleEditRow = (idx) => {
-    setRowToEdit(idx);
-    setModalOpen(true);
+    // setRowToEdit(idx);
+    // setModalOpen(true);
+    return (
+      <>
+      <Modal
+      closeModal={() => setModalOpen(false)}
+      onSubmit={handleSubmit}
+      defaultValue={rowToEdit !== null ? rows[rowToEdit] : null}
+      open={modalOpen} 
+    />
+    </>
+    )
   };
 
   const handleSubmit = (newRow) => {
@@ -107,14 +117,16 @@ const Facturi=()=>{
         <Table rows={rows} deleteRow={handleDeleteRow} editRow={handleEditRow} />
         <Button onClick={()=>{nav('/adaugaFacturi')}} color="secondary" variant="contained"
        sx={{marginTop:'30px',marginLeft:'500px'}}>Adauga facturi</Button> 
-
-{/* 
+     {modalOpen && (
         <Modal
-          closeModal={() => setModalOpen(false)}
+          closeModal={() => {
+            setModalOpen(false);
+            setRowToEdit(null);
+          }}
           onSubmit={handleSubmit}
-          defaultValue={rowToEdit !== null ? rows[rowToEdit] : null}
-          open={!modalOpen} 
-        />  */}
+          defaultValue={rowToEdit !== null && rows[rowToEdit]}
+        />
+      )}
         
          <Box sx={{ height: 120, transform: 'translateZ(0px)', flexGrow: 1 ,
        marginLeft:'1100px'}} >
