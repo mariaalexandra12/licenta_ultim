@@ -21,6 +21,7 @@ import { Table } from './table'
 import { Modal } from "./modal";
 import { db } from '../../firebaseUtils/firebase_ut';
 import { collection, query, where, getDocs,onSnapshot, QuerySnapshot} from "firebase/firestore";
+import ModalView from './modalView';
 
 
 const actions = [
@@ -70,27 +71,19 @@ const Facturi=()=>{
 
     const [modalOpen, setModalOpen] = useState(false);
 
-    
+    const [modalViewOpen, setModalViewOpen] = useState(false);
+
   const [rowToEdit, setRowToEdit] = useState(null);
   const handleDeleteRow = (targetIndex) => {
     setRows(rows.filter((_, idx) => idx !== targetIndex));
-    setRowToEdit(null);//asta am adaugat
-    setModalOpen(false);//adaugata
+    setRowToEdit(null);
+    setModalOpen(false);
   };
 
   const handleEditRow = (idx) => {
-    // setRowToEdit(idx);
-    // setModalOpen(true);
-    return (
-      <>
-      <Modal
-      closeModal={() => setModalOpen(false)}
-      onSubmit={handleSubmit}
-      defaultValue={rowToEdit !== null ? rows[rowToEdit] : null}
-      open={modalOpen} 
-    />
-    </>
-    )
+    setRowToEdit(idx);
+    setModalOpen(true);
+    
   };
 
   const handleSubmit = (newRow) => {
@@ -105,8 +98,32 @@ const Facturi=()=>{
         );
   };
 
+   const handleView=()=>{
+       setModalViewOpen(true);
+   }
 
     const nav=useNavigate();
+
+    const [imageSrc, setImageSrc] = useState('');
+
+    useEffect(() => {
+      // Obțineți link-ul blob
+      console.log(dateFactura['imgUrl']);
+      const blobUrl = dateFactura['imgUrl']
+  
+      fetch(blobUrl)
+        .then((response) => response.blob())
+        .then((blob) => {
+          // Creează un obiect FileReader pentru a citi conținutul obiectului Blob
+          const reader = new FileReader();
+          reader.onloadend = () => {
+            // Când citirea este finalizată, setează sursa imaginii
+            setImageSrc(reader.result);
+          };
+          reader.readAsDataURL(blob);
+        });
+        console.log(imageSrc)
+    }, []);
 
     return(
          <Box sx={{display: 'flex'}}>
@@ -114,7 +131,7 @@ const Facturi=()=>{
              <Box sx={{marginTop: '80px'}}> 
 
      <div className="Facturi">
-        <Table rows={rows} deleteRow={handleDeleteRow} editRow={handleEditRow} />
+        <Table rows={rows} deleteRow={handleDeleteRow} editRow={handleEditRow} viewImage={handleView}/>
         <Button onClick={()=>{nav('/adaugaFacturi')}} color="secondary" variant="contained"
        sx={{marginTop:'30px',marginLeft:'500px'}}>Adauga facturi</Button> 
      {modalOpen && (
@@ -128,6 +145,14 @@ const Facturi=()=>{
         />
       )}
         
+        {modalViewOpen && (
+          <ModalView
+             imageURL={imageSrc}
+             closeModalView={()=>setModalViewOpen(false)}
+          ></ModalView>
+        )}
+
+
          <Box sx={{ height: 120, transform: 'translateZ(0px)', flexGrow: 1 ,
        marginLeft:'1100px'}} >
       <SpeedDial
