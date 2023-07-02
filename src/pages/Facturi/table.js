@@ -12,21 +12,21 @@ export const Table = ({ rows, deleteRow, editRow }) => {
             <tr>
               <th>Nr Factura</th>
               <th className="expand">Nume Furnizor</th>
+              <th>Data Scadenta</th>
               <th>Tip Factura</th>
               <th>Valoare Totala</th>
-              <th>Valoare Totala</th> 
               <th>Actiuni</th>
             </tr>
           </thead>
           <tbody>
             {rows.map((row, idx) => {
-              const statusText =
-                row.status.charAt(0).toUpperCase() + row.status.slice(1);
+            //   const statusText =
+            //     row.status.charAt(0).toUpperCase() + row.status.slice(1);
   
               return (
                 <tr key={idx}>
                   <td>{row.page}</td>
-                  <td className="expand">{row.description}</td>
+                  <td className="expand">{row.numeFurnizor}</td>
                   <td>
                     <span className={`label label-${row.status}`}>
                       {statusText}

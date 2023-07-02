@@ -19,6 +19,8 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import PropTypes from 'prop-types';
 import { Table } from './table'
 import { Modal } from "./modal";
+import { db } from '../../firebaseUtils/firebase_ut';
+import { collection, query, where, getDocs,onSnapshot, QuerySnapshot} from "firebase/firestore";
 
 
 const actions = [
@@ -32,29 +34,61 @@ const actions = [
 
 const Facturi=()=>{
 
+    const { currentUser }= useUserAuth()
+
+    const [indexFact,setIndexFact]=useState(0);
+    const [dateFactura,setDateFactura]=useState([]);
+
     useEffect(()=>{
+        console.log(currentUser);
+        const q2 = query(collection(db, "factura"),where("emailUtilizator","==",currentUser));
+        const unsub=onSnapshot(q2,(snapshot) => {
+            const items=[];
+            snapshot.forEach((doc)=>{
+                items.push(doc.data());
+            });
+          setDateFactura(items);
+          setIndexFact(+1);
+        })
+        return ()=>{
+            unsub();
+        }
+        },[currentUser])
 
+    useEffect(()=>{
+        console.log(dateFactura);
+    })
 
-    },[])
 
     const [modalOpen, setModalOpen] = useState(false);
-  const [rows, setRows] = useState([
-    {
-      page: "Home",
-      description: "This is the main page of the website",
-      status: "live",
-    },
-    {
-      page: "About Us",
-      description: "This page has details about the company",
-      status: "draft",
-    },
-    {
-      page: "Pricing",
-      description: "Prices for different subscriptions",
-      status: "error",
-    },
-  ]);
+
+    const [rows, setRows] = useState([
+
+        dateFactura.map((fact)=>(
+            {
+                numeFurnizor:fact['numeFurnizor'],
+                dataScadenta:fact['dataScadenta'],
+                tipFact:fact['tipFactura'],
+                valoareaTotala:fact['valoareTotala'],
+            }
+        ))
+
+        // {
+        //   nrIndex: "Home",
+        //   numeFurnizor: "This is the main page of the website",
+        //   tipFactura: "live",
+        // },
+        // {
+        //   page: "About Us",
+        //   description: "This page has details about the company",
+        //   status: "draft",
+        // },
+        // {
+        //   page: "Pricing",
+        //   description: "Prices for different subscriptions",
+        //   status: "error",
+        // },
+      ]);
 
   const [rowToEdit, setRowToEdit] = useState(null);
   const handleDeleteRow = (targetIndex) => {
@@ -79,12 +113,7 @@ const Facturi=()=>{
         );
   };
 
-   const { currentUser }=useUserAuth();
 
-   useEffect(()=>{
-      
-
-   },[])
 
     const nav=useNavigate();
 
