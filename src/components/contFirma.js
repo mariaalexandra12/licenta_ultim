@@ -61,25 +61,6 @@ const ContFirma=()=>{
         });
         setDateFirma(items);
         setLoad(false);
-      //   dateFirma.forEach((el)=>{
-      //       console.log(el['CIF']);
-      //       // setCIF(el['CIF']);
-    
-      //       console.log(el['judet']);
-      //       // setJudet(el['judet']);
-    
-      //       console.log(el['localitate']);
-      //       // setLocal(el['localitate']);
-    
-      //       console.log(el['nume']);
-      //       // setDenumire(el['nume']);
-    
-      //       console.log(el['parolaFirma']);
-      //       // setParolaFirma(el['parolaFirma']);
-    
-      //       console.log(el['platitorTVA']);
-      //       // setPlatitor(el['platitorTVA']);
-      //  })
     })
     return ()=>{
         unsub();
@@ -133,21 +114,11 @@ const ContFirma=()=>{
    <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
     <Tabs value={value} onChange={handleChange} textColor="secondary" >
       <Tab label="Cont Firma"  />
-      <Tab label="Settings"></Tab>
+      <Tab label="Setari Cont"></Tab>
     </Tabs>
   </Box>
 
   
-  {/* {
-    dateFirma.map((el)=>{
-      setCIF(el['CIF']);
-       setJudet(el['judet']);
-      setLocal(el['localitate']);
-      setDenumire(el['nume']);
-      setParolaFirma(el['parolaFirma']);
-      setPlatitor(el['platitorTVA']);
-    })
-  } */}
 
 
    {value===0 && dateFirma.map((firma)=>(
@@ -243,13 +214,103 @@ const ContFirma=()=>{
           }} />
        </Box>
       
-      <Button variant="contained" color="secondary"
-      style={{marginTop:'20px'}}
-      >Actualizeaza datele firmei</Button>
+      
       </>
         
         ))
     } 
+
+
+    {value === 1 && (
+      <>
+      <Box sx={{ display: 'flex', alignItems: 'flex-end',}}>
+      <Typography >Adresa de email Firma</Typography>
+         <EmailIcon sx={{ color: 'action.active', mr: 1, my: 0.5, 
+          marginLeft:'14px'}} />
+         <TextField id="adresaEmail" 
+         type='text'
+         variant="standard" 
+         style={{
+           width:'300px',
+           marginTop: '30px', 
+         }}
+         />
+      </Box>
+
+      <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+         <Typography >Parola Cont Firma</Typography>
+         <HttpsIcon sx={{ color: 'action.active', mr: 1, my: 0.5,
+         marginLeft:'45px' }} />
+         <TextField id="parolaFirma" 
+         type="text"
+         variant="standard" 
+         style={{
+           width:'300px',
+         }}
+         />
+      </Box>
+
+      <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+         <Typography >Denumire Firma</Typography>
+         <BusinessIcon sx={{ color: 'action.active', mr: 1, my: 0.5 ,
+          marginLeft:'58px'}} />
+         <TextField id="denumire" variant="standard" 
+          type="text"
+          style={{
+           width:'300px',
+         }}/>
+      </Box>
+
+      
+      <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+         <Typography >Cod Inregistrare Fiscala</Typography>
+         <SourceIcon sx={{ color: 'action.active', mr: 1, my: 0.5 ,
+       marginLeft:'3px'}} />
+         <TextField id="cif"  variant="standard"
+         type="text"
+          style={{
+           width:'300px',
+         }} />
+      </Box>
+
+      <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+         <Typography>Judet</Typography>
+         <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5,
+         marginLeft:'130px' }} />
+         <TextField id="judet"  variant="standard"
+         type="text"
+          style={{
+           width:'300px',
+         }} />
+      </Box>
+
+      <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+         <Typography >Localitate</Typography>
+         <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5,
+         marginLeft:'98px' }} />
+         <TextField id="localitate"  variant="standard"
+         type="text"
+          style={{
+           width:'300px',
+         }} />
+      </Box>
+
+      <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+         <Typography >Platitor TVA</Typography>
+         <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5,
+         marginLeft:'85px'}} />
+         <TextField id="platitorTVA"  variant="standard"
+         type="text"
+          style={{
+           width:'300px',
+         }} />
+      </Box>
+     
+     <Button variant="contained" color="secondary"
+     style={{marginTop:'20px'}}
+     >Actualizeaza datele firmei</Button>
+     </>
+    )}
         
 
     </Item>
