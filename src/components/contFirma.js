@@ -49,201 +49,208 @@ const ContFirma=()=>{
 
  const [dateFirma,setDateFirma]=useState([]);
 
+ const [load,setLoad]=useState(true);
  
 
-  useEffect(() => {
+ useEffect(()=>{
     // const adresaEmail=localStorage.getItem(currentUserID);
     setAdresaFirma(currentUser);
     const q2 = query(collection(db, "firma"),where("emailFirma","==",currentUser));
-    onSnapshot(q2,(snapshot) => {
+    const unsub=onSnapshot(q2,(snapshot) => {
         const items=[];
         snapshot.forEach((doc)=>{
             items.push(doc.data());
         });
         setDateFirma(items);
-    })
+        setLoad(false);
+        dateFirma.forEach((el)=>{
+            console.log(el['CIF']);
+            // setCIF(el['CIF']);
     
-    dateFirma.forEach((el)=>{
-        console.log(el['CIF']);
-        setCIF(el['CIF']);
-
-        console.log(el['judet']);
-        setJudet(el['judet']);
-
-        console.log(el['localitate']);
-        setJudet(el['localitate']);
-
-        console.log(el['nume']);
-        setDenumire(el['nume']);
-
-        console.log(el['parolaFirma']);
-        setParolaFirma(el['parolaFirma']);
-
-        console.log(el['platitorTVA']);
-        setPlatitor(el['platitorTVA']);
+            console.log(el['judet']);
+            // setJudet(el['judet']);
+    
+            console.log(el['localitate']);
+            // setLocal(el['localitate']);
+    
+            console.log(el['nume']);
+            // setDenumire(el['nume']);
+    
+            console.log(el['parolaFirma']);
+            // setParolaFirma(el['parolaFirma']);
+    
+            console.log(el['platitorTVA']);
+            // setPlatitor(el['platitorTVA']);
+       })
     })
-},[currentUser])
+    return ()=>{
+        unsub();
+    }
+    },[])
 
-    return (
-        <>
 
-         <Box sx={{display: 'flex'}}>
-         <Navig/>
-        <Box sx={{  marginTop:'80px',
-      marginLeft:'20px',}}>
-        <Grid
-         container
-           direction="column"
-            justifyContent="center"
-           alignItems="center">
-              <Grid container  direction="rows" xs>
-                <Grid item>
-                <Item style={{
-                    width:'1000px',
-                    display:'flex',
-                    flexDirection:'row',
-                    background: 'rgba( 186, 152, 224, 0.7 )',
-                    boxShadow:'0 8px 32px 0 rgba( 31, 38, 135, 0.37 )', 
-                    backdropFilter:' blur( 11px )',
-                    WebkitBackdropFilter:' blur( 11px )',
-                    borderRadius:' 10px',
-                    border: '1px solid rgba( 255, 255, 255, 0.18 )',
-                }}>
-                    <Typography style={{fontSize:'35px'}}>Profil</Typography>
-                    <IconButton style={{marginLeft:'450px',}}><PersonPinIcon/></IconButton>
-                </Item>
-                </Grid>
-              
-              </Grid>
-              <Grid item >
-              <Item style={{
-                marginTop:'50px',
+      return (   
+      <>
+
+     <Box sx={{display: 'flex'}}>
+     <Navig/>
+    <Box sx={{  marginTop:'80px',
+  marginLeft:'20px',}}>
+    <Grid
+     container
+       direction="column"
+        justifyContent="center"
+       alignItems="center">
+          <Grid container  direction="rows" xs>
+            <Grid item>
+            <Item style={{
                 width:'1000px',
-                height:'400px',
+                display:'flex',
+                flexDirection:'row',
                 background: 'rgba( 186, 152, 224, 0.7 )',
                 boxShadow:'0 8px 32px 0 rgba( 31, 38, 135, 0.37 )', 
                 backdropFilter:' blur( 11px )',
                 WebkitBackdropFilter:' blur( 11px )',
                 borderRadius:' 10px',
                 border: '1px solid rgba( 255, 255, 255, 0.18 )',
-              }}>
-       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={value} onChange={handleChange} textColor="secondary" >
-          <Tab label="Cont Firma"  />
-        </Tabs>
-      </Box>
-
-       {value===0 &&(
-        <>
-          {/* CONT FIRMA */}
-          <form>
-           <Box sx={{ display: 'flex', alignItems: 'flex-end',}}>
-           <Typography >Adresa de email Firma</Typography>
-              <EmailIcon sx={{ color: 'action.active', mr: 1, my: 0.5, 
-               marginLeft:'14px'}} />
-              <TextField id="adresaEmail" 
-              type='text'
-              variant="standard" 
-              defaultValue={adresaFirma}
-              style={{
-                width:'300px',
-                marginTop: '30px',
-                
-              }}
-              />
-           </Box>
-
-           <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
-              <Typography >Parola Cont Firma</Typography>
-              <HttpsIcon sx={{ color: 'action.active', mr: 1, my: 0.5,
-              marginLeft:'45px' }} />
-              <TextField id="input-with-sx" 
-              type="text"
-              variant="standard" 
-              style={{
-                width:'300px',
-              }}
-              defaultValue={parolaFirma}
-              />
-           </Box>
-
-           <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
-              <Typography >Denumire Firma</Typography>
-              <BusinessIcon sx={{ color: 'action.active', mr: 1, my: 0.5 ,
-               marginLeft:'58px'}} />
-              <TextField id="input-with-sx" variant="standard" 
-               type="text"
-               defaultValue={denumire}
-               style={{
-                width:'300px',
-              }}/>
-           </Box>
-
-           
-           <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
-              <Typography >Cod Inregistrare Fiscala</Typography>
-              <SourceIcon sx={{ color: 'action.active', mr: 1, my: 0.5 ,
-            marginLeft:'3px'}} />
-              <TextField id="input-with-sx"  variant="standard"
-              type="text"
-              defaultValue={cif}
-               style={{
-                width:'300px',
-              }} />
-           </Box>
-
-           <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
-              <Typography>Judet</Typography>
-              <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5,
-              marginLeft:'130px' }} />
-              <TextField id="input-with-sx"  variant="standard"
-              type="text"
-              defaultValue={judet}
-               style={{
-                width:'300px',
-              }} />
-           </Box>
-
-           <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
-              <Typography >Localitate</Typography>
-              <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5,
-              marginLeft:'98px' }} />
-              <TextField id="input-with-sx"  variant="standard"
-              type="text"
-              defaultValue={local}
-               style={{
-                width:'300px',
-              }} />
-           </Box>
-
-           <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
-              <Typography >Platitor TVA</Typography>
-              <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5,
-              marginLeft:'85px'}} />
-              <TextField id="input-with-sx"  variant="standard"
-              type="text"
-              defaultValue={platitor}
-               style={{
-                width:'300px',
-              }} />
-           </Box>
+            }}>
+                <Typography style={{fontSize:'35px'}}>Profil</Typography>
+                <IconButton style={{marginLeft:'450px',}}><PersonPinIcon/></IconButton>
+            </Item>
+            </Grid>
           
-          <Button variant="contained" color="secondary"
-          style={{marginTop:'20px'}}
-          >Actualizeaza datele firmei</Button>
-          </form>
-        </>
-      )}     
+          </Grid>
+          <Grid item >
+          <Item style={{
+            marginTop:'50px',
+            width:'1000px',
+            height:'400px',
+            background: 'rgba( 186, 152, 224, 0.7 )',
+            boxShadow:'0 8px 32px 0 rgba( 31, 38, 135, 0.37 )', 
+            backdropFilter:' blur( 11px )',
+            WebkitBackdropFilter:' blur( 11px )',
+            borderRadius:' 10px',
+            border: '1px solid rgba( 255, 255, 255, 0.18 )',
+          }}>
+   <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+    <Tabs value={value} onChange={handleChange} textColor="secondary" >
+      <Tab label="Cont Firma"  />
+      <Tab label="Settings"></Tab>
+    </Tabs>
+  </Box>
 
-        
-        </Item>
-      </Grid>
-     
-     </Grid>
-     </Box>
-     </Box>
-        </>
-    )
+   {value===0 &&
+    
+    { dateFirma.foreach((el)=>{
+        <>
+       <Box sx={{ display: 'flex', alignItems: 'flex-end',}}>
+       <Typography >Adresa de email Firma</Typography>
+          <EmailIcon sx={{ color: 'action.active', mr: 1, my: 0.5, 
+           marginLeft:'14px'}} />
+          <TextField id="adresaEmail" 
+          type='text'
+          variant="standard" 
+          defaultValue={currentUser}
+          style={{
+            width:'300px',
+            marginTop: '30px',
+            
+          }}
+          />
+       </Box>
+
+       <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+          <Typography >Parola Cont Firma</Typography>
+          <HttpsIcon sx={{ color: 'action.active', mr: 1, my: 0.5,
+          marginLeft:'45px' }} />
+          <TextField id="input-with-sx" 
+          type="text"
+          variant="standard" 
+          style={{
+            width:'300px',
+          }}
+          defaultValue={parolaFirma}
+          />
+       </Box>
+
+       <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+          <Typography >Denumire Firma</Typography>
+          <BusinessIcon sx={{ color: 'action.active', mr: 1, my: 0.5 ,
+           marginLeft:'58px'}} />
+          <TextField id="input-with-sx" variant="standard" 
+           type="text"
+           defaultValue={denumire}
+           style={{
+            width:'300px',
+          }}/>
+       </Box>
+
+       
+       <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+          <Typography >Cod Inregistrare Fiscala</Typography>
+          <SourceIcon sx={{ color: 'action.active', mr: 1, my: 0.5 ,
+        marginLeft:'3px'}} />
+          <TextField id="input-with-sx"  variant="standard"
+          type="text"
+          defaultValue={cif}
+           style={{
+            width:'300px',
+          }} />
+       </Box>
+
+       <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+          <Typography>Judet</Typography>
+          <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5,
+          marginLeft:'130px' }} />
+          <TextField id="input-with-sx"  variant="standard"
+          type="text"
+          defaultValue={judet}
+           style={{
+            width:'300px',
+          }} />
+       </Box>
+
+       <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+          <Typography >Localitate</Typography>
+          <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5,
+          marginLeft:'98px' }} />
+          <TextField id="input-with-sx"  variant="standard"
+          type="text"
+          defaultValue={local}
+           style={{
+            width:'300px',
+          }} />
+       </Box>
+
+       <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+          <Typography >Platitor TVA</Typography>
+          <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5,
+          marginLeft:'85px'}} />
+          <TextField id="input-with-sx"  variant="standard"
+          type="text"
+          defaultValue={platitor}
+           style={{
+            width:'300px',
+          }} />
+       </Box>
+      
+      <Button variant="contained" color="secondary"
+      style={{marginTop:'20px'}}
+      >Actualizeaza datele firmei</Button>
+      </>
+    })}
+    
+  }     
+
+    </Item>
+  </Grid>
+ 
+ </Grid>
+ </Box>
+ </Box>
+    </>
+
+)
 }
 
 
