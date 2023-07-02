@@ -3,8 +3,9 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import './table.css';
 import { IconButton } from "@mui/material";
+import VisibilityIcon from '@mui/icons-material/Visibility';
 
-export const Table = ({ rows, deleteRow, editRow }) => {
+export const Table = ({ rows, deleteRow, editRow ,viewImage}) => {
     return (
       <div className="table-wrapper">
         <table className="table">
@@ -48,6 +49,11 @@ export const Table = ({ rows, deleteRow, editRow }) => {
                         onClick={() => editRow(idx)}
                       />
                       </IconButton>
+
+                      <IconButton className="viewImage">
+                         <VisibilityIcon onClick={() =>viewImage()}/>
+                      </IconButton>
+
                     </span>
                   </td>
                 </tr>
