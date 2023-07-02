@@ -3,10 +3,7 @@ import "./modal.css";
 import { Button } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import UpgradeIcon from '@mui/icons-material/Upgrade';
-import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+
 
 
 export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
@@ -59,14 +56,8 @@ export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
       <div className="modal">
         <form>
           <div className="form-group">
-            {/* <label htmlFor="dataScadenta">Data Scadenta</label> */}
-            {/* <input type="" name="page" onChange={handleChange} value={formState.dataScadenta} /> */}
-          
-            <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="ro">
-                <DemoContainer components={['DatePicker']} >
-                   <DatePicker label="Data Scadenta" onChange={handleChange} value={formState.dataScadenta}/>
-                </DemoContainer>
-           </LocalizationProvider>
+            <label htmlFor="dataScadenta">Data Scadenta</label> 
+             <input type="" name="page" onChange={handleChange} value={formState.dataScadenta} />
           </div>
           <div className="form-group">
             <label htmlFor="valoareTotala">Valoare Totala</label>
