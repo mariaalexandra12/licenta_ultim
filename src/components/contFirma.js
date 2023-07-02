@@ -53,8 +53,6 @@ const ContFirma=()=>{
  
 
  useEffect(()=>{
-    // const adresaEmail=localStorage.getItem(currentUserID);
-    setAdresaFirma(currentUser);
     const q2 = query(collection(db, "firma"),where("emailFirma","==",currentUser));
     const unsub=onSnapshot(q2,(snapshot) => {
         const items=[];
@@ -63,25 +61,25 @@ const ContFirma=()=>{
         });
         setDateFirma(items);
         setLoad(false);
-        dateFirma.map((el)=>{
-            console.log(el['CIF']);
-            // setCIF(el['CIF']);
+      //   dateFirma.forEach((el)=>{
+      //       console.log(el['CIF']);
+      //       // setCIF(el['CIF']);
     
-            console.log(el['judet']);
-            // setJudet(el['judet']);
+      //       console.log(el['judet']);
+      //       // setJudet(el['judet']);
     
-            console.log(el['localitate']);
-            // setLocal(el['localitate']);
+      //       console.log(el['localitate']);
+      //       // setLocal(el['localitate']);
     
-            console.log(el['nume']);
-            // setDenumire(el['nume']);
+      //       console.log(el['nume']);
+      //       // setDenumire(el['nume']);
     
-            console.log(el['parolaFirma']);
-            // setParolaFirma(el['parolaFirma']);
+      //       console.log(el['parolaFirma']);
+      //       // setParolaFirma(el['parolaFirma']);
     
-            console.log(el['platitorTVA']);
-            // setPlatitor(el['platitorTVA']);
-       })
+      //       console.log(el['platitorTVA']);
+      //       // setPlatitor(el['platitorTVA']);
+      //  })
     })
     return ()=>{
         unsub();
@@ -140,7 +138,7 @@ const ContFirma=()=>{
   </Box>
 
   
-  {
+  {/* {
     dateFirma.map((el)=>{
       setCIF(el['CIF']);
        setJudet(el['judet']);
@@ -149,11 +147,10 @@ const ContFirma=()=>{
       setParolaFirma(el['parolaFirma']);
       setPlatitor(el['platitorTVA']);
     })
-  }
+  } */}
 
 
-   {value===0 && (
-   
+   {value===0 && dateFirma.map((firma)=>(
    
         <>
        <Box sx={{ display: 'flex', alignItems: 'flex-end',}}>
@@ -181,7 +178,7 @@ const ContFirma=()=>{
           style={{
             width:'300px',
           }}
-          value={parolaFirma}
+          value={firma['parolaFirma']}
           />
        </Box>
 
@@ -191,7 +188,7 @@ const ContFirma=()=>{
            marginLeft:'58px'}} />
           <TextField id="denumire" variant="standard" 
            type="text"
-           value={denumire}
+           value={firma['nume']}
            style={{
             width:'300px',
           }}/>
@@ -204,7 +201,7 @@ const ContFirma=()=>{
         marginLeft:'3px'}} />
           <TextField id="cif"  variant="standard"
           type="text"
-          value={cif}
+          value={firma['CIF']}
            style={{
             width:'300px',
           }} />
@@ -216,7 +213,7 @@ const ContFirma=()=>{
           marginLeft:'130px' }} />
           <TextField id="judet"  variant="standard"
           type="text"
-          value={judet}
+          value={firma['judet']}
            style={{
             width:'300px',
           }} />
@@ -228,7 +225,7 @@ const ContFirma=()=>{
           marginLeft:'98px' }} />
           <TextField id="localitate"  variant="standard"
           type="text"
-          value={local}
+          value={firma['localitate']}
            style={{
             width:'300px',
           }} />
@@ -240,7 +237,7 @@ const ContFirma=()=>{
           marginLeft:'85px'}} />
           <TextField id="platitorTVA"  variant="standard"
           type="text"
-          value={platitor}
+          value={firma['platitorTVA']}
            style={{
             width:'300px',
           }} />
@@ -250,8 +247,8 @@ const ContFirma=()=>{
       style={{marginTop:'20px'}}
       >Actualizeaza datele firmei</Button>
       </>
-     
-   )
+        
+        ))
     } 
         
 
