@@ -1,6 +1,5 @@
-import React from 'react';
+import React,{useEffect , useState} from 'react';
 import { useNavigate } from "react-router-dom";
-import './facturi.css';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Navig from '../../components/Navig';
@@ -26,7 +25,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import PropTypes from 'prop-types';
 
-  
+
 
 const actions = [
     { icon: <FileCopyIcon />, name: 'Copiaza datele' },
@@ -35,109 +34,6 @@ const actions = [
     // { icon: <ShareIcon />, name: 'Share' },
   ];
 
-
-  function createData(name, dataSc, tipF,valTotala) {
-    return {
-      name,
-      dataSc,
-      tipF,
-      valTotala,
-    };
-  }
-  
-
-  const rows = [
-    createData('Enel', '12.12.2023', 'utilitati', 24),
-    createData('ING', '12.03.2023','materii prime',256),
-    createData('Eclair', '03.09.2023', 'inventar',300),
-    createData('Cupcake', '05.06.2023','nedefinit','456'),
-  ];
- 
-
-  Row.propTypes = {
-    row: PropTypes.shape({
-      dataSc: PropTypes.string.isRequired,
-      tipF: PropTypes.string.isRequired,
-      valTotala: PropTypes.number.isRequired,
-    //   history: PropTypes.arrayOf(
-    //     PropTypes.shape({
-    //       amount: PropTypes.number.isRequired,
-    //       customerId: PropTypes.string.isRequired,
-    //       date: PropTypes.string.isRequired,
-    //     }),
-    //   ).isRequired,
-      name: PropTypes.string.isRequired,
-    //   price: PropTypes.number.isRequired,
-    //   protein: PropTypes.number.isRequired,
-    }).isRequired,
-  };
-  
-
-  function Row(props) {
-    const { row } = props;
-    const [open, setOpen] = React.useState(false);
-
-      return (
-        <>
-        
-           <React.Fragment>
-  <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
-    <TableCell>
-      <IconButton
-        aria-label="expand row"
-        size="small"
-        onClick={() => setOpen(!open)}
-      >
-        {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-      </IconButton>
-    </TableCell>
-    <TableCell component="th" scope="row">
-      {row.name}
-    </TableCell>
-    <TableCell align="right">{row.dataSc }</TableCell>
-    <TableCell align="right">{row.tipF}</TableCell>
-    <TableCell align="right">{row.valTotala}</TableCell>
-  </TableRow>
-  {/* <TableRow>
-    <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
-      <Collapse in={open} timeout="auto" unmountOnExit>
-        <Box sx={{ margin: 1 }}>
-          <Typography variant="h6" gutterBottom component="div">
-            History
-          </Typography>
-          <Table size="small" aria-label="purchases">
-            <TableHead>
-              <TableRow>
-                <TableCell>Nume</TableCell>
-                <TableCell>Data scandeta</TableCell>
-                <TableCell align="right">Tip Factura</TableCell>
-                <TableCell align="right">Total price</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {row.history.map((historyRow) => (
-                <TableRow key={historyRow.date}>
-                  <TableCell component="th" scope="row">
-                    {historyRow.date}
-                  </TableCell>
-                  <TableCell>{historyRow.customerId}</TableCell>
-                  <TableCell align="right">{historyRow.amount}</TableCell>
-                  <TableCell align="right">
-                    {Math.round(historyRow.amount * row.price * 100) / 100}
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </Box>
-      </Collapse>
-    </TableCell>
-  </TableRow> */}
-</React.Fragment>
-</>
-)
-}
-  
   
 
 const Facturi=()=>{
@@ -145,6 +41,11 @@ const Facturi=()=>{
 
 
    const { currentUser }=useUserAuth();
+
+   useEffect(()=>{
+      
+
+   },[])
 
     const nav=useNavigate();
 
@@ -173,25 +74,7 @@ const Facturi=()=>{
       </SpeedDial>
     </Box> */}
 
-<TableContainer component={Paper}>
-      <Table aria-label="collapsible table">
-        <TableHead>
-          <TableRow>
-            <TableCell />
-            <TableCell>Nume Furnizor</TableCell>
-            <TableCell align="right">Data scadenta</TableCell>
-            <TableCell align="right">Tip Factura</TableCell>
-            <TableCell align="right">Valoarea Totala</TableCell>
-            
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <Row key={row.name} row={row} />
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+
         
         </Box>
     </Box>
