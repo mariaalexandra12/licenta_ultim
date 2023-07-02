@@ -40,45 +40,21 @@ const ContPers=()=>{
  const [name, setName]=useState('');
  const [prename, setPrename]=useState('');
 
- const [dateLogare,setDateLogare]=useState('');
+ const [datePersonale,setDatePersonale]=useState([]);
 
  useEffect(() => {
     const q2 = query(collection(db, "utilizator"),where('emailUtilizator','==',currentUser));
-    onSnapshot(q2,(snapshot)=>{
+    const unsub=onSnapshot(q2,(snapshot)=>{
    let userData=[];
    snapshot.docs.forEach((doc)=>{
-     if(doc.data()){
-       userData.push({...doc.data(), id:doc.id});
-    //    idU=doc.id;
-    //    localStorage.setItem(doc.id, JSON.stringify(doc.data()));
-       // localStorage.setItem()
-     }
-    },
-    setDateLogare(JSON.stringify(userData[0])),
-    )
-  
-   
-    const prenameRegex=/(prenume:)\s*(")[a-zA-Z]*/gmi;
-    const prenameMatch=dateLogare.match(prenameRegex);
-    const prename=prenameMatch && prenameMatch[0] ? prenameMatch[0] : '';
-    console.log(prename);
-    setPrename(prename);
-    
-    const nameRegex=/(prenume:)\s*(")[a-zA-Z]*/gmi;
-    const nameMatch=dateLogare.match(nameRegex);
-    const name=nameMatch && nameMatch[0] ? nameMatch[0] : '';
-    console.log(name);
-    setName(name);
-
-    const parolaRegex=/(prenume:)\s*(")[a-zA-Z]*/gmi;
-    const parolaMatch=dateLogare.match(parolaRegex);
-    const parola=parolaMatch && parolaMatch[0] ? parolaMatch[0] : '';
-    console.log(parola);
-    setPass(parola);
-
-         })
-
-    },[currentUser]) 
+       userData.push(doc.data());
+    });
+    setDatePersonale(userData);
+  })
+  return ()=>{
+    unsub();
+  }
+},[currentUser]) 
 
 
     return (
@@ -130,10 +106,11 @@ const ContPers=()=>{
         <Tabs value={value} onChange={handleChange} textColor="secondary" >
           <Tab label="Cont Personal" />
           <Tab label="Cont Firma"  />
+          <Tab label="Setari cont personal"/>
         </Tabs>
       </Box>
 
-      { value===0 &&(
+      { value===0 && datePersonale.map((pers) => (
         <>
           {/* CONT PERSONAL  */}
           {/**/}
@@ -161,7 +138,7 @@ const ContPers=()=>{
               style={{
                 width:'300px',
               }}
-              defaultValue={pass}
+              defaultValue={pers['parolaUtilizator']}
               />
            </Box>
 
@@ -170,7 +147,7 @@ const ContPers=()=>{
               <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1,  my: 0.2,marginLeft:'33px' }} />
               <TextField id="input-with-sx" variant="standard" 
                type="text"
-               defaultValue={name}
+               defaultValue={pers['nume']}
                style={{
                 width:'300px',
               }}/>
@@ -182,21 +159,24 @@ const ContPers=()=>{
               <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.2,marginLeft:'10px' }} />
               <TextField id="input-with-sx"  variant="standard"
               type="text"
-              defaultValue={prename}
+              defaultValue={pers['prenume']}
                style={{
                 width:'300px',
               }} />
            </Box>
 
-           <Button variant="contained" color="secondary"
-          style={{marginTop:'20px'}}
-          >Actualizeaza datele contului personal</Button>
+           
         </>
-      )}
+      ))
+
+      }
 
        {value===1 &&(
         <>
           {/* CONT FIRMA */}
+           <Typography sx={{marginLeft:'25px', marginTop:'25px'}}>Poti configura datele firmei pentru care vrei sa inregistrezi facturi
+            sau poti continua cu datele personale 
+           </Typography>
            <Box sx={{ display: 'flex', alignItems: 'flex-end',}}>
            <Typography >Adresa de email Firma</Typography>
               <EmailIcon sx={{ color: 'action.active', mr: 1, my: 0.5 ,
@@ -277,11 +257,69 @@ const ContPers=()=>{
 
            <Button variant="contained" color="secondary"
           style={{marginTop:'20px'}}
-          >Actualizeaza datele firmei</Button>
+          >Inregistreaza firma</Button>
 
         </>
       )}        
 
+
+       { value===2 && (
+        <>
+          {/* CONT PERSONAL  */}
+          {/**/}
+           <Box  sx={{ display: 'flex', alignItems: 'flex-end',}}  >
+              <Typography >Adresa de Email</Typography>
+              <EmailIcon sx={{ color: 'action.active', mr: 1, my: 0.2,marginLeft:'30px' }} />
+              <TextField id="adresaEmail" 
+              type='text'
+              variant="standard" 
+              style={{
+                width:'300px',
+                marginTop: '30px'
+              }}
+              />
+           </Box>
+
+             
+           <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+              <Typography >Parola Cont</Typography>
+              <HttpsIcon sx={{ color: 'action.active', mr: 1, my: 0.2,marginLeft:'60px' }} />
+              <TextField id="input-with-sx" 
+              type="text"
+              variant="standard" 
+              style={{
+                width:'300px',
+              }}
+              />
+           </Box>
+
+           <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+              <Typography >Nume Utilizator</Typography>
+              <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1,  my: 0.2,marginLeft:'33px' }} />
+              <TextField id="input-with-sx" variant="standard" 
+               type="text"
+               style={{
+                width:'300px',
+              }}/>
+           </Box>
+
+           
+           <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+              <Typography >Prenume Utilizator</Typography>
+              <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.2,marginLeft:'10px' }} />
+              <TextField id="input-with-sx"  variant="standard"
+              type="text"
+               style={{
+                width:'300px',
+              }} />
+           </Box>
+
+           <Button variant="contained" color="secondary"
+          style={{marginTop:'20px'}}
+          >Actualizeaza datele contului personal</Button>
+        </>
+      )
+      }
 
          </Item>
              </Grid>
