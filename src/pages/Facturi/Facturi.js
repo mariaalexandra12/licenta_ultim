@@ -106,24 +106,24 @@ const Facturi=()=>{
 
     const [imageSrc, setImageSrc] = useState('');
 
-    useEffect(() => {
-      // Obțineți link-ul blob
-      console.log(dateFactura['imgUrl']);
-      const blobUrl = dateFactura['imgUrl']
+    // useEffect(() => {
+    //   // Obțineți link-ul blob
+    //   console.log(dateFactura['imgUrl']);
+    //   const blobUrl = dateFactura['imgUrl']
   
-      fetch(blobUrl)
-        .then((response) => response.blob())
-        .then((blob) => {
-          // Creează un obiect FileReader pentru a citi conținutul obiectului Blob
-          const reader = new FileReader();
-          reader.onloadend = () => {
-            // Când citirea este finalizată, setează sursa imaginii
-            setImageSrc(reader.result);
-          };
-          reader.readAsDataURL(blob);
-        });
-        console.log(imageSrc)
-    }, []);
+    //   fetch(blobUrl)
+    //     .then((response) => response.blob())
+    //     .then((blob) => {
+    //       // Creează un obiect FileReader pentru a citi conținutul obiectului Blob
+    //       const reader = new FileReader();
+    //       reader.onloadend = () => {
+    //         // Când citirea este finalizată, setează sursa imaginii
+    //         setImageSrc(reader.result);
+    //       };
+    //       reader.readAsDataURL(blob);
+    //     });
+    //     console.log(imageSrc)
+    // }, []);
 
     return(
          <Box sx={{display: 'flex'}}>
