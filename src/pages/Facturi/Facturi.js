@@ -24,7 +24,8 @@ import { collection, query,
   where, 
   getDocs,
   onSnapshot, doc,
-  deleteDoc} from "firebase/firestore";
+  deleteDoc,
+  updateDoc} from "firebase/firestore";
 import ModalView from './modalView';
 import Alert from '@mui/material/Alert';
 import Collapse from '@mui/material/Collapse';
@@ -87,7 +88,7 @@ const Facturi=()=>{
   const [rowToEdit, setRowToEdit] = useState(null);
   
   const [deleteAlert,setDeleteAlert] = useState('');
-   
+  const [updateFactura,setUpdateFactura] = useState('');
 
 const handleDeleteRow= async(targetIndex)=>{
     const rowToDelete=rows[targetIndex];
@@ -103,22 +104,39 @@ const handleDeleteRow= async(targetIndex)=>{
   };
 
   const handleEditRow = (idx) => {
-    setRowToEdit(idx);
+    const rowToEdit= rows[idx];
+    setRowToEdit({...rowToEdit, id: rowToEdit.id});
     setModalOpen(true);
     
   };
 
-  const handleSubmit = (newRow) => {
-    rowToEdit === null
-      ? setRows([...rows, newRow])
-      : setRows(
-          rows.map((currRow, idx) => {
-            if (idx !== rowToEdit) return currRow;
+  const handleSubmit = async (newRow) => {
+    // rowToEdit === null
+    //   ? setRows([...rows, newRow])
+    //   : setRows(
+    //       rows.map((currRow, idx) => {
+    //         if (idx !== rowToEdit) return currRow;
 
-            return newRow;
-          })
-        );
-        
+    //         return newRow;
+    //       })
+    //     );
+
+       if(rowToEdit === null){
+        try{
+          const rowToUpdate=rows[rowToEdit];
+          const docRef=doc(db,"factura",rowToUpdate.id);
+          await updateDoc(docRef,newRow);
+          setUpdateFactura('Factura a fost actualizata cu succes');
+          setRows(
+            rows.map((currRow,idx)=>{
+              if(idx !== rowToEdit) return currRow;
+              return {...newRow, id:currRow.id};
+            })
+          );
+        }catch(err){
+          setUpdateFactura(err.message);
+        }
+       }
   };
 
    const handleView=()=>{
@@ -174,6 +192,29 @@ const handleDeleteRow= async(targetIndex)=>{
                 }}> 
                 <CloseIcon fontSize="inherit"/>  
               </IconButton>}>{deleteAlert}</Alert>
+              </Collapse>
+              </>
+          )}
+
+      {updateFactura && (
+            <>
+           <Collapse in={open}>
+            <Alert severity='info' style={{
+              width:'300px',
+              marginTop:'10px',
+              marginLeft:'500px',
+              display:'hover',
+            }}  
+            action={
+              <IconButton
+                aria-label="close"
+                color="inherit"
+                size="small"
+                onClick={() => {
+                  setOpen(false);
+                }}> 
+                <CloseIcon fontSize="inherit"/>  
+              </IconButton>}>{updateFactura}</Alert>
               </Collapse>
               </>
           )}
