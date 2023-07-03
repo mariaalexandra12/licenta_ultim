@@ -104,10 +104,11 @@ const handleDeleteRow= async(targetIndex)=>{
   };
 
   const handleEditRow = (idx) => {
-    const rowToEdit= rows[idx];
-    setRowToEdit({...rowToEdit, id: rowToEdit.id});
-    // setModalOpen(true);
-    setModalOpen(false);
+    // const rowToEdit= rows[idx];
+    // setRowToEdit({...rowToEdit, id: rowToEdit.id});
+    setRowToEdit(idx);
+    setModalOpen(true);
+
   };
 
   const handleSubmit = async (newRow) => {
@@ -127,17 +128,22 @@ const handleDeleteRow= async(targetIndex)=>{
           const docRef=doc(db,"factura",rowToUpdate.id);
           await updateDoc(docRef,newRow);
           setUpdateFactura('Factura a fost actualizata cu succes');
-          setRows(
-            rows.map((currRow,idx)=>{
-              if(idx !== rowToEdit) return currRow;
-              return {...newRow, id:currRow.id};
-            })
-          );
+          // setRows(
+          //   rows.map((currRow,idx)=>{
+          //     if(idx !== rowToEdit) return currRow;
+          //     return {...newRow, id:currRow.id};
+          //   })
+          setRows((prevRows) => {
+            const updatedRows = [...prevRows];
+            updatedRows[rowToEdit] = { ...newRow, id: updatedRows[rowToEdit].id };
+            return updatedRows;
+          });    
         }catch(err){
           setUpdateFactura(err.message);
         }
         setModalOpen(false);
        }
+       
   };
 
    const handleView=()=>{
