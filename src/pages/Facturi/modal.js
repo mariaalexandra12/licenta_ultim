@@ -57,12 +57,12 @@ export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
         <form>
           <div className="form-group">
             <label>Data Scadenta</label> 
-             <input type="text" name="dataSc" onChange={handleChange}  />
+             <input type="text" name="dataScadenta" onChange={handleChange}  />
              {/* value={formState.dataScadenta} */}
           </div>
           <div className="form-group">
             <label htmlFor="valoareTotala">Valoare Totala</label>
-            <input type="text" name="Valoare totala"
+            <input type="text" name="valoareTotala"
               
               onChange={handleChange}
               // value={formState.valoareTotala}

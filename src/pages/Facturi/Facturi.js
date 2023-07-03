@@ -106,8 +106,8 @@ const handleDeleteRow= async(targetIndex)=>{
   const handleEditRow = (idx) => {
     const rowToEdit= rows[idx];
     setRowToEdit({...rowToEdit, id: rowToEdit.id});
-    setModalOpen(true);
-    
+    // setModalOpen(true);
+    setModalOpen(false);
   };
 
   const handleSubmit = async (newRow) => {
@@ -121,7 +121,7 @@ const handleDeleteRow= async(targetIndex)=>{
     //       })
     //     );
 
-       if(rowToEdit === null){
+       if(rowToEdit !== null && rows[rowToEdit]?.id){
         try{
           const rowToUpdate=rows[rowToEdit];
           const docRef=doc(db,"factura",rowToUpdate.id);
@@ -136,6 +136,7 @@ const handleDeleteRow= async(targetIndex)=>{
         }catch(err){
           setUpdateFactura(err.message);
         }
+        setModalOpen(false);
        }
   };
 
