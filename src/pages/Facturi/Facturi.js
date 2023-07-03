@@ -20,9 +20,15 @@ import PropTypes from 'prop-types';
 import { Table } from './table'
 import { Modal } from "./modal";
 import { db } from '../../firebaseUtils/firebase_ut';
-import { collection, query, where, getDocs,onSnapshot, QuerySnapshot} from "firebase/firestore";
+import { collection, query, 
+  where, 
+  getDocs,
+  onSnapshot, doc,
+  deleteDoc} from "firebase/firestore";
 import ModalView from './modalView';
-
+import Alert from '@mui/material/Alert';
+import Collapse from '@mui/material/Collapse';
+import CloseIcon from '@mui/icons-material/Close';
 
 const actions = [
     { icon: <FileCopyIcon />, name: 'Copiaza datele' },
@@ -40,14 +46,18 @@ const Facturi=()=>{
     const [indexFact,setIndexFact]=useState(0);
     const [dateFactura,setDateFactura]=useState([]);
     const [rows, setRows] = useState([])
+    const [idDoc,setIdDoc]=useState('');
+    const [open, setOpen] = React.useState(true);
 
     useEffect(()=>{
+     
         console.log(currentUser);
         const q2 = query(collection(db, "factura"),where("emailUtilizator","==",currentUser));
         const unsub=onSnapshot(q2,(snapshot) => {
             const items=[];
             snapshot.forEach((doc)=>{
                 items.push(doc.data());
+                setIdDoc(doc.id);
             });
           setDateFactura(items);
           setIndexFact(+1);
@@ -58,7 +68,8 @@ const Facturi=()=>{
         },[currentUser])
 
     useEffect(()=>{
-        console.log(dateFactura);
+        dateFactura.map((fact)=>console.log(fact));
+        console.log(idDoc);
         const newRows=dateFactura.map((fact)=>({
           numeFurnizor:fact['numeFurnizor'],
           dataScadenta:fact['dataScadenta'],
@@ -74,10 +85,21 @@ const Facturi=()=>{
     const [modalViewOpen, setModalViewOpen] = useState(false);
 
   const [rowToEdit, setRowToEdit] = useState(null);
-  const handleDeleteRow = (targetIndex) => {
-    setRows(rows.filter((_, idx) => idx !== targetIndex));
-    setRowToEdit(null);
-    setModalOpen(false);
+  
+  const [deleteAlert,setDeleteAlert] = useState('');
+   
+
+const handleDeleteRow= async(targetIndex)=>{
+    const rowToDelete=rows[targetIndex];
+    try{
+      await deleteDoc(doc(db,"factura",idDoc));
+      setRows(rows.filter((_, idx) => idx !== targetIndex));
+      setRowToEdit(null);
+      setModalOpen(false);
+      setDeleteAlert('Factura a fost stearsa cu succes');
+    }catch(error){
+      setDeleteAlert(error.message);
+    }
   };
 
   const handleEditRow = (idx) => {
@@ -96,6 +118,7 @@ const Facturi=()=>{
             return newRow;
           })
         );
+        
   };
 
    const handleView=()=>{
@@ -131,6 +154,30 @@ const Facturi=()=>{
              <Box sx={{marginTop: '80px'}}> 
 
      <div className="Facturi">
+
+     {deleteAlert && (
+            <>
+           <Collapse in={open}>
+            <Alert severity='info' style={{
+              width:'300px',
+              marginTop:'10px',
+              marginLeft:'500px',
+              display:'hover',
+            }}  
+            action={
+              <IconButton
+                aria-label="close"
+                color="inherit"
+                size="small"
+                onClick={() => {
+                  setOpen(false);
+                }}> 
+                <CloseIcon fontSize="inherit"/>  
+              </IconButton>}>{deleteAlert}</Alert>
+              </Collapse>
+              </>
+          )}
+
         <Table rows={rows} deleteRow={handleDeleteRow} editRow={handleEditRow} viewImage={handleView}/>
         <Button onClick={()=>{nav('/adaugaFacturi')}} color="secondary" variant="contained"
        sx={{marginTop:'30px',marginLeft:'500px'}}>Adauga facturi</Button> 
@@ -169,6 +216,8 @@ const Facturi=()=>{
         ))}
       </SpeedDial>
     </Box>
+
+    
     </div>
 
             
