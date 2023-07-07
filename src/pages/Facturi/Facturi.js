@@ -114,39 +114,17 @@ const handleDeleteRow= async(targetIndex)=>{
   };
 
   const handleSubmit = async (newRow) => {
-    // rowToEdit === null
-    //   ? setRows([...rows, newRow])
-    //   : setRows(
-    //       rows.map((currRow, idx) => {
-    //         if (idx !== rowToEdit) return currRow;
-
-    //         return newRow;
-    //       })
-    //     );
-
        if(rowToEdit !== null && rows[rowToEdit]?.id){
         try{
           const rowToUpdate=rows[rowToEdit];
-          // console.log(rowToUpdate);
-          
           const q3 = query(collection(db, "factura"),where("numeFurnizor","==",rowToUpdate.numeFurnizor));
-          onSnapshot(q3,(snapshot) => {
-            const items=[];
-            snapshot.forEach((doc)=>{
-              const docRef=doc(db,"factura",doc.id);
-              console.log(doc.id);
-              updateDoc(docRef,newRow);
-              setUpdateFactura('Factura a fost actualizata cu succes');
-            });
-          setDateFactura(items);
-          setIndexFact(+1);
-        })
+          const querySnapshot=await getDocs(q3);
+          if(!querySnapshot.empty){
+            const docRef= doc(db,'factura',querySnapshot.docs[0].id);
+            await updateDoc(docRef,newRow);
+            setUpdateFactura('Factura a fost actualizata cu succes');
+          }
           
-          // setRows(
-          //   rows.map((currRow,idx)=>{
-          //     if(idx !== rowToEdit) return currRow;
-          //     return {...newRow, id:currRow.id};
-          //   })
           setRows((prevRows) => {
             const updatedRows = [...prevRows];
             updatedRows[rowToEdit] = { ...newRow, id: updatedRows[rowToEdit].id };
