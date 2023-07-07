@@ -9,8 +9,6 @@ import SpeedDialIcon from '@mui/material/SpeedDialIcon';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
 import FileCopyIcon from '@mui/icons-material/FileCopyOutlined';
 import SaveIcon from '@mui/icons-material/Save';
-import PrintIcon from '@mui/icons-material/Print';
-import ShareIcon from '@mui/icons-material/Share';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
@@ -32,14 +30,7 @@ import ModalView from './modalView';
 import Alert from '@mui/material/Alert';
 import Collapse from '@mui/material/Collapse';
 import CloseIcon from '@mui/icons-material/Close';
-
-const actions = [
-    { icon: <FileCopyIcon />, name: 'Copiaza datele' },
-    { icon: <SaveIcon />, name: 'Salveaza datele' },
-    // { icon: <PrintIcon />, name: 'Print' },
-    // { icon: <ShareIcon />, name: 'Share' },
-  ];
-
+import { Icon, Tooltip } from '@mui/material';
   
 
 const Facturi=()=>{
@@ -114,14 +105,14 @@ const handleDeleteRow= async(targetIndex)=>{
   };
 
   const handleSubmit = async (newRow) => {
-       if(rowToEdit !== null && rows[rowToEdit]?.id){
+       if(rowToEdit !== null  && rows[rowToEdit]?.id){
           const rowToUpdate=rows[rowToEdit];
           const q3 = query(collection(db, "factura"),where("numeFurnizor","==",rowToUpdate.numeFurnizor));
-          const querySnapshot=await getDocs(q3);
+          const querySnapshot= getDocs(q3);
           if(!querySnapshot.empty){
             console.log(querySnapshot);
             const docRef= doc(db,'factura',querySnapshot.docs[0].id);
-            await updateDoc(docRef,newRow);
+            updateDoc(docRef,newRow);
             setUpdateFactura('Factura a fost actualizata cu succes');
           }
           
@@ -225,13 +216,21 @@ const handleDeleteRow= async(targetIndex)=>{
         sx={{ position: 'absolute', bottom: 16, right: 16, }}
         icon={<SpeedDialIcon />}
       >
-        {actions.map((action) => (
-          <SpeedDialAction
-            key={action.name}
-            icon={action.icon}
-            tooltipTitle={action.name}
-          />
-        ))}
+          <SpeedDialAction>
+          <Tooltip title="Salveaza facturile">
+             <IconButton>
+               <Icon><SaveIcon/></Icon>
+              </IconButton>
+          </Tooltip>
+          </SpeedDialAction>
+
+          <SpeedDialAction>
+          <Tooltip title="Copiaza facturile">
+             <IconButton>
+               <Icon><FileCopyIcon/></Icon>
+              </IconButton>
+          </Tooltip>
+          </SpeedDialAction>
       </SpeedDial>
     </Box>
 

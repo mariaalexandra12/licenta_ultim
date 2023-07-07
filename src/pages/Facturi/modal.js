@@ -46,7 +46,7 @@ export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
       tipFactura:formState.tipFactura,
     };
     onSubmit(updatedFormState);
-   
+    console.log(updatedFormState);
     closeModal();
   };
 
