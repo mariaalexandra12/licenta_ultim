@@ -221,15 +221,16 @@ export default function Navig() {
         <Drawer variant="permanent" open={open} style={{
           marginTop:'0px',     
           height:'338px',
-          marginLeft:'30px'
+          marginLeft:'30px',
+         
         }} >
           <Toolbar
             sx={{
               marginTop:'0px',
-              background: 'rgba( 24, 4, 4, 0.3 )',
+              background: 'rgba( 158, 28, 176, 0.3 )',
               boxShadow:'0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
-              backdropFilter: 'blur( 10px )',
-              WebkitBackdropFilter:' blur( 10px )',
+              backdropFilter: 'blur( 4px )',
+              WebkitBackdropFilter:' blur( 4px )',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'flex-end',
@@ -249,10 +250,10 @@ export default function Navig() {
 
           <List style={{ 
                marginTop:'0px',
-               background: 'rgba( 24, 4, 4, 0.3 )',
+               background: 'rgba( 142, 9, 155, 0.3 )',
               boxShadow:'0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
-              backdropFilter: 'blur( 10px )',
-              WebkitBackdropFilter:' blur( 10px )',
+              backdropFilter: 'blur( 4px )',
+              WebkitBackdropFilter:' blur( 4px )',
           }}>
              <ListItem onClick={()=>navigate("/navig")}>
                      <ListItemButton >
