@@ -25,7 +25,9 @@ import { collection, query,
   getDocs,
   onSnapshot, doc,
   deleteDoc,
-  updateDoc} from "firebase/firestore";
+  updateDoc,
+  QuerySnapshot,
+  QueryDocumentSnapshot} from "firebase/firestore";
 import ModalView from './modalView';
 import Alert from '@mui/material/Alert';
 import Collapse from '@mui/material/Collapse';
@@ -125,10 +127,21 @@ const handleDeleteRow= async(targetIndex)=>{
        if(rowToEdit !== null && rows[rowToEdit]?.id){
         try{
           const rowToUpdate=rows[rowToEdit];
-          console.log(rowToUpdate);
-          const docRef=doc(db,"factura",rowToUpdate.id);
-          await updateDoc(docRef,newRow);
-          setUpdateFactura('Factura a fost actualizata cu succes');
+          // console.log(rowToUpdate);
+          
+          const q3 = query(collection(db, "factura"),where("numeFurnizor","==",rowToUpdate.numeFurnizor));
+          onSnapshot(q3,(snapshot) => {
+            const items=[];
+            snapshot.forEach((doc)=>{
+              const docRef=doc(db,"factura",doc.id);
+              console.log(doc.id);
+              // updateDoc(docRef,newRow);
+              // setUpdateFactura('Factura a fost actualizata cu succes');
+            });
+          setDateFactura(items);
+          setIndexFact(+1);
+        })
+          
           // setRows(
           //   rows.map((currRow,idx)=>{
           //     if(idx !== rowToEdit) return currRow;
