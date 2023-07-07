@@ -135,8 +135,8 @@ const handleDeleteRow= async(targetIndex)=>{
             snapshot.forEach((doc)=>{
               const docRef=doc(db,"factura",doc.id);
               console.log(doc.id);
-              // updateDoc(docRef,newRow);
-              // setUpdateFactura('Factura a fost actualizata cu succes');
+              updateDoc(docRef,newRow);
+              setUpdateFactura('Factura a fost actualizata cu succes');
             });
           setDateFactura(items);
           setIndexFact(+1);
