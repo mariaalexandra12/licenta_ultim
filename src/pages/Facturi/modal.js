@@ -40,8 +40,12 @@ export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
     e.preventDefault();
 
     if (!validateForm()) return;
-    console.log(formState);
-    onSubmit(formState);
+    const updatedFormState = {
+      dataScadenta:formState.dataScadenta,
+      valoareTotala:formState.valoareTotala,
+      tipFactura:formState.tipFactura,
+    };
+    onSubmit(updatedFormState);
    
     closeModal();
   };
@@ -74,7 +78,7 @@ export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
           <div className="form-group">
             <label htmlFor="status">Tip Factura</label>
             <select
-              name="tip"
+              name="tipFactura"
               onChange={handleChange}
               value={formState.tipFactura}
             >
