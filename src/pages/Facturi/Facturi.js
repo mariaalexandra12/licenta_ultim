@@ -115,11 +115,11 @@ const handleDeleteRow= async(targetIndex)=>{
 
   const handleSubmit = async (newRow) => {
        if(rowToEdit !== null && rows[rowToEdit]?.id){
-        try{
           const rowToUpdate=rows[rowToEdit];
           const q3 = query(collection(db, "factura"),where("numeFurnizor","==",rowToUpdate.numeFurnizor));
           const querySnapshot=await getDocs(q3);
           if(!querySnapshot.empty){
+            console.log(querySnapshot);
             const docRef= doc(db,'factura',querySnapshot.docs[0].id);
             await updateDoc(docRef,newRow);
             setUpdateFactura('Factura a fost actualizata cu succes');
@@ -130,9 +130,6 @@ const handleDeleteRow= async(targetIndex)=>{
             updatedRows[rowToEdit] = { ...newRow, id: updatedRows[rowToEdit].id };
             return updatedRows;
           });    
-        }catch(err){
-          setUpdateFactura(err.message);
-        }
         setModalOpen(false);
        }
        

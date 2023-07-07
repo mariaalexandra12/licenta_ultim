@@ -11,13 +11,13 @@ export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
     defaultValue || {
       dataScadenta: "",
       valoareTotala:"",
-      tip: "utilitati",
+      tipFactura: "utilitati",
     }
   );
   const [errors, setErrors] = useState("");
 
   const validateForm = () => {
-    if (formState.dataScadenta && formState.valoareaTotala && formState.tip) {
+    if (formState.dataScadenta && formState.valoareTotala && formState.tipFactura) {
       setErrors("");
       return true;
     } else {
@@ -40,14 +40,14 @@ export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
     e.preventDefault();
 
     if (!validateForm()) return;
-
+    console.log(formState);
     onSubmit(formState);
-
+   
     closeModal();
   };
 
   return (
-    // <Draggable>
+    
     <div
       className="modal-container"
       onClick={(e) => {
@@ -74,7 +74,7 @@ export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
           <div className="form-group">
             <label htmlFor="status">Tip Factura</label>
             <select
-              name="status"
+              name="tip"
               onChange={handleChange}
               value={formState.tipFactura}
             >
@@ -93,6 +93,6 @@ export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
         
       </div>
     </div>
-    // </Draggable>
+  
   );
 };
