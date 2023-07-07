@@ -3,7 +3,7 @@ import "./modal.css";
 import { Button } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import UpgradeIcon from '@mui/icons-material/Upgrade';
-
+import Draggable from 'react-draggable';
 
 
 export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
@@ -47,6 +47,7 @@ export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
   };
 
   return (
+    // <Draggable>
     <div
       className="modal-container"
       onClick={(e) => {
@@ -54,18 +55,20 @@ export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
       }}
     >
       <div className="modal">
+       
         <form>
           <div className="form-group">
             <label>Data Scadenta</label> 
-             <input type="text" name="dataScadenta" onChange={handleChange}  />
-             {/* value={formState.dataScadenta} */}
+             <input type="text" name="dataScadenta" onChange={handleChange} 
+               value={formState.dataScadenta} />
+           
           </div>
           <div className="form-group">
             <label htmlFor="valoareTotala">Valoare Totala</label>
             <input type="text" name="valoareTotala"
               
               onChange={handleChange}
-              // value={formState.valoareTotala}
+              value={formState.valoareTotala}
             />
           </div>
           <div className="form-group">
@@ -87,7 +90,9 @@ export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
             Actualizeaza datele facturii
           </Button>
         </form>
+        
       </div>
     </div>
+    // </Draggable>
   );
 };
