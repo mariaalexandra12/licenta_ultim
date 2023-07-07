@@ -125,6 +125,7 @@ const handleDeleteRow= async(targetIndex)=>{
        if(rowToEdit !== null && rows[rowToEdit]?.id){
         try{
           const rowToUpdate=rows[rowToEdit];
+          console.log(rowToUpdate);
           const docRef=doc(db,"factura",rowToUpdate.id);
           await updateDoc(docRef,newRow);
           setUpdateFactura('Factura a fost actualizata cu succes');
