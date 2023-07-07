@@ -216,20 +216,14 @@ const handleDeleteRow= async(targetIndex)=>{
         sx={{ position: 'absolute', bottom: 16, right: 16, }}
         icon={<SpeedDialIcon />}
       >
-          <SpeedDialAction>
-          <Tooltip title="Salveaza facturile">
-             <IconButton>
-               <Icon><SaveIcon/></Icon>
-              </IconButton>
-          </Tooltip>
+          <SpeedDialAction icon={<SaveIcon/>}
+            tooltipTitle="Salveaza facturil">
+
           </SpeedDialAction>
 
-          <SpeedDialAction>
-          <Tooltip title="Copiaza facturile">
-             <IconButton>
-               <Icon><FileCopyIcon/></Icon>
-              </IconButton>
-          </Tooltip>
+          <SpeedDialAction icon={<FileCopyIcon/>} 
+          tooltipTitle="Copiaza facturile">
+        
           </SpeedDialAction>
       </SpeedDial>
     </Box>
