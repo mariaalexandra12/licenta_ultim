@@ -60,7 +60,7 @@ export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
           <div className="form-group">
             <label>Data Scadenta</label> 
              <input type="text" name="dataScadenta" onChange={handleChange} 
-               value={formState.dataScadenta} />
+               defaultValue={formState.dataScadenta} />
            
           </div>
           <div className="form-group">
@@ -68,7 +68,7 @@ export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
             <input type="text" name="valoareTotala"
               
               onChange={handleChange}
-              value={formState.valoareTotala}
+              defaultValue={formState.valoareTotala}
             />
           </div>
           <div className="form-group">
