@@ -144,10 +144,11 @@ const handleDeleteRow= async(targetIndex)=>{
     const [imageSrc, setImageSrc] = useState('');
 
     const columns = [
-      { field: 'numeFurnizor', headerName: 'Nume Furnizor', width: 250 },
-      { field: 'dataScadenta', headerName: 'Data Scadenta', width: 250 },
-      { field: 'tipFact', headerName: 'Tip Factura', width: 250 },
-      { field: 'valoareaTotala', headerName: 'Valoarea Totala', width: 250 },
+      { field: 'numeFurnizor', headerName: 'Nume Furnizor', width: 230 },
+      { field: 'dataScadenta', headerName: 'Data Scadenta', width: 230 },
+      { field: 'tipFact', headerName: 'Tip Factura', width: 230 },
+      { field: 'valoareaTotala', headerName: 'Valoarea Totala', width: 230 },
+      { field: 'actiuni', headerName: 'Actiuni', width: 230 , }
     ];
 
    
@@ -207,7 +208,6 @@ const handleDeleteRow= async(targetIndex)=>{
 
         <DataGrid rows={rows}
          columns={columns}
-         checkboxSelection
          slots={{toolbar:CustomToolbar}}
          sx={{marginTop:'70px',
           fontSize:'18px',
@@ -215,7 +215,8 @@ const handleDeleteRow= async(targetIndex)=>{
           background: 'rgba( 189, 16, 224, 0.25 )',
           boxShadow:'0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
           backdropFilter: 'blur( 10px )',
-          WebkitBackdropFilter:' blur( 10px )',}}>
+          WebkitBackdropFilter:' blur( 10px )',}}
+          >
 
         </DataGrid>
              
