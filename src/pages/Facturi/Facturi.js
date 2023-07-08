@@ -4,16 +4,9 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Navig from '../../components/Navig';
 import { useUserAuth } from '../../context/userAuthContext';
-import SpeedDial from '@mui/material/SpeedDial';
-import SpeedDialIcon from '@mui/material/SpeedDialIcon';
-import SpeedDialAction from '@mui/material/SpeedDialAction';
-import FileCopyIcon from '@mui/icons-material/FileCopyOutlined';
-import SaveIcon from '@mui/icons-material/Save';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import PropTypes from 'prop-types';
 import { Table } from './table'
 import { Modal } from "./modal";
@@ -35,6 +28,9 @@ import { DataGrid, GridToolbarExport ,
   GridToolbarDensitySelector,
   GridToolbarContainer,
   GridToolbarColumnsButton,} from '@mui/x-data-grid';
+  import DeleteIcon from '@mui/icons-material/Delete';
+  import VisibilityIcon from '@mui/icons-material/Visibility';
+  import EditIcon from '@mui/icons-material/Edit';
 
   function CustomToolbar() {
     return (
@@ -148,7 +144,28 @@ const handleDeleteRow= async(targetIndex)=>{
       { field: 'dataScadenta', headerName: 'Data Scadenta', width: 230 },
       { field: 'tipFact', headerName: 'Tip Factura', width: 230 },
       { field: 'valoareaTotala', headerName: 'Valoarea Totala', width: 230 },
-      { field: 'actiuni', headerName: 'Actiuni', width: 230 , }
+      { field: 'actiuni', headerName: 'Actiuni', width: 230 , 
+      renderCell: (params) => (
+        <div>
+          <Tooltip title="Sterge factura">
+            <IconButton onClick={handleDeleteRow}>
+              <DeleteIcon color='secondary'/>
+            </IconButton>
+          </Tooltip>
+
+          <Tooltip title="Editeaza factura">
+            <IconButton onClick={handleEditRow}>
+              <EditIcon color='secondary'/>
+            </IconButton>
+          </Tooltip>
+
+          <Tooltip title="Vizualizeaza factura">
+            <IconButton>
+              <VisibilityIcon color='secondary'/>
+            </IconButton>
+          </Tooltip>
+        </div>
+      ),} 
     ];
 
    
