@@ -112,7 +112,7 @@ const handleDeleteRow= async(targetIndex)=>{
   const handleSubmit = async (newRow) => {
        if(rowToEdit !== null  && rows[rowToEdit]?.id){
           const rowToUpdate=rows[rowToEdit];
-          const q3 = query(collection(db, "factura"),where("numeFurnizor","==",rowToUpdate.numeFurnizor));
+          const q3 = query(collection(db, "factura"),where("numeFurnizor","==",rowToEdit.numeFurnizor));
           const querySnapshot= getDocs(q3);
           if(!querySnapshot.empty){
             console.log(querySnapshot);
@@ -123,10 +123,12 @@ const handleDeleteRow= async(targetIndex)=>{
           
           setRows((prevRows) => {
             const updatedRows = [...prevRows];
-            updatedRows[rowToEdit] = { ...newRow, id: updatedRows[rowToEdit].id };
+            // updatedRows[rowToEdit] = { ...newRow, id: updatedRows[rowToEdit].id };
+            updatedRows[rowToEdit]={...newRow};
             return updatedRows;
           });    
         setModalOpen(false);
+        setRowToEdit(null);
        }
        
   };
@@ -146,7 +148,7 @@ const handleDeleteRow= async(targetIndex)=>{
       { field: 'valoareaTotala', headerName: 'Valoarea Totala', width: 230 },
       { field: 'actiuni', headerName: 'Actiuni', width: 230 , 
       renderCell: (params) => (
-        <div>
+        <div >
           <Tooltip title="Sterge factura">
             <IconButton onClick={handleDeleteRow}>
               <DeleteIcon color='secondary'/>
@@ -161,7 +163,7 @@ const handleDeleteRow= async(targetIndex)=>{
 
           <Tooltip title="Vizualizeaza factura">
             <IconButton>
-              <VisibilityIcon color='secondary'/>
+              <VisibilityIcon />
             </IconButton>
           </Tooltip>
         </div>
@@ -225,6 +227,7 @@ const handleDeleteRow= async(targetIndex)=>{
 
         <DataGrid rows={rows}
          columns={columns}
+         checkboxSelection
          slots={{toolbar:CustomToolbar}}
          sx={{marginTop:'70px',
           fontSize:'18px',
@@ -238,7 +241,8 @@ const handleDeleteRow= async(targetIndex)=>{
         </DataGrid>
              
         <Button onClick={()=>{nav('/adaugaFacturi')}} color="secondary" variant="contained"
-       sx={{marginTop:'30px',marginLeft:'350px'}}>Adauga facturi</Button> 
+       sx={{marginTop:'40px',marginLeft:'550px', width:'200px',
+       height:'70px'}}>Adauga facturi</Button> 
      {modalOpen && (
         <Modal
           closeModal={() => {
@@ -246,7 +250,8 @@ const handleDeleteRow= async(targetIndex)=>{
             setRowToEdit(null);
           }}
           onSubmit={handleSubmit}
-          defaultValue={rowToEdit !== null && rows[rowToEdit]}
+          // defaultValue={rowToEdit !== null && rows[rowToEdit]}
+          defaultValue={rowToEdit}
         />
       )}
         
