@@ -31,8 +31,20 @@ import Alert from '@mui/material/Alert';
 import Collapse from '@mui/material/Collapse';
 import CloseIcon from '@mui/icons-material/Close';
 import { Icon, Tooltip } from '@mui/material';
-import { DataGrid, GridToolbarExport } from '@mui/x-data-grid';
+import { DataGrid, GridToolbarExport ,
+  GridToolbarDensitySelector,
+  GridToolbarContainer,
+  GridToolbarColumnsButton,} from '@mui/x-data-grid';
 
+  function CustomToolbar() {
+    return (
+      <GridToolbarContainer >
+        <GridToolbarColumnsButton color='secondary'/>
+        <GridToolbarDensitySelector color='secondary' />
+        <GridToolbarExport color='secondary' />
+      </GridToolbarContainer>
+    );
+  }
   
 
 const Facturi=()=>{
@@ -56,7 +68,6 @@ const Facturi=()=>{
                 setIdDoc(doc.id);
             });
           setDateFactura(items);
-          setIndexFact(+1);
         })
         return ()=>{
             unsub();
@@ -66,8 +77,8 @@ const Facturi=()=>{
     useEffect(()=>{
         dateFactura.map((fact)=>console.log(fact));
         console.log(idDoc);
-        const newRows=dateFactura.map((fact)=>({
-          id:indexFact,
+        const newRows=dateFactura.map((fact,index)=>({
+          id:index,
           numeFurnizor:fact['numeFurnizor'],
           dataScadenta:fact['dataScadenta'],
           tipFact:fact['tipFactura'],
@@ -100,8 +111,6 @@ const handleDeleteRow= async(targetIndex)=>{
   };
 
   const handleEditRow = (idx) => {
-    // const rowToEdit= rows[idx];
-    // setRowToEdit({...rowToEdit, id: rowToEdit.id});
     setRowToEdit(idx);
     setModalOpen(true);
 
@@ -138,12 +147,13 @@ const handleDeleteRow= async(targetIndex)=>{
     const [imageSrc, setImageSrc] = useState('');
 
     const columns = [
-      { field: 'numeFurnizor', headerName: 'Nume Furnizor', width: 200 },
-      { field: 'dataScadenta', headerName: 'Data Scadenta', width: 200 },
-      { field: 'tipFact', headerName: 'Tip Factura', width: 200 },
-      { field: 'valoareaTotala', headerName: 'Valoarea Totala', width: 200 },
+      { field: 'numeFurnizor', headerName: 'Nume Furnizor', width: 250 },
+      { field: 'dataScadenta', headerName: 'Data Scadenta', width: 250 },
+      { field: 'tipFact', headerName: 'Tip Factura', width: 250 },
+      { field: 'valoareaTotala', headerName: 'Valoarea Totala', width: 250 },
     ];
-    
+
+   
 
     return(
          <Box sx={{display: 'flex'}}>
@@ -201,14 +211,19 @@ const handleDeleteRow= async(targetIndex)=>{
         <DataGrid rows={rows}
          columns={columns}
          checkboxSelection
-         slots={{toolbar:GridToolbarExport}}
-         sx={{marginTop:'50px',
-          marginLeft:'20px'}}>
+         slots={{toolbar:CustomToolbar}}
+         sx={{marginTop:'70px',
+          fontSize:'20px',
+          marginLeft:'40px',
+          background: 'rgba( 189, 16, 224, 0.25 )',
+          boxShadow:'0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
+          backdropFilter: 'blur( 10px )',
+          WebkitBackdropFilter:' blur( 10px )',}}>
 
         </DataGrid>
              
         <Button onClick={()=>{nav('/adaugaFacturi')}} color="secondary" variant="contained"
-       sx={{marginTop:'30px',marginLeft:'500px'}}>Adauga facturi</Button> 
+       sx={{marginTop:'30px',marginLeft:'350px'}}>Adauga facturi</Button> 
      {modalOpen && (
         <Modal
           closeModal={() => {
