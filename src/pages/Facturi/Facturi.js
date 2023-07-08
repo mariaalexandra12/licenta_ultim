@@ -117,7 +117,7 @@ const handleDeleteRow= async(targetIndex)=>{
           if(!querySnapshot.empty){
             console.log(querySnapshot);
             const docRef= doc(db,'factura',querySnapshot.docs[0].id);
-            updateDoc(docRef,newRow);
+             await updateDoc(docRef,newRow);
             setUpdateFactura('Factura a fost actualizata cu succes');
           }
           
@@ -235,7 +235,8 @@ const handleDeleteRow= async(targetIndex)=>{
           background: 'rgba( 189, 16, 224, 0.25 )',
           boxShadow:'0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
           backdropFilter: 'blur( 10px )',
-          WebkitBackdropFilter:' blur( 10px )',}}
+          WebkitBackdropFilter:' blur( 10px )',
+          borderRadius:'30px'}}
           >
 
         </DataGrid>
