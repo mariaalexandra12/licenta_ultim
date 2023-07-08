@@ -52,6 +52,8 @@ import { signOut } from 'firebase/auth';
 import ContPers from './contPers';
 import ContFirma from './contFirma';
 
+
+
 const drawerWidth = 210;
 
 const AppBar = styled(MuiAppBar, {
@@ -309,8 +311,8 @@ export default function Navig() {
         {showCard && (
            <div>
              <Card style={{
-                  marginLeft:'950px',
-                  marginTop:'60px',
+                  marginLeft:'750px',
+                  marginTop:'70px',
                   background: 'rgba( 186, 152, 224, 0.7 )',
                   boxShadow:'0 8px 32px 0 rgba( 31, 38, 135, 0.37 )', 
                   backdropFilter:' blur( 11px )',

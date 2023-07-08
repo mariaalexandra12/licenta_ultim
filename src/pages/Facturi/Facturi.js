@@ -31,6 +31,8 @@ import Alert from '@mui/material/Alert';
 import Collapse from '@mui/material/Collapse';
 import CloseIcon from '@mui/icons-material/Close';
 import { Icon, Tooltip } from '@mui/material';
+import { DataGrid, GridToolbarExport } from '@mui/x-data-grid';
+
   
 
 const Facturi=()=>{
@@ -65,6 +67,7 @@ const Facturi=()=>{
         dateFactura.map((fact)=>console.log(fact));
         console.log(idDoc);
         const newRows=dateFactura.map((fact)=>({
+          id:indexFact,
           numeFurnizor:fact['numeFurnizor'],
           dataScadenta:fact['dataScadenta'],
           tipFact:fact['tipFactura'],
@@ -134,6 +137,14 @@ const handleDeleteRow= async(targetIndex)=>{
 
     const [imageSrc, setImageSrc] = useState('');
 
+    const columns = [
+      { field: 'numeFurnizor', headerName: 'Nume Furnizor', width: 200 },
+      { field: 'dataScadenta', headerName: 'Data Scadenta', width: 200 },
+      { field: 'tipFact', headerName: 'Tip Factura', width: 200 },
+      { field: 'valoareaTotala', headerName: 'Valoarea Totala', width: 200 },
+    ];
+    
+
     return(
          <Box sx={{display: 'flex'}}>
            <Navig/>
@@ -187,7 +198,15 @@ const handleDeleteRow= async(targetIndex)=>{
               </>
           )}
 
-        <Table rows={rows} deleteRow={handleDeleteRow} editRow={handleEditRow} viewImage={handleView}/>
+        <DataGrid rows={rows}
+         columns={columns}
+         checkboxSelection
+         slots={{toolbar:GridToolbarExport}}
+         sx={{marginTop:'50px',
+          marginLeft:'20px'}}>
+
+        </DataGrid>
+             
         <Button onClick={()=>{nav('/adaugaFacturi')}} color="secondary" variant="contained"
        sx={{marginTop:'30px',marginLeft:'500px'}}>Adauga facturi</Button> 
      {modalOpen && (
@@ -209,32 +228,7 @@ const handleDeleteRow= async(targetIndex)=>{
         )}
 
 
-         <Box sx={{ height: 120, transform: 'translateZ(0px)', flexGrow: 1 ,
-       marginLeft:'1100px'}} >
-      <SpeedDial
-        ariaLabel="SpeedDial basic example"
-        sx={{ position: 'absolute', bottom: 16, right: 16, }}
-        icon={<SpeedDialIcon />}
-      >
-          <SpeedDialAction icon={<SaveIcon/>}
-            tooltipTitle="Salveaza facturil">
-
-          </SpeedDialAction>
-
-          <SpeedDialAction icon={<FileCopyIcon/>} 
-          tooltipTitle="Copiaza facturile">
-        
-          </SpeedDialAction>
-      </SpeedDial>
-    </Box>
-
-    
     </div>
-
-            
-       
-
-
 
         </Box>
     </Box>
