@@ -88,12 +88,9 @@ const Facturi=()=>{
     },[dateFactura]);
 
 
-    const [modalOpen, setModalOpen] = useState(false);
-
-    const [modalViewOpen, setModalViewOpen] = useState(false);
-
-  const [rowToEdit, setRowToEdit] = useState(null);
-  
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalViewOpen, setModalViewOpen] = useState(false);
+  const [rowToEdit, setRowToEdit] = useState(null); 
   const [deleteAlert,setDeleteAlert] = useState('');
   const [updateFactura,setUpdateFactura] = useState('');
 
@@ -213,7 +210,7 @@ const handleDeleteRow= async(targetIndex)=>{
          checkboxSelection
          slots={{toolbar:CustomToolbar}}
          sx={{marginTop:'70px',
-          fontSize:'20px',
+          fontSize:'18px',
           marginLeft:'40px',
           background: 'rgba( 189, 16, 224, 0.25 )',
           boxShadow:'0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
