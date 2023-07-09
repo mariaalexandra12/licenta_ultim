@@ -59,6 +59,7 @@ const drawerWidth = 220;
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
 })(({ theme, open }) => ({
+  backgroundImage:'url(./invoice.jpg)',
   transition: theme.transitions.create(['margin', 'width'], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
@@ -179,6 +180,7 @@ export default function Navig() {
          boxShadow:'0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
          backdropFilter: 'blur( 4px )',
          WebkitBackdropFilter:' blur( 4px )',
+         height:'250px',
         }}>
           <Toolbar
             sx={{
@@ -237,7 +239,7 @@ export default function Navig() {
                       <ListItemIcon style={{color:"rgba(138, 5, 186)"}}><HomeIcon/> </ListItemIcon>
                       <ListItemText style={{color:"black",
                       
-                    }}>Dashboard</ListItemText>
+                    }}>Acasa</ListItemText>
                      </ListItemButton>
 
                      </ListItem>
