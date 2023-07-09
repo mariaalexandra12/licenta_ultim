@@ -166,10 +166,7 @@ export default function Navig() {
     setOpenDilalog(false);
   }
 
-  const [showCard,setShowCard]=React.useState(false);
-  const handleChipProfile=()=>{
-       setShowCard(!showCard);
-  }
+  
 
   return (
     <>
