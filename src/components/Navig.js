@@ -78,10 +78,10 @@ const AppBar = styled(MuiAppBar, {
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({
     '& .MuiDrawer-paper': {
-      background:' rgba( 193, 29, 230, 0.2 )',
-      boxShadow:' 0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
-      backdropFilter: 'blur( 11.5px )',
-      WebkitBackdropFilter: 'blur( 11.5px )',
+      // background:' rgba( 193, 29, 230, 0.2 )',
+      // boxShadow:' 0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
+      // backdropFilter: 'blur( 11.5px )',
+      // WebkitBackdropFilter: 'blur( 11.5px )',
       position: 'relative',
       whiteSpace: 'nowrap',
       width: drawerWidth,
@@ -178,7 +178,7 @@ export default function Navig() {
         <CssBaseline />
       
       
-        <Drawer variant="permanent" open={open} style={{
+        <Drawer className="drawerNavig" variant="permanent" open={open} style={{
           marginTop:'0px',     
           height:'644px',
         }} >
