@@ -52,6 +52,8 @@ import { signOut } from 'firebase/auth';
 import ContPers from './contPers';
 import ContFirma from './contFirma';
 import HomeIcon from '@mui/icons-material/Home';
+import Dashboard from '../pages/Dashboard/Dashboard';
+
 
 
 const drawerWidth = 220;
@@ -59,7 +61,6 @@ const drawerWidth = 220;
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
 })(({ theme, open }) => ({
-  backgroundImage:'url(./invoice.jpg)',
   transition: theme.transitions.create(['margin', 'width'], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
@@ -175,39 +176,8 @@ export default function Navig() {
     <ThemeProvider theme={defaultTheme}>
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
-        <AppBar position="absolute" open={open} style={{
-         background: 'rgba( 189, 16, 224, 0.25 )',
-         boxShadow:'0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
-         backdropFilter: 'blur( 4px )',
-         WebkitBackdropFilter:' blur( 4px )',
-         height:'250px',
-        }}>
-          <Toolbar
-            sx={{
-              pr: '14px', 
-            }}
-            
-          >
-            <IconButton
-              edge="start"
-              color="inherit"
-              aria-label="open drawer"
-              onClick={toggleDrawer}
-              sx={{
-                marginRight: '36px',
-                ...(open && { display: 'none' }),
-              }}
-            >
-              <MenuIcon />
-            </IconButton>
-            
-            <IconButton color="inherit">
-              
-            </IconButton>
-          </Toolbar>
-        </AppBar>
-
-
+      
+      
         <Drawer variant="permanent" open={open} style={{
           marginTop:'0px',     
           height:'644px',
@@ -344,12 +314,9 @@ export default function Navig() {
                 
                  </List>
         </Drawer>
-
-     
-        
-         
       </Box>
-      
+
+     <Dashboard/>
     </ThemeProvider>
     
 
