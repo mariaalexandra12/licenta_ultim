@@ -91,8 +91,6 @@ const [open, setOpen] = React.useState(true);
 
 
   const handleInregistrare=()=>{
-    //event.preventDefault();
-    // try {
       const facturaRef=addDoc(collection(db,'factura'),{
         dataScadenta:dataSc,
         imgUrl:URL.createObjectURL(selectedFile),
@@ -102,9 +100,6 @@ const [open, setOpen] = React.useState(true);
         emailUtilizator:currentUser
       });
       setSucces('Factura a fost inregistrata cu succes!');
-    //   }catch(err){
-    //     setStareIncarca(err.message)
-    // } 
   };
 
   
@@ -117,13 +112,11 @@ const [open, setOpen] = React.useState(true);
 
   return(    
     <div style={{display:'flex',}}>
-    {/* <Box sx={{display: 'block'}}> */}
     <Navig/>
     <Paper elevation={24} style={{
       marginTop:'80px',
       marginLeft:'20px',
       width:'calc(100% + 600px)',
-      // width:'1000px',
       display:'flex',
       background: 'rgba( 193, 29, 230, 0.2 )',
       boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
@@ -307,7 +300,7 @@ const [open, setOpen] = React.useState(true);
         
         </Box>
         </Paper>
-       {/* </Box> */}
+
     </div>
 )
 

@@ -203,15 +203,13 @@ export default function Navig() {
         
 
           <List >
-             <ListItem className="navigButton" onClick={()=>navigate("/navig")}>
-                     <ListItemButton >
-
+             <ListItem onClick={()=>navigate("/dash")}>
+                <ListItemButton className='navigButton'>
                       <ListItemIcon style={{color:"rgba(138, 5, 186)",
                        }}><HomeIcon/> </ListItemIcon>
                       <ListItemText style={{color:"black",}}>Acasa</ListItemText>
-                     </ListItemButton>
-
-                     </ListItem>
+                </ListItemButton>
+              </ListItem>
                     <Divider></Divider>
                  
 
@@ -325,7 +323,6 @@ export default function Navig() {
                   </div>
                  </List>
         </Drawer>
-        <Dashboard/>
       </Box>
 
      
