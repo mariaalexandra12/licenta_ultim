@@ -34,7 +34,7 @@ app.post('/upload',upload,async (req, res) => {
 });
 function extractInvoiceData(text) {
   console.log(text);
-  const numeFurnRegex = /(Furnizor:)\s*[a-zA-z\s]*(SRL||SA||SC)\s/gmi;
+  const numeFurnRegex = /(Furnizor:)\s*[a-zA-z\s]*(?:SRL|SA|SC)\s/gmi;
   const dataScRegex = /[0-3]?[0-9][\/\-.][0-3]?[0-9][\/\-.][0-9]?[0-9]?[0-9][0-9]/gmi;
   const valTotalaRegex = /(?:Total de plata:|Total factura:|Factura curenta)(?:\s*)([0-9.,]+)/gmi;
   const numeFurnMatch = text.match(numeFurnRegex);
