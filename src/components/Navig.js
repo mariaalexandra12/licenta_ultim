@@ -318,7 +318,7 @@ export default function Navig() {
                          open={openDialog}
                         aria-describedby="alert-dialog-slide-description">
       
-                        <DialogTitle>{"Log Out?"}</DialogTitle>
+                        <DialogTitle>{"Te deconectezi?"}</DialogTitle>
                         <DialogContent>
                         <DialogContentText id="alert-dialog-slide-description">
                              Vrei sa iesi din aplicatie ?
@@ -336,7 +336,7 @@ export default function Navig() {
                     <ListItemText style={{
                       color:"black",
                       fontFamily: 'Goudy Bookletter 1911", sans-serif',
-                      }}>Log Out</ListItemText> 
+                      }}>Deconecteaza-te</ListItemText> 
                   </ListItemButton>
                   </ListItem>
                 

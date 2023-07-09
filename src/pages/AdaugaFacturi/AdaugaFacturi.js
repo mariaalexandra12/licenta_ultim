@@ -125,10 +125,10 @@ const [open, setOpen] = React.useState(true);
       width:'calc(100% + 600px)',
       // width:'1000px',
       display:'flex',
-      background: 'rgba( 24, 4, 4, 0.3 )',
-      boxShadow:'0 8px 32px 0 rgba( 31, 38, 135, 0.37 )', 
-      backdropFilter:' blur( 11px )',
-      WebkitBackdropFilter:' blur( 11px )',
+      background: 'rgba( 193, 29, 230, 0.2 )',
+      boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
+      backdropFilter: 'blur( 11.5px )',
+      WebkitBackdropFilter:' blur( 11.5px )',
       borderRadius:' 50px',
       border: '1px solid rgba( 255, 255, 255, 0.18 )',
     }} >
@@ -150,12 +150,12 @@ const [open, setOpen] = React.useState(true);
         />
         <Tooltip title="Adaugă o factură">
           <IconButton onClick={handleButtonClick} style={{ marginLeft: '140px', width: '90px', height: '90px', marginTop: '50px' }}>
-            <AddCircleIcon style={{ width: '70px', height: '70px', color:'violet' }} />
+            <AddCircleIcon style={{ width: '70px', height: '70px', color:'purple' }} />
           </IconButton>
         </Tooltip>
       </>
       }
-      <Typography sx={{marginLeft:'50px',color:'white'}}>Apasa aici pentru a adauga o factura</Typography>
+      <Typography sx={{marginLeft:'50px',color:'black'}}>Apasa aici pentru a adauga o factura</Typography>
 
       </div>
      
@@ -192,19 +192,19 @@ const [open, setOpen] = React.useState(true);
       <DocumentScannerIcon style={{
         width:'70px',
         height:'70px',
-        color:'violet'
+        color:'purple'
       }}>
       </DocumentScannerIcon>
       </IconButton>
       </Tooltip>
-      <Typography sx={{marginLeft:'50px',color:'white'}}
+      <Typography sx={{marginLeft:'50px',color:'black'}}
       >Apasa aici pentru a extrage datele facturii</Typography>
       {eroareExtras && (<>
         <Alert severity="warning">
           {eroareExtras}
         </Alert>
       </>)}
-      {/* <div className="dSc" style={{display:'flex',flexDirection:'row'}}> */}
+      
       
       <FormControl fullWidth style={{marginTop:'10px'}}>
            
