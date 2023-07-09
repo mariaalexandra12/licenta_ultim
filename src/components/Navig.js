@@ -51,37 +51,35 @@ import { auth, db } from "../firebaseUtils/firebase_ut";
 import { signOut } from 'firebase/auth';
 import ContPers from './contPers';
 import ContFirma from './contFirma';
+import HomeIcon from '@mui/icons-material/Home';
 
 
-
-const drawerWidth = 210;
+const drawerWidth = 220;
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
 })(({ theme, open }) => ({
-  zIndex: theme.zIndex.drawer + 1,
-  transition: theme.transitions.create(['width', 'margin'], {
+  transition: theme.transitions.create(['margin', 'width'], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
-    
   }),
   ...(open && {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px +30px)`,
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
+    width: `calc(100% - ${drawerWidth}px)`,
+    marginLeft: `${drawerWidth}px`,
+    transition: theme.transitions.create(['margin', 'width'], {
+      easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
-    
   }),
 }));
 
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({
     '& .MuiDrawer-paper': {
-      marginTop:'150px',
-      borderRadius:'30px',
-      marginBottom:'0px',
+      background: 'rgba( 189, 16, 224, 0.25 )',
+              boxShadow:'0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
+              backdropFilter: 'blur( 4px )',
+              WebkitBackdropFilter:' blur( 4px )',
       position: 'relative',
       whiteSpace: 'nowrap',
       width: drawerWidth,
@@ -222,17 +220,11 @@ export default function Navig() {
 
         <Drawer variant="permanent" open={open} style={{
           marginTop:'0px',     
-          height:'338px',
-          marginLeft:'30px',
-         
+          height:'644px',
         }} >
           <Toolbar
             sx={{
               marginTop:'0px',
-              background: 'rgba( 189, 16, 224, 0.25 )',
-              boxShadow:'0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
-              backdropFilter: 'blur( 4px )',
-              WebkitBackdropFilter:' blur( 4px )',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'flex-end',
@@ -250,17 +242,11 @@ export default function Navig() {
           </Toolbar>
         
 
-          <List style={{ 
-               marginTop:'0px',
-               background: 'rgba( 189, 16, 224, 0.25 )',
-              boxShadow:'0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
-              backdropFilter: 'blur( 4px )',
-              WebkitBackdropFilter:' blur( 4px )',
-          }}>
+          <List >
              <ListItem onClick={()=>navigate("/navig")}>
                      <ListItemButton >
 
-                      <ListItemIcon style={{color:"rgba(138, 5, 186)"}}><DashboardIcon/> </ListItemIcon>
+                      <ListItemIcon style={{color:"rgba(138, 5, 186)"}}><HomeIcon/> </ListItemIcon>
                       <ListItemText style={{color:"black",
                     fontFamily: 'Goudy Bookletter 1911", sans-serif',}}>Dashboard</ListItemText>
                      </ListItemButton>
@@ -303,53 +289,40 @@ export default function Navig() {
                   <Divider></Divider>
                   </ListItem>
 
-                
-                 </List>
-        </Drawer>
+                   <Divider/>
 
-     
-        {showCard && (
-           <div>
-             <Card style={{
-                  marginLeft:'750px',
-                  marginTop:'70px',
-                  background: 'rgba( 186, 152, 224, 0.7 )',
-                  boxShadow:'0 8px 32px 0 rgba( 31, 38, 135, 0.37 )', 
-                  backdropFilter:' blur( 11px )',
-                  WebkitBackdropFilter:' blur( 11px )',
-                  borderRadius:' 50px',
-                  border: '1px solid rgba( 255, 255, 255, 0.18 )',
-                  position:'fixed',}}>
-          
-          <List>
-
-
-          { existaPers ? 
-           <ListItem disablePadding onClick={()=>navigate("/contPers")}>
+                    { existaPers ? 
+           <ListItem  onClick={()=>navigate("/contPers")}>
              <ListItemButton >
             <ListItemIcon style={{color:"rgba(138, 5, 186)"}}>
                <SettingsApplicationsIcon/>
               </ListItemIcon>
-               <ListItemText primary="Setari Cont" />
+               <ListItemText style={{
+                      color: "black",
+                      fontFamily: 'Goudy Bookletter 1911", sans-serif',
+                     }} primary="Profil" />
           </ListItemButton>
           </ListItem> 
              
              :
          
-             <ListItem disablePadding onClick={()=>navigate("/contFirma")}>
+             <ListItem  onClick={()=>navigate("/contFirma")}>
              <ListItemButton >
             <ListItemIcon style={{color:"rgba(138, 5, 186)"}}>
                <SettingsApplicationsIcon/>
               </ListItemIcon>
-               <ListItemText primary="Setari Cont" />
+               <ListItemText style={{
+                      color: "black",
+                      fontFamily: 'Goudy Bookletter 1911", sans-serif',
+                     }} primary="Profil" />
           </ListItemButton>
           </ListItem> 
 
           }
          
 
-
-      <ListItem  onClick={handleClickOpen}>
+                        <Divider/>
+                        <ListItem  onClick={handleClickOpen} style={{marginTop: '170px'}}>
                   <ListItemButton>
                     <Dialog
                          TransitionComponent={Transition}
@@ -377,36 +350,12 @@ export default function Navig() {
                       }}>Log Out</ListItemText> 
                   </ListItemButton>
                   </ListItem>
-                  </List>
-                  </Card>
-               </div>
-              )
-            }
-         
-         {/* <>
-           <Collapse in={openAlert}>
-            <Alert severity='success' style={{
-              width:'300px',
-              marginTop:'90px',
-              marginLeft:'500px',
-              display:'hover',
-              borderRadius:'20px'
+                
+                 </List>
+        </Drawer>
 
-            }}  
-            action={
-              <IconButton
-                aria-label="close"
-                color="inherit"
-                size="small"
-                onClick={() => {
-                  setOpenAlert(false);
-                }}> 
-                <CloseIcon fontSize="inherit"/>  
-              </IconButton>}>
-                Bine ai venit ,{nume} {prenume}!
-                </Alert>
-              </Collapse>
-      </> */}
+     
+        
          
       </Box>
       
