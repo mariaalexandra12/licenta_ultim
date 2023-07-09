@@ -76,10 +76,10 @@ const AppBar = styled(MuiAppBar, {
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({
     '& .MuiDrawer-paper': {
-      background: 'rgba( 189, 16, 224, 0.25 )',
-              boxShadow:'0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
-              backdropFilter: 'blur( 4px )',
-              WebkitBackdropFilter:' blur( 4px )',
+      background:' rgba( 193, 29, 230, 0.2 )',
+      boxShadow:' 0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
+      backdropFilter: 'blur( 11.5px )',
+      WebkitBackdropFilter: 'blur( 11.5px )',
       position: 'relative',
       whiteSpace: 'nowrap',
       width: drawerWidth,
@@ -175,10 +175,10 @@ export default function Navig() {
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
         <AppBar position="absolute" open={open} style={{
-          background: 'rgba( 24, 4, 4, 0.3 )',
+         background: 'rgba( 189, 16, 224, 0.25 )',
          boxShadow:'0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
-         backdropFilter: 'blur( 10px )',
-         WebkitBackdropFilter:' blur( 10px )',
+         backdropFilter: 'blur( 4px )',
+         WebkitBackdropFilter:' blur( 4px )',
         }}>
           <Toolbar
             sx={{
@@ -202,18 +202,6 @@ export default function Navig() {
             <IconButton color="inherit">
               
             </IconButton>
-            <Stack direction="row" spacing={1}>
-            <Chip color='secondary'
-             icon={<Face6Icon/>}
-             label="Profil"
-             variant="contained"
-             onClick={handleChipProfile}
-             style={{
-              marginLeft:'1000px'
-             }}
-            />
-
-           </Stack>
           </Toolbar>
         </AppBar>
 
@@ -248,7 +236,8 @@ export default function Navig() {
 
                       <ListItemIcon style={{color:"rgba(138, 5, 186)"}}><HomeIcon/> </ListItemIcon>
                       <ListItemText style={{color:"black",
-                    fontFamily: 'Goudy Bookletter 1911", sans-serif',}}>Dashboard</ListItemText>
+                      
+                    }}>Dashboard</ListItemText>
                      </ListItemButton>
 
                      </ListItem>
@@ -295,7 +284,7 @@ export default function Navig() {
            <ListItem  onClick={()=>navigate("/contPers")}>
              <ListItemButton >
             <ListItemIcon style={{color:"rgba(138, 5, 186)"}}>
-               <SettingsApplicationsIcon/>
+               <Face6Icon/>
               </ListItemIcon>
                <ListItemText style={{
                       color: "black",
@@ -309,7 +298,7 @@ export default function Navig() {
              <ListItem  onClick={()=>navigate("/contFirma")}>
              <ListItemButton >
             <ListItemIcon style={{color:"rgba(138, 5, 186)"}}>
-               <SettingsApplicationsIcon/>
+               <Face6Icon/>
               </ListItemIcon>
                <ListItemText style={{
                       color: "black",
