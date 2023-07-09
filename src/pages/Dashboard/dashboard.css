@@ -1,0 +1,8 @@
+.paperDash {
+   background-image: url('./invoice.jpg');
+   background-size: 40%;
+   background-repeat: no-repeat;
+   background-position: center;
+   backdrop-filter: blur( 4px );
+   -webkit-backdrop-filter: blur( 4px ); 
+}

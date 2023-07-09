@@ -314,9 +314,10 @@ export default function Navig() {
                 
                  </List>
         </Drawer>
+        <Dashboard/>
       </Box>
 
-     <Dashboard/>
+     
     </ThemeProvider>
     
 
