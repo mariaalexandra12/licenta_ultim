@@ -1,5 +1,8 @@
 .drawerNavig {
-    background-image: url('../fundal.jpg');
-    border-radius: 30px;
-    
+    background: rgba( 233, 179, 244, 0.45 );
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+    border-radius: 10px;
+
+ 
 }
