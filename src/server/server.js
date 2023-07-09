@@ -36,14 +36,14 @@ function extractInvoiceData(text) {
   console.log(text);
   const numeFurnRegex = /(Furnizor:)\s*[a-zA-z\s]*(SRL||SA||SC)\s/gmi;
   const dataScRegex = /[0-3]?[0-9][\/\-.][0-3]?[0-9][\/\-.][0-9]?[0-9]?[0-9][0-9]/gmi;
-  const valTotalaRegex = /(Total de plata$)\s*[a-zA-Z\W\s]*[0-9\W]*/gmi;
+  const valTotalaRegex = /(Total de plata:)\s\d{0,3}?[,]?\d{0,3}?[,]?\d{0,3}?[,]?\d{0,3}?[,]?\d{0,3}[.]\d{2}/gmi;
   const numeFurnMatch = text.match(numeFurnRegex);
   const dataScMatch = text.match(dataScRegex);
   const valTotalaMatch=text.match(valTotalaRegex);
 
-  const nume = numeFurnMatch.length > 0? numeFurnMatch[0]:'';
-  const data =  dataScMatch.length > 0 ? dataScMatch[1]:'' ;
-  const valoare =  valTotalaMatch.length > 0 || valTotalaMatch > 0? valTotalaMatch[0]:'';
+  const nume = numeFurnMatch ? numeFurnMatch[0]:'';
+  const data =  dataScMatch ? dataScMatch[1]:'' ;
+  const valoare =  valTotalaMatch? valTotalaMatch[0]:'';
  
  console.log(nume);
  console.log(data);
