@@ -63,7 +63,7 @@ function Auth(){
         .then((userCredential)=>{
           const user=userCredential.user;
           if(!errors.email && !errors.password){
-            nav('/navig');
+            nav('/dash');
         }}).catch((err)=>{
            setFirebaseAuthError(err.message);
         })
