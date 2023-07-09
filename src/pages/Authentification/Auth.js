@@ -170,7 +170,7 @@ function Auth(){
              <LockOutlinedIcon />
             </Avatar>
            <Typography component="h1" variant="h5" color="white">
-            Sign in
+            Conectează-te
           </Typography>
 
 
