@@ -28,29 +28,28 @@ app.post('/upload',upload,async (req, res) => {
   } catch (error) {
     console.error('Error processing invoice:', error);
     res.status(500).json({ error: 'An error occurred' });
-  //const valTotalaRegex=/\d{0,3}?[,]?\d{0,3}?[,]?\d{0,3}?[,]?\d{0,3}?[,]?\d{0,3}[.]\d{2}/g;
+  
 
   }
 });
 function extractInvoiceData(text) {
   console.log(text);
-  const numeFurnRegex = /(FURNIZOR:)\s*[a-z]*\s*[a-z]*\s*[a-z]*\s*[a-z]*/gmi;
-  const dataScRegex = /Data scadenti: (\d{2}\.\d{2}\.\d{4})/;
-  const valTotalaRegex = /(Total de plata \s*\d{2},\d{2} lei)/;
+  const numeFurnRegex = /(Furnizor:)\s*[a-zA-z\s]*(SRL||SA||SC)\s/gmi;
+  const dataScRegex = /(Data scadentei:)\s*(\d{2})\W(\d{2})\W(\d{4})/gmi;
+  const valTotalaRegex = /(Total de plata$)\s*[a-zA-Z\W\s]*[0-9\W]*/gmi;
   const numeFurnMatch = text.match(numeFurnRegex);
   const dataScMatch = text.match(dataScRegex);
-  //const valTotalaMatch = text(valTotalaRegex);
   const valTotalaMatch=text.match(valTotalaRegex);
+
   const nume = numeFurnMatch? numeFurnMatch[0]:'';
   const data =  dataScMatch? dataScMatch[0]:'' ;
-  const valoare =  valTotalaMatch[0] ? valTotalaMatch[0]:'';
-  // const valoare=valTotalaMatch;
+  const valoare =  valTotalaMatch? valTotalaMatch[0]:'';
+ 
  console.log(nume);
  console.log(data);
  console.log(valoare);
  const ras={nume,data,valoare};
   return ras;
-  //return { numeFurnMatch , dataScMatch, valTotalaMatch};
 }
 app.listen(3001, () => {
   console.log('Server merge pe portul 3001');
