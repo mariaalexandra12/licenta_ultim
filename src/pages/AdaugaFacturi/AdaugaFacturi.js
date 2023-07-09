@@ -114,7 +114,7 @@ const [open, setOpen] = React.useState(true);
     <div style={{display:'flex',}}>
     <Navig/>
     <Paper elevation={24} style={{
-      marginTop:'80px',
+      marginTop:'40px',
       marginLeft:'20px',
       width:'calc(100% + 600px)',
       display:'flex',
@@ -202,36 +202,39 @@ const [open, setOpen] = React.useState(true);
       <FormControl fullWidth style={{marginTop:'10px'}}>
            
            <div className="nFunr" style={{display:'flex',flexDirection:'row',marginTop:'10px'}}>
-              <label style={{marginTop:'20px'}}>Denumire Furnizor</label>
+              <label style={{marginTop:'5px',fontSize:'20px'}}>Denumire Furnizor</label>
               <input type="text" defaultValue={numeFur} style={{
                 width:'300px',
                 height:'50px',
                 borderRadius:'5px',
                 background:'transparent',
+                fontSize:'20px',
               }}
               onChange={(e)=>setNumeFur(e.target.value)}
               ></input>
            </div>
 
-           <div className="totPlata" style={{display:'flex',flexDirection:'row',marginTop:'10px'}}>
-              <label style={{marginTop:'20px'}}>Total de plata</label>
+           <div className="totPlata" style={{display:'flex',flexDirection:'row',marginTop:'0px'}}>
+              <label style={{marginTop:'5px',fontSize:'20px'}}>Total de plata</label>
               <input type="text" defaultValue={val} style={{
                 width:'300px',
                 height:'50px',
                 borderRadius:'5px',
                 background:'transparent',
+                fontSize:'20px',
               }}
               onChange={(e)=>setVal(e.target.value)}
               ></input>
              </div>
 
             <div className="dSc" style={{display:'flex',flexDirection:'row',marginTop:'10px'}}>
-              <label style={{marginTop:'10px'}}>Data Scadenta</label>
+              <label style={{marginTop:'5px',fontSize:'20px'}}>Data Scadenta</label>
               <input type="text" defaultValue={dataSc} style={{
                 width:'300px',
                 height:'50px',
                 borderRadius:'5px',
                 background:'transparent',
+                fontSize:'20px',
               }}
               onChange={(e)=>setDataSc(e.target.value)}
               ></input>
