@@ -41,11 +41,11 @@ function extractInvoiceData(text) {
   const dataScMatch = text.match(dataScRegex);
   const valTotalaMatch=text.match(valTotalaRegex);
 
-  // const nume = numeFurnMatch > 0? numeFurnMatch[0]:'';
+  const nume = numeFurnMatch.length > 0? numeFurnMatch[0]:'';
   const data =  dataScMatch.length > 0 ? dataScMatch[1]:'' ;
-  const valoare =  valTotalaMatch > 0? valTotalaMatch[0]:'';
+  const valoare =  valTotalaMatch.length > 0 || valTotalaMatch > 0? valTotalaMatch[0]:'';
  
-//  console.log(nume);
+ console.log(nume);
  console.log(data);
  console.log(valoare);
  const ras={nume,data,valoare};
