@@ -110,26 +110,31 @@ const handleDeleteRow= async(targetIndex)=>{
   };
 
   const handleSubmit = async (newRow) => {
-       if(rowToEdit !== null  && rows[rowToEdit]?.id){
-          const rowToUpdate=rows[rowToEdit];
-          const q3 = query(collection(db, "factura"),where("numeFurnizor","==",rowToEdit.numeFurnizor));
-          const querySnapshot= getDocs(q3);
-          if(!querySnapshot.empty){
-            console.log(querySnapshot);
-            const docRef= doc(db,'factura',querySnapshot.docs[0].id);
-             await updateDoc(docRef,newRow);
-            setUpdateFactura('Factura a fost actualizata cu succes');
-          }
+    console.log('buna');
+    console.log(newRow);
+    console.log(rowToEdit)
+    // rowToEdit !== null  && rows[rowToEdit]?.id
+      //  if(rowToEdit){
+      //     setRowToEdit(rows[rowToEdit]);
+      //     console.log(rowToEdit);
+      //     const q3 = query(collection(db, "factura"),where("numeFurnizor","==",rowToEdit.numeFurnizor));
+      //     const querySnapshot= getDocs(q3);
+      //     if(querySnapshot.empty){
+      //       console.log(querySnapshot);
+      //       const docRef= doc(db,'factura',querySnapshot.docs[0].id);
+      //        await updateDoc(docRef,newRow);
+      //       setUpdateFactura('Factura a fost actualizata cu succes');
+      //     }
           
-          setRows((prevRows) => {
-            const updatedRows = [...prevRows];
-            // updatedRows[rowToEdit] = { ...newRow, id: updatedRows[rowToEdit].id };
-            updatedRows[rowToEdit]={...newRow};
-            return updatedRows;
-          });    
-        setModalOpen(false);
-        setRowToEdit(null);
-       }
+      //     setRows((prevRows) => {
+      //       const updatedRows = [...prevRows];
+      //       // updatedRows[rowToEdit] = { ...newRow, id: updatedRows[rowToEdit].id };
+      //       updatedRows[rowToEdit]={...newRow};
+      //       return updatedRows;
+      //     });    
+      //   setModalOpen(false);
+      //   setRowToEdit(null);
+      //  }
        
   };
 

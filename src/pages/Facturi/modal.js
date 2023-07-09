@@ -45,8 +45,8 @@ export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
       valoareTotala:formState.valoareTotala,
       tipFactura:formState.tipFactura,
     };
-    // onSubmit(updatedFormState);
-    onSubmit(formState);
+    onSubmit(updatedFormState);
+    
     console.log(updatedFormState);
     closeModal();
   };
