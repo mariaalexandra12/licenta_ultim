@@ -35,14 +35,14 @@ app.post('/upload',upload,async (req, res) => {
 function extractInvoiceData(text) {
   console.log(text);
   const numeFurnRegex = /(Furnizor:)\s*[a-zA-z\s]*(SRL||SA||SC)\s/gmi;
-  const dataScRegex = /\b(\d{2})\W(\d{2})\W(\d{4})/gmi;
+  const dataScRegex = /[0-3]?[0-9][\/\-.][0-3]?[0-9][\/\-.][0-9]?[0-9]?[0-9][0-9]/gmi;
   const valTotalaRegex = /(Total de plata$)\s*[a-zA-Z\W\s]*[0-9\W]*/gmi;
   const numeFurnMatch = text.match(numeFurnRegex);
   const dataScMatch = text.match(dataScRegex);
   const valTotalaMatch=text.match(valTotalaRegex);
 
   const nume = numeFurnMatch.length > 0? numeFurnMatch[0]:'';
-  const data =  dataScMatch.length > 0 ? dataScMatch[0]:'' ;
+  const data =  dataScMatch.length > 0 ? dataScMatch[1]:'' ;
   const valoare =  valTotalaMatch.length > 0? valTotalaMatch[0]:'';
  
  console.log(nume);
