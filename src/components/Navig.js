@@ -78,10 +78,10 @@ const AppBar = styled(MuiAppBar, {
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({
     '& .MuiDrawer-paper': {
-      // background:' rgba( 193, 29, 230, 0.2 )',
-      // boxShadow:' 0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
-      // backdropFilter: 'blur( 11.5px )',
-      // WebkitBackdropFilter: 'blur( 11.5px )',
+      background:' rgba( 193, 29, 230, 0.2 )',
+      boxShadow:' 0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
+      backdropFilter: 'blur( 11.5px )',
+      WebkitBackdropFilter: 'blur( 11.5px )',
       position: 'relative',
       whiteSpace: 'nowrap',
       width: drawerWidth,
@@ -203,18 +203,19 @@ export default function Navig() {
         
 
           <List >
-             <ListItem onClick={()=>navigate("/navig")}>
+             <ListItem className="navigButton" onClick={()=>navigate("/navig")}>
                      <ListItemButton >
 
-                      <ListItemIcon style={{color:"rgba(138, 5, 186)"}}><HomeIcon/> </ListItemIcon>
-                      <ListItemText style={{color:"black",
-                      
-                    }}>Acasa</ListItemText>
+                      <ListItemIcon style={{color:"rgba(138, 5, 186)",
+                       }}><HomeIcon/> </ListItemIcon>
+                      <ListItemText style={{color:"black",}}>Acasa</ListItemText>
                      </ListItemButton>
 
                      </ListItem>
                     <Divider></Divider>
                  
+
+                 <div className="facturiButton">
                  <ListItem  onClick={()=>navigate("/facturi")} >
                   <ListItemButton >
 
@@ -223,8 +224,12 @@ export default function Navig() {
                   fontFamily: 'Goudy Bookletter 1911", sans-serif',}}>Facturi</ListItemText>
                   </ListItemButton>
                   </ListItem>
+                  </div>
                   <Divider></Divider>
 
+
+
+                 <div className='adaugaButton'>
                  <ListItem onClick={()=>navigate("/adaugaFacturi")} >
                   <ListItemButton > 
                    
@@ -232,12 +237,12 @@ export default function Navig() {
                   <ListItemText style={{color:"black" ,
                    fontFamily: 'Goudy Bookletter 1911", sans-serif',}}>Adauga Facturi</ListItemText>
                   </ListItemButton>
-                 
-
                   </ListItem>
+                  </div>
                   <Divider></Divider>
 
 
+                <div className='analizaButton'>
                 <ListItem   onClick={()=>navigate("/analiza")}>
                   <ListItemButton>
               
@@ -249,10 +254,13 @@ export default function Navig() {
                   </ListItemButton>
                   <Divider></Divider>
                   </ListItem>
-
+                  </div>
                    <Divider/>
 
+
+
                     { existaPers ? 
+                    <div className="contPersButton">
            <ListItem  onClick={()=>navigate("/contPers")}>
              <ListItemButton >
             <ListItemIcon style={{color:"rgba(138, 5, 186)"}}>
@@ -264,9 +272,11 @@ export default function Navig() {
                      }} primary="Profil" />
           </ListItemButton>
           </ListItem> 
+          </div>
              
              :
          
+             <div className="contFirmaButton">
              <ListItem  onClick={()=>navigate("/contFirma")}>
              <ListItemButton >
             <ListItemIcon style={{color:"rgba(138, 5, 186)"}}>
@@ -278,11 +288,12 @@ export default function Navig() {
                      }} primary="Profil" />
           </ListItemButton>
           </ListItem> 
-
+          </div>
           }
          
 
                         <Divider/>
+                        <div className='logoutButton'>
                         <ListItem  onClick={handleClickOpen} style={{marginTop: '170px'}}>
                   <ListItemButton>
                     <Dialog
@@ -311,7 +322,7 @@ export default function Navig() {
                       }}>Deconecteaza-te</ListItemText> 
                   </ListItemButton>
                   </ListItem>
-                
+                  </div>
                  </List>
         </Drawer>
         <Dashboard/>
