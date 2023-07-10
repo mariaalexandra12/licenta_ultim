@@ -104,7 +104,7 @@ const handleDeleteRow= async(targetIndex)=>{
   };
 
   const handleEditRow = (idx) => {
-    setRowToEdit(idx);
+    setRowToEdit(rows[idx]);
     setModalOpen(true);
     
   };
