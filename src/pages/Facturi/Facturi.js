@@ -106,16 +106,14 @@ const handleDeleteRow= async(targetIndex)=>{
   const handleEditRow = (idx) => {
     setRowToEdit(idx);
     setModalOpen(true);
-
+    
   };
 
   const handleSubmit = async (newRow) => {
     console.log('buna');
     console.log(newRow);
-    console.log(rowToEdit)
     
-       if(rowToEdit){
-          setRowToEdit(rows[rowToEdit]);
+       if(rowToEdit !== null){
           console.log(rowToEdit);
           const q3 = query(collection(db, "factura"),where("numeFurnizor","==",rowToEdit.numeFurnizor));
           const querySnapshot= getDocs(q3);
@@ -125,11 +123,11 @@ const handleDeleteRow= async(targetIndex)=>{
              await updateDoc(docRef,newRow);
             setUpdateFactura('Factura a fost actualizata cu succes');
           }
+
           
           setRows((prevRows) => {
             const updatedRows = [...prevRows];
-            // updatedRows[rowToEdit] = { ...newRow, id: updatedRows[rowToEdit].id };
-            updatedRows[rowToEdit]={...newRow};
+            updatedRows[rowToEdit] = { ...newRow, id: updatedRows[rowToEdit].id };
             return updatedRows;
           });    
         setModalOpen(false);
@@ -180,7 +178,7 @@ const handleDeleteRow= async(targetIndex)=>{
     return(
          <Box sx={{display: 'flex'}}>
            <Navig/>
-             <Box sx={{marginTop: '80px'}}> 
+             <Box sx={{marginTop: '60px'}}> 
 
      <div className="Facturi">
 
@@ -234,7 +232,7 @@ const handleDeleteRow= async(targetIndex)=>{
          columns={columns}
          checkboxSelection
          slots={{toolbar:CustomToolbar}}
-         sx={{marginTop:'70px',
+         sx={{marginTop:'10px',
           fontSize:'18px',
           marginLeft:'40px',
           background: 'rgba( 189, 16, 224, 0.25 )',
