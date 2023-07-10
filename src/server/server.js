@@ -34,17 +34,30 @@ app.post('/upload',upload,async (req, res) => {
 });
 function extractInvoiceData(text) {
   console.log(text);
-  const numeFurnRegex = /(Furnizor:)\s*[a-zA-z\s]*(?:SRL|SA|SC)\s/gmi;
-  // const dataScRegex = /[0-3]?[0-9][\/\-.][0-3]?[0-9][\/\-.][0-9]?[0-9]?[0-9][0-9]/gmi;
-  const dataScRegex=/(?:\b\s)[0-3]?[0-9][\/\-.][0-3]?[0-9][\/\-.][0-9]?[0-9]?[0-9][0-9]/gmi;
-  const valTotalaRegex = /(?:Total de plata:|Total factura:|Factura curenta)(?:\s*)([0-9.,]+)/gmi;
+  const numeFurnRegex = /(Furnizor:)\s*[a-zA-z\s]*(?:SRL|SA|SC)\s|(ENGIE)\s*[a-zA-Z]*\s*(S.A.)|(Furnizor,)\s*[a-zA-Z\s]*/gmi;
+  const dataScRegex = /[0-3]?[0-9][\/\-.][0-3]?[0-9][\/\-.][0-9]?[0-9]?[0-9][0-9]/gmi;
+  const valTotalaRegex = /(Total de plata:|Total factura:|Factura curenta)(.\s*)([0-9.,]+)|(Total de plata)\s*[a-zA-Z\s\W]*\d{0,4}\W\d{2}/gmi;
   const numeFurnMatch = text.match(numeFurnRegex);
   const dataScMatch = text.match(dataScRegex);
   const valTotalaMatch=text.match(valTotalaRegex);
 
   const nume = numeFurnMatch ? numeFurnMatch[0]:'';
-  const data =  dataScMatch ? dataScMatch[1]:'' ;
-  const valoare =  valTotalaMatch? valTotalaMatch[0]:'';
+  let data  ;
+
+  if(nume === 'ENGIE Romania S.A.'){ 
+    data =  dataScMatch ? dataScMatch[3]:'' ;
+  }
+  else{
+    data =  dataScMatch ? dataScMatch[1]:'' ;
+  }
+  
+  let valoare;
+  if(nume === 'ENGIE Romania S.A.' || nume.includes('Enel Energie Muntenia SA')){
+    valoare =  valTotalaMatch? valTotalaMatch[1]:'';
+    
+  }else{
+    valoare =  valTotalaMatch? valTotalaMatch[0]:'';
+  }
  
  console.log(nume);
  console.log(data);

@@ -155,8 +155,8 @@ const [open, setOpen] = React.useState(true);
       {selectedFile && (
         <div>
           <img src={URL.createObjectURL(selectedFile)} alt="" style={{
-        width:"600px",
-        height:"600px",
+        width:"650px",
+        height:"650px",
         marginLeft:'15px',
         }}></img>
         </div>
