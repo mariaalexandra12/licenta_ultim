@@ -13,7 +13,7 @@ import { DataGrid, GridToolbarExport, GridToolbarDensitySelector, GridToolbarCon
 import DeleteIcon from '@mui/icons-material/Delete';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import EditIcon from '@mui/icons-material/Edit';
-import CustomEmptyOverlayGrid from './noRows';
+
 import { collection, query, where, onSnapshot, doc, deleteDoc, updateDoc } from 'firebase/firestore';
 import { db } from '../../firebaseUtils/firebase_ut';
 import { Modal } from './modal';
@@ -29,7 +29,6 @@ function CustomToolbar() {
     </GridToolbarContainer>
   );
 }
-
 
 
 const Facturi = () => {
@@ -230,7 +229,29 @@ const Facturi = () => {
 
 
         {rows.length === 0 ? (
-         <CustomEmptyOverlayGrid/>
+           <div> 
+           <DataGrid
+           rows={[]}
+           columns={columns}
+           checkboxSelection
+           components={{
+             Toolbar: CustomToolbar,
+           }}
+  
+           sx={{
+             marginTop: '10px',
+             fontSize: '18px',
+             marginLeft: '40px',
+             background: 'rgba( 189, 16, 224, 0.25 )',
+             boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
+             backdropFilter: 'blur( 10px )',
+             WebkitBackdropFilter: 'blur( 10px )',
+             borderRadius: '30px',
+           }}
+           
+         />
+           
+           </div>
           )
         :
         (
