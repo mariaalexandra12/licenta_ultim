@@ -87,6 +87,11 @@ const Facturi=()=>{
   const [modalOpen, setModalOpen] = useState(false);
   const [modalViewOpen, setModalViewOpen] = useState(false);
   const [rowToEdit, setRowToEdit] = useState(null); 
+
+  useEffect(() => {
+    console.log(rowToEdit);
+  }, [rowToEdit]);
+  
   const [deleteAlert,setDeleteAlert] = useState('');
   const [updateFactura,setUpdateFactura] = useState('');
 
@@ -103,10 +108,11 @@ const handleDeleteRow= async(targetIndex)=>{
     }
   };
 
-  const handleEditRow = (idx) => {
-    setRowToEdit(rows[idx]);
+  const handleEditRow = async (idx) => {
+    const selectedRow=rows[idx]
+    setRowToEdit(selectedRow);
     setModalOpen(true);
-    
+    console.log(selectedRow);
   };
 
   const handleSubmit = async (newRow) => {
@@ -114,7 +120,6 @@ const handleDeleteRow= async(targetIndex)=>{
     console.log(newRow);
     
        if(rowToEdit !== null){
-          console.log(rowToEdit);
           const q3 = query(collection(db, "factura"),where("numeFurnizor","==",rowToEdit.numeFurnizor));
           const querySnapshot= getDocs(q3);
           if(querySnapshot.empty){
@@ -159,7 +164,7 @@ const handleDeleteRow= async(targetIndex)=>{
           </Tooltip>
 
           <Tooltip title="Editeaza factura">
-            <IconButton onClick={handleEditRow}>
+            <IconButton onClick={()=>handleEditRow(params.row.id)}>
               <EditIcon color='secondary'/>
             </IconButton>
           </Tooltip>
@@ -254,8 +259,7 @@ const handleDeleteRow= async(targetIndex)=>{
             setRowToEdit(null);
           }}
           onSubmit={handleSubmit}
-          // defaultValue={rowToEdit !== null && rows[rowToEdit]}
-          defaultValue={rowToEdit}
+          defaultValue={rowToEdit !== null && rows[rowToEdit]}
         />
       )}
         
