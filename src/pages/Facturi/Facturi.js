@@ -41,6 +41,7 @@ const Facturi = () => {
   const [rowToEdit, setRowToEdit] = useState(null);
   const [deleteAlert, setDeleteAlert] = useState('');
   const [updateFactura, setUpdateFactura] = useState('');
+  const [existaRanduri,setExistaRanduri]=useState(false);
 
   const nav = useNavigate();
 
@@ -70,6 +71,15 @@ const Facturi = () => {
     setRows(newRows);
   }, [dateFactura]);
 
+  useEffect(()=>{
+    if(rows.length>0){
+      setExistaRanduri(true);
+    }
+    else{
+      setExistaRanduri(false);
+    }
+  },[rows])
+
   const handleDeleteRow = async (targetIndex) => {
     const rowToDelete = rows[targetIndex];
     try {
@@ -87,6 +97,7 @@ const Facturi = () => {
     const selectedRow = rows[idx];
     setRowToEdit(selectedRow);
     setModalOpen(true);
+
   };
 
   const handleSubmit = async (newRow) => {
@@ -161,6 +172,9 @@ const Facturi = () => {
       <Navig />
       <Box sx={{ marginTop: '60px' }}>
         <div className="Facturi">
+          {existaRanduri && (
+            <Alert severity='info'>Exista randuri:{existaRanduri}</Alert>
+          )}
           {deleteAlert && (
             <>
               <Collapse in={open}>
