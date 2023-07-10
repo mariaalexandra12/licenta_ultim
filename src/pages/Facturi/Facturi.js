@@ -13,7 +13,6 @@ import { DataGrid, GridToolbarExport, GridToolbarDensitySelector, GridToolbarCon
 import DeleteIcon from '@mui/icons-material/Delete';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import EditIcon from '@mui/icons-material/Edit';
-
 import { collection, query, where, onSnapshot, doc, deleteDoc, updateDoc } from 'firebase/firestore';
 import { db } from '../../firebaseUtils/firebase_ut';
 import { Modal } from './modal';
