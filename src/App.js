@@ -1,7 +1,7 @@
 import React from "react";
 import Navig from "./components/Navig";
 import {BrowserRouter,Route,Routes} from "react-router-dom";
-import Rapoarte from "./pages/Rapoarte/Rapoarte";
+
 import Analiza from "./pages/Analiza/Analiza";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import AdaugaFacturi from "./pages/AdaugaFacturi/AdaugaFacturi";
