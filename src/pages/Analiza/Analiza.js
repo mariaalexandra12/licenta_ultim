@@ -5,6 +5,7 @@ import { useUserAuth } from '../../context/userAuthContext';
 import { collection, query, where, onSnapshot, doc, deleteDoc, updateDoc } from 'firebase/firestore';
 import { db } from '../../firebaseUtils/firebase_ut';
 import Paper from '@mui/material/Paper';
+import Plotly from 'plotly.js/dist/plotly';
 
 
 
@@ -45,6 +46,42 @@ const Analiza=()=>{
        })
     },[dateFactura])
 
+    function createPlotlyCharts(dataScadenta, valoareTotala, tipFactura, numeFurnizor) {
+  
+      const furnizoriUnici = [...new Set(numeFurnizor)];
+      const valoriFurnizori = [];
+    
+      furnizoriUnici.forEach((furnizor) => {
+        const totalValoare = valoareTotala.reduce((acc, val, index) => {
+          if (numeFurnizor[index] === furnizor) {
+            return acc + val;
+          }
+          return acc;
+        }, 0);
+    
+        valoriFurnizori.push(totalValoare);
+      });
+    
+      const data = [{
+        x: furnizoriUnici,
+        y: valoriFurnizori,
+        type: 'bar'
+      }];
+    
+      const layout = {
+        title: 'Valoarea totală a facturilor în funcție de furnizori',
+        xaxis: {
+          title: 'Furnizor'
+        },
+        yaxis: {
+          title: 'Valoare Totală'
+        }
+      };
+    
+      Plotly.newPlot('chartDiv', data, layout);
+    }
+    
+
     useEffect(()=>{
        console.log(dataScadenta);
        console.log(numeFurnizor);
@@ -68,6 +105,7 @@ const Analiza=()=>{
             WebkitBackdropFilter: 'blur( 4px )',
             borderRadius: '10px',
             border: '1px solid rgba( 255, 255, 255, 0.18 )',}}>
+              <Button variant='contained'>Genereaza grafic</Button>
             </Paper>
 
 
