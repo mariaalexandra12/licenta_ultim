@@ -1,0 +1,28 @@
+
+.clock-wrapper{
+    background-color: rgb(10, 27, 29);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .clock{
+    font-size: 100px;
+    color: aqua;
+  }
+  
+  .main-wrapper{
+    background-color: #000000;
+    color: #ccc;
+  }
+  
+  
+  .clock-container{
+    background-color: rgba(0, 255, 255, 0.2);
+    padding: 20px;
+    border: 8px solid aqua;
+    border-radius: 20px;
+    box-shadow: 0px 0px 100px 0px rgba(0, 255, 255, 0.507);
+  }
+  
