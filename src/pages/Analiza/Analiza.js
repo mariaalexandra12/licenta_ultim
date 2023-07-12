@@ -39,7 +39,7 @@ const Analiza = () => {
       valoareTotala.push(fact['valoareTotala']);
     });
 
-    generateCharts(); // Generare automată a graficelor
+    generateCharts();
   }, [dateFactura]);
 
   function createPlotlyCharts(dataScadenta, valoareTotala, tipFactura, numeFurnizor) {
@@ -79,7 +79,7 @@ const Analiza = () => {
   }
 
   function generateCharts() {
-    // Generare grafic tip pie
+  
     const dataPie = [
       {
         labels: numeFurnizor,
@@ -89,7 +89,7 @@ const Analiza = () => {
     ];
 
     const layoutPie = {
-      title: 'Valoarea totală a facturilor în funcție de furnizori (grafic tip pie)',
+      title: 'Valoarea totală a facturilor în funcție de furnizori ',
     };
 
     Plotly.newPlot('chartDivPie', dataPie, layoutPie);
@@ -105,7 +105,7 @@ const Analiza = () => {
     ];
 
     const layoutScatter = {
-      title: 'Valoarea totală a facturilor în funcție de data scadenței (grafic cu puncte)',
+      title: 'Valoarea totală a facturilor în funcție de data scadenței ',
       xaxis: {
         title: 'Data Scadenței',
       },
@@ -143,7 +143,12 @@ const Analiza = () => {
               border: '1px solid rgba( 255, 255, 255, 0.18 )',
             }}
           >
-            <div id='chartDiv'></div>
+            <div id='chartDiv' style={{background: 'rgba( 228, 189, 189, 0.25 )',
+              boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
+              backdropFilter: 'blur( 4px )',
+              WebkitBackdropFilter: 'blur( 4px )',
+              borderRadius: '10px',
+              border: '1px solid rgba( 255, 255, 255, 0.18 )',}}></div>
           </Paper>
 
           <Paper
