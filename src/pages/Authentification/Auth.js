@@ -146,7 +146,7 @@ function Auth(){
                WebkitBackdropFilter:' blur( 11px )',
                backgroundImage: 'url(./fundal_invoice.jpg)',
                border: '1px solid rgba( 255, 255, 255, 0.18 )',
-                flexDirection:"column",
+               flexDirection:"column",
               }} square="true"/>
 
             <Paper elevation={24} style={{
