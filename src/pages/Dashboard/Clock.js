@@ -13,8 +13,8 @@ const Clock = () => {
     setInterval(UpdateClock, 1000)
   return (
     <>
-    <div className='clock-wrapper' style={{marginTop: '300px',
-    marginLeft:'-500px'}}>
+    <div className='clock-wrapper' style={{marginTop: '280px',
+    marginLeft:'-550px'}}>
       <div className='clock-container'>
       <h1 className='clock'>
         {Clock}
