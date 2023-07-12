@@ -1,26 +1,42 @@
-import React from 'react';
+import React,{ useState } from 'react';
 import Paper from '@mui/material/Paper';
-import { TextField, Typography } from '@mui/material';
-import { Button } from '@mui/material';
+import { TextField, Typography,Button } from '@mui/material';
 import ReceiptIcon from '@mui/icons-material/Receipt';
 import {  useNavigate } from 'react-router-dom';
 import Link from '@mui/material/Link';
+import { sendPasswordResetEmail,getAuth } from 'firebase/auth';
+import { useUserAuth } from '../../context/userAuthContext';
+
 
 export default function Pass(){
+
+    const [email,setEmail]=useState('');
+
+    const { currentUser }=useUserAuth();
+
+    const handleSubmit =  (e) =>{
+        e.preventDefault();
+        sendPasswordResetEmail(email)
+        .then(response=>{
+            console.log(response);
+        }).catch(e=>console.log(e.message));
+    }
+
     return (
      <div>
      
      <Paper elevation={24} style={{
-               marginLeft:"350px",
+               marginLeft:"450px",
                marginTop:"55px",
                width:"500px",
-               height:'569px',
+               height:'400px',
                color:"primary",
                padding:"10px",
+               borderRadius:'100px',
                background: "rgba( 189, 16, 224,0.10)",
                 boxShadow: "0 8px 32px 0 rgba( 31, 38, 135, 0.37 )",
-                backdropFilter: "blur( 0px )",
-                WebkitBackdropFilter: "blur( 0px )",
+                backdropFilter: "blur( 8px )",
+                WebkitBackdropFilter: "blur( 8px )",
                 borderRadius:" 10px",
                 border: "1px solid rgba( 255, 255, 255, 0.18 )",}} square="true">
                 <ReceiptIcon sx={{fontSize:70,
@@ -33,15 +49,19 @@ export default function Pass(){
                     pentru resetarea parolei.
                 </Typography>
 
+               <form onSubmit={handleSubmit}>
                 <TextField type='text' style={{
                     marginTop:'50px',
                 }} fullWidth
+                required
                 placeholder='Adresa de email'
-                ></TextField>
+                value={email}
+                onChange={e=>setEmail(e.target.value)}></TextField>
 
                 <Button color="secondary" variant="contained" fullWidth
-                 style={{marginTop:'10px'}}
-                >Trimite mail</Button>
+                 type='submit'
+                 style={{marginTop:'10px'}}>Trimite mail</Button>
+                 </form>
 
                <Link href="/" underline='hover' color="secondary"
                style={{marginLeft:'180px',}}

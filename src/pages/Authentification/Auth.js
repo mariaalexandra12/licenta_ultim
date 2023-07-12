@@ -17,7 +17,7 @@ import { IconButton , InputAdornment } from '@mui/material';
 import PersonIcon from '@mui/icons-material/Person';
 import Alert from '@mui/material/Alert';
 import './auth.css';
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword,sendPasswordResetEmail } from "firebase/auth";
 import CloseIcon from '@mui/icons-material/Close';
 import Collapse from '@mui/material/Collapse';
 
@@ -141,7 +141,7 @@ function Auth(){
                marginLeft:"400px",
                marginTop:'30px',
                width:"550px",
-               height:'615px',
+               height:'580px',
                color:"primary",
                padding:"10px",
                background: 'rgba( 186, 152, 224, 0.7 )',
