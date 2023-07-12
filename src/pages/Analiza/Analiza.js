@@ -5,7 +5,7 @@ import { useUserAuth } from '../../context/userAuthContext';
 import { collection, query, where, onSnapshot } from 'firebase/firestore';
 import { db } from '../../firebaseUtils/firebase_ut';
 import Plotly from 'plotly.js/dist/plotly';
-import './analiza.css';
+import './analiza.css'
 
 const Analiza = () => {
   const { currentUser } = useUserAuth();
