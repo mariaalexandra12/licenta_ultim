@@ -23,7 +23,7 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import MenuIcon from '@mui/icons-material/Menu';
 import Face6Icon from '@mui/icons-material/Face6';
-import backgroundImage from "./4367.jpg";
+
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -123,33 +123,6 @@ const handleUpdateProfil=()=>{
               </Collapse>
               </>
           )}
-
-     <Grid sx={{ flexGrow: 1 , ml:'auto',}} item xs={12} md={6} lg={4}>
-      <AppBar position="sticky" sx={{
-        width:'1200px',
-        background: 'rgba( 242, 212, 212, 0.25 )',
-        boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )', 
-        backdropFilter: 'blur( 4px )',
-        WebkitBackdropFilter:' blur( 4px )',
-        borderRadius:' 50px', 
-        border: '1px solid rgba( 255, 255, 255, 0.18 )',
-        }}>
-        <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="secondary"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            <Face6Icon />
-          </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} color='secondary'>
-            Profil
-          </Typography>
-        </Toolbar>
-      </AppBar>
-    </Grid>
         <Grid
          container
            direction="column"
@@ -171,8 +144,8 @@ const handleUpdateProfil=()=>{
                 height:'400px',
                 background: 'rgba( 189, 16, 224, 0.25 )',
                 boxShadow:'0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
-                backdropFilter: 'blur( 4px )',
-                WebkitBackdropFilter:' blur( 4px )',
+                backdropFilter: 'blur( 10px )',
+                WebkitBackdropFilter:' blur( 10px )',
                 borderRadius:' 10px',
                 border: '1px solid rgba( 255, 255, 255, 0.18 )',
               }}>
