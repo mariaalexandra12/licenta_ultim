@@ -20,6 +20,15 @@ import './auth.css';
 import { getAuth, signInWithEmailAndPassword,sendPasswordResetEmail } from "firebase/auth";
 import CloseIcon from '@mui/icons-material/Close';
 import Collapse from '@mui/material/Collapse';
+import { styled } from '@mui/material/styles';
+
+const Img = styled('img')({
+  margin: 'auto',
+  display: 'block',
+  maxWidth: '100%',
+  maxHeight: '100%',
+});
+
 
 function Auth(){
 
@@ -138,15 +147,17 @@ function Auth(){
           )}
 
         <div style={{display:'flex',}}>
-          <Paper className="backInvoice" elevation={24} style={{
+          <Grid className="backInvoice" elevation={24} 
+               sx={{
                width:"700px",
                height:'645px',
                padding:"10px",
-               backdropFilter:' blur( 11px )',
-               WebkitBackdropFilter:' blur( 11px )',
                border: '1px solid rgba( 255, 255, 255, 0.18 )',
                flexDirection:"column",
-              }} square="true"/>
+              }} square="true">
+              </Grid>
+                
+                
 
             <Paper elevation={24} style={{
                marginLeft:"20px",
