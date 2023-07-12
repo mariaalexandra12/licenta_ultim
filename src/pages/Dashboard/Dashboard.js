@@ -10,6 +10,7 @@ import { db } from '../../firebaseUtils/firebase_ut';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
+import Clock from './Clock';
 
 const Dashboard=()=>{
 
@@ -53,7 +54,7 @@ const Dashboard=()=>{
       <>
         <div style={{display:'flex',}}>
            <Navig/>
-           <Paper className="paperDash" elevation={24} sx={{width:'1250px',
+           <Paper className="paperDash" elevation={24} sx={{width:'1150px',
             height:'250px' ,marginTop:'20px',marginLeft:'20px',
             borderRadius:'50px'}}>
                 <Box sx={{marginLeft:'20px'}}>
@@ -70,7 +71,7 @@ const Dashboard=()=>{
             <Paper elevation={24} sx={{width:'200px',
             height:'150px',marginTop:'300px',
             borderRadius:'50px',
-            marginLeft:'-1200px',
+            marginLeft:'-1050px',
             background:'rgba( 206, 163, 230, 0.25 )',
             boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
             backdropFilter:' blur( 4px )',
@@ -83,8 +84,17 @@ const Dashboard=()=>{
 
             <LocalizationProvider dateAdapter={AdapterDayjs} >
                <StaticDatePicker  sx={{width:'100px',height:'480px',marginTop:'300px',
-              marginLeft:'600px'}}/>
+              marginLeft:'450px',
+              background:'rgba( 206, 163, 230, 0.25 )',
+            boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
+            backdropFilter:' blur( 4px )',
+            WebkitBackdropFilter: 'blur( 4px )',
+            borderRadius: '50px',
+            border: '1px solid rgba( 255, 255, 255, 0.18 )'}}/>
             </LocalizationProvider>
+
+
+
         </div>
 
 
