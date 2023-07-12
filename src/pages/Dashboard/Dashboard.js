@@ -68,8 +68,8 @@ const Dashboard=()=>{
             </Box>
             </Paper>
            
-            <Paper elevation={24} sx={{width:'200px',
-            height:'150px',marginTop:'300px',
+            <Paper elevation={24} sx={{width:'300px',
+            height:'100px',marginTop:'300px',
             borderRadius:'50px',
             marginLeft:'-1050px',
             background:'rgba( 206, 163, 230, 0.25 )',
@@ -79,7 +79,7 @@ const Dashboard=()=>{
             borderRadius: '50px',
             border: '1px solid rgba( 255, 255, 255, 0.18 )',}}>
               <Typography sx={{fontSize:'25px',marginLeft:'15px',marginTop:'10px'}}>Total facturi inregistrate</Typography>
-              <Typography sx={{fontSize:'25px',marginLeft:'15px',marginTop:'10px'}}>{dateFactura.length}</Typography>
+              <Typography sx={{fontSize:'25px',marginLeft:'130px',marginTop:'10px'}}>{dateFactura.length}</Typography>
             </Paper>
 
             <LocalizationProvider dateAdapter={AdapterDayjs} >
