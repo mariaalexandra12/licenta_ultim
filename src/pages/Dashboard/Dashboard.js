@@ -51,7 +51,6 @@ const Dashboard=()=>{
       <>
         <div style={{display:'flex',}}>
            <Navig/>
-           <div style={{display:'flex',}}>
            <Paper className="paperDash" elevation={24} sx={{width:'1250px',
             height:'250px' ,marginTop:'20px',marginLeft:'20px', display:'row',
             borderRadius:'50px'}}>
@@ -65,11 +64,11 @@ const Dashboard=()=>{
             ))}
             </Box>
             </Paper>
-
-            <Paper className="paperNrFact"  elevation={24} sx={{width:'150px',
-            height:'150px' ,marginTop:'20px',marginLeft:'20px', display:'row',
+           
+            <Paper className="paperDash" elevation={24} sx={{width:'100px',
+            height:'100px' ,marginTop:'20px',marginLeft:'20px', display:'row',
             borderRadius:'50px'}}/>
-            </div>
+
         </div>
 
 
