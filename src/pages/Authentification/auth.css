@@ -1,5 +1,3 @@
-/* body {
-    background-image: url(./fundal_01.jpg);
-    background-repeat: no-repeat;
-    background-size:100%;
-} */
+#backgroundInvoice {
+    background-image: url('./fundal_invoice.jpg');
+}
