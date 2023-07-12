@@ -78,8 +78,9 @@ const AppBar = styled(MuiAppBar, {
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({
     '& .MuiDrawer-paper': {
-      background:'#EDE7F6',
-      boxShadow:' 0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
+      background: 'rgb(189,168,224)',
+      background: 'rgb(178,148,229)',
+      background: 'linear-gradient(360deg, rgba(178,148,229,1) 13%, rgba(243,233,242,1) 78%)',
       backdropFilter: 'blur( 11.5px )',
       WebkitBackdropFilter: 'blur( 11.5px )',
       position: 'relative',
@@ -178,6 +179,7 @@ export default function Navig() {
         <Drawer className="drawerNavig" variant="permanent" open={open} style={{
           marginTop:'0px',     
           height:'800px',
+          borderRadius:'50px',
         }} >
           <Toolbar
             sx={{
@@ -200,9 +202,11 @@ export default function Navig() {
         
 
           <List >
-             <ListItem onClick={()=>navigate("/dash")}>
+             <ListItem onClick={()=>navigate("/dash")} sx={{borderRadius:'50px'}}>
                 <ListItemButton className='navigButton'>
-                      <ListItemIcon style={{color:"rgba(138, 5, 186)",
+                      <ListItemIcon style={{
+                        color:"rgba(138, 5, 186)",
+
                        }}><HomeIcon/> </ListItemIcon>
                       <ListItemText style={{color:"black",}}>Acasa</ListItemText>
                 </ListItemButton>
@@ -310,11 +314,11 @@ export default function Navig() {
                         </Dialog> 
                    
                    
-                    <ListItemIcon style={{color:"rgba(138, 5, 186)",marginTop:'150px'}}><LogoutIcon/></ListItemIcon>
+                    <ListItemIcon style={{color:"rgba(138, 5, 186)"}}><LogoutIcon/></ListItemIcon>
                     <ListItemText style={{
                       color:"black",
                       fontFamily: 'Goudy Bookletter 1911", sans-serif',
-                      marginTop:'150px'
+                      
                       }}>Deconecteaza-te</ListItemText> 
                   </ListItemButton>
                   </ListItem>
