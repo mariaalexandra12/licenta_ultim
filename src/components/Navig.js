@@ -78,7 +78,7 @@ const AppBar = styled(MuiAppBar, {
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({
     '& .MuiDrawer-paper': {
-      background:' rgba( 193, 29, 230, 0.2 )',
+      background:'#E1F5FE',
       boxShadow:' 0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
       backdropFilter: 'blur( 11.5px )',
       WebkitBackdropFilter: 'blur( 11.5px )',
