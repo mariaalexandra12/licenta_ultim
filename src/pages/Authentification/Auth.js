@@ -137,10 +137,25 @@ function Auth(){
             </>
           )}
 
+        <div style={{display:'flex',}}>
+          <Paper className="backgroundInvoice" elevation={24} style={{
+               width:"450px",
+               height:'580px',
+               padding:"10px",
+               backdropFilter:' blur( 11px )',
+               WebkitBackdropFilter:' blur( 11px )',
+               backgroundImage: 'url(./fundal_invoice.jpg)',
+               borderRadius:' 50px',
+               border: '1px solid rgba( 255, 255, 255, 0.18 )',
+                flexDirection:"column",
+              }} square="true"
+                
+                />
+
             <Paper elevation={24} style={{
-               marginLeft:"400px",
+               marginLeft:"20px",
                marginTop:'30px',
-               width:"550px",
+               width:"500px",
                height:'580px',
                color:"primary",
                padding:"10px",
@@ -151,7 +166,8 @@ function Auth(){
                borderRadius:' 50px',
                border: '1px solid rgba( 255, 255, 255, 0.18 )',
                 display:"flex",
-                flexDirection:"center",
+                flexDirection:"column",
+
               }} square="true"
                 
                 >
@@ -256,6 +272,7 @@ function Auth(){
           </form>
       </Container>
         </Paper>
+        </div>
         </div>
      </div>
     
