@@ -166,8 +166,8 @@ const handleUpdateProfil=()=>{
 
               <Grid item >
               <Item style={{
-                marginTop:'50px',
-                width:'1000px',
+                marginTop:'-85px',
+                width:'1100px',
                 height:'400px',
                 background: 'rgba( 189, 16, 224, 0.25 )',
                 boxShadow:'0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',

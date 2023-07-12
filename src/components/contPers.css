@@ -1,3 +1,8 @@
 .paperProfil {
-    background-image: url('./4367.jpg');
+    background-image: url('./Wavy_Bus-08_Single-05.jpg');
+    background-size: 150%;
+   background-repeat: no-repeat;
+   background-position: center;
+   backdrop-filter: blur( 4px );
+   -webkit-backdrop-filter: blur( 4px ); 
 }
