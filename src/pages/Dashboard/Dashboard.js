@@ -30,31 +30,25 @@ const Dashboard=()=>{
         unsub();
       }
     },[currentUser]) 
-
     
-
     return (
         <div style={{display:'flex',}}>
            <Navig/>
            <Paper className="paperDash" elevation={24} sx={{width:'1250px',
             height:'250px' ,marginTop:'20px',marginLeft:'20px',
             borderRadius:'50px'}}>
-                <Box >
-              <Typography sx={{marginTop:'20px', 
-            marginLeft:'15px',justifyContent:'center'}}>Bine ai venit,</Typography>
-            <Typography >{datePersonale['nume']}</Typography>
-            <Typography >{datePersonale['prenume']}</Typography>
+                <Box sx={{marginLeft:'20px'}}>
+              <Typography mt={8} sx={{fontSize:'35px'}}>Bine ai venit,</Typography>
+            {datePersonale.map((pers)=>(
+              <div>
+                <Typography sx={{fontSize:'25px'}}>{pers['nume']}</Typography>
+                <Typography sx={{fontSize:'25px'}}>{pers['prenume']}!</Typography>
+
+              </div>
+            ))}
             </Box>
             </Paper>
 
-{/* <Paper className="paperDash" elevation={24} sx={{width:'1250px',
-            height:'250px' ,marginTop:'20px',marginLeft:'20px',
-            borderRadius:'50px'}}></Paper>
-
-
-<Paper className="paperDash" elevation={24} sx={{width:'1250px',
-            height:'250px' ,marginTop:'20px',marginLeft:'20px',
-            borderRadius:'50px'}}></Paper> */}
         </div>
     )
 
