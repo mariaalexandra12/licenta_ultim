@@ -16,6 +16,7 @@ const Dashboard=()=>{
     const { currentUser }=useUserAuth();
     const [name, setName]=useState('');
     const [prename, setPrename]=useState('');
+    const [dateFactura , setDateFactura]=useState([]);
      
     useEffect(() => {
         const q2 = query(collection(db, "utilizator"),where('emailUtilizator','==',currentUser));
@@ -30,12 +31,29 @@ const Dashboard=()=>{
         unsub();
       }
     },[currentUser]) 
+
+    useEffect(() => {
+      const q2 = query(collection(db, 'factura'), where('emailUtilizator', '==', currentUser));
+      const unsub = onSnapshot(q2, (snapshot) => {
+        const items = [];
+        snapshot.forEach((doc) => {
+          items.push(doc.data());
+        });
+        setDateFactura(items);
+      });
+      return () => {
+        unsub();
+      };
+      
+    }, [currentUser]);
     
     return (
+      <>
         <div style={{display:'flex',}}>
            <Navig/>
+           <div style={{display:'flex',}}>
            <Paper className="paperDash" elevation={24} sx={{width:'1250px',
-            height:'250px' ,marginTop:'20px',marginLeft:'20px',
+            height:'250px' ,marginTop:'20px',marginLeft:'20px', display:'row',
             borderRadius:'50px'}}>
                 <Box sx={{marginLeft:'20px'}}>
               <Typography mt={8} sx={{fontSize:'35px'}}>Bine ai venit,</Typography>
@@ -43,13 +61,19 @@ const Dashboard=()=>{
               <div>
                 <Typography sx={{fontSize:'25px'}}>{pers['nume']}</Typography>
                 <Typography sx={{fontSize:'25px'}}>{pers['prenume']}!</Typography>
-
               </div>
             ))}
             </Box>
             </Paper>
 
+            <Paper className="paperNrFact"  elevation={24} sx={{width:'150px',
+            height:'150px' ,marginTop:'20px',marginLeft:'20px', display:'row',
+            borderRadius:'50px'}}/>
+            </div>
         </div>
+
+
+        </>
     )
 
 }
