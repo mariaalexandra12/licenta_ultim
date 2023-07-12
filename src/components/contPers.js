@@ -15,6 +15,10 @@ import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew';
 import { db } from "../firebaseUtils/firebase_ut";
 import { collection, query, where, getDocs,onSnapshot, QuerySnapshot} from "firebase/firestore";
 import BusinessIcon from '@mui/icons-material/Business';
+import Collapse from '@mui/material/Collapse';
+import Alert from '@mui/material/Alert';
+import CloseIcon from '@mui/icons-material/Close';
+import './contPers.css'
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -39,8 +43,10 @@ const ContPers=()=>{
  const [ pass , setPass]=useState('');
  const [name, setName]=useState('');
  const [prename, setPrename]=useState('');
-
+ const [inregistrareFirma, setInregistrareFirma]=useState('');
+ const [updateProfil , setUpdateProfil]=useState('');
  const [datePersonale,setDatePersonale]=useState([]);
+ const [open, setOpen] = React.useState(true);
 
  useEffect(() => {
     const q2 = query(collection(db, "utilizator"),where('emailUtilizator','==',currentUser));
@@ -56,13 +62,62 @@ const ContPers=()=>{
   }
 },[currentUser]) 
 
+const handleInregistrareFirma=()=>{
+  setInregistrareFirma('Datele Firmei au fost inregistrate cu succes');
+}
 
+const handleUpdateProfil=()=>{
+  setUpdateProfil('Contul personal a fost actualizat cu succes');
+}
     return (
         <>
        <Box sx={{display: 'flex'}}>
         <Navig/>
-        <Box sx={{  marginTop:'80px',
+        <Box sx={{  marginTop:'30px',
       marginLeft:'20px',}}>
+         {inregistrareFirma && (
+            <>
+           <Collapse in={open}>
+            <Alert severity='success' style={{
+              width:'300px',
+              marginLeft:'300px',
+              display:'hover',
+            }}  
+            action={
+              <IconButton
+                aria-label="close"
+                color="inherit"
+                size="small"
+                onClick={() => {
+                  setOpen(false);
+                }}> 
+                <CloseIcon fontSize="inherit"/>  
+              </IconButton>}>{inregistrareFirma}</Alert>
+              </Collapse>
+              </>
+          )}
+
+         {updateProfil && (
+            <>
+           <Collapse in={open}>
+            <Alert severity='success' style={{
+              width:'300px',
+              marginLeft:'300px',
+              display:'hover',
+            }}  
+            action={
+              <IconButton
+                aria-label="close"
+                color="inherit"
+                size="small"
+                onClick={() => {
+                  setOpen(false);
+                }}> 
+                <CloseIcon fontSize="inherit"/>  
+              </IconButton>}>{updateProfil}</Alert>
+              </Collapse>
+              </>
+          )}
         <Grid
          container
            direction="column"
@@ -70,7 +125,7 @@ const ContPers=()=>{
            alignItems="center">
               <Grid container  direction="rows" xs>
                 <Grid item>
-                <Item style={{
+                <Item className='itemBack' style={{
                     width:'1000px',
                     display:'flex',
                     flexDirection:'row',
@@ -81,8 +136,7 @@ const ContPers=()=>{
                     borderRadius:' 10px',
                     border: '1px solid rgba( 255, 255, 255, 0.18 )',
                 }}>
-                    <Typography style={{fontSize:'35px'}}>Profil</Typography>
-                    <IconButton style={{marginLeft:'450px',}}><PersonPinIcon/></IconButton>
+                    
                 </Item>
                 </Grid>
               
@@ -227,7 +281,7 @@ const ContPers=()=>{
 
            <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
               <Typography>Judet</Typography>
-              <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5,marginLeft:'98px' }} />
+              <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5,marginLeft:'135px' }} />
               <TextField id="input-with-sx"  variant="standard"
               type="text"
                style={{
@@ -237,7 +291,7 @@ const ContPers=()=>{
 
            <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
               <Typography >Localitate</Typography>
-              <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5,marginLeft:'130px' }} />
+              <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5,marginLeft:'105px' }} />
               <TextField id="input-with-sx"  variant="standard"
               type="text"
                style={{
@@ -247,7 +301,7 @@ const ContPers=()=>{
 
            <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
               <Typography >Platitor TVA</Typography>
-              <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5,marginLeft:'85px' }} />
+              <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5,marginLeft:'90px' }} />
               <TextField id="input-with-sx"  variant="standard"
               type="text"
                style={{
@@ -255,7 +309,7 @@ const ContPers=()=>{
               }} />
            </Box>
 
-           <Button variant="contained" color="secondary"
+           <Button variant="contained" color="secondary" onClick={handleInregistrareFirma}
           style={{marginTop:'20px'}}
           >Inregistreaza firma</Button>
 
@@ -314,7 +368,7 @@ const ContPers=()=>{
               }} />
            </Box>
 
-           <Button variant="contained" color="secondary"
+           <Button variant="contained" color="secondary" onClick={handleUpdateProfil}
           style={{marginTop:'20px'}}
           >Actualizeaza datele contului personal</Button>
         </>
