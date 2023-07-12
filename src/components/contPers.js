@@ -23,6 +23,8 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import MenuIcon from '@mui/icons-material/Menu';
 import Face6Icon from '@mui/icons-material/Face6';
+import backgroundImage from "./4367.jpg";
+import MDBox from "./MDBoxR";
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -123,32 +125,47 @@ const handleUpdateProfil=()=>{
               </>
           )}
 
-     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" sx={{
-        display:'flex', 
+    <MDBox
+        display="flex"
+        alignItems="center"
+        position="relative"
+        minHeight="18.75rem"
+        borderRadius="xl"
+        sx={{
+          backgroundImage: ({ functions: { rgba, linearGradient }, palette: { gradients } }) =>
+            ` url(${backgroundImage})`,
+          backgroundSize: "cover",
+          backgroundPosition: "50%",
+          overflow: "hidden",
+        }}
+      />
+
+     <Grid sx={{ flexGrow: 1 , ml:'auto',}} item xs={12} md={6} lg={4}>
+      <AppBar position="sticky" sx={{
+        width:'1200px',
         background: 'rgba( 242, 212, 212, 0.25 )',
         boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )', 
         backdropFilter: 'blur( 4px )',
         WebkitBackdropFilter:' blur( 4px )',
-        borderRadius:' 10px', 
+        borderRadius:' 50px', 
         border: '1px solid rgba( 255, 255, 255, 0.18 )',
         }}>
         <Toolbar>
           <IconButton
             size="large"
             edge="start"
-            color="inherit"
+            color="secondary"
             aria-label="menu"
             sx={{ mr: 2 }}
           >
             <Face6Icon />
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} color='secondary'>
             Profil
           </Typography>
         </Toolbar>
       </AppBar>
-    </Box>
+    </Grid>
         <Grid
          container
            direction="column"
@@ -156,9 +173,9 @@ const handleUpdateProfil=()=>{
            alignItems="center">
               <Grid container  direction="rows" xs>
                 <Grid >
-                <Paper className="paperProfil" elevation={24} sx={{width:'200px',
-                 height:'100px' ,marginTop:'10px',marginLeft:'20px',
-                 borderRadius:'50px'}}></Paper>
+                <Paper className="paperProfil" elevation={24} sx={{width:'1150px',
+                 height:'300px' ,marginTop:'20px',marginLeft:'20px',
+                 borderRadius:'20px'}}></Paper>
                 </Grid>
               
               </Grid>
