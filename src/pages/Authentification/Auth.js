@@ -138,19 +138,16 @@ function Auth(){
           )}
 
         <div style={{display:'flex',}}>
-          <Paper className="backgroundInvoice" elevation={24} style={{
-               width:"450px",
-               height:'580px',
+          <Paper className='backInvoice' elevation={24} style={{
+               width:"700px",
+               height:'645px',
                padding:"10px",
                backdropFilter:' blur( 11px )',
                WebkitBackdropFilter:' blur( 11px )',
                backgroundImage: 'url(./fundal_invoice.jpg)',
-               borderRadius:' 50px',
                border: '1px solid rgba( 255, 255, 255, 0.18 )',
                 flexDirection:"column",
-              }} square="true"
-                
-                />
+              }} square="true"/>
 
             <Paper elevation={24} style={{
                marginLeft:"20px",
