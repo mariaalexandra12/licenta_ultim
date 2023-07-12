@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Navig from "../../components/Navig";
-import { Box } from '@mui/material';
+import { Box, Paper } from '@mui/material';
 import { useUserAuth } from '../../context/userAuthContext';
 import { collection, query, where, onSnapshot } from 'firebase/firestore';
 import { db } from '../../firebaseUtils/firebase_ut';
-import Paper from '@mui/material/Paper';
-import Plotly from 'plotly.js-dist';
+import Plotly from 'plotly.js/dist/plotly';
 
 const Analiza = () => {
   const { currentUser } = useUserAuth();
@@ -129,14 +128,13 @@ const Analiza = () => {
     <>
       <Box sx={{ display: 'flex' }}>
         <Navig />
-        <Box sx={{ marginTop: '30px' }}>
+        <Box sx={{ marginTop: '30px', display: 'flex' }}>
           <Paper
             elevation={24}
             style={{
-              width: '400px',
+              flex: 1,
               height: '400px',
-              marginLeft: '20px',
-              marginTop: '10px',
+              marginRight: '20px',
               background: 'rgba( 228, 189, 189, 0.25 )',
               boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
               backdropFilter: 'blur( 4px )',
@@ -145,12 +143,41 @@ const Analiza = () => {
               border: '1px solid rgba( 255, 255, 255, 0.18 )',
             }}
           >
-            {/* Butonul de generare a graficelor nu mai este necesar */}
+            <div id='chartDiv'></div>
           </Paper>
 
-          <div id='chartDiv'></div>
-          <div id='chartDivPie'></div>
-          <div id='chartDivScatter'></div>
+          <Paper
+            elevation={24}
+            style={{
+              flex: 1,
+              height: '200px',
+              marginRight: '20px',
+              background: 'rgba( 228, 189, 189, 0.25 )',
+              boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
+              backdropFilter: 'blur( 4px )',
+              WebkitBackdropFilter: 'blur( 4px )',
+              borderRadius: '10px',
+              border: '1px solid rgba( 255, 255, 255, 0.18 )',
+            }}
+          >
+            <div id='chartDivPie'></div>
+          </Paper>
+
+          <Paper
+            elevation={24}
+            style={{
+              flex: 1,
+              height: '400px',
+              background: 'rgba( 228, 189, 189, 0.25 )',
+              boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
+              backdropFilter: 'blur( 4px )',
+              WebkitBackdropFilter: 'blur( 4px )',
+              borderRadius: '10px',
+              border: '1px solid rgba( 255, 255, 255, 0.18 )',
+            }}
+          >
+            <div id='chartDivScatter'></div>
+          </Paper>
         </Box>
       </Box>
     </>
