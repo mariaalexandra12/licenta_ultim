@@ -1,3 +1,7 @@
 .backInvoice {
     background-image: url('./fundal_invoice.jpg');
+    background-size:145%;
+    background-repeat: no-repeat;
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px ); 
 }

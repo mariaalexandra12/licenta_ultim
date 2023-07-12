@@ -116,7 +116,7 @@ function Auth(){
             <Alert severity='error' style={{
               width:'300px',
               marginTop:'10px',
-              marginLeft:'500px',
+              marginLeft:'800px',
               display:'hover',
             }}  
             action={
@@ -149,7 +149,7 @@ function Auth(){
         <div style={{display:'flex',}}>
           <Grid className="backInvoice" elevation={24} 
                sx={{
-               width:"700px",
+               width:"750px",
                height:'645px',
                padding:"10px",
                border: '1px solid rgba( 255, 255, 255, 0.18 )',
