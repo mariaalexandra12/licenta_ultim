@@ -5,6 +5,7 @@ import { useUserAuth } from '../../context/userAuthContext';
 import { collection, query, where, onSnapshot } from 'firebase/firestore';
 import { db } from '../../firebaseUtils/firebase_ut';
 import Plotly from 'plotly.js/dist/plotly';
+import './analiza.css'
 
 const Analiza = () => {
   const { currentUser } = useUserAuth();
@@ -93,8 +94,8 @@ const Analiza = () => {
     };
 
     Plotly.newPlot('chartDivPie', dataPie, layoutPie);
+    
 
-    // Generare grafic cu puncte
     const dataScatter = [
       {
         x: dataScadenta,
@@ -129,28 +130,17 @@ const Analiza = () => {
       <Box sx={{ display: 'flex' }}>
         <Navig />
         <Box sx={{ marginTop: '30px', display: 'flex' }}>
-          <Paper
-            elevation={24}
-            style={{
-              flex: 1,
-              height: '400px',
-              marginRight: '20px',
-              background: 'rgba( 228, 189, 189, 0.25 )',
-              boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
-              backdropFilter: 'blur( 4px )',
-              WebkitBackdropFilter: 'blur( 4px )',
+        <div class="chartDiv" style={{
+              height: '200px',
+              marginLeft: '20px',
+              backgroundColor: 'rgba(14, 2, 15, 0.25)',
+              boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.37)',
+              backdropFilter: 'blur(4px)',
+              WebkitBackdropFilter:' blur(4px)',
               borderRadius: '10px',
-              border: '1px solid rgba( 255, 255, 255, 0.18 )',
-            }}
-          >
-            <div id='chartDiv' style={{background: 'rgba( 228, 189, 189, 0.25 )',
-              boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
-              backdropFilter: 'blur( 4px )',
-              WebkitBackdropFilter: 'blur( 4px )',
-              borderRadius: '10px',
-              border: '1px solid rgba( 255, 255, 255, 0.18 )',}}></div>
-          </Paper>
-
+              border: '1px solid rgba(255, 255, 255, 0.18)',
+        }}></div>
+        
           <Paper
             elevation={24}
             style={{
