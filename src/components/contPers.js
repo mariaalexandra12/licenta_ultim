@@ -24,7 +24,6 @@ import Toolbar from '@mui/material/Toolbar';
 import MenuIcon from '@mui/icons-material/Menu';
 import Face6Icon from '@mui/icons-material/Face6';
 import backgroundImage from "./4367.jpg";
-import MDBox from "./MDBoxR";
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -124,21 +123,6 @@ const handleUpdateProfil=()=>{
               </Collapse>
               </>
           )}
-
-    <MDBox
-        display="flex"
-        alignItems="center"
-        position="relative"
-        minHeight="18.75rem"
-        borderRadius="xl"
-        sx={{
-          backgroundImage: ({ functions: { rgba, linearGradient }, palette: { gradients } }) =>
-            ` url(${backgroundImage})`,
-          backgroundSize: "cover",
-          backgroundPosition: "50%",
-          overflow: "hidden",
-        }}
-      />
 
      <Grid sx={{ flexGrow: 1 , ml:'auto',}} item xs={12} md={6} lg={4}>
       <AppBar position="sticky" sx={{
