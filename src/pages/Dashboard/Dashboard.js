@@ -7,7 +7,9 @@ import { Button, Divider, Icon, IconButton, Typography } from '@mui/material';
 import { useUserAuth } from '../../context/userAuthContext';
 import { collection, query, where, getDocs,onSnapshot, QuerySnapshot} from "firebase/firestore";
 import { db } from '../../firebaseUtils/firebase_ut';
-
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
 
 const Dashboard=()=>{
 
@@ -52,7 +54,7 @@ const Dashboard=()=>{
         <div style={{display:'flex',}}>
            <Navig/>
            <Paper className="paperDash" elevation={24} sx={{width:'1250px',
-            height:'250px' ,marginTop:'20px',marginLeft:'20px', display:'row',
+            height:'250px' ,marginTop:'20px',marginLeft:'20px',
             borderRadius:'50px'}}>
                 <Box sx={{marginLeft:'20px'}}>
               <Typography mt={8} sx={{fontSize:'35px'}}>Bine ai venit,</Typography>
@@ -65,10 +67,24 @@ const Dashboard=()=>{
             </Box>
             </Paper>
            
-            <Paper className="paperDash" elevation={24} sx={{width:'100px',
-            height:'100px' ,marginTop:'20px',marginLeft:'20px', display:'row',
-            borderRadius:'50px'}}/>
+            <Paper elevation={24} sx={{width:'200px',
+            height:'150px',marginTop:'300px',
+            borderRadius:'50px',
+            marginLeft:'-1150px',
+            background:' rgba( 173, 88, 225, 0.25 )',
+            boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
+            backdropFilter:' blur( 4px )',
+            WebkitBackdropFilter: 'blur( 4px )',
+            borderRadius: '10px',
+            border: '1px solid rgba( 255, 255, 255, 0.18 )',}}>
+              <Typography color="secondary" sx={{fontSize:'25px',marginLeft:'15px',marginTop:'10px'}}>Total facturi inregistrate</Typography>
+              <Typography color="secondary" sx={{fontSize:'25px',marginLeft:'15px',marginTop:'10px'}}>{dateFactura.length}</Typography>
+            </Paper>
 
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+               <StaticDatePicker  sx={{width:'100px',height:'480px',marginTop:'300px',
+              marginLeft:'600px'}}/>
+            </LocalizationProvider>
         </div>
 
 

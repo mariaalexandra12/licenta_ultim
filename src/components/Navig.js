@@ -177,7 +177,7 @@ export default function Navig() {
       
         <Drawer className="drawerNavig" variant="permanent" open={open} style={{
           marginTop:'0px',     
-          height:'720px',
+          height:'800px',
         }} >
           <Toolbar
             sx={{
