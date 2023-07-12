@@ -70,18 +70,18 @@ const Dashboard=()=>{
             <Paper elevation={24} sx={{width:'200px',
             height:'150px',marginTop:'300px',
             borderRadius:'50px',
-            marginLeft:'-1150px',
-            background:' rgba( 173, 88, 225, 0.25 )',
+            marginLeft:'-1200px',
+            background:'rgba( 206, 163, 230, 0.25 )',
             boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
             backdropFilter:' blur( 4px )',
             WebkitBackdropFilter: 'blur( 4px )',
-            borderRadius: '10px',
+            borderRadius: '50px',
             border: '1px solid rgba( 255, 255, 255, 0.18 )',}}>
-              <Typography color="secondary" sx={{fontSize:'25px',marginLeft:'15px',marginTop:'10px'}}>Total facturi inregistrate</Typography>
-              <Typography color="secondary" sx={{fontSize:'25px',marginLeft:'15px',marginTop:'10px'}}>{dateFactura.length}</Typography>
+              <Typography sx={{fontSize:'25px',marginLeft:'15px',marginTop:'10px'}}>Total facturi inregistrate</Typography>
+              <Typography sx={{fontSize:'25px',marginLeft:'15px',marginTop:'10px'}}>{dateFactura.length}</Typography>
             </Paper>
 
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <LocalizationProvider dateAdapter={AdapterDayjs} >
                <StaticDatePicker  sx={{width:'100px',height:'480px',marginTop:'300px',
               marginLeft:'600px'}}/>
             </LocalizationProvider>
