@@ -165,7 +165,7 @@ function Auth(){
                width:"500px",
                height:'580px',
                padding:"10px",
-               backgroundColor:'#B388FF',
+               backgroundColor:'#EDE7F6',
                boxShadow:'0 8px 32px 0 rgba( 31, 38, 135, 0.37 )', 
                backdropFilter:' blur( 11px )',
                WebkitBackdropFilter:' blur( 11px )',
@@ -191,7 +191,7 @@ function Auth(){
            <Avatar sx={{ m: 1,bgcolor:'secondary.main' }}>
              <LockOutlinedIcon />
             </Avatar>
-           <Typography component="h1" variant="h5" color="white">
+           <Typography component="h1" variant="h5" color="secondary">
             Conectează-te
           </Typography>
 
@@ -261,12 +261,12 @@ function Auth(){
             marginLeft:'90px'
           }}>
               <Grid item xs>
-                <Link href="/forget" color="white" underline="hover">
+                <Link href="/forget" color="secondary" underline="hover">
                   Ai uitat parola?
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="/signUp" color="white" underline="hover">
+                <Link href="/signUp" color="secondary" underline="hover">
                   {"Nu ai un cont?Creeaza-ti unul!"}
                 </Link>
               </Grid>
