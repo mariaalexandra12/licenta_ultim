@@ -1,13 +1,28 @@
-import React , {useState, useEffect} from 'react';
+import React, {useState} from 'react'
+import './clock.css'
 
+const Clock = () => {
+    let time = new Date().toLocaleTimeString();
+    const [Clock, setClock] = useState(time)
 
-const Clock = ()=>{
-     return (
-        <div>
-            <h1>time</h1>
-        </div>
-     )
+    const UpdateClock = () =>{
+        time = new Date().toLocaleTimeString();
+        setClock(time);
+    }
 
+    setInterval(UpdateClock, 1000)
+  return (
+    <>
+    <div className='clock-wrapper' style={{marginTop: '300px',
+    marginLeft:'-500px'}}>
+      <div className='clock-container'>
+      <h1 className='clock'>
+        {Clock}
+    </h1>
+      </div>
+    </div>
+    </>
+  )
 }
 
-export default Clock;
+export default Clock
