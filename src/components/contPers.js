@@ -3,7 +3,7 @@ import { Box, Button, Divider, Icon, IconButton, Typography } from '@mui/materia
 import Navig from "./Navig";
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
-import { styled } from '@mui/material/styles';
+import { styled , alpha} from '@mui/material/styles';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import PersonPinIcon from '@mui/icons-material/PersonPin';
@@ -19,6 +19,10 @@ import Collapse from '@mui/material/Collapse';
 import Alert from '@mui/material/Alert';
 import CloseIcon from '@mui/icons-material/Close';
 import './contPers.css'
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import MenuIcon from '@mui/icons-material/Menu';
+import Face6Icon from '@mui/icons-material/Face6';
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -118,26 +122,43 @@ const handleUpdateProfil=()=>{
               </Collapse>
               </>
           )}
+
+     <Box sx={{ flexGrow: 1 }}>
+      <AppBar position="static" sx={{
+        display:'flex', 
+        background: 'rgba( 242, 212, 212, 0.25 )',
+        boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )', 
+        backdropFilter: 'blur( 4px )',
+        WebkitBackdropFilter:' blur( 4px )',
+        borderRadius:' 10px', 
+        border: '1px solid rgba( 255, 255, 255, 0.18 )',
+        }}>
+        <Toolbar>
+          <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            sx={{ mr: 2 }}
+          >
+            <Face6Icon />
+          </IconButton>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            Profil
+          </Typography>
+        </Toolbar>
+      </AppBar>
+    </Box>
         <Grid
          container
            direction="column"
             justifyContent="center"
            alignItems="center">
               <Grid container  direction="rows" xs>
-                <Grid item>
-                <Item className='itemBack' style={{
-                    width:'1000px',
-                    display:'flex',
-                    flexDirection:'row',
-                    background: 'rgba( 189, 16, 224, 0.25 )',
-                    boxShadow:'0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
-                    backdropFilter: 'blur( 4px )',
-                    WebkitBackdropFilter:' blur( 4px )',
-                    borderRadius:' 10px',
-                    border: '1px solid rgba( 255, 255, 255, 0.18 )',
-                }}>
-                    
-                </Item>
+                <Grid >
+                <Paper className="paperProfil" elevation={24} sx={{width:'200px',
+                 height:'100px' ,marginTop:'10px',marginLeft:'20px',
+                 borderRadius:'50px'}}></Paper>
                 </Grid>
               
               </Grid>
