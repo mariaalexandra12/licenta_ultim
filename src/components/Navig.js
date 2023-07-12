@@ -310,10 +310,11 @@ export default function Navig() {
                         </Dialog> 
                    
                    
-                    <ListItemIcon style={{color:"rgba(138, 5, 186)"}}><LogoutIcon/></ListItemIcon>
+                    <ListItemIcon style={{color:"rgba(138, 5, 186)",marginTop:'150px'}}><LogoutIcon/></ListItemIcon>
                     <ListItemText style={{
                       color:"black",
                       fontFamily: 'Goudy Bookletter 1911", sans-serif',
+                      marginTop:'150px'
                       }}>Deconecteaza-te</ListItemText> 
                   </ListItemButton>
                   </ListItem>

@@ -83,8 +83,8 @@ const Dashboard=()=>{
             </Paper>
 
             <LocalizationProvider dateAdapter={AdapterDayjs} >
-               <StaticDatePicker  sx={{width:'100px',height:'480px',marginTop:'300px',
-              marginLeft:'450px',
+               <StaticDatePicker  sx={{width:'150px',height:'480px',marginTop:'300px',
+              marginLeft:'550px',
               background:'rgba( 206, 163, 230, 0.25 )',
             boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
             backdropFilter:' blur( 4px )',
