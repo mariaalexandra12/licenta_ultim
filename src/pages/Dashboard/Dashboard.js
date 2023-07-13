@@ -56,14 +56,13 @@ const Dashboard=()=>{
            <Navig/>
            <Paper sx={{height:'1000px',width:'1300px'}}>
            <Paper className="paperDash" elevation={24} sx={{width:'1150px',
-            height:'150px' ,marginTop:'60px',marginLeft:'20px',
+            height:'50px' ,marginTop:'80px',marginLeft:'20px',
             borderRadius:'50px'}}>
                 <Box sx={{marginLeft:'20px'}}>
-              <Typography mt={8} sx={{fontSize:'35px'}}>Bine ai venit,</Typography>
             {datePersonale.map((pers)=>(
               <div>
-                <Typography sx={{fontSize:'25px'}}>{pers['nume']}</Typography>
-                <Typography sx={{fontSize:'25px'}}>{pers['prenume']}!</Typography>
+                <Typography mt={8} sx={{fontSize:'35px'}} color='secondary'
+                >Bine ai venit , {pers['nume']} {pers['prenume']}!</Typography>
               </div>
             ))}
             </Box>
