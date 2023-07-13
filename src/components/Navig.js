@@ -131,21 +131,8 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
-const styles = (theme) => ({
-  listItem: {
-    '&:hover': {
-      backgroundColor: 'purple',
-    },
-    borderRadius: '50px',
-  },
-});
-
-
-
-
 export default function Navig() {
 const [navOpen, setNavOpen] = useState(true); 
-  const classes=withStyles();
   const [openAlert, setOpenAlert] = React.useState(true);
   const { currentUser } = useUserAuth();
   const [nume, setNume] = useState('');
@@ -225,7 +212,7 @@ const [navOpen, setNavOpen] = useState(true);
         </DrawerHeader>
 
             <List>
-              <ListItem onClick={() => navigate('/dash')} className={classes.listItem} >
+              <ListItem onClick={() => navigate('/dash')} >
                 <Tooltip title='Acasa'>
                 <ListItemButton  >
                   <ListItemIcon style={{ color: 'rgba(138, 5, 186)' }}>
