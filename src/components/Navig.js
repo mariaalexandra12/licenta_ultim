@@ -58,6 +58,8 @@ import { ListItemButton } from '@mui/material';
 import { useUserAuth } from '../context/userAuthContext';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import Tooltip from '@mui/material/Tooltip';
+import { withStyles } from '@mui/styles';
+
 
 const drawerWidth = 240;
 
@@ -138,11 +140,21 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
+const styles = (theme) => ({
+  listItem: {
+    '&:hover': {
+      backgroundColor: 'purple',
+    },
+    borderRadius: '50px',
+  },
+});
+
+
 
 
 export default function Navig() {
 const [navOpen, setNavOpen] = useState(true); 
-
+  const classes=withStyles();
   const [openAlert, setOpenAlert] = React.useState(true);
   const { currentUser } = useUserAuth();
   const [nume, setNume] = useState('');
@@ -222,9 +234,9 @@ const [navOpen, setNavOpen] = useState(true);
         </DrawerHeader>
 
             <List>
-              <ListItem onClick={() => navigate('/dash')} sx={{ borderRadius: '50px' }} >
+              <ListItem onClick={() => navigate('/dash')}>
                 <Tooltip title='Acasa'>
-                <ListItemButton>
+                <ListItemButton  >
                   <ListItemIcon style={{ color: 'rgba(138, 5, 186)' }}>
                     <HomeIcon />
                   </ListItemIcon>
