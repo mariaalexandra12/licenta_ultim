@@ -123,10 +123,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
     flexShrink: 0,
     whiteSpace: 'nowrap',
     boxSizing: 'border-box',
-    background: open ? 'rgba( 255, 255, 255, 0.55 )' : 'rgba( 255, 255, 255, 0.55 )',
-    boxShadow: open ? '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )' : '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
-    backdropFilter:open? 'blur( 4px )' : 'blur( 4px )',
-    WebkitBackdropFilter: open ? 'blur( 4px )' : 'blur( 4px )',
+    background: open ? 'rgba( 249, 249, 249, 0.25 )' : 'rgba( 249, 249, 249, 0.25 )',
     borderRadius: open ? '10px' : '10px',
     border:open?  '1px solid rgba( 255, 255, 255, 0.18 )' : '1px solid rgba( 255, 255, 255, 0.18 )',
     ...(open && {
