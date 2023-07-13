@@ -234,7 +234,7 @@ const [navOpen, setNavOpen] = useState(true);
         </DrawerHeader>
 
             <List>
-              <ListItem onClick={() => navigate('/dash')}>
+              <ListItem onClick={() => navigate('/dash')} className={classes.listItem} >
                 <Tooltip title='Acasa'>
                 <ListItemButton  >
                   <ListItemIcon style={{ color: 'rgba(138, 5, 186)' }}>

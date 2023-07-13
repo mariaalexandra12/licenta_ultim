@@ -4,4 +4,17 @@
     background-repeat: no-repeat;
     backdrop-filter: blur( 4px );
     -webkit-backdrop-filter: blur( 4px ); 
+  
+      
 }
+
+@keyframes moveBackground {
+    0% { background-position: 0 0; }
+    100% { background-position: 100% 0; }
+  }
+  
+  .animated-background {
+    animation: moveBackground 10s linear infinite;
+    background-image: linear-gradient(to right, #000000, #6e0606);
+    background-size: 200% 100%;
+  }

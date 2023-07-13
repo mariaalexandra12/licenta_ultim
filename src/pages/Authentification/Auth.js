@@ -160,16 +160,15 @@ function Auth(){
                 
 
             <Paper elevation={24} style={{
-               marginLeft:"20px",
-               marginTop:'30px',
-               width:"500px",
-               height:'580px',
+               marginLeft:"100px",
+               marginTop:'80px',
+               width:"400px",
+               height:'500px',
                padding:"10px",
                backgroundColor:'#EDE7F6',
                boxShadow:'0 8px 32px 0 rgba( 31, 38, 135, 0.37 )', 
                backdropFilter:' blur( 11px )',
                WebkitBackdropFilter:' blur( 11px )',
-               borderRadius:' 50px',
                border: '1px solid rgba( 255, 255, 255, 0.18 )',
                 display:"flex",
                 flexDirection:"column",
