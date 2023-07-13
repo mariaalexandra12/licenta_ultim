@@ -100,11 +100,7 @@ const AppBar = styled(MuiAppBar, {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
-  background: open ? 'rgba( 238, 199, 199, 0.25 )' : 'rgba( 238, 199, 199, 0.25 )',
-  boxShadow: open ? '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )' : '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
-  backdropFilter:open? 'blur( 4px )' : 'blur( 4px )',
-  WebkitBackdropFilter: open ? 'blur( 4px )' : 'blur( 4px )',
-  borderRadius: open ? '10px' : '10px',
+  background: open ? 'white' : 'white',
   border:open?  '1px solid rgba( 255, 255, 255, 0.18 )' : '1px solid rgba( 255, 255, 255, 0.18 )',
   ...(open && {
     marginLeft: drawerWidth,
@@ -120,11 +116,8 @@ const AppBar = styled(MuiAppBar, {
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({
     width: drawerWidth,
-    flexShrink: 0,
     whiteSpace: 'nowrap',
-    boxSizing: 'border-box',
-    background: open ? 'red' : 'red',
-    borderRadius: open ? '10px' : '10px',
+    background: open ? 'white' : 'white',
     ...(open && {
       ...openedMixin(theme),
       '& .MuiDrawer-paper': openedMixin(theme),
@@ -206,7 +199,7 @@ const [navOpen, setNavOpen] = useState(true);
           <AppBar position="fixed" open={open} >
         <Toolbar>
           <IconButton
-            color="inherit"
+            color="secondary"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
