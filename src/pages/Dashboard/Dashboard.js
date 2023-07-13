@@ -1,7 +1,6 @@
 import React,{useEffect,useState} from 'react';
 import Box from '@mui/material/Box'
 import { Paper } from '@mui/material';
-import './dashboard.css'
 import Navig from '../../components/Navig';
 import { Button, Divider, Icon, IconButton, Typography } from '@mui/material';
 import { useUserAuth } from '../../context/userAuthContext';
@@ -10,7 +9,7 @@ import { db } from '../../firebaseUtils/firebase_ut';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
-import Clock from './Clock';
+
 
 const Dashboard=()=>{
 
@@ -54,7 +53,8 @@ const Dashboard=()=>{
       <>
         <div style={{display:'flex',}}>
            <Navig/>
-           <Paper sx={{height:'1000px',width:'1300px'}} className="paperBack">
+           <Paper sx={{height:'1000px',width:'1300px'}} className="paperBack"
+           color='secondary' >
            <Paper className="paperDash" elevation={24} sx={{width:'1150px',
             height:'50px' ,marginTop:'80px',marginLeft:'20px',
             borderRadius:'50px'}}>
@@ -80,9 +80,6 @@ const Dashboard=()=>{
               <Typography sx={{fontSize:'25px',marginLeft:'130px',marginTop:'10px'}}>{dateFactura.length}</Typography>
             </Paper>
 
-          
-
-          
 
             </Paper>
         </div>
