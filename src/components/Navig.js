@@ -183,7 +183,7 @@ const [navOpen, setNavOpen] = useState(true);
         <Box sx={{ display: 'flex' }}>
           <CssBaseline />
        
-          <AppBar position="fixed" open={open} sx={{color:'white'}}>
+          <AppBar position="fixed" open={open} >
         <Toolbar>
           <IconButton
             color="inherit"
