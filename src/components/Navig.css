@@ -1,7 +1,3 @@
 .drawerNavig {
-    background: rgba( 233, 179, 244, 0.45 );
-    backdrop-filter: blur( 4px );
-    -webkit-backdrop-filter: blur( 4px );
-   
-   
+    background-color:aliceblue,
 }
