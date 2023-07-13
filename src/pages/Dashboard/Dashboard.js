@@ -54,8 +54,9 @@ const Dashboard=()=>{
       <>
         <div style={{display:'flex',}}>
            <Navig/>
+           <Paper sx={{height:'1000px',width:'1300px'}}>
            <Paper className="paperDash" elevation={24} sx={{width:'1150px',
-            height:'250px' ,marginTop:'20px',marginLeft:'20px',
+            height:'150px' ,marginTop:'60px',marginLeft:'20px',
             borderRadius:'50px'}}>
                 <Box sx={{marginLeft:'20px'}}>
               <Typography mt={8} sx={{fontSize:'35px'}}>Bine ai venit,</Typography>
@@ -69,32 +70,22 @@ const Dashboard=()=>{
             </Paper>
            
             <Paper elevation={24} sx={{width:'300px',
-            height:'100px',marginTop:'300px',
-            borderRadius:'50px',
-            marginLeft:'-1050px',
+            marginLeft:'20px',
+            marginTop:'20px',
             background:'rgba( 206, 163, 230, 0.25 )',
             boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
             backdropFilter:' blur( 4px )',
             WebkitBackdropFilter: 'blur( 4px )',
-            borderRadius: '50px',
             border: '1px solid rgba( 255, 255, 255, 0.18 )',}}>
               <Typography sx={{fontSize:'25px',marginLeft:'15px',marginTop:'10px'}}>Total facturi inregistrate</Typography>
               <Typography sx={{fontSize:'25px',marginLeft:'130px',marginTop:'10px'}}>{dateFactura.length}</Typography>
             </Paper>
 
-            <LocalizationProvider dateAdapter={AdapterDayjs} >
-               <StaticDatePicker  sx={{width:'150px',height:'480px',marginTop:'300px',
-              marginLeft:'500px',
-              background:'rgba( 206, 163, 230, 0.25 )',
-            boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
-            backdropFilter:' blur( 4px )',
-            WebkitBackdropFilter: 'blur( 4px )',
-            borderRadius: '50px',
-            border: '1px solid rgba( 255, 255, 255, 0.18 )'}}/>
-            </LocalizationProvider>
+          
 
-            <Clock />
+          
 
+            </Paper>
         </div>
 
 
