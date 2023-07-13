@@ -1,95 +1,122 @@
-import React,{useEffect,useState} from 'react';
-import Box from '@mui/material/Box'
-import { Paper } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { Card, Grid, Paper, Typography } from '@mui/material';
 import Navig from '../../components/Navig';
-import { Button, Divider, Icon, IconButton, Typography } from '@mui/material';
-import { useUserAuth } from '../../context/userAuthContext';
-import { collection, query, where, getDocs,onSnapshot, QuerySnapshot} from "firebase/firestore";
+import { collection, query, where, onSnapshot } from 'firebase/firestore';
 import { db } from '../../firebaseUtils/firebase_ut';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { useUserAuth } from '../../context/userAuthContext';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
+import { StaticDateTimePicker } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import AssignmentIcon from '@mui/icons-material/Assignment';
+import Avatar from '@mui/material/Avatar';
+import TextField from '@mui/material/TextField';
 
+const Dashboard = () => {
+  const [datePersonale, setDatePersonale] = useState([]);
+  const [dateFactura, setDateFactura] = useState([]);
+  const { currentUser } = useUserAuth();
 
-const Dashboard=()=>{
+  useEffect(() => {
+    const unsubscribe1 = onSnapshot(query(collection(db, 'utilizator'), where('emailUtilizator', '==', currentUser)), (snapshot) => {
+      const userData = snapshot.docs.map((doc) => doc.data());
+      setDatePersonale(userData);
+    });
 
+    const unsubscribe2 = onSnapshot(query(collection(db, 'factura'), where('emailUtilizator', '==', currentUser)), (snapshot) => {
+      const items = snapshot.docs.map((doc) => doc.data());
+      setDateFactura(items);
+    });
 
- const [datePersonale,setDatePersonale]=useState([]);
-    const { currentUser }=useUserAuth();
-    const [name, setName]=useState('');
-    const [prename, setPrename]=useState('');
-    const [dateFactura , setDateFactura]=useState([]);
-     
-    useEffect(() => {
-        const q2 = query(collection(db, "utilizator"),where('emailUtilizator','==',currentUser));
-        const unsub=onSnapshot(q2,(snapshot)=>{
-       let userData=[];
-       snapshot.docs.forEach((doc)=>{
-           userData.push(doc.data());
-        });
-        setDatePersonale(userData);
-      })
-      return ()=>{
-        unsub();
-      }
-    },[currentUser]) 
+    return () => {
+      unsubscribe1();
+      unsubscribe2();
+    };
+  }, [currentUser]);
 
-    useEffect(() => {
-      const q2 = query(collection(db, 'factura'), where('emailUtilizator', '==', currentUser));
-      const unsub = onSnapshot(q2, (snapshot) => {
-        const items = [];
-        snapshot.forEach((doc) => {
-          items.push(doc.data());
-        });
-        setDateFactura(items);
-      });
-      return () => {
-        unsub();
-      };
-      
-    }, [currentUser]);
-    
-    return (
-      <>
-        <div style={{display:'flex',}}>
-           <Navig/>
-           <Paper sx={{height:'1000px',width:'1250px',background:'#EEEEEE',
-           borderRadius:'20px',
-           marginLeft:'20px',
-           marginTop:'20px',}} >
-           <Paper className="paperDash"  sx={{width:'1250px',
-            height:'50px' ,marginTop:'80px',
-            }}>
-                <Box sx={{marginLeft:'20px'}}>
-            {datePersonale.map((pers)=>(
-              <div>
-                <Typography mt={8} sx={{fontSize:'35px'}} color='secondary'
-                >Bine ai venit , {pers['nume']} {pers['prenume']}!</Typography>
-              </div>
-            ))}
-            </Box>
-            </Paper>
-           
-            <Paper elevation={24} sx={{width:'300px',
-            marginLeft:'20px',
-            marginTop:'20px',
-            background:'rgba( 206, 163, 230, 0.25 )',
-            boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
-            backdropFilter:' blur( 4px )',
-            WebkitBackdropFilter: 'blur( 4px )',
-            border: '1px solid rgba( 255, 255, 255, 0.18 )',}}>
-              <Typography sx={{fontSize:'25px',marginLeft:'15px',marginTop:'10px'}}>Total facturi inregistrate</Typography>
-              <Typography sx={{fontSize:'25px',marginLeft:'130px',marginTop:'10px'}}>{dateFactura.length}</Typography>
-            </Paper>
+  const data = [
+    { month: 'Jan', value: 200 },
+    { month: 'Feb', value: 300 },
+    { month: 'Mar', value: 150 },
+    { month: 'Apr', value: 400 },
+    { month: 'May', value: 250 },
+    { month: 'Jun', value: 500 },
+  ];
 
+  return (
+    <div style={{ display: 'flex' }}>
+      <Navig />
+      <Paper
+        sx={{
+          height: '1000px',
+          width: '1240px',
+          borderRadius: '20px',
+          marginTop: '20px',
+          padding: '20px',
+        }}
+      >
+        <Grid container spacing={2}>
+          <Grid item xs={12} sm={6} md={3}>
+            <Card
+              sx={{
+                height: '150px',
+                borderRadius: '20px',
+                backgroundColor: 'rgb(94, 53, 177)',
+                color: 'rgb(255, 255, 255)',
+              }}
+            >
+              <Avatar variant="rounded" sx={{ margin: '15px' }}>
+                <AssignmentIcon />
+              </Avatar>
+              <Typography variant="h6" sx={{ fontSize: '35px', marginLeft: '20px' }} color="white">
+                {dateFactura.length}
+              </Typography>
+              <Typography variant="h1" sx={{ fontSize: '25px', marginLeft: '15px' }}>
+                Total facturi inregistrate
+              </Typography>
+            </Card>
+          </Grid>
+          {/* Add three more cards similar to the one above */}
+          <Grid item xs={12} sm={6} md={6}>
+            <Card
+              sx={{
+                height: '300px',
+                borderRadius: '20px',
+                backgroundColor: 'white',
+              }}
+            >
+              <LineChart width={500} height={300} data={data}>
+                <XAxis dataKey="month" />
+                <YAxis />
+                <CartesianGrid strokeDasharray="3 3" />
+                <Tooltip />
+                <Legend />
+                <Line type="monotone" dataKey="value" stroke="#8884d8" activeDot={{ r: 8 }} />
+              </LineChart>
+            </Card>
+          </Grid>
+          <Grid item xs={12} sm={6} md={3}>
+            <Card
+              sx={{
+                height: '300px',
+                borderRadius: '20px',
+                backgroundColor: 'white',
+              }}
+            >
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <StaticDateTimePicker
+                  label="Select Date"
+                  value={null}
+                  onChange={() => {}}
+                  renderInput={(params) => <TextField {...params} />}
+                />
+              </LocalizationProvider>
+            </Card>
+          </Grid>
+        </Grid>
+      </Paper>
+    </div>
+  );
+};
 
-            </Paper>
-        </div>
-
-
-        </>
-    )
-
-}
-
-export default Dashboard
+export default Dashboard;
