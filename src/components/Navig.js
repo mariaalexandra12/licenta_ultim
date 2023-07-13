@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@mui/styles';
-import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
+import { styled, useTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiDrawer from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
@@ -56,89 +56,76 @@ import HomeIcon from '@mui/icons-material/Home';
 import Dashboard from '../pages/Dashboard/Dashboard';
 import { ListItemButton } from '@mui/material';
 import { useUserAuth } from '../context/userAuthContext';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
-const drawerWidth = 220;
+const drawerWidth = 240;
 
+const openedMixin = (theme) => ({
+  width: drawerWidth,
+  transition: theme.transitions.create('width', {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.enteringScreen,
+  }),
+  overflowX: 'hidden',
+});
 
-const AppBar = styled(MuiAppBar, {
-  shouldForwardProp: (prop) => prop !== 'navOpen',
-})(({ theme, navOpen }) => ({
-  transition: theme.transitions.create(['margin', 'width'], {
+const closedMixin = (theme) => ({
+  transition: theme.transitions.create('width', {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
-  ...(navOpen && {
+  overflowX: 'hidden',
+  width: `calc(${theme.spacing(7)} + 1px)`,
+  [theme.breakpoints.up('sm')]: {
+    width: `calc(${theme.spacing(8)} + 1px)`,
+  },
+});
+
+const DrawerHeader = styled('div')(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'flex-end',
+  padding: theme.spacing(0, 1),
+  // necessary for content to be below app bar
+  ...theme.mixins.toolbar,
+}));
+
+const AppBar = styled(MuiAppBar, {
+  shouldForwardProp: (prop) => prop !== 'open',
+})(({ theme, open }) => ({
+  zIndex: theme.zIndex.drawer + 1,
+  transition: theme.transitions.create(['width', 'margin'], {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  ...(open && {
+    marginLeft: drawerWidth,
     width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: `${drawerWidth}px`,
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.easeOut,
+    transition: theme.transitions.create(['width', 'margin'], {
+      easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
   }),
 }));
 
-const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'navOpen' })(
-  ({ theme, navOpen }) => ({
-    '& .MuiDrawer-paper': {
-      background: 'linear-gradient(360deg, rgba(178, 148, 229, 1) 13%, rgba(243, 233, 242, 1) 78%)',
-      backdropFilter: 'blur(11.5px)',
-      WebkitBackdropFilter: 'blur(11.5px)',
-      position: 'relative',
-      whiteSpace: 'nowrap',
-      width: drawerWidth,
-      transition: theme.transitions.create('width', {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-      boxSizing: 'border-box',
-      ...(navOpen && {
-        width: `calc(100% - ${drawerWidth}px)`,
-        marginLeft: `${drawerWidth}px`,
-        transition: theme.transitions.create('width', {
-          easing: theme.transitions.easing.easeOut,
-          duration: theme.transitions.duration.enteringScreen,
-        }),
-      }),
-      ...(navOpen && theme.breakpoints.up('sm') && {
-        width: theme.spacing(9),
-      }),
-    },
-  })
+const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
+  ({ theme, open }) => ({
+    width: drawerWidth,
+    flexShrink: 0,
+    whiteSpace: 'nowrap',
+    boxSizing: 'border-box',
+    ...(open && {
+      ...openedMixin(theme),
+      '& .MuiDrawer-paper': openedMixin(theme),
+    }),
+    ...(!open && {
+      ...closedMixin(theme),
+      '& .MuiDrawer-paper': closedMixin(theme),
+    }),
+  }),
 );
 
-const defaultTheme = createTheme();
 
-const useStyles = makeStyles((theme) => ({
-  drawer: {
-    background: 'linear-gradient(360deg, rgba(178, 148, 229, 1) 13%, rgba(243, 233, 242, 1) 78%)',
-    backdropFilter: 'blur(11.5px)',
-    WebkitBackdropFilter: 'blur(11.5px)',
-    position: 'relative',
-    whiteSpace: 'nowrap',
-    width: drawerWidth,
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-    boxSizing: 'border-box',
-    ...(navOpen && {
-      width: `calc(100% - ${drawerWidth}px)`,
-      marginLeft: `${drawerWidth}px`,
-      transition: theme.transitions.create('width', {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-    }),
-    ...(navOpen && theme.breakpoints.up('sm') && {
-      width: theme.spacing(9),
-    }),
-  },
-  listItem: {
-    '&:hover': {
-      backgroundColor: 'purple', 
-    },
-  },
-}));
 
 export default function Navig() {
 const [navOpen, setNavOpen] = useState(true); 
@@ -177,33 +164,53 @@ const [navOpen, setNavOpen] = useState(true);
     };
     verificaAdresa();
   }, []);
+  const theme = useTheme();
+  const [open, setOpen] = React.useState(false);
 
-  const classes = useStyles();
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
+
+  const handleDrawerClose = () => {
+    setOpen(false);
+  };
+
 
   return (
     <>
-      <ThemeProvider theme={defaultTheme}>
+
         <Box sx={{ display: 'flex' }}>
           <CssBaseline />
-
-          <Drawer className={classes.drawer} variant="permanent" navOpen={navOpen}>
-            <Toolbar
-              sx={{
-                marginTop: '0px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'flex-end',
-                px: [1],
-              }}
-            >
-              <IconButton onClick={() => setNavOpen(!navOpen)}>
-                <ChevronLeftIcon />
-              </IconButton>
-            </Toolbar>
+       
+          <AppBar position="fixed" open={open}>
+        <Toolbar>
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            onClick={handleDrawerOpen}
+            edge="start"
+            sx={{
+              marginRight: 5,
+              ...(open && { display: 'none' }),
+            }}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" noWrap component="div">
+            Mini variant drawer
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      <Drawer variant="permanent" open={open}>
+        <DrawerHeader>
+          <IconButton onClick={handleDrawerClose}>
+            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+          </IconButton>
+        </DrawerHeader>
 
             <List>
               <ListItem onClick={() => navigate('/dash')} sx={{ borderRadius: '50px' }}>
-                <ListItemButton className={classes.listItem}>
+                <ListItemButton>
                   <ListItemIcon style={{ color: 'rgba(138, 5, 186)' }}>
                     <HomeIcon />
                   </ListItemIcon>
@@ -214,7 +221,7 @@ const [navOpen, setNavOpen] = useState(true);
 
               <div className="facturiButton">
                 <ListItem onClick={() => navigate('/facturi')}>
-                  <ListItemButton className={classes.listItem}>
+                  <ListItemButton >
                     <ListItemIcon style={{ color: 'rgba(138, 5, 186)' }}>
                       <ReceiptIcon />
                     </ListItemIcon>
@@ -228,7 +235,7 @@ const [navOpen, setNavOpen] = useState(true);
 
               <div className="adaugaButton">
                 <ListItem onClick={() => navigate('/adaugaFacturi')}>
-                  <ListItemButton className={classes.listItem}>
+                  <ListItemButton>
                     <ListItemIcon style={{ color: 'rgba(138, 5, 186)' }}>
                       <AddCircleOutlineRoundedIcon />
                     </ListItemIcon>
@@ -242,7 +249,7 @@ const [navOpen, setNavOpen] = useState(true);
 
               <div className="analizaButton">
                 <ListItem onClick={() => navigate('/analiza')}>
-                  <ListItemButton className={classes.listItem}>
+                  <ListItemButton>
                     <ListItemIcon style={{ color: 'rgba(138, 5, 186)' }}>
                       <AssessmentRoundedIcon />
                     </ListItemIcon>
@@ -263,7 +270,7 @@ const [navOpen, setNavOpen] = useState(true);
               {existaPers ? (
                 <div className="contPersButton">
                   <ListItem onClick={() => navigate('/contPers')}>
-                    <ListItemButton className={classes.listItem}>
+                    <ListItemButton>
                       <ListItemIcon style={{ color: 'rgba(138, 5, 186)' }}>
                         <Face6Icon />
                       </ListItemIcon>
@@ -280,7 +287,7 @@ const [navOpen, setNavOpen] = useState(true);
               ) : (
                 <div className="contFirmaButton">
                   <ListItem onClick={() => navigate('/contFirma')}>
-                    <ListItemButton className={classes.listItem}>
+                    <ListItemButton>
                       <ListItemIcon style={{ color: 'rgba(138, 5, 186)' }}>
                         <Face6Icon />
                       </ListItemIcon>
@@ -298,8 +305,8 @@ const [navOpen, setNavOpen] = useState(true);
 
               <Divider />
               <div className="logoutButton">
-                <ListItem onClick={handleClickOpen} style={{ marginTop: '170px' }}>
-                  <ListItemButton className={classes.listItem}>
+                <ListItem onClick={handleClickOpen} style={{ marginTop: '150px' }}>
+                  <ListItemButton>
                     <Dialog TransitionComponent={Transition} open={openDialog} aria-describedby="alert-dialog-slide-description">
                       <DialogTitle>{"Te deconectezi?"}</DialogTitle>
                       <DialogContent>
@@ -335,7 +342,6 @@ const [navOpen, setNavOpen] = useState(true);
             </List>
           </Drawer>
         </Box>
-      </ThemeProvider>
     </>
   );
 }
