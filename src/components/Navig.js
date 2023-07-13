@@ -105,6 +105,7 @@ const AppBar = styled(MuiAppBar, {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
+    
   }),
 }));
 
@@ -182,7 +183,7 @@ const [navOpen, setNavOpen] = useState(true);
         <Box sx={{ display: 'flex' }}>
           <CssBaseline />
        
-          <AppBar position="fixed" open={open}>
+          <AppBar position="fixed" open={open} style={{color:'#F3E5F5'}}>
         <Toolbar>
           <IconButton
             color="inherit"
@@ -197,11 +198,11 @@ const [navOpen, setNavOpen] = useState(true);
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Mini variant drawer
+            Invoice Reader Application
           </Typography>
         </Toolbar>
       </AppBar>
-      <Drawer variant="permanent" open={open}>
+      <Drawer className="drawerNavig" variant="permanent" open={open}>
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
