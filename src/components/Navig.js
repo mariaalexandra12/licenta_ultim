@@ -98,6 +98,12 @@ const AppBar = styled(MuiAppBar, {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
+  background: open ? 'rgba( 238, 199, 199, 0.25 )' : 'rgba( 238, 199, 199, 0.25 )',
+  boxShadow: open ? '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )' : '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
+  backdropFilter:open? 'blur( 4px )' : 'blur( 4px )',
+  WebkitBackdropFilter: open ? 'blur( 4px )' : 'blur( 4px )',
+  borderRadius: open ? '10px' : '10px',
+  border:open?  '1px solid rgba( 255, 255, 255, 0.18 )' : '1px solid rgba( 255, 255, 255, 0.18 )',
   ...(open && {
     marginLeft: drawerWidth,
     width: `calc(100% - ${drawerWidth}px)`,
@@ -115,6 +121,12 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
     flexShrink: 0,
     whiteSpace: 'nowrap',
     boxSizing: 'border-box',
+    background: open ? 'rgba( 255, 255, 255, 0.55 )' : 'rgba( 255, 255, 255, 0.55 )',
+    boxShadow: open ? '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )' : '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
+    backdropFilter:open? 'blur( 4px )' : 'blur( 4px )',
+    WebkitBackdropFilter: open ? 'blur( 4px )' : 'blur( 4px )',
+    borderRadius: open ? '10px' : '10px',
+    border:open?  '1px solid rgba( 255, 255, 255, 0.18 )' : '1px solid rgba( 255, 255, 255, 0.18 )',
     ...(open && {
       ...openedMixin(theme),
       '& .MuiDrawer-paper': openedMixin(theme),
@@ -197,7 +209,7 @@ const [navOpen, setNavOpen] = useState(true);
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
+          <Typography variant="h6" noWrap component="div" color='secondary'>
             Invoice Reader Application
           </Typography>
         </Toolbar>
@@ -210,7 +222,7 @@ const [navOpen, setNavOpen] = useState(true);
         </DrawerHeader>
 
             <List>
-              <ListItem onClick={() => navigate('/dash')} sx={{ borderRadius: '50px' }}>
+              <ListItem onClick={() => navigate('/dash')} sx={{ borderRadius: '50px' }} >
                 <Tooltip title='Acasa'>
                 <ListItemButton>
                   <ListItemIcon style={{ color: 'rgba(138, 5, 186)' }}>
