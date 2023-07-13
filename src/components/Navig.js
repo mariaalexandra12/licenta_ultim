@@ -57,6 +57,7 @@ import Dashboard from '../pages/Dashboard/Dashboard';
 import { ListItemButton } from '@mui/material';
 import { useUserAuth } from '../context/userAuthContext';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import Tooltip from '@mui/material/Tooltip';
 
 const drawerWidth = 240;
 
@@ -86,7 +87,6 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   alignItems: 'center',
   justifyContent: 'flex-end',
   padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
   ...theme.mixins.toolbar,
 }));
 
@@ -210,17 +210,20 @@ const [navOpen, setNavOpen] = useState(true);
 
             <List>
               <ListItem onClick={() => navigate('/dash')} sx={{ borderRadius: '50px' }}>
+                <Tooltip title='Acasa'>
                 <ListItemButton>
                   <ListItemIcon style={{ color: 'rgba(138, 5, 186)' }}>
                     <HomeIcon />
                   </ListItemIcon>
                   <ListItemText style={{ color: 'black' }}>Acasa</ListItemText>
                 </ListItemButton>
+                </Tooltip>
               </ListItem>
               <Divider></Divider>
 
               <div className="facturiButton">
                 <ListItem onClick={() => navigate('/facturi')}>
+                  <Tooltip title='Facturi'>
                   <ListItemButton >
                     <ListItemIcon style={{ color: 'rgba(138, 5, 186)' }}>
                       <ReceiptIcon />
@@ -229,12 +232,14 @@ const [navOpen, setNavOpen] = useState(true);
                       Facturi
                     </ListItemText>
                   </ListItemButton>
+                  </Tooltip>
                 </ListItem>
               </div>
               <Divider></Divider>
 
               <div className="adaugaButton">
                 <ListItem onClick={() => navigate('/adaugaFacturi')}>
+                  <Tooltip title='Adauga facturi'>
                   <ListItemButton>
                     <ListItemIcon style={{ color: 'rgba(138, 5, 186)' }}>
                       <AddCircleOutlineRoundedIcon />
@@ -243,12 +248,14 @@ const [navOpen, setNavOpen] = useState(true);
                       Adauga Facturi
                     </ListItemText>
                   </ListItemButton>
+                  </Tooltip>
                 </ListItem>
               </div>
               <Divider></Divider>
 
               <div className="analizaButton">
                 <ListItem onClick={() => navigate('/analiza')}>
+                  <Tooltip title='Analiza'>
                   <ListItemButton>
                     <ListItemIcon style={{ color: 'rgba(138, 5, 186)' }}>
                       <AssessmentRoundedIcon />
@@ -261,7 +268,9 @@ const [navOpen, setNavOpen] = useState(true);
                     >
                       Analiza
                     </ListItemText>
+                  
                   </ListItemButton>
+                  </Tooltip>
                   <Divider></Divider>
                 </ListItem>
               </div>
@@ -270,6 +279,7 @@ const [navOpen, setNavOpen] = useState(true);
               {existaPers ? (
                 <div className="contPersButton">
                   <ListItem onClick={() => navigate('/contPers')}>
+                    <Tooltip title='Cont personal'>
                     <ListItemButton>
                       <ListItemIcon style={{ color: 'rgba(138, 5, 186)' }}>
                         <Face6Icon />
@@ -282,11 +292,13 @@ const [navOpen, setNavOpen] = useState(true);
                         primary="Profil"
                       />
                     </ListItemButton>
+                    </Tooltip>
                   </ListItem>
                 </div>
               ) : (
                 <div className="contFirmaButton">
                   <ListItem onClick={() => navigate('/contFirma')}>
+                    <Tooltip title='Cont firma'>
                     <ListItemButton>
                       <ListItemIcon style={{ color: 'rgba(138, 5, 186)' }}>
                         <Face6Icon />
@@ -299,6 +311,7 @@ const [navOpen, setNavOpen] = useState(true);
                         primary="Profil"
                       />
                     </ListItemButton>
+                    </Tooltip>
                   </ListItem>
                 </div>
               )}
