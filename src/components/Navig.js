@@ -100,7 +100,8 @@ const AppBar = styled(MuiAppBar, {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
-  background: open ? 'transparent' : 'transparent',
+  background: open ? 'white' : 'white',
+  border:'none',
   ...(open && {
     marginLeft: drawerWidth,
     width: `calc(100% - ${drawerWidth}px)`,
@@ -117,6 +118,8 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
     width: drawerWidth,
     whiteSpace: 'nowrap',
     background: open ? 'transaparent' : 'transparent',
+    boxShadow:'none',
+    border:'none',
     ...(open && {
       ...openedMixin(theme),
       '& .MuiDrawer-paper': openedMixin(theme),
@@ -232,7 +235,6 @@ const [navOpen, setNavOpen] = useState(true);
                 </ListItemButton>
                 </Tooltip>
               </ListItem>
-              <Divider></Divider>
 
               <div className="facturiButton">
                 <ListItem onClick={() => navigate('/facturi')}>
@@ -248,7 +250,7 @@ const [navOpen, setNavOpen] = useState(true);
                   </Tooltip>
                 </ListItem>
               </div>
-              <Divider></Divider>
+     
 
               <div className="adaugaButton">
                 <ListItem onClick={() => navigate('/adaugaFacturi')}>
@@ -264,7 +266,7 @@ const [navOpen, setNavOpen] = useState(true);
                   </Tooltip>
                 </ListItem>
               </div>
-              <Divider></Divider>
+         
 
               <div className="analizaButton">
                 <ListItem onClick={() => navigate('/analiza')}>
@@ -284,10 +286,10 @@ const [navOpen, setNavOpen] = useState(true);
                   
                   </ListItemButton>
                   </Tooltip>
-                  <Divider></Divider>
                 </ListItem>
               </div>
-              <Divider />
+              
+
 
               {existaPers ? (
                 <div className="contPersButton">
@@ -329,9 +331,9 @@ const [navOpen, setNavOpen] = useState(true);
                 </div>
               )}
 
-              <Divider />
+            
               <div className="logoutButton">
-                <ListItem onClick={handleClickOpen} style={{ marginTop: '150px' }}>
+                <ListItem onClick={handleClickOpen} style={{ marginTop: '150px'}}>
                   <ListItemButton>
                     <Dialog TransitionComponent={Transition} open={openDialog} aria-describedby="alert-dialog-slide-description">
                       <DialogTitle>{"Te deconectezi?"}</DialogTitle>
