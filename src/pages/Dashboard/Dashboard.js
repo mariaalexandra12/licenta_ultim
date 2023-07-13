@@ -53,11 +53,13 @@ const Dashboard=()=>{
       <>
         <div style={{display:'flex',}}>
            <Navig/>
-           <Paper sx={{height:'1000px',width:'1300px'}} className="paperBack"
-           color='secondary' >
-           <Paper className="paperDash" elevation={24} sx={{width:'1150px',
-            height:'50px' ,marginTop:'80px',marginLeft:'20px',
-            borderRadius:'50px'}}>
+           <Paper sx={{height:'1000px',width:'1250px',background:'#EEEEEE',
+           borderRadius:'20px',
+           marginLeft:'20px',
+           marginTop:'20px',}} >
+           <Paper className="paperDash"  sx={{width:'1250px',
+            height:'50px' ,marginTop:'80px',
+            }}>
                 <Box sx={{marginLeft:'20px'}}>
             {datePersonale.map((pers)=>(
               <div>
