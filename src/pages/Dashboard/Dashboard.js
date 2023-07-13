@@ -54,7 +54,7 @@ const Dashboard=()=>{
       <>
         <div style={{display:'flex',}}>
            <Navig/>
-           <Paper sx={{height:'1000px',width:'1300px'}}>
+           <Paper sx={{height:'1000px',width:'1300px'}} className="paperBack">
            <Paper className="paperDash" elevation={24} sx={{width:'1150px',
             height:'50px' ,marginTop:'80px',marginLeft:'20px',
             borderRadius:'50px'}}>
