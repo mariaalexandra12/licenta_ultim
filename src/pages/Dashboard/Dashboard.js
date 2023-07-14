@@ -15,6 +15,8 @@ import ContactsIcon from '@mui/icons-material/Contacts';
 import { Button } from '@mui/material';
 import { CSVLink } from 'react-csv';
 import Paper from '@mui/material/Paper';
+import Box from '@mui/material/Box';
+
 
 
 const Dashboard = () => {
@@ -73,11 +75,12 @@ const Dashboard = () => {
 
   return (
     <>
+    <Box sx={{display:'flex'}}>
       <Navig />
       <div  >
-        <Paper elevation={24}  sx={{width:'1200px',
+        <Paper elevation={24}  sx={{width:'1230px',
         marginTop:'100px',
-        marginLeft:'100px',
+        marginLeft:'20px',
         borderRadius:'50px',
         position:'relative'}}>
         <Grid container spacing={3}>
@@ -85,8 +88,7 @@ const Dashboard = () => {
             <Card
               sx={{
                 display:'flex',
-              
-                marginLeft:'50px',
+                marginLeft:'20px',
                 height: '170px',
                 borderRadius: '20px',
                 backgroundColor: '#BBDEFB',
@@ -154,7 +156,7 @@ const Dashboard = () => {
           </Grid>
 
 
-          <Grid item xs={12} sm={6} md={3}>
+          <Grid item xs={12} sm={6} md={2.5}>
             <Card
               sx={{
                 height: '170px',
@@ -170,6 +172,8 @@ const Dashboard = () => {
             </Card>
           </Grid>
         </Grid>
+
+
         <div style={{ width: '600px', height: '300px', margin: '50px' }}>
           <ResponsiveContainer>
             <BarChart data={dateFactura}>
@@ -243,6 +247,7 @@ const Dashboard = () => {
         </LocalizationProvider> */}
         </Paper>
       </div>
+      </Box>
     </>
   );
 };

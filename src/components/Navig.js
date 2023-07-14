@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState , useContext} from 'react';
 import { makeStyles } from '@mui/styles';
 import { styled, useTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -199,7 +199,7 @@ const [navOpen, setNavOpen] = useState(true);
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div" color='secondary'>
+          <Typography variant="h6" noWrap component="div" color='#283593'>
             Invoice Reader Application
           </Typography>
         </Toolbar>
