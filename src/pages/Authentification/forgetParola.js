@@ -27,23 +27,23 @@ export default function Pass(){
      
      <Paper elevation={24} style={{
                marginLeft:"450px",
-               marginTop:"55px",
-               width:"500px",
+               marginTop:'30px',
+               width:"450px",
                height:'400px',
-               color:"primary",
                padding:"10px",
-               borderRadius:'100px',
-               background: "rgba( 189, 16, 224,0.10)",
-                boxShadow: "0 8px 32px 0 rgba( 31, 38, 135, 0.37 )",
-                backdropFilter: "blur( 8px )",
-                WebkitBackdropFilter: "blur( 8px )",
-                borderRadius:" 10px",
-                border: "1px solid rgba( 255, 255, 255, 0.18 )",}} square="true">
+               borderRadius:'30px',
+               backgroundColor:'#E3F2FD',
+               boxShadow:'0 8px 32px 0 rgba( 31, 38, 135, 0.37 )', 
+               backdropFilter:' blur( 11px )',
+               WebkitBackdropFilter:' blur( 11px )',
+               border: '1px solid rgba( 255, 255, 255, 0.18 )',
+                display:"flex",
+                flexDirection:"column",}} square="true">
                 <ReceiptIcon sx={{fontSize:70,
-                 marginLeft:'200px',
-                 marginTop:'40px'
-                }} color='secondary'/>
-                <Typography style={{marginTop:'40px',
+                 marginLeft:'175px',
+                 marginTop:'40px',
+                }} color='#283593' />
+                <Typography variant='h6' style={{marginTop:'40px',
                  textAlign:'center'}}>Introdu aici adresa de email
                     si iti vom trimite un mail 
                     pentru resetarea parolei.
@@ -51,20 +51,20 @@ export default function Pass(){
 
                <form onSubmit={handleSubmit}>
                 <TextField type='text' style={{
-                    marginTop:'50px',
+                    marginTop:'20px',
                 }} fullWidth
                 required
                 placeholder='Adresa de email'
                 value={email}
                 onChange={e=>setEmail(e.target.value)}></TextField>
 
-                <Button color="secondary" variant="contained" fullWidth
+                <Button variant="contained" fullWidth
                  type='submit'
-                 style={{marginTop:'10px'}}>Trimite mail</Button>
+                 style={{marginTop:'10px',bgcolor:'#283593'}}>Trimite mail</Button>
                  </form>
 
-               <Link href="/" underline='hover' color="secondary"
-               style={{marginLeft:'180px',}}
+               <Link href="/" underline='hover' 
+               style={{marginLeft:'180px',color:'#283593',}}
                >Inapoi la conectare</Link>
                
     </Paper>

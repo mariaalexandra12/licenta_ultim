@@ -166,18 +166,19 @@ export default function SignUpPers() {
           )}
 
     <Paper elevation={24} style={{
-      marginLeft:"350px",
-      marginTop:"55px",
-      width:"50%",
-      height:'full',
-      color:"primary",
-      padding:"10px",
-      background: 'rgba( 186, 152, 224, 0.7 )',
-      boxShadow:'0 8px 32px 0 rgba( 31, 38, 135, 0.37 )', 
-      backdropFilter:' blur( 11px )',
-      WebkitBackdropFilter:' blur( 11px )',
-      borderRadius:' 50px',
-      border: '1px solid rgba( 255, 255, 255, 0.18 )',}} square="true">
+       marginLeft:"450px",
+       marginTop:'30px',
+       width:"450px",
+       height:'700',
+       padding:"10px",
+       borderRadius:'30px',
+       backgroundColor:'#E3F2FD',
+       boxShadow:'0 8px 32px 0 rgba( 31, 38, 135, 0.37 )', 
+       backdropFilter:' blur( 11px )',
+       WebkitBackdropFilter:' blur( 11px )',
+       border: '1px solid rgba( 255, 255, 255, 0.18 )',
+        display:"flex",
+        flexDirection:"column",}} square="true">
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box

@@ -88,7 +88,6 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'flex-end',
-  borderRadius:'30px',
   padding: theme.spacing(0, 1),
   ...theme.mixins.toolbar,
 }));
@@ -118,7 +117,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   ({ theme, open }) => ({
     width: drawerWidth,
     whiteSpace: 'nowrap',
-    background: open ? '#E3F2FD' : '#E3F2FD',
+    background:'#90CAF9' ,
     boxShadow:'none',
     border:'none',
     ...(open && {
@@ -197,7 +196,7 @@ const [navOpen, setNavOpen] = useState(true);
         <Box sx={{ display: 'flex' }}>
           <CssBaseline />
        
-          <AppBar position="fixed" open={open} sx={{bgcolor:'#E3F2FD'}}>
+          <AppBar position="fixed" open={open} sx={{bgcolor:'#90CAF9'}}>
         <Toolbar>
           <IconButton
             color="#283593"
@@ -216,17 +215,17 @@ const [navOpen, setNavOpen] = useState(true);
           </Typography>
         </Toolbar>
       </AppBar>
-      <Drawer className="drawerNavig" variant="permanent" open={open} color='#E3F2FD'>
-        <DrawerHeader>
+      <Drawer className="drawerNavig" variant="permanent" open={open} >
+        <DrawerHeader sx={{backgroundColor:'#90CAF9'}}>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
         </DrawerHeader>
 
-            <List >
+            <List sx={{backgroundColor:'#90CAF9'}}>
               <ListItem onClick={() => navigate('/dash')} sx={{
                 '&:hover': {
-      backgroundColor: '#90CAF9',
+      backgroundColor: 'white',
       borderRadius: '300px',
            },}} >
                 <Tooltip title='Acasa'>
@@ -243,8 +242,8 @@ const [navOpen, setNavOpen] = useState(true);
                 <ListItem onClick={() => navigate('/facturi')}
                 sx={{
                   '&:hover': {
-        backgroundColor: '#64B5F6',
-        borderRadius: '10px',
+        backgroundColor: 'white',
+        borderRadius: '300px',
              },}}  >
                   <Tooltip title='Facturi'>
                   <ListItemButton >
@@ -262,8 +261,8 @@ const [navOpen, setNavOpen] = useState(true);
                 <ListItem onClick={() => navigate('/adaugaFacturi')} 
                 sx={{
                   '&:hover': {
-        backgroundColor: '#64B5F6',
-        borderRadius: '10px',
+        backgroundColor: 'white',
+        borderRadius: '300px',
              },}} >
                   <Tooltip title='Adauga facturi'>
                   <ListItemButton>
@@ -281,8 +280,8 @@ const [navOpen, setNavOpen] = useState(true);
                 <ListItem onClick={() => navigate('/analiza')}
                 sx={{
                   '&:hover': {
-        backgroundColor: '#64B5F6',
-        borderRadius: '10px',
+        backgroundColor: 'white',
+        borderRadius: '300px',
              },}} >
                   <Tooltip title='Analiza'>
                   <ListItemButton>
@@ -302,8 +301,8 @@ const [navOpen, setNavOpen] = useState(true);
                   <ListItem onClick={() => navigate('/contPers')}
                   sx={{
                     '&:hover': {
-          backgroundColor: '#64B5F6',
-          borderRadius: '10px',
+          backgroundColor: 'white',
+          borderRadius: '300px',
                },}} >
                     <Tooltip title='Cont personal'>
                     <ListItemButton>
@@ -320,8 +319,8 @@ const [navOpen, setNavOpen] = useState(true);
                   <ListItem onClick={() => navigate('/contFirma')}
                   sx={{
                     '&:hover': {
-          backgroundColor: '#64B5F6',
-          borderRadius: '10px',
+          backgroundColor: 'white',
+          borderRadius: '300px',
                },}} >
                     <Tooltip title='Cont firma'>
                     <ListItemButton>
@@ -337,11 +336,12 @@ const [navOpen, setNavOpen] = useState(true);
 
             
               <div className="logoutButton">
+                <Tooltip title='Deconectare'>
                 <ListItem onClick={handleClickOpen} style={{ marginTop: '150px'}}
                 sx={{
                   '&:hover': {
-        backgroundColor: '#64B5F6',
-        borderRadius: '10px',
+        backgroundColor: 'white',
+        borderRadius: '300px',
              },}} >
                   <ListItemButton>
                     <Dialog TransitionComponent={Transition} open={openDialog} aria-describedby="alert-dialog-slide-description">
@@ -365,9 +365,10 @@ const [navOpen, setNavOpen] = useState(true);
                     <ListItemIcon style={{ color: '#283593' }}>
                       <LogoutIcon />
                     </ListItemIcon>
-                    <Typography variant='h6'>Deconecteaza-te</Typography>
+                    <Typography variant='h6' color='black'>Deconecteaza-te</Typography>
                   </ListItemButton>
                 </ListItem>
+                </Tooltip>
               </div>
             </List>
           </Drawer>

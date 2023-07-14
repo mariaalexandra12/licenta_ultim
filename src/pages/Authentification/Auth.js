@@ -161,9 +161,9 @@ function Auth(){
 
             <Paper elevation={24} style={{
                marginLeft:"50px",
-               marginTop:'80px',
+               marginTop:'30px',
                width:"450px",
-               height:'500px',
+               height:'580px',
                padding:"10px",
                borderRadius:'30px',
                backgroundColor:'#E3F2FD',

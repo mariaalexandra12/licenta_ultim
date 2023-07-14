@@ -234,10 +234,10 @@ const Facturi = () => {
           Toolbar: CustomToolbar,
         }}
         sx={{
-          marginTop: '10px',
+          marginTop: '20px',
           fontSize: '18px',
           marginLeft: '40px',
-          background: 'rgba( 189, 16, 224, 0.25 )',
+          background: 'transparent',
           boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
           backdropFilter: 'blur( 10px )',
           WebkitBackdropFilter: 'blur( 10px )',
@@ -250,11 +250,11 @@ const Facturi = () => {
         onClick={() => {
           nav('/adaugaFacturi');
         }}
-        color="secondary"
         variant="contained"
         sx={{
           marginTop: '40px',
           marginLeft: '550px',
+          borderRadius:'200px',
           width: '200px',
           height: '70px',
         }}
