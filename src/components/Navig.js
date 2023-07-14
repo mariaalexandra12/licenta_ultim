@@ -88,6 +88,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'flex-end',
+  borderRadius:'30px',
   padding: theme.spacing(0, 1),
   ...theme.mixins.toolbar,
 }));
@@ -117,7 +118,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   ({ theme, open }) => ({
     width: drawerWidth,
     whiteSpace: 'nowrap',
-    background: open ? 'transaparent' : 'transparent',
+    background: open ? '#E3F2FD' : '#E3F2FD',
     boxShadow:'none',
     border:'none',
     ...(open && {
@@ -185,7 +186,7 @@ const [navOpen, setNavOpen] = useState(true);
         <Box sx={{ display: 'flex' }}>
           <CssBaseline />
        
-          <AppBar position="fixed" open={open} >
+          <AppBar position="fixed" open={open} sx={{bgcolor:'#E3F2FD'}}>
         <Toolbar>
           <IconButton
             color="#283593"
@@ -204,7 +205,7 @@ const [navOpen, setNavOpen] = useState(true);
           </Typography>
         </Toolbar>
       </AppBar>
-      <Drawer className="drawerNavig" variant="permanent" open={open}>
+      <Drawer className="drawerNavig" variant="permanent" open={open} sx={{bgcolor:'#E3F2FD'}}>
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
@@ -218,7 +219,7 @@ const [navOpen, setNavOpen] = useState(true);
                   <ListItemIcon style={{ color: '#283593' }}>
                     <HomeIcon />
                   </ListItemIcon>
-                  <ListItemText style={{ color: 'black' }}>Acasa</ListItemText>
+                  <Typography variant='h6'>Acasa</Typography>
                 </ListItemButton>
                 </Tooltip>
               </ListItem>
@@ -230,9 +231,7 @@ const [navOpen, setNavOpen] = useState(true);
                     <ListItemIcon style={{ color: '#283593' }}>
                       <ReceiptIcon />
                     </ListItemIcon>
-                    <ListItemText style={{ color: 'black', fontFamily: 'Goudy Bookletter 1911", sans-serif' }}>
-                      Facturi
-                    </ListItemText>
+                    <Typography variant='h6' >Facturi</Typography>
                   </ListItemButton>
                   </Tooltip>
                 </ListItem>
@@ -246,9 +245,7 @@ const [navOpen, setNavOpen] = useState(true);
                     <ListItemIcon style={{ color: '#283593' }}>
                       <AddCircleOutlineRoundedIcon />
                     </ListItemIcon>
-                    <ListItemText style={{ color: 'black', fontFamily: 'Goudy Bookletter 1911", sans-serif' }}>
-                      Adauga Facturi
-                    </ListItemText>
+                    <Typography variant='h6' >Adauga Facturi</Typography>
                   </ListItemButton>
                   </Tooltip>
                 </ListItem>
@@ -262,15 +259,7 @@ const [navOpen, setNavOpen] = useState(true);
                     <ListItemIcon style={{ color: '#283593' }}>
                       <AssessmentRoundedIcon />
                     </ListItemIcon>
-                    <ListItemText
-                      style={{
-                        color: 'black',
-                        fontFamily: 'Goudy Bookletter 1911", sans-serif',
-                      }}
-                    >
-                      Analiza
-                    </ListItemText>
-                  
+                    <Typography variant='h6'>Analiza</Typography>
                   </ListItemButton>
                   </Tooltip>
                 </ListItem>
@@ -286,13 +275,7 @@ const [navOpen, setNavOpen] = useState(true);
                       <ListItemIcon style={{ color: '#283593' }}>
                         <Face6Icon />
                       </ListItemIcon>
-                      <ListItemText
-                        style={{
-                          color: 'black',
-                          fontFamily: 'Goudy Bookletter 1911", sans-serif',
-                        }}
-                        primary="Profil"
-                      />
+                      <Typography variant='h6'>Profil</Typography>
                     </ListItemButton>
                     </Tooltip>
                   </ListItem>
@@ -305,13 +288,7 @@ const [navOpen, setNavOpen] = useState(true);
                       <ListItemIcon style={{ color: '#283593' }}>
                         <Face6Icon />
                       </ListItemIcon>
-                      <ListItemText
-                        style={{
-                          color: 'black',
-                          fontFamily: 'Goudy Bookletter 1911", sans-serif',
-                        }}
-                        primary="Profil"
-                      />
+                      <Typography variant='h6' >Profil</Typography>
                     </ListItemButton>
                     </Tooltip>
                   </ListItem>
@@ -343,14 +320,7 @@ const [navOpen, setNavOpen] = useState(true);
                     <ListItemIcon style={{ color: '#283593' }}>
                       <LogoutIcon />
                     </ListItemIcon>
-                    <ListItemText
-                      style={{
-                        color: 'black',
-                        fontFamily: 'Goudy Bookletter 1911", sans-serif',
-                      }}
-                    >
-                      Deconecteaza-te
-                    </ListItemText>
+                    <Typography variant='h6'>Deconecteaza-te</Typography>
                   </ListItemButton>
                 </ListItem>
               </div>

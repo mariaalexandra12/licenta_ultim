@@ -82,7 +82,8 @@ const Dashboard = () => {
         marginTop:'100px',
         marginLeft:'20px',
         borderRadius:'50px',
-        position:'relative'}}>
+        position:'relative',
+        }}>
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6} md={3}>
             <Card
