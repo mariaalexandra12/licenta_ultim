@@ -16,14 +16,16 @@ import { Button } from '@mui/material';
 import { CSVLink } from 'react-csv';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
-
-
+import DescriptionIcon from '@mui/icons-material/Description';
+import PaidIcon from '@mui/icons-material/Paid';
 
 const Dashboard = () => {
   const { currentUser }=useUserAuth();
   const [dateFactura, setDateFactura] = useState([]);
   const [datePersonale, setDatePersonale] = useState([]);
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const [valoareTotala, setValoareTotala] = useState([]);
+  const [totalDePlata, setTotalDePlata]=useState(0);
   useEffect(() => {
     const q2 = query(collection(db, 'utilizator'), where('emailUtilizator', '==', currentUser));
     const unsub = onSnapshot(q2, (snapshot) => {
@@ -52,9 +54,18 @@ const Dashboard = () => {
     };
   }, []);
 
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-  };
+  
+  useEffect(() => {
+    dateFactura.forEach((fact) => {
+      valoareTotala.push(fact['valoareTotala']);
+    });
+  }, [dateFactura]);
+
+  useEffect(() => {
+    const total = valoareTotala.reduce((acc, value) => acc + parseFloat(value), 0);
+    setTotalDePlata(total);
+  }, []);
+ 
 
   const calculatePieChartData = () => {
     const data = dateFactura.reduce((acc, factura) => {
@@ -127,7 +138,7 @@ const Dashboard = () => {
             >
               <CardContent>
               <Avatar sx={{ backgroundColor: '#673ab7', marginBottom: '10px' }}>
-                <AssignmentIcon />
+                <DescriptionIcon />
               </Avatar>
               <Typography variant="h6" sx={{ fontSize: '35px' }}>
                 {dateFactura.length}
@@ -150,8 +161,15 @@ const Dashboard = () => {
               }}
             >
               <CardContent>
-                <Typography variant="h6">Card 3</Typography>
-                {/* Adăugați conținutul dorit pentru cardul 3 */}
+              <Avatar sx={{ backgroundColor: '#673ab7', marginBottom: '10px' }}>
+                <PaidIcon />
+              </Avatar>
+              <Typography variant="h6" sx={{ fontSize: '35px' }}>
+                {totalDePlata}
+              </Typography>
+              <Typography variant="h4" sx={{ fontSize: '20px' }}>
+                Total de plata
+              </Typography>
               </CardContent>
             </Card>
           </Grid>

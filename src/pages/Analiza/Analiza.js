@@ -127,7 +127,7 @@ const Analiza = () => {
     <>
       <Box sx={{ display: 'flex' }}>
         <Navig />
-        <Box sx={{ marginTop: '30px', display: 'flex' }}>
+        <Box sx={{ marginTop: '100px', display: 'flex' }}>
           <div className="chartDiv"></div>
 
           <Paper elevation={24} className="paperDiv">
