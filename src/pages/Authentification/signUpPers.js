@@ -169,7 +169,7 @@ export default function SignUpPers() {
        marginLeft:"450px",
        marginTop:'30px',
        width:"450px",
-       height:'700',
+       height:"full",
        padding:"10px",
        borderRadius:'30px',
        backgroundColor:'#E3F2FD',
@@ -189,12 +189,14 @@ export default function SignUpPers() {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          <Avatar sx={{ m: 1, bgcolor: '#283593' }}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" style={{fontSize:'20px'}}>
+          <Typography component="h1" variant="h6" style={{fontSize:'20px'}}>
            Haide sa ne cunoastem! </Typography>
-           <Typography style={{fontSize:'20px',justifyContent:'center'}}>Am nevoie de cateva informatii ca sa iti creez contul:
+           <Typography variant='h6'
+            style={{fontSize:'20px',justifyContent:'center'}}
+            >Am nevoie de cateva informatii ca sa iti creez contul:
          </Typography> 
         
           <Box component="form" noValidate  sx={{ mt: 3 }}>
@@ -324,7 +326,6 @@ export default function SignUpPers() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              color="secondary"
               onClick={handleSubmit}
               onLoad={isSubmitting}
             >
@@ -334,7 +335,7 @@ export default function SignUpPers() {
             </form>
             <Grid container justifyContent="center">
               <Grid item>
-                <Link href="/" color="secondary" underline='hover'>
+                <Link href="/" underline='hover'>
                   Ai deja un cont? Intra in cont!
                 </Link>
                 <p style={{fontSize:'15px',opacity:'0.6'}}

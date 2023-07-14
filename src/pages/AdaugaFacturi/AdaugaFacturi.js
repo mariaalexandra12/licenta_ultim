@@ -114,16 +114,16 @@ const [open, setOpen] = React.useState(true);
     <div style={{display:'flex',}}>
     <Navig/>
     <Paper elevation={24} style={{
-      marginTop:'40px',
+      marginTop:'100px',
       marginLeft:'20px',
       width:'calc(100% + 600px)',
       display:'flex',
-      background: 'rgba( 193, 29, 230, 0.2 )',
-      boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
-      backdropFilter: 'blur( 11.5px )',
-      WebkitBackdropFilter:' blur( 11.5px )',
-      borderRadius:' 50px',
+      backgroundColor:'#E3F2FD',
+      boxShadow:'0 8px 32px 0 rgba( 31, 38, 135, 0.37 )', 
+      backdropFilter:' blur( 11px )',
+      WebkitBackdropFilter:' blur( 11px )',
       border: '1px solid rgba( 255, 255, 255, 0.18 )',
+      borderRadius:' 50px',
     }} >
     <Box sx={{marginTop: '-40px',
         display:'flex'
@@ -143,12 +143,13 @@ const [open, setOpen] = React.useState(true);
         />
         <Tooltip title="Adaugă o factură">
           <IconButton onClick={handleButtonClick} style={{ marginLeft: '140px', width: '90px', height: '90px', marginTop: '50px' }}>
-            <AddCircleIcon style={{ width: '70px', height: '70px', color:'purple' }} />
+            <AddCircleIcon style={{ width: '70px', height: '70px', color:'#0D47A1' }} />
           </IconButton>
         </Tooltip>
       </>
       }
-      <Typography sx={{marginLeft:'50px',color:'black'}}>Apasa aici pentru a adauga o factura</Typography>
+      <Typography sx={{marginLeft:'50px',color:'black'}} variant='h6'
+      >Apasa aici pentru a adauga o factura</Typography>
 
       </div>
      
@@ -185,12 +186,12 @@ const [open, setOpen] = React.useState(true);
       <DocumentScannerIcon style={{
         width:'70px',
         height:'70px',
-        color:'purple'
+        color:'#0D47A1'
       }}>
       </DocumentScannerIcon>
       </IconButton>
       </Tooltip>
-      <Typography sx={{marginLeft:'50px',color:'black'}}
+      <Typography sx={{marginLeft:'50px',color:'black'}} variant='h6'
       >Apasa aici pentru a extrage datele facturii</Typography>
       {eroareExtras && (<>
         <Alert severity="warning">
@@ -263,7 +264,6 @@ const [open, setOpen] = React.useState(true);
               fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
-             color="secondary" 
              onClick={handleInregistrare}>Inregistreaza factura </Button>
 
           

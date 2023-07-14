@@ -141,13 +141,13 @@ const Facturi = () => {
         <div>
           <Tooltip title="Sterge factura">
             <IconButton onClick={() => handleDeleteRow(params.row.id)}>
-              <DeleteIcon color="secondary" />
+              <DeleteIcon color='#2196F3' />
             </IconButton>
           </Tooltip>
 
           <Tooltip title="Editeaza factura">
             <IconButton onClick={() => handleEditRow(params.row.id)}>
-              <EditIcon color="secondary" />
+              <EditIcon color='#2196F3' />
             </IconButton>
           </Tooltip>
 

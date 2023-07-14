@@ -397,9 +397,11 @@ export default function SignUpPers() {
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
             <BusinessIcon />
           </Avatar>
-          <Typography component="h1" style={{fontSize:'20px'}}>
+          <Typography component="h1" style={{fontSize:'20px'}} variant='h6'>
            Suntem aproape gata!</Typography>
-           <Typography style={{fontSize:'20px',justifyContent:'center'}}>Trebuie sa introduci datele firmei pentru a crea contul: 
+           <Typography variant='h6' 
+           style={{fontSize:'20px',justifyContent:'center'}}
+           >Trebuie sa introduci datele firmei pentru a crea contul: 
          </Typography> 
         
           <Box component="form" noValidate  sx={{ mt: 3 }}>
