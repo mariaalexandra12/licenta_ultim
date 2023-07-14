@@ -14,6 +14,8 @@ import { useUserAuth } from '../../context/userAuthContext';
 import ContactsIcon from '@mui/icons-material/Contacts';
 import { Button } from '@mui/material';
 import { CSVLink } from 'react-csv';
+import Paper from '@mui/material/Paper';
+
 
 const Dashboard = () => {
   const { currentUser }=useUserAuth();
@@ -73,15 +75,21 @@ const Dashboard = () => {
     <>
       <Navig />
       <div  >
+        <Paper elevation={24}  sx={{width:'1200px',
+        marginTop:'100px',
+        marginLeft:'100px',
+        borderRadius:'50px',
+        position:'relative'}}>
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6} md={3}>
             <Card
               sx={{
-                marginTop:'100px',
-                marginLeft:'100px',
-                height: '150px',
+                display:'flex',
+              
+                marginLeft:'50px',
+                height: '170px',
                 borderRadius: '20px',
-                backgroundColor: '#D1C4E9',
+                backgroundColor: '#BBDEFB',
                 color: '#311B92',
               }}
             >
@@ -89,12 +97,12 @@ const Dashboard = () => {
               <Avatar sx={{ backgroundColor: '#673ab7', marginBottom: '10px' }}>
                 <ContactsIcon />
               </Avatar>
-              {datePersonale.forEach((pers)=>(
+              {datePersonale.map((pers)=>(
                 <>
-                 <Typography variant="h6" sx={{ fontSize: '15px' }}>
+                 <Typography variant="h6" sx={{ fontSize: '20px' }}>
                 Bine ai venit , 
               </Typography>
-              <Typography variant="h4" sx={{ fontSize: '20px', marginTop: '10px' }}>
+              <Typography variant="h6" sx={{ fontSize: '20px', marginTop: '10px' }}>
                 {pers['nume']} {pers['prenume']}! 
               </Typography>
                 </>
@@ -103,11 +111,12 @@ const Dashboard = () => {
               </CardContent>
             </Card>
           </Grid>
+
+
           <Grid item xs={12} sm={6} md={3}>
             <Card
               sx={{
-                marginTop: '100px',
-                height: '150px',
+                height: '170px',
                 borderRadius: '20px',
                 backgroundColor: '#C5CAE9',
                 color: '#311B92',
@@ -126,11 +135,12 @@ const Dashboard = () => {
               </CardContent>
             </Card>
           </Grid>
+
+
           <Grid item xs={12} sm={6} md={3}>
             <Card
               sx={{
-                marginTop: '100px',
-                height: '150px',
+                height: '170px',
                 borderRadius: '20px',
                 backgroundColor: '#BBDEFB',
                 color: '#311B92',
@@ -142,11 +152,12 @@ const Dashboard = () => {
               </CardContent>
             </Card>
           </Grid>
+
+
           <Grid item xs={12} sm={6} md={3}>
             <Card
               sx={{
-                marginTop: '100px',
-                height: '150px',
+                height: '170px',
                 borderRadius: '20px',
                 backgroundColor: '#B3E5FC',
                 color: '#311B92',
@@ -176,7 +187,7 @@ const Dashboard = () => {
                 height: '400px',
                 borderRadius: '20px',
                 backgroundColor: '#d1c4e9',
-                color: '#673ab7',
+                color: '#BBDEFB',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -187,7 +198,7 @@ const Dashboard = () => {
               <Typography variant="h4" sx={{ fontSize: '20px', marginBottom: '20px' }}>
                 Distribuția facturilor pe furnizori
               </Typography>
-              <PieChart width={400} height={300}>
+              <PieChart width={450} height={300} style={{marginTop: '20px', marginBottom: '20px'}}>
                 <Pie
                   data={pieChartData}
                   dataKey="numarFacturi"
@@ -230,6 +241,7 @@ const Dashboard = () => {
             renderInput={(params) => <TextField {...params} />}
           />
         </LocalizationProvider> */}
+        </Paper>
       </div>
     </>
   );
