@@ -106,6 +106,7 @@ const handleUpdateProfil=()=>{
             <>
            <Collapse in={open}>
             <Alert severity='success' style={{
+              marginTop:'50px',
               width:'300px',
               marginLeft:'300px',
               display:'hover',
@@ -128,26 +129,18 @@ const handleUpdateProfil=()=>{
            direction="column"
             justifyContent="center"
            alignItems="center">
-              <Grid container  direction="rows" xs>
-                <Grid >
-                <Paper className="paperProfil" elevation={24} sx={{width:'1150px',
-                 height:'300px' ,marginTop:'20px',marginLeft:'20px',
-                 borderRadius:'20px'}}></Paper>
-                </Grid>
               
-              </Grid>
 
               <Grid item >
               <Item style={{
-                marginTop:'-85px',
+                marginTop:'100px',
                 width:'1100px',
                 height:'400px',
-                background: 'rgba( 189, 16, 224, 0.25 )',
-                boxShadow:'0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
-                backdropFilter: 'blur( 10px )',
-                WebkitBackdropFilter:' blur( 10px )',
-                borderRadius:' 10px',
-                border: '1px solid rgba( 255, 255, 255, 0.18 )',
+                backgroundColor:'#E3F2FD',
+               boxShadow:'0 8px 32px 0 rgba( 31, 38, 135, 0.37 )', 
+               backdropFilter:' blur( 11px )',
+               WebkitBackdropFilter:' blur( 11px )',
+               border: '1px solid rgba( 255, 255, 255, 0.18 )',
               }}>
         
         
@@ -164,53 +157,56 @@ const handleUpdateProfil=()=>{
           {/* CONT PERSONAL  */}
           {/**/}
            <Box  sx={{ display: 'flex', alignItems: 'flex-end',}}  >
-              <Typography >Adresa de Email</Typography>
-              <EmailIcon sx={{ color: 'action.active', mr: 1, my: 0.2,marginLeft:'30px' }} />
+              <Typography variant='h6'>Adresa de Email</Typography>
               <TextField id="adresaEmail" 
               type='text'
-              variant="standard" 
+              variant="outlined" 
               defaultValue={currentUser}
               style={{
                 width:'300px',
-                marginTop: '30px'
+                marginTop: '30px',
+                marginLeft:'10px',
               }}
               />
            </Box>
 
              
            <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
-              <Typography >Parola Cont</Typography>
-              <HttpsIcon sx={{ color: 'action.active', mr: 1, my: 0.2,marginLeft:'60px' }} />
+              <Typography variant='h6'>Parola Cont</Typography>
               <TextField id="input-with-sx" 
               type="text"
-              variant="standard" 
+              variant="outlined" 
               style={{
+                marginTop:'10px',
                 width:'300px',
+                marginLeft:'50px',
               }}
               defaultValue={pers['parolaUtilizator']}
               />
            </Box>
 
            <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
-              <Typography >Nume Utilizator</Typography>
-              <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1,  my: 0.2,marginLeft:'33px' }} />
-              <TextField id="input-with-sx" variant="standard" 
+              <Typography variant='h6'>Nume Utilizator</Typography>
+              <TextField id="input-with-sx" variant="outlined" 
                type="text"
                defaultValue={pers['nume']}
                style={{
                 width:'300px',
+                marginTop:'10px',
+                marginLeft:'15px',
               }}/>
            </Box>
 
            
            <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
-              <Typography >Prenume Utilizator</Typography>
-              <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.2,marginLeft:'10px' }} />
-              <TextField id="input-with-sx"  variant="standard"
+              <Typography variant='h6'>Prenume Utilizator</Typography>
+              <TextField id="input-with-sx"  variant="outlined"
               type="text"
               defaultValue={pers['prenume']}
                style={{
+                marginTop:'10px',
                 width:'300px',
+                marginLeft:'10px',
               }} />
            </Box>
 
@@ -227,7 +223,7 @@ const handleUpdateProfil=()=>{
             sau poti continua cu datele personale 
            </Typography>
            <Box sx={{ display: 'flex', alignItems: 'flex-end',}}>
-           <Typography >Adresa de email Firma</Typography>
+           <Typography variant='h6'>Adresa de email Firma</Typography>
               <EmailIcon sx={{ color: 'action.active', mr: 1, my: 0.5 ,
               marginLeft:'14px'}} />
               <TextField id="adresaEmail" 
@@ -242,7 +238,7 @@ const handleUpdateProfil=()=>{
            </Box>
 
            <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
-              <Typography >Parola Cont Firma</Typography>
+              <Typography variant='h6'>Parola Cont Firma</Typography>
               <HttpsIcon sx={{ color: 'action.active', mr: 1, my: 0.5,marginLeft:'45px' }} />
               <TextField id="input-with-sx" 
               type="text"
@@ -254,7 +250,7 @@ const handleUpdateProfil=()=>{
            </Box>
 
            <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
-              <Typography >Denumire Firma</Typography>
+              <Typography variant='h6'>Denumire Firma</Typography>
               <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5,marginLeft:'58px' }} />
               <TextField id="input-with-sx" variant="standard" 
                type="text"
@@ -265,7 +261,7 @@ const handleUpdateProfil=()=>{
 
            
            <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
-              <Typography >Cod Inregistrare Fiscala</Typography>
+              <Typography variant='h6'>Cod Inregistrare Fiscala</Typography>
               <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5,marginLeft:'3px' }} />
               <TextField id="input-with-sx"  variant="standard"
               type="text"
@@ -275,7 +271,7 @@ const handleUpdateProfil=()=>{
            </Box>
 
            <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
-              <Typography>Judet</Typography>
+              <Typography variant='h6'>Judet</Typography>
               <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5,marginLeft:'135px' }} />
               <TextField id="input-with-sx"  variant="standard"
               type="text"
@@ -285,7 +281,7 @@ const handleUpdateProfil=()=>{
            </Box>
 
            <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
-              <Typography >Localitate</Typography>
+              <Typography variant='h6'>Localitate</Typography>
               <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5,marginLeft:'105px' }} />
               <TextField id="input-with-sx"  variant="standard"
               type="text"
@@ -295,7 +291,7 @@ const handleUpdateProfil=()=>{
            </Box>
 
            <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
-              <Typography >Platitor TVA</Typography>
+              <Typography variant='h6'>Platitor TVA</Typography>
               <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.5,marginLeft:'90px' }} />
               <TextField id="input-with-sx"  variant="standard"
               type="text"
@@ -317,7 +313,7 @@ const handleUpdateProfil=()=>{
           {/* CONT PERSONAL  */}
           {/**/}
            <Box  sx={{ display: 'flex', alignItems: 'flex-end',}}  >
-              <Typography >Adresa de Email</Typography>
+              <Typography variant='h6'>Adresa de Email</Typography>
               <EmailIcon sx={{ color: 'action.active', mr: 1, my: 0.2,marginLeft:'30px' }} />
               <TextField id="adresaEmail" 
               type='text'
@@ -331,7 +327,7 @@ const handleUpdateProfil=()=>{
 
              
            <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
-              <Typography >Parola Cont</Typography>
+              <Typography variant='h6'>Parola Cont</Typography>
               <HttpsIcon sx={{ color: 'action.active', mr: 1, my: 0.2,marginLeft:'60px' }} />
               <TextField id="input-with-sx" 
               type="text"
@@ -343,7 +339,7 @@ const handleUpdateProfil=()=>{
            </Box>
 
            <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
-              <Typography >Nume Utilizator</Typography>
+              <Typography variant='h6'>Nume Utilizator</Typography>
               <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1,  my: 0.2,marginLeft:'33px' }} />
               <TextField id="input-with-sx" variant="standard" 
                type="text"
@@ -354,7 +350,7 @@ const handleUpdateProfil=()=>{
 
            
            <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
-              <Typography >Prenume Utilizator</Typography>
+              <Typography variant='h6'>Prenume Utilizator</Typography>
               <AccessibilityNewIcon sx={{ color: 'action.active', mr: 1, my: 0.2,marginLeft:'10px' }} />
               <TextField id="input-with-sx"  variant="standard"
               type="text"
@@ -363,7 +359,7 @@ const handleUpdateProfil=()=>{
               }} />
            </Box>
 
-           <Button variant="contained" color="secondary" onClick={handleUpdateProfil}
+           <Button variant="contained"  onClick={handleUpdateProfil}
           style={{marginTop:'20px'}}
           >Actualizeaza datele contului personal</Button>
         </>
