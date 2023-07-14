@@ -67,7 +67,7 @@ function Auth(){
       const errors=validate();
       setErrors(errors);
       try{
-        //await signUp(email,password);
+        
         signInWithEmailAndPassword(auth,email,password)
         .then((userCredential)=>{
           const user=userCredential.user;
