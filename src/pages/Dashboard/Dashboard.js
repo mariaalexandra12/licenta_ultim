@@ -1,196 +1,147 @@
 import React, { useEffect, useState } from 'react';
-import { Card, Grid, Paper, Typography } from '@mui/material';
-import Navig from '../../components/Navig';
-import { collection, query, where, onSnapshot } from 'firebase/firestore';
+import { Card, Grid, Typography, Avatar } from '@mui/material';
+import AssignmentIcon from '@mui/icons-material/Assignment';
+import { PieChart, Pie, Tooltip, Cell, Legend } from 'recharts';
+import { collection, query, where, onSnapshot, getDocs } from 'firebase/firestore';
 import { db } from '../../firebaseUtils/firebase_ut';
 import { useUserAuth } from '../../context/userAuthContext';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { StaticDateTimePicker } from '@mui/x-date-pickers';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import AssignmentIcon from '@mui/icons-material/Assignment';
-import Avatar from '@mui/material/Avatar';
-import TextField from '@mui/material/TextField';
 
 const Dashboard = () => {
   const [datePersonale, setDatePersonale] = useState([]);
-  const [dateFactura, setDateFactura] = useState([]);
   const { currentUser } = useUserAuth();
+  const [name, setName] = useState('');
+  const [prename, setPrename] = useState('');
+  const [dateFactura, setDateFactura] = useState([]);
 
   useEffect(() => {
-    const unsubscribe1 = onSnapshot(query(collection(db, 'utilizator'), where('emailUtilizator', '==', currentUser)), (snapshot) => {
-      const userData = snapshot.docs.map((doc) => doc.data());
+    const q2 = query(collection(db, 'utilizator'), where('emailUtilizator', '==', currentUser));
+    const unsub = onSnapshot(q2, (snapshot) => {
+      let userData = [];
+      snapshot.docs.forEach((doc) => {
+        userData.push(doc.data());
+      });
       setDatePersonale(userData);
     });
-
-    const unsubscribe2 = onSnapshot(query(collection(db, 'factura'), where('emailUtilizator', '==', currentUser)), (snapshot) => {
-      const items = snapshot.docs.map((doc) => doc.data());
-      setDateFactura(items);
-    });
-
     return () => {
-      unsubscribe1();
-      unsubscribe2();
+      unsub();
     };
   }, [currentUser]);
 
-  const data = [
-    { month: 'Jan', value: 200 },
-    { month: 'Feb', value: 300 },
-    { month: 'Mar', value: 150 },
-    { month: 'Apr', value: 400 },
-    { month: 'May', value: 250 },
-    { month: 'Jun', value: 500 },
-  ];
+  useEffect(() => {
+    const q2 = query(collection(db, 'factura'), where('emailUtilizator', '==', currentUser));
+    const unsub = onSnapshot(q2, (snapshot) => {
+      const items = [];
+      snapshot.forEach((doc) => {
+        items.push(doc.data());
+      });
+      setDateFactura(items);
+    });
+    return () => {
+      unsub();
+    };
+  }, [currentUser]);
+
+  // Calcularea datelor pentru graficul de tip plăcintă
+  const calculatePieChartData = () => {
+    const data = dateFactura.reduce((acc, factura) => {
+      if (factura.numeFurnizor in acc) {
+        acc[factura.numeFurnizor] += 1; // Incrementăm numărul de facturi pentru furnizorul curent
+      } else {
+        acc[factura.numeFurnizor] = 1; // Inițializăm numărul de facturi pentru un nou furnizor
+      }
+      return acc;
+    }, {});
+    return Object.entries(data).map(([numeFurnizor, numarFacturi]) => ({
+      numeFurnizor,
+      numarFacturi,
+    }));
+  };
+
+  const pieChartData = calculatePieChartData();
 
   return (
-    <div style={{ display: 'flex' }}>
-      <Navig />
-      <Paper
-        sx={{
-          height: '1000px',
-          width: '1300px',
-          borderRadius: '20px',
-          marginTop: '20px',
-          padding: '20px',
-        }}
-      >
-        <Grid container spacing={2}>
+    <>
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+        <Grid container spacing={3} justifyContent="center" alignItems="center">
           <Grid item xs={12} sm={6} md={3}>
             <Card
               sx={{
-                marginTop:'50px',
                 height: '150px',
                 borderRadius: '20px',
-                backgroundColor: 'rgb(94, 53, 177)',
-                color: 'rgb(255, 255, 255)',
+                backgroundColor: '#d1c4e9',
+                color: '#673ab7',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexDirection: 'column',
               }}
             >
-              <Avatar variant="rounded" sx={{ margin: '15px' }}>
+              <Avatar sx={{ backgroundColor: '#673ab7', marginBottom: '10px' }}>
                 <AssignmentIcon />
               </Avatar>
-              <Typography variant="h6" sx={{ fontSize: '35px', marginLeft: '20px' }} color="white">
+              <Typography variant="h6" sx={{ fontSize: '35px' }}>
                 {dateFactura.length}
               </Typography>
-              <Typography variant="h1" sx={{ fontSize: '25px', marginLeft: '15px' }}>
-                Total facturi inregistrate
+              <Typography variant="h4" sx={{ fontSize: '20px', marginTop: '10px' }}>
+                Total facturi înregistrate
               </Typography>
             </Card>
           </Grid>
-   
-          <Grid item xs={12} sm={6} md={3}>
-            <Card
-              sx={{
-                marginTop:'50px',
-                height: '150px',
-                borderRadius: '20px',
-                backgroundColor: 'rgb(94, 53, 177)',
-                color: 'rgb(255, 255, 255)',
-              }}
-            >
-              <Avatar variant="rounded" sx={{ margin: '15px' }}>
-                <AssignmentIcon />
-              </Avatar>
-              <Typography variant="h6" sx={{ fontSize: '35px', marginLeft: '20px' }} color="white">
-                {dateFactura.length}
-              </Typography>
-              <Typography variant="h1" sx={{ fontSize: '25px', marginLeft: '15px' }}>
-                Total facturi inregistrate
-              </Typography>
-            </Card>
-          </Grid>
-
-          <Grid item xs={12} sm={6} md={3}>
-            <Card
-              sx={{
-                marginTop:'50px',
-                height: '150px',
-                borderRadius: '20px',
-                backgroundColor: 'rgb(94, 53, 177)',
-                color: 'rgb(255, 255, 255)',
-              }}
-            >
-              <Avatar variant="rounded" sx={{ margin: '15px' }}>
-                <AssignmentIcon />
-              </Avatar>
-              <Typography variant="h6" sx={{ fontSize: '35px', marginLeft: '20px' }} color="white">
-                {dateFactura.length}
-              </Typography>
-              <Typography variant="h1" sx={{ fontSize: '25px', marginLeft: '15px' }}>
-                Total facturi inregistrate
-              </Typography>
-            </Card>
-          </Grid>
-
-          <Grid item xs={12} sm={6} md={3}>
-            <Card
-              sx={{
-                marginTop:'50px',
-                height: '150px',
-                borderRadius: '20px',
-                backgroundColor: 'rgb(94, 53, 177)',
-                color: 'rgb(255, 255, 255)',
-              }}
-            >
-              <Avatar variant="rounded" sx={{ margin: '15px' }}>
-                <AssignmentIcon />
-              </Avatar>
-              <Typography variant="h6" sx={{ fontSize: '35px', marginLeft: '20px' }} color="white">
-                {dateFactura.length}
-              </Typography>
-              <Typography variant="h1" sx={{ fontSize: '25px', marginLeft: '15px' }}>
-                Total facturi inregistrate
-              </Typography>
-            </Card>
-          </Grid>
-
-        
-
-
           <Grid item xs={12} sm={6} md={6}>
             <Card
               sx={{
-                marginTop:'50px',
-                height: '300px',
+                height: '400px',
                 borderRadius: '20px',
-                backgroundColor: 'transparent',
-              
-                width:'600px',
+                backgroundColor: '#d1c4e9',
+                color: '#673ab7',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexDirection: 'column',
+                padding: '20px',
               }}
             >
-              <LineChart width={550} height={300} data={data}>
-                <XAxis dataKey="month" />
-                <YAxis />
-                <CartesianGrid strokeDasharray="3 3" />
+              <Typography variant="h4" sx={{ fontSize: '20px', marginBottom: '20px' }}>
+                Distribuția facturilor pe furnizori
+              </Typography>
+              <PieChart width={400} height={300}>
+                <Pie
+                  data={pieChartData}
+                  dataKey="numarFacturi"
+                  nameKey="numeFurnizor"
+                  cx="50%"
+                  cy="50%"
+                  outerRadius={100}
+                  label={({ cx, cy, midAngle, innerRadius, outerRadius, value, index }) => {
+                    const RADIAN = Math.PI / 180;
+                    const radius = 25 + innerRadius + (outerRadius - innerRadius);
+                    const x = cx + radius * Math.cos(-midAngle * RADIAN);
+                    const y = cy + radius * Math.sin(-midAngle * RADIAN);
+                    return (
+                      <text
+                        x={x}
+                        y={y}
+                        fill="#8884d8"
+                        textAnchor={x > cx ? 'start' : 'end'}
+                        dominantBaseline="central"
+                      >
+                        {pieChartData[index].numeFurnizor}
+                      </text>
+                    );
+                  }}
+                >
+                  {pieChartData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={`#${Math.floor(Math.random() * 16777215).toString(16)}`} />
+                  ))}
+                </Pie>
                 <Tooltip />
                 <Legend />
-                <Line type="monotone" dataKey="value" stroke="#8884d8" activeDot={{ r: 8 }} />
-              </LineChart>
-            </Card>
-          </Grid>
-          <Grid item xs={12} sm={6} md={3}>
-            <Card
-              sx={{
-                height: '500px',
-                marginTop:'50px',
-                borderRadius: '20px',
-                marginLeft:'80px',
-                width:'400px',
-              }}
-            >
-              <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <StaticDateTimePicker
-                  label="Select Date"
-                  value={null}
-                  onChange={() => {}}
-                  renderInput={(params) => <TextField {...params} />}
-                />
-              </LocalizationProvider>
+              </PieChart>
             </Card>
           </Grid>
         </Grid>
-      </Paper>
-    </div>
+      </div>
+    </>
   );
 };
 
