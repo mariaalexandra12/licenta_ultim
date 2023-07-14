@@ -215,7 +215,7 @@ const [navOpen, setNavOpen] = useState(true);
               <ListItem onClick={() => navigate('/dash')} >
                 <Tooltip title='Acasa'>
                 <ListItemButton  >
-                  <ListItemIcon style={{ color: 'rgba(138, 5, 186)' }}>
+                  <ListItemIcon style={{ color: '#283593' }}>
                     <HomeIcon />
                   </ListItemIcon>
                   <ListItemText style={{ color: 'black' }}>Acasa</ListItemText>
@@ -227,7 +227,7 @@ const [navOpen, setNavOpen] = useState(true);
                 <ListItem onClick={() => navigate('/facturi')}>
                   <Tooltip title='Facturi'>
                   <ListItemButton >
-                    <ListItemIcon style={{ color: 'rgba(138, 5, 186)' }}>
+                    <ListItemIcon style={{ color: '#283593' }}>
                       <ReceiptIcon />
                     </ListItemIcon>
                     <ListItemText style={{ color: 'black', fontFamily: 'Goudy Bookletter 1911", sans-serif' }}>
@@ -243,7 +243,7 @@ const [navOpen, setNavOpen] = useState(true);
                 <ListItem onClick={() => navigate('/adaugaFacturi')}>
                   <Tooltip title='Adauga facturi'>
                   <ListItemButton>
-                    <ListItemIcon style={{ color: 'rgba(138, 5, 186)' }}>
+                    <ListItemIcon style={{ color: '#283593' }}>
                       <AddCircleOutlineRoundedIcon />
                     </ListItemIcon>
                     <ListItemText style={{ color: 'black', fontFamily: 'Goudy Bookletter 1911", sans-serif' }}>
@@ -259,7 +259,7 @@ const [navOpen, setNavOpen] = useState(true);
                 <ListItem onClick={() => navigate('/analiza')}>
                   <Tooltip title='Analiza'>
                   <ListItemButton>
-                    <ListItemIcon style={{ color: 'rgba(138, 5, 186)' }}>
+                    <ListItemIcon style={{ color: '#283593' }}>
                       <AssessmentRoundedIcon />
                     </ListItemIcon>
                     <ListItemText
@@ -283,7 +283,7 @@ const [navOpen, setNavOpen] = useState(true);
                   <ListItem onClick={() => navigate('/contPers')}>
                     <Tooltip title='Cont personal'>
                     <ListItemButton>
-                      <ListItemIcon style={{ color: 'rgba(138, 5, 186)' }}>
+                      <ListItemIcon style={{ color: '#283593' }}>
                         <Face6Icon />
                       </ListItemIcon>
                       <ListItemText
@@ -302,7 +302,7 @@ const [navOpen, setNavOpen] = useState(true);
                   <ListItem onClick={() => navigate('/contFirma')}>
                     <Tooltip title='Cont firma'>
                     <ListItemButton>
-                      <ListItemIcon style={{ color: 'rgba(138, 5, 186)' }}>
+                      <ListItemIcon style={{ color: '#283593' }}>
                         <Face6Icon />
                       </ListItemIcon>
                       <ListItemText
@@ -340,7 +340,7 @@ const [navOpen, setNavOpen] = useState(true);
                       </DialogActions>
                     </Dialog>
 
-                    <ListItemIcon style={{ color: 'rgba(138, 5, 186)' }}>
+                    <ListItemIcon style={{ color: '#283593' }}>
                       <LogoutIcon />
                     </ListItemIcon>
                     <ListItemText

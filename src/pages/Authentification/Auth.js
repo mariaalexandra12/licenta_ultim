@@ -160,12 +160,13 @@ function Auth(){
                 
 
             <Paper elevation={24} style={{
-               marginLeft:"100px",
+               marginLeft:"50px",
                marginTop:'80px',
-               width:"400px",
+               width:"450px",
                height:'500px',
                padding:"10px",
-               backgroundColor:'#EDE7F6',
+               borderRadius:'30px',
+               backgroundColor:'#E3F2FD',
                boxShadow:'0 8px 32px 0 rgba( 31, 38, 135, 0.37 )', 
                backdropFilter:' blur( 11px )',
                WebkitBackdropFilter:' blur( 11px )',
@@ -187,10 +188,10 @@ function Auth(){
              flexDirection: 'column',
              alignItems: 'center',
             }}>
-           <Avatar sx={{ m: 1,bgcolor:'secondary.main' }}>
+           <Avatar sx={{ m: 1,bgcolor:'#283593' }}>
              <LockOutlinedIcon />
             </Avatar>
-           <Typography component="h1" variant="h5" color="secondary">
+           <Typography component="h1" variant="h5" color='#283593' >
             Conectează-te
           </Typography>
 
@@ -248,8 +249,7 @@ function Auth(){
             
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-              color="secondary"
+              sx={{ mt: 3, mb: 2,bgcolor:'#283593' }}
               onClick={handleSubmit}
           >
               Intra in cont
@@ -260,12 +260,12 @@ function Auth(){
             marginLeft:'90px'
           }}>
               <Grid item xs>
-                <Link href="/forget" color="secondary" underline="hover">
+                <Link href="/forget" color='#283593' underline="hover">
                   Ai uitat parola?
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="/signUp" color="secondary" underline="hover">
+                <Link href="/signUp" color='#283593' underline="hover" >
                   {"Nu ai un cont?Creeaza-ti unul!"}
                 </Link>
               </Grid>
