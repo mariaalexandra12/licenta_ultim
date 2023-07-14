@@ -49,7 +49,7 @@ const Dashboard = () => {
       <Paper
         sx={{
           height: '1000px',
-          width: '1240px',
+          width: '1300px',
           borderRadius: '20px',
           marginTop: '20px',
           padding: '20px',
@@ -59,6 +59,7 @@ const Dashboard = () => {
           <Grid item xs={12} sm={6} md={3}>
             <Card
               sx={{
+                marginTop:'50px',
                 height: '150px',
                 borderRadius: '20px',
                 backgroundColor: 'rgb(94, 53, 177)',
@@ -76,16 +77,88 @@ const Dashboard = () => {
               </Typography>
             </Card>
           </Grid>
-          {/* Add three more cards similar to the one above */}
+   
+          <Grid item xs={12} sm={6} md={3}>
+            <Card
+              sx={{
+                marginTop:'50px',
+                height: '150px',
+                borderRadius: '20px',
+                backgroundColor: 'rgb(94, 53, 177)',
+                color: 'rgb(255, 255, 255)',
+              }}
+            >
+              <Avatar variant="rounded" sx={{ margin: '15px' }}>
+                <AssignmentIcon />
+              </Avatar>
+              <Typography variant="h6" sx={{ fontSize: '35px', marginLeft: '20px' }} color="white">
+                {dateFactura.length}
+              </Typography>
+              <Typography variant="h1" sx={{ fontSize: '25px', marginLeft: '15px' }}>
+                Total facturi inregistrate
+              </Typography>
+            </Card>
+          </Grid>
+
+          <Grid item xs={12} sm={6} md={3}>
+            <Card
+              sx={{
+                marginTop:'50px',
+                height: '150px',
+                borderRadius: '20px',
+                backgroundColor: 'rgb(94, 53, 177)',
+                color: 'rgb(255, 255, 255)',
+              }}
+            >
+              <Avatar variant="rounded" sx={{ margin: '15px' }}>
+                <AssignmentIcon />
+              </Avatar>
+              <Typography variant="h6" sx={{ fontSize: '35px', marginLeft: '20px' }} color="white">
+                {dateFactura.length}
+              </Typography>
+              <Typography variant="h1" sx={{ fontSize: '25px', marginLeft: '15px' }}>
+                Total facturi inregistrate
+              </Typography>
+            </Card>
+          </Grid>
+
+          <Grid item xs={12} sm={6} md={3}>
+            <Card
+              sx={{
+                marginTop:'50px',
+                height: '150px',
+                borderRadius: '20px',
+                backgroundColor: 'rgb(94, 53, 177)',
+                color: 'rgb(255, 255, 255)',
+              }}
+            >
+              <Avatar variant="rounded" sx={{ margin: '15px' }}>
+                <AssignmentIcon />
+              </Avatar>
+              <Typography variant="h6" sx={{ fontSize: '35px', marginLeft: '20px' }} color="white">
+                {dateFactura.length}
+              </Typography>
+              <Typography variant="h1" sx={{ fontSize: '25px', marginLeft: '15px' }}>
+                Total facturi inregistrate
+              </Typography>
+            </Card>
+          </Grid>
+
+        
+
+
           <Grid item xs={12} sm={6} md={6}>
             <Card
               sx={{
+                marginTop:'50px',
                 height: '300px',
                 borderRadius: '20px',
-                backgroundColor: 'white',
+                backgroundColor: 'transparent',
+              
+                width:'600px',
               }}
             >
-              <LineChart width={500} height={300} data={data}>
+              <LineChart width={550} height={300} data={data}>
                 <XAxis dataKey="month" />
                 <YAxis />
                 <CartesianGrid strokeDasharray="3 3" />
@@ -98,9 +171,11 @@ const Dashboard = () => {
           <Grid item xs={12} sm={6} md={3}>
             <Card
               sx={{
-                height: '300px',
+                height: '500px',
+                marginTop:'50px',
                 borderRadius: '20px',
-                backgroundColor: 'white',
+                marginLeft:'80px',
+                width:'400px',
               }}
             >
               <LocalizationProvider dateAdapter={AdapterDayjs}>
