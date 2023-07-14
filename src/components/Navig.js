@@ -188,7 +188,7 @@ const [navOpen, setNavOpen] = useState(true);
           <AppBar position="fixed" open={open} >
         <Toolbar>
           <IconButton
-            color='#283593'
+            color="#283593"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
@@ -199,7 +199,7 @@ const [navOpen, setNavOpen] = useState(true);
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div" color='#283593'>
+          <Typography variant="h6" noWrap component="div" color='secondary'>
             Invoice Reader Application
           </Typography>
         </Toolbar>
