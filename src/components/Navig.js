@@ -132,7 +132,18 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
+const useStyles = makeStyles((theme) => ({
+  listItem: {
+    '&:hover': {
+      backgroundColor: '#BBDEFB',
+      borderRadius: '10px',
+    },
+  },
+}));
+
 export default function Navig() {
+  
+ 
 const [navOpen, setNavOpen] = useState(true); 
   const [openAlert, setOpenAlert] = React.useState(true);
   const { currentUser } = useUserAuth();
@@ -205,15 +216,19 @@ const [navOpen, setNavOpen] = useState(true);
           </Typography>
         </Toolbar>
       </AppBar>
-      <Drawer className="drawerNavig" variant="permanent" open={open} sx={{bgcolor:'#E3F2FD'}}>
+      <Drawer className="drawerNavig" variant="permanent" open={open} color='#E3F2FD'>
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
         </DrawerHeader>
 
-            <List>
-              <ListItem onClick={() => navigate('/dash')} >
+            <List >
+              <ListItem onClick={() => navigate('/dash')} sx={{
+                '&:hover': {
+      backgroundColor: '#90CAF9',
+      borderRadius: '300px',
+           },}} >
                 <Tooltip title='Acasa'>
                 <ListItemButton  >
                   <ListItemIcon style={{ color: '#283593' }}>
@@ -225,7 +240,12 @@ const [navOpen, setNavOpen] = useState(true);
               </ListItem>
 
               <div className="facturiButton">
-                <ListItem onClick={() => navigate('/facturi')}>
+                <ListItem onClick={() => navigate('/facturi')}
+                sx={{
+                  '&:hover': {
+        backgroundColor: '#64B5F6',
+        borderRadius: '10px',
+             },}}  >
                   <Tooltip title='Facturi'>
                   <ListItemButton >
                     <ListItemIcon style={{ color: '#283593' }}>
@@ -239,7 +259,12 @@ const [navOpen, setNavOpen] = useState(true);
      
 
               <div className="adaugaButton">
-                <ListItem onClick={() => navigate('/adaugaFacturi')}>
+                <ListItem onClick={() => navigate('/adaugaFacturi')} 
+                sx={{
+                  '&:hover': {
+        backgroundColor: '#64B5F6',
+        borderRadius: '10px',
+             },}} >
                   <Tooltip title='Adauga facturi'>
                   <ListItemButton>
                     <ListItemIcon style={{ color: '#283593' }}>
@@ -253,7 +278,12 @@ const [navOpen, setNavOpen] = useState(true);
          
 
               <div className="analizaButton">
-                <ListItem onClick={() => navigate('/analiza')}>
+                <ListItem onClick={() => navigate('/analiza')}
+                sx={{
+                  '&:hover': {
+        backgroundColor: '#64B5F6',
+        borderRadius: '10px',
+             },}} >
                   <Tooltip title='Analiza'>
                   <ListItemButton>
                     <ListItemIcon style={{ color: '#283593' }}>
@@ -269,7 +299,12 @@ const [navOpen, setNavOpen] = useState(true);
 
               {existaPers ? (
                 <div className="contPersButton">
-                  <ListItem onClick={() => navigate('/contPers')}>
+                  <ListItem onClick={() => navigate('/contPers')}
+                  sx={{
+                    '&:hover': {
+          backgroundColor: '#64B5F6',
+          borderRadius: '10px',
+               },}} >
                     <Tooltip title='Cont personal'>
                     <ListItemButton>
                       <ListItemIcon style={{ color: '#283593' }}>
@@ -282,7 +317,12 @@ const [navOpen, setNavOpen] = useState(true);
                 </div>
               ) : (
                 <div className="contFirmaButton">
-                  <ListItem onClick={() => navigate('/contFirma')}>
+                  <ListItem onClick={() => navigate('/contFirma')}
+                  sx={{
+                    '&:hover': {
+          backgroundColor: '#64B5F6',
+          borderRadius: '10px',
+               },}} >
                     <Tooltip title='Cont firma'>
                     <ListItemButton>
                       <ListItemIcon style={{ color: '#283593' }}>
@@ -297,7 +337,12 @@ const [navOpen, setNavOpen] = useState(true);
 
             
               <div className="logoutButton">
-                <ListItem onClick={handleClickOpen} style={{ marginTop: '150px'}}>
+                <ListItem onClick={handleClickOpen} style={{ marginTop: '150px'}}
+                sx={{
+                  '&:hover': {
+        backgroundColor: '#64B5F6',
+        borderRadius: '10px',
+             },}} >
                   <ListItemButton>
                     <Dialog TransitionComponent={Transition} open={openDialog} aria-describedby="alert-dialog-slide-description">
                       <DialogTitle>{"Te deconectezi?"}</DialogTitle>
