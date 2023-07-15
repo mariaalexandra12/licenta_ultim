@@ -90,6 +90,8 @@ const Analiza = () => {
   }
 
   function generateCharts(dataScadenta, numeFurnizor, tipFactura, valoareTotala) {
+    const furnizoriUnici = [...new Set(numeFurnizor)]; // Am adăugat declarația pentru furnizoriUnici
+
     const dataPie = [
       {
         labels: numeFurnizor,
@@ -121,6 +123,80 @@ const Analiza = () => {
       },
     };
 
+    const dataLine = [
+      {
+        x: dataScadenta,
+        y: valoareTotala,
+        type: 'line',
+      },
+    ];
+
+    const layoutLine = {
+      title: 'Graficul Linie',
+      xaxis: {
+        title: 'Data Scadenței',
+      },
+      yaxis: {
+        title: 'Valoare Totală',
+      },
+    };
+
+    const dataRadar = [
+      {
+        r: valoareTotala,
+        theta: furnizoriUnici,
+        fill: 'toself',
+        type: 'scatterpolar',
+      },
+    ];
+
+    const layoutRadar = {
+      polar: {
+        radialaxis: {
+          visible: true,
+          range: [0, Math.max(...valoareTotala)],
+        },
+      },
+      title: 'Distribuția valorii totale a facturilor în funcție de furnizori',
+    };
+
+    const dataScatter2 = [
+      {
+        x: tipFactura,
+        y: valoareTotala,
+        mode: 'markers',
+        type: 'scatter',
+      },
+    ];
+
+    const layoutScatter2 = {
+      title: 'Valoarea totală a facturilor în funcție de tipul facturii',
+      xaxis: {
+        title: 'Tipul Facturii',
+      },
+      yaxis: {
+        title: 'Valoare Totală',
+      },
+    };
+
+    const dataBar2 = [
+      {
+        x: tipFactura,
+        y: valoareTotala,
+        type: 'bar',
+      },
+    ];
+
+    const layoutBar2 = {
+      title: 'Valoarea totală a facturilor în funcție de tipul facturii',
+      xaxis: {
+        title: 'Tipul Facturii',
+      },
+      yaxis: {
+        title: 'Valoare Totală',
+      },
+    };
+
     return (
       <>
         <Box sx={{ marginTop: '100px', display: 'flex' }}>
@@ -142,20 +218,37 @@ const Analiza = () => {
         </Box>
 
         <Box sx={{ marginTop: '100px', display: 'flex' }}>
-          {/* Graficul 4 */}
           <Paper elevation={24} className="paperDiv">
-            {/* Adaugă componenta Plot pentru al patrulea grafic aici */}
+            <Plot
+              data={dataLine}
+              layout={layoutLine}
+            />
           </Paper>
 
-          {/* Graficul 5 */}
           <Paper elevation={24} className="paperDiv">
-            {/* Adaugă componenta Plot pentru al cincilea grafic aici */}
+            <Plot
+              data={dataRadar}
+              layout={layoutRadar}
+            />
           </Paper>
 
-          {/* Graficul 6 */}
           <Paper elevation={24} className="paperDiv">
-            {/* Adaugă componenta Plot pentru al șaselea grafic aici */}
+            <Plot
+              data={dataScatter2}
+              layout={layoutScatter2}
+            />
           </Paper>
+        </Box>
+
+        <Box sx={{ marginTop: '100px', display: 'flex' }}>
+          <Paper elevation={24} className="paperDiv">
+            <Plot
+              data={dataBar2}
+              layout={layoutBar2}
+            />
+          </Paper>
+
+          {/* Adaugă celelalte două grafice aici */}
         </Box>
       </>
     );
