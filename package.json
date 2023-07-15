@@ -39,6 +39,7 @@
     "react-draggable": "^4.4.5",
     "react-dropzone": "^14.2.3",
     "react-hook-form": "^7.45.0",
+    "react-id-swiper": "^4.0.0",
     "react-pdf": "^7.0.3",
     "react-plotly.js": "^2.6.0",
     "react-router-dom": "^6.11.2",
