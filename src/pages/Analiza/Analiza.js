@@ -33,20 +33,43 @@ const Analiza = () => {
   }, [currentUser]);
 
   useEffect(() => {
-    const dataScadenta = [];
-    const numeFurnizor = [];
-    const tipFactura = [];
-    const valoareTotala = [];
+    if (dateFactura.length > 0) {
+      const storedData = JSON.parse(localStorage.getItem('chartData'));
 
-    dateFactura.forEach((fact) => {
-      dataScadenta.push(fact['dataScadenta']);
-      numeFurnizor.push(fact['numeFurnizor']);
-      tipFactura.push(fact['tipFactura']);
-      valoareTotala.push(fact['valoareTotala']);
-    });
+      if (storedData) {
+        setDataScadenta(storedData.dataScadenta);
+        setTipFactura(storedData.tipFactura);
+        setValoareTotala(storedData.valoareTotala);
+        setNumeFurnizor(storedData.numeFurnizor);
+      } else {
+        const dataScadenta = [];
+        const tipFactura = [];
+        const valoareTotala = [];
+        const numeFurnizor = [];
 
-    generateCharts(dataScadenta, numeFurnizor, tipFactura, valoareTotala);
-  }, []);
+        dateFactura.forEach((fact) => {
+          dataScadenta.push(fact['dataScadenta']);
+          numeFurnizor.push(fact['numeFurnizor']);
+          tipFactura.push(fact['tipFactura']);
+          valoareTotala.push(fact['valoareTotala']);
+        });
+
+        setDataScadenta(dataScadenta);
+        setTipFactura(tipFactura);
+        setValoareTotala(valoareTotala);
+        setNumeFurnizor(numeFurnizor);
+
+        const chartData = {
+          dataScadenta,
+          tipFactura,
+          valoareTotala,
+          numeFurnizor,
+        };
+
+        localStorage.setItem('chartData', JSON.stringify(chartData));
+      }
+    }
+  }, [dateFactura]);
 
   useEffect(() => {
     console.log(dataScadenta);
@@ -99,222 +122,198 @@ const Analiza = () => {
     );
   }
 
-  function generateCharts(dataScadenta, numeFurnizor, tipFactura, valoareTotala) {
-    const furnizoriUnici = [...new Set(numeFurnizor)]; // Am adăugat declarația pentru furnizoriUnici
-
-    const dataPie = [
-      {
-        labels: numeFurnizor,
-        values: valoareTotala,
-        type: 'pie',
-        marker: {
-          colors: ['#4287f5', '#42f57f', '#f54287', '#f5a742', '#8742f5', '#f54242'],
-        },
+  const dataPie = [
+    {
+      labels: numeFurnizor,
+      values: valoareTotala,
+      type: 'pie',
+      marker: {
+        colors: ['#4287f5', '#42f57f', '#f54287', '#f5a742', '#8742f5', '#f54242'],
       },
-    ];
+    },
+  ];
 
-    const layoutPie = {
-      title: 'Valoarea totală a facturilor în funcție de furnizori',
-    };
+  const layoutPie = {
+    title: 'Valoarea totală a facturilor în funcție de furnizori',
+  };
 
-    const dataScatter = [
-      {
-        x: dataScadenta,
-        y: valoareTotala,
-        mode: 'markers',
-        type: 'scatter',
-        marker: {
-          color: '#f54242',
-        },
+  const dataScatter = [
+    {
+      x: dataScadenta,
+      y: valoareTotala,
+      mode: 'markers',
+      type: 'scatter',
+      marker: {
+        color: '#f54242',
       },
-    ];
+    },
+  ];
 
-    const layoutScatter = {
-      title: 'Valoarea totală a facturilor în funcție de data scadenței',
-      xaxis: {
-        title: 'Data Scadenței',
+  const layoutScatter = {
+    title: 'Valoarea totală a facturilor în funcție de data scadenței',
+    xaxis: {
+      title: 'Data Scadenței',
+    },
+    yaxis: {
+      title: 'Valoare Totală',
+    },
+  };
+
+  const dataLine = [
+    {
+      x: dataScadenta,
+      y: valoareTotala,
+      type: 'line',
+      marker: {
+        color: '#42f57f',
       },
-      yaxis: {
-        title: 'Valoare Totală',
+    },
+  ];
+
+  const layoutLine = {
+    title: 'Graficul Linie',
+    xaxis: {
+      title: 'Data Scadenței',
+    },
+    yaxis: {
+      title: 'Valoare Totală',
+    },
+  };
+
+  const dataRadar = [
+    {
+      r: valoareTotala,
+      theta: numeFurnizor,
+      fill: 'toself',
+      type: 'scatterpolar',
+      marker: {
+        color: '#8742f5',
       },
-    };
+    },
+  ];
 
-    const dataLine = [
-      {
-        x: dataScadenta,
-        y: valoareTotala,
-        type: 'line',
-        marker: {
-          color: '#42f57f',
-        },
+  const layoutRadar = {
+    polar: {
+      radialaxis: {
+        visible: true,
+        range: [0, Math.max(...valoareTotala)],
       },
-    ];
+    },
+    title: 'Distribuția valorii totale a facturilor în funcție de furnizori',
+  };
 
-    const layoutLine = {
-      title: 'Graficul Linie',
-      xaxis: {
-        title: 'Data Scadenței',
+  const dataScatter2 = [
+    {
+      x: tipFactura,
+      y: valoareTotala,
+      mode: 'markers',
+      type: 'scatter',
+      marker: {
+        color: '#f5a742',
       },
-      yaxis: {
-        title: 'Valoare Totală',
+    },
+  ];
+
+  const layoutScatter2 = {
+    title: 'Valoarea totală a facturilor în funcție de tipul facturii',
+    xaxis: {
+      title: 'Tipul Facturii',
+    },
+    yaxis: {
+      title: 'Valoare Totală',
+    },
+  };
+
+  const dataBar2 = [
+    {
+      x: tipFactura,
+      y: valoareTotala,
+      type: 'bar',
+      marker: {
+        color: '#4287f5',
       },
-    };
+    },
+  ];
 
-    const dataRadar = [
-      {
-        r: valoareTotala,
-        theta: furnizoriUnici,
-        fill: 'toself',
-        type: 'scatterpolar',
-        marker: {
-          color: '#8742f5',
-        },
+  const layoutBar2 = {
+    title: 'Valoarea totală a facturilor în funcție de tipul facturii',
+    xaxis: {
+      title: 'Tipul Facturii',
+    },
+    yaxis: {
+      title: 'Valoare Totală',
+    },
+  };
+
+  const dataRose = [
+    {
+      r: valoareTotala,
+      theta: numeFurnizor,
+      type: 'scatterpolar',
+      mode: 'markers',
+      marker: {
+        color: '#f54287',
       },
-    ];
+    },
+  ];
 
-    const layoutRadar = {
-      polar: {
-        radialaxis: {
-          visible: true,
-          range: [0, Math.max(...valoareTotala)],
-        },
+  const layoutRose = {
+    polar: {
+      radialaxis: {
+        visible: true,
+        range: [0, Math.max(...valoareTotala)],
       },
-      title: 'Distribuția valorii totale a facturilor în funcție de furnizori',
-    };
-
-    const dataScatter2 = [
-      {
-        x: tipFactura,
-        y: valoareTotala,
-        mode: 'markers',
-        type: 'scatter',
-        marker: {
-          color: '#f5a742',
-        },
-      },
-    ];
-
-    const layoutScatter2 = {
-      title: 'Valoarea totală a facturilor în funcție de tipul facturii',
-      xaxis: {
-        title: 'Tipul Facturii',
-      },
-      yaxis: {
-        title: 'Valoare Totală',
-      },
-    };
-
-    const dataBar2 = [
-      {
-        x: tipFactura,
-        y: valoareTotala,
-        type: 'bar',
-        marker: {
-          color: '#4287f5',
-        },
-      },
-    ];
-
-    const layoutBar2 = {
-      title: 'Valoarea totală a facturilor în funcție de tipul facturii',
-      xaxis: {
-        title: 'Tipul Facturii',
-      },
-      yaxis: {
-        title: 'Valoare Totală',
-      },
-    };
-
-    const dataRose = [
-      {
-        r: valoareTotala,
-        theta: numeFurnizor,
-        type: 'scatterpolar',
-        mode: 'markers',
-        marker: {
-          color: '#f54287',
-        },
-      },
-    ];
-
-    const layoutRose = {
-      polar: {
-        radialaxis: {
-          visible: true,
-          range: [0, Math.max(...valoareTotala)],
-        },
-      },
-      title: 'Distribuția valorii totale a facturilor în funcție de furnizori (Graficul Trandafir)',
-    };
-
-    return (
-      <>
-        <Box sx={{ marginTop: '100px', display: 'flex' }}>
-          <div className="chartDiv">{createPlotlyCharts(dataScadenta, valoareTotala, numeFurnizor)}</div>
-
-          <Paper elevation={24} className="paperDiv">
-            <Plot
-              data={dataPie}
-              layout={layoutPie}
-            />
-          </Paper>
-
-          <Paper elevation={24} className="paperDiv">
-            <Plot
-              data={dataScatter}
-              layout={layoutScatter}
-            />
-          </Paper>
-        </Box>
-
-        <Box sx={{ marginTop: '100px', display: 'flex' }}>
-          <Paper elevation={24} className="paperDiv">
-            <Plot
-              data={dataLine}
-              layout={layoutLine}
-            />
-          </Paper>
-
-          <Paper elevation={24} className="paperDiv">
-            <Plot
-              data={dataRadar}
-              layout={layoutRadar}
-            />
-          </Paper>
-
-          <Paper elevation={24} className="paperDiv">
-            <Plot
-              data={dataScatter2}
-              layout={layoutScatter2}
-            />
-          </Paper>
-        </Box>
-
-        <Box sx={{ marginTop: '100px', display: 'flex' }}>
-          <Paper elevation={24} className="paperDiv">
-            <Plot
-              data={dataBar2}
-              layout={layoutBar2}
-            />
-          </Paper>
-
-          <Paper elevation={24} className="paperDiv">
-            <Plot
-              data={dataRose}
-              layout={layoutRose}
-            />
-          </Paper>
-        </Box>
-      </>
-    );
-  }
-
+    },
+    title: 'Distribuția valorii totale a facturilor în funcție de furnizori (Graficul Trandafir)',
+  };
 
   return (
     <>
-      <Box sx={{ display: 'flex' }}>
+      <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
         <Navig />
-        {generateCharts(dataScadenta, numeFurnizor, tipFactura, valoareTotala)}
+        <div className="chartDiv">{createPlotlyCharts(dataScadenta, valoareTotala, numeFurnizor)}</div>
+        <Paper elevation={24} className="paperDiv" sx={{ marginLeft: '50px' }}>
+          <Plot
+            data={dataPie}
+            layout={layoutPie}
+          />
+        </Paper>
+        <Paper elevation={24} className="paperDiv">
+          <Plot
+            data={dataScatter}
+            layout={layoutScatter}
+          />
+        </Paper>
+        <Paper elevation={24} className="paperDiv">
+          <Plot
+            data={dataLine}
+            layout={layoutLine}
+          />
+        </Paper>
+        <Paper elevation={24} className="paperDiv">
+          <Plot
+            data={dataRadar}
+            layout={layoutRadar}
+          />
+        </Paper>
+        <Paper elevation={24} className="paperDiv">
+          <Plot
+            data={dataScatter2}
+            layout={layoutScatter2}
+          />
+        </Paper>
+        <Paper elevation={24} className="paperDiv">
+          <Plot
+            data={dataBar2}
+            layout={layoutBar2}
+          />
+        </Paper>
+        <Paper elevation={24} className="paperDiv">
+          <Plot
+            data={dataRose}
+            layout={layoutRose}
+          />
+        </Paper>
       </Box>
     </>
   );
