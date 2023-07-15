@@ -378,11 +378,11 @@ export default function SignUpPers() {
       height:'full',
       color:"primary",
       padding:"10px",
-      background: 'rgba( 186, 152, 224, 0.7 )',
+      borderRadius:'50px',
+      backgroundColor:'#E3F2FD',
       boxShadow:'0 8px 32px 0 rgba( 31, 38, 135, 0.37 )', 
       backdropFilter:' blur( 11px )',
       WebkitBackdropFilter:' blur( 11px )',
-      borderRadius:' 50px',
       border: '1px solid rgba( 255, 255, 255, 0.18 )',}} square="true">
       <Container component="main" maxWidth="xs">
         <CssBaseline />
@@ -394,7 +394,7 @@ export default function SignUpPers() {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          <Avatar sx={{ m: 1, bgcolor: '#283593' }}>
             <BusinessIcon />
           </Avatar>
           <Typography component="h1" style={{fontSize:'20px'}} variant='h6'>
@@ -621,8 +621,7 @@ export default function SignUpPers() {
             <Button
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-              color="secondary"
+              sx={{ mt: 3, mb: 2 ,bgcolor:'#283593'}}
               onClick={handleSubmit}
             >
               Intra in cont
@@ -631,7 +630,7 @@ export default function SignUpPers() {
             </form>
             <Grid container justifyContent="center">
               <Grid item>
-                <Link href="/" color="secondary" underline='hover'>
+                <Link href="/"  underline='hover'>
                   Ai deja un cont? Intra in cont!
                 </Link>
                 <p style={{fontSize:'15px',opacity:'0.6'}}

@@ -16,7 +16,7 @@ import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import DescriptionIcon from '@mui/icons-material/Description';
 import PaidIcon from '@mui/icons-material/Paid';
-import { PieChart } from '@mui/x-charts/PieChart';
+import { PieChart } from '@mui/x-charts';
 
 const Dashboard = () => {
   const { currentUser }=useUserAuth();
@@ -203,17 +203,16 @@ const Dashboard = () => {
           <Grid item xs={12} sm={6} md={2.5}>
             <Card
               sx={{
-                width:'300',
-                height: '300px',
+                width:'400',
+                height: '400px',
                 borderRadius: '20px',
-                backgroundColor: 'transparent',
+                backgroundColor: 'red',
                 color: '#311B92',
               }}
             >
               <CardContent>
           <PieChart
-      series={[
-        
+      series={[   
         {
           data: pieChartData,
           cx: 500,
