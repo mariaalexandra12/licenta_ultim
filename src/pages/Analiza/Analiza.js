@@ -68,6 +68,9 @@ const Analiza = () => {
         x: furnizoriUnici,
         y: valoriFurnizori,
         type: 'bar',
+        marker: {
+          color: '#4287f5',
+        },
       },
     ];
 
@@ -97,6 +100,9 @@ const Analiza = () => {
         labels: numeFurnizor,
         values: valoareTotala,
         type: 'pie',
+        marker: {
+          colors: ['#4287f5', '#42f57f', '#f54287', '#f5a742', '#8742f5', '#f54242'],
+        },
       },
     ];
 
@@ -110,6 +116,9 @@ const Analiza = () => {
         y: valoareTotala,
         mode: 'markers',
         type: 'scatter',
+        marker: {
+          color: '#f54242',
+        },
       },
     ];
 
@@ -128,6 +137,9 @@ const Analiza = () => {
         x: dataScadenta,
         y: valoareTotala,
         type: 'line',
+        marker: {
+          color: '#42f57f',
+        },
       },
     ];
 
@@ -147,6 +159,9 @@ const Analiza = () => {
         theta: furnizoriUnici,
         fill: 'toself',
         type: 'scatterpolar',
+        marker: {
+          color: '#8742f5',
+        },
       },
     ];
 
@@ -166,6 +181,9 @@ const Analiza = () => {
         y: valoareTotala,
         mode: 'markers',
         type: 'scatter',
+        marker: {
+          color: '#f5a742',
+        },
       },
     ];
 
@@ -184,6 +202,9 @@ const Analiza = () => {
         x: tipFactura,
         y: valoareTotala,
         type: 'bar',
+        marker: {
+          color: '#4287f5',
+        },
       },
     ];
 
@@ -195,6 +216,28 @@ const Analiza = () => {
       yaxis: {
         title: 'Valoare Totală',
       },
+    };
+
+    const dataRose = [
+      {
+        r: valoareTotala,
+        theta: numeFurnizor,
+        type: 'scatterpolar',
+        mode: 'markers',
+        marker: {
+          color: '#f54287',
+        },
+      },
+    ];
+
+    const layoutRose = {
+      polar: {
+        radialaxis: {
+          visible: true,
+          range: [0, Math.max(...valoareTotala)],
+        },
+      },
+      title: 'Distribuția valorii totale a facturilor în funcție de furnizori (Graficul Trandafir)',
     };
 
     return (
@@ -248,7 +291,12 @@ const Analiza = () => {
             />
           </Paper>
 
-          {/* Adaugă celelalte două grafice aici */}
+          <Paper elevation={24} className="paperDiv">
+            <Plot
+              data={dataRose}
+              layout={layoutRose}
+            />
+          </Paper>
         </Box>
       </>
     );
