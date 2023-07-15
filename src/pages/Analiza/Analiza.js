@@ -275,7 +275,7 @@ const Analiza = () => {
         range: [0, Math.max(...valoareTotala)],
       },
     },
-    title: 'Distribuția valorii totale a facturilor în funcție de furnizori (Graficul Trandafir)',
+    title: 'Distribuția valorii totale a facturilor în funcție de furnizori',
   };
 
   return (
