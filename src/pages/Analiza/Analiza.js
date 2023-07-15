@@ -4,8 +4,8 @@ import { Box, Paper } from '@mui/material';
 import { useUserAuth } from '../../context/userAuthContext';
 import { collection, query, where, onSnapshot } from 'firebase/firestore';
 import { db } from '../../firebaseUtils/firebase_ut';
-import Plotly from 'plotly.js/dist/plotly';
-import './analiza.css'
+import Plot from 'react-plotly.js';
+import './analiza.css';
 
 const Analiza = () => {
   const { currentUser } = useUserAuth();
@@ -33,6 +33,11 @@ const Analiza = () => {
   }, [currentUser]);
 
   useEffect(() => {
+    const dataScadenta = [];
+    const numeFurnizor = [];
+    const tipFactura = [];
+    const valoareTotala = [];
+
     dateFactura.forEach((fact) => {
       dataScadenta.push(fact['dataScadenta']);
       numeFurnizor.push(fact['numeFurnizor']);
@@ -40,10 +45,10 @@ const Analiza = () => {
       valoareTotala.push(fact['valoareTotala']);
     });
 
-    generateCharts();
+    generateCharts(dataScadenta, numeFurnizor, tipFactura, valoareTotala);
   }, [dateFactura]);
 
-  function createPlotlyCharts(dataScadenta, valoareTotala, tipFactura, numeFurnizor) {
+  function createPlotlyCharts(dataScadenta, valoareTotala, numeFurnizor) {
     const furnizoriUnici = [...new Set(numeFurnizor)];
     const valoriFurnizori = [];
 
@@ -58,7 +63,7 @@ const Analiza = () => {
       valoriFurnizori.push(totalValoare);
     });
 
-    const data = [
+    const dataBar = [
       {
         x: furnizoriUnici,
         y: valoriFurnizori,
@@ -66,7 +71,7 @@ const Analiza = () => {
       },
     ];
 
-    const layout = {
+    const layoutBar = {
       title: 'Valoarea totală a facturilor în funcție de furnizori',
       xaxis: {
         title: 'Furnizor',
@@ -76,10 +81,15 @@ const Analiza = () => {
       },
     };
 
-    Plotly.newPlot('chartDiv', data, layout);
+    return (
+      <Plot
+        data={dataBar}
+        layout={layoutBar}
+      />
+    );
   }
 
-  function generateCharts() {
+  function generateCharts(dataScadenta, numeFurnizor, tipFactura, valoareTotala) {
     const dataPie = [
       {
         labels: numeFurnizor,
@@ -89,10 +99,8 @@ const Analiza = () => {
     ];
 
     const layoutPie = {
-      title: 'Valoarea totală a facturilor în funcție de furnizori ',
+      title: 'Valoarea totală a facturilor în funcție de furnizori',
     };
-
-    Plotly.newPlot('chartDivPie', dataPie, layoutPie);
 
     const dataScatter = [
       {
@@ -104,7 +112,7 @@ const Analiza = () => {
     ];
 
     const layoutScatter = {
-      title: 'Valoarea totală a facturilor în funcție de data scadenței ',
+      title: 'Valoarea totală a facturilor în funcție de data scadenței',
       xaxis: {
         title: 'Data Scadenței',
       },
@@ -113,7 +121,44 @@ const Analiza = () => {
       },
     };
 
-    Plotly.newPlot('chartDivScatter', dataScatter, layoutScatter);
+    return (
+      <>
+        <Box sx={{ marginTop: '100px', display: 'flex' }}>
+          <div className="chartDiv">{createPlotlyCharts(dataScadenta, valoareTotala, numeFurnizor)}</div>
+
+          <Paper elevation={24} className="paperDiv">
+            <Plot
+              data={dataPie}
+              layout={layoutPie}
+            />
+          </Paper>
+
+          <Paper elevation={24} className="paperDiv">
+            <Plot
+              data={dataScatter}
+              layout={layoutScatter}
+            />
+          </Paper>
+        </Box>
+
+        <Box sx={{ marginTop: '100px', display: 'flex' }}>
+          {/* Graficul 4 */}
+          <Paper elevation={24} className="paperDiv">
+            {/* Adaugă componenta Plot pentru al patrulea grafic aici */}
+          </Paper>
+
+          {/* Graficul 5 */}
+          <Paper elevation={24} className="paperDiv">
+            {/* Adaugă componenta Plot pentru al cincilea grafic aici */}
+          </Paper>
+
+          {/* Graficul 6 */}
+          <Paper elevation={24} className="paperDiv">
+            {/* Adaugă componenta Plot pentru al șaselea grafic aici */}
+          </Paper>
+        </Box>
+      </>
+    );
   }
 
   useEffect(() => {
@@ -127,17 +172,7 @@ const Analiza = () => {
     <>
       <Box sx={{ display: 'flex' }}>
         <Navig />
-        <Box sx={{ marginTop: '100px', display: 'flex' }}>
-          <div className="chartDiv"></div>
-
-          <Paper elevation={24} className="paperDiv">
-            <div id="chartDivPie"></div>
-          </Paper>
-
-          <Paper elevation={24} className="paperDiv">
-            <div id="chartDivScatter"></div>
-          </Paper>
-        </Box>
+        {generateCharts(dataScadenta, numeFurnizor, tipFactura, valoareTotala)}
       </Box>
     </>
   );
