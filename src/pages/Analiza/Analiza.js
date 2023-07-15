@@ -272,43 +272,25 @@ const Analiza = () => {
       <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
         <Navig />
         <div className="chartDiv">{createPlotlyCharts(dataScadenta, valoareTotala, numeFurnizor)}</div>
-        <Paper elevation={24} className="paperDiv" sx={{ marginLeft: '50px' }}>
+        <Paper elevation={24} className="paperDiv" sx={{ marginLeft: '50px' ,
+        width:'400px',
+        height:'400px',}}>
           <Plot
             data={dataPie}
             layout={layoutPie}
           />
         </Paper>
-        <Paper elevation={24} className="paperDiv">
-          <Plot
-            data={dataScatter}
-            layout={layoutScatter}
-          />
-        </Paper>
-        <Paper elevation={24} className="paperDiv">
-          <Plot
-            data={dataLine}
-            layout={layoutLine}
-          />
-        </Paper>
-        <Paper elevation={24} className="paperDiv">
-          <Plot
-            data={dataRadar}
-            layout={layoutRadar}
-          />
-        </Paper>
-        <Paper elevation={24} className="paperDiv">
-          <Plot
-            data={dataScatter2}
-            layout={layoutScatter2}
-          />
-        </Paper>
-        <Paper elevation={24} className="paperDiv">
+
+
+        <Paper elevation={24} className="paperDiv" sx={{width:'400px',height:'400px'}}>
           <Plot
             data={dataBar2}
             layout={layoutBar2}
           />
         </Paper>
-        <Paper elevation={24} className="paperDiv">
+
+
+        <Paper elevation={24} className="paperDiv" sx={{width:'400px',height:'400px'}}>
           <Plot
             data={dataRose}
             layout={layoutRose}
