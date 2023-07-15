@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Grid, Card, CardContent, Typography , Avatar } from '@mui/material';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -8,7 +7,6 @@ import TextField from '@mui/material/TextField';
 import Navig from '../../components/Navig';
 import { collection, query, where, getDocs, onSnapshot } from 'firebase/firestore';
 import { db } from '../../firebaseUtils/firebase_ut';
-import { PieChart, Pie, Cell, Legend } from 'recharts';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import { useUserAuth } from '../../context/userAuthContext';
 import ContactsIcon from '@mui/icons-material/Contacts';
@@ -18,6 +16,7 @@ import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import DescriptionIcon from '@mui/icons-material/Description';
 import PaidIcon from '@mui/icons-material/Paid';
+import { PieChart } from '@mui/x-charts/PieChart';
 
 const Dashboard = () => {
   const { currentUser }=useUserAuth();
@@ -25,7 +24,7 @@ const Dashboard = () => {
   const [datePersonale, setDatePersonale] = useState([]);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [valoareTotala, setValoareTotala] = useState([]);
-  const [totalDePlata, setTotalDePlata]=useState(0);
+  const [totalDePlata, setTotalDePlata]=useState();
   useEffect(() => {
     const q2 = query(collection(db, 'utilizator'), where('emailUtilizator', '==', currentUser));
     const unsub = onSnapshot(q2, (snapshot) => {
@@ -62,23 +61,32 @@ const Dashboard = () => {
   }, [dateFactura]);
 
   useEffect(() => {
-    const total = valoareTotala.reduce((acc, value) => acc + parseFloat(value), 0);
-    setTotalDePlata(total);
-  }, []);
+    let total = 0;
+    dateFactura.forEach((fact) => {
+      const val = parseFloat(fact['valoareTotala']);
+      total += val;
+    });
+    setTotalDePlata(total.toFixed(2));
+  }, [dateFactura]);
+  
  
 
   const calculatePieChartData = () => {
     const data = dateFactura.reduce((acc, factura) => {
       if (factura.numeFurnizor in acc) {
-        acc[factura.numeFurnizor] += 1; 
+        acc[factura.numeFurnizor] += parseFloat(factura.valoareTotala);
       } else {
-        acc[factura.numeFurnizor] = 1; 
+        acc[factura.numeFurnizor] = parseFloat(factura.valoareTotala);
       }
       return acc;
     }, {});
-    return Object.entries(data).map(([numeFurnizor, numarFacturi]) => ({
+
+    const totalPlata = parseFloat(totalDePlata);
+
+    return Object.entries(data).map(([numeFurnizor, valoareFactura]) => ({
       numeFurnizor,
-      numarFacturi,
+      valoareFactura,
+      pondere: (valoareFactura / totalPlata) * 100,
     }));
   };
 
@@ -190,80 +198,45 @@ const Dashboard = () => {
               </CardContent>
             </Card>
           </Grid>
-        </Grid>
 
 
-        <div style={{ width: '600px', height: '300px', margin: '50px' }}>
-          <ResponsiveContainer>
-            <BarChart data={dateFactura}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="numeFurnizor" />
-              <YAxis />
-              <Tooltip />
-              <Bar dataKey="valoareTotala" fill="#311B92" />
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
-        <Grid item xs={12} sm={6} md={6}>
+          <Grid item xs={12} sm={6} md={2.5}>
             <Card
               sx={{
-                height: '400px',
+                width:'300',
+                height: '300px',
                 borderRadius: '20px',
-                backgroundColor: '#d1c4e9',
-                color: '#BBDEFB',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                flexDirection: 'column',
-                padding: '20px',
+                backgroundColor: 'transparent',
+                color: '#311B92',
               }}
             >
-              <Typography variant="h4" sx={{ fontSize: '20px', marginBottom: '20px' }}>
-                Distribuția facturilor pe furnizori
-              </Typography>
-              <PieChart width={450} height={300} style={{marginTop: '20px', marginBottom: '20px'}}>
-                <Pie
-                  data={pieChartData}
-                  dataKey="numarFacturi"
-                  nameKey="numeFurnizor"
-                  cx="50%"
-                  cy="50%"
-                  outerRadius={100}
-                  label={({ cx, cy, midAngle, innerRadius, outerRadius, value, index }) => {
-                    const RADIAN = Math.PI / 180;
-                    const radius = 25 + innerRadius + (outerRadius - innerRadius);
-                    const x = cx + radius * Math.cos(-midAngle * RADIAN);
-                    const y = cy + radius * Math.sin(-midAngle * RADIAN);
-                    return (
-                      <text
-                        x={x}
-                        y={y}
-                        fill="#8884d8"
-                        textAnchor={x > cx ? 'start' : 'end'}
-                        dominantBaseline="central"
-                      >
-                        {pieChartData[index].numeFurnizor}
-                      </text>
-                    );
-                  }}
-                >
-                  {pieChartData.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={`#${Math.floor(Math.random() * 16777215).toString(16)}`} />
-                  ))}
-                </Pie>
-                <Tooltip />
-                <Legend />
-              </PieChart>
+              <CardContent>
+          <PieChart
+      series={[
+        
+        {
+          data: pieChartData,
+          cx: 500,
+          cy: 200,
+          innerRadius: 40,
+          outerRadius: 80,
+        },
+      ]}
+      height={300}
+      legend={{ hidden: false }}
+    />
+
+           </CardContent>
             </Card>
           </Grid>
-        {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <DatePicker
-            label="Selectați data"
-            value={selectedDate}
-            onChange={(date) => setSelectedDate(date)}
-            renderInput={(params) => <TextField {...params} />}
-          />
-        </LocalizationProvider> */}
+
+
+
+
+
+
+
+        </Grid>
         </Paper>
       </div>
       </Box>
