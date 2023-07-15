@@ -46,7 +46,14 @@ const Analiza = () => {
     });
 
     generateCharts(dataScadenta, numeFurnizor, tipFactura, valoareTotala);
-  }, [dateFactura]);
+  }, []);
+
+  useEffect(() => {
+    console.log(dataScadenta);
+    console.log(numeFurnizor);
+    console.log(tipFactura);
+    console.log(valoareTotala);
+  }, [dataScadenta, numeFurnizor, tipFactura, valoareTotala]);
 
   function createPlotlyCharts(dataScadenta, valoareTotala, numeFurnizor) {
     const furnizoriUnici = [...new Set(numeFurnizor)];
@@ -302,12 +309,6 @@ const Analiza = () => {
     );
   }
 
-  useEffect(() => {
-    console.log(dataScadenta);
-    console.log(numeFurnizor);
-    console.log(tipFactura);
-    console.log(valoareTotala);
-  }, [dataScadenta, numeFurnizor, tipFactura, valoareTotala]);
 
   return (
     <>
