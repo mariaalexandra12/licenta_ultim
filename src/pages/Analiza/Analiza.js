@@ -7,6 +7,8 @@ import { db } from '../../firebaseUtils/firebase_ut';
 import Plot from 'react-plotly.js';
 import './analiza.css';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 
 import './swiper.css';
@@ -279,6 +281,8 @@ const Analiza = () => {
       <Box sx={{ display: 'flex' }}>
         <Navig />
         <Swiper 
+        style={{marginTop:'100px',
+         height:'550px'}}
         effect={'coverflow'}
         grabCursor={true}
         centeredSlides={true}
@@ -292,34 +296,51 @@ const Analiza = () => {
             modifier:2.5,
           }
         }       
+        className='swiper_container'
+        
         >
+  
           <SwiperSlide>
-            <div className="chartDiv">{createPlotlyCharts(dataScadenta, valoareTotala, numeFurnizor)}</div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <Paper elevation={24} className="paperDiv">
               <Plot
                 data={dataPie}
                 layout={layoutPie}
               />
-            </Paper>
           </SwiperSlide>
+
+
           <SwiperSlide>
-            <Paper elevation={24} className="paperDiv">
               <Plot
                 data={dataBar2}
                 layout={layoutBar2}
               />
-            </Paper>
           </SwiperSlide>
+
+
           <SwiperSlide>
-            <Paper elevation={24} className="paperDiv">
               <Plot
+            
                 data={dataRose}
                 layout={layoutRose}
               />
-            </Paper>
           </SwiperSlide>
+
+        <div className='slider-controler'>
+          <div className='swiper-button-prev slider-arrow'>
+            <ArrowBackIosIcon/>
+          </div>
+
+          <div className='swiper-button-next slider-arrow'>
+            <ArrowForwardIosIcon/>
+          </div>
+
+          <div className='swiper-pagination'>
+
+          </div>
+
+        </div>
+
+
+
         </Swiper>
       </Box>
     </>
