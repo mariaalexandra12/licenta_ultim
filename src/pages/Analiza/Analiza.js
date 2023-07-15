@@ -297,7 +297,11 @@ const Analiza = () => {
           }
         }       
         className='swiper_container'
-        
+        pagination={{el:'.swiper-pagination',clickable:true}}
+        navigation={{
+          nextEl:'swiper-button-next slider-arrow',
+          prevEl:'swiper-button-prev slider-arrow',
+        }}
         >
   
           <SwiperSlide>
