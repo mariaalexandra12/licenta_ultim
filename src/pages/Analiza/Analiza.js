@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Navig from "../../components/Navig";
-import { Box, Paper } from '@mui/material';
+import { Box, CardContent, Paper, Typography } from '@mui/material';
 import { useUserAuth } from '../../context/userAuthContext';
 import { collection, query, where, onSnapshot } from 'firebase/firestore';
 import { db } from '../../firebaseUtils/firebase_ut';
@@ -9,6 +9,7 @@ import './analiza.css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import Card from '@mui/material/Card';
 
 
 import './swiper.css';
@@ -144,6 +145,7 @@ const Analiza = () => {
 
   const layoutPie = {
     title: 'Valoarea totală a facturilor în funcție de furnizori',
+  
   };
 
   const dataScatter = [
@@ -280,6 +282,7 @@ const Analiza = () => {
     <>
       <Box sx={{ display: 'flex' }}>
         <Navig />
+       
         <Swiper 
         style={{marginTop:'100px',
          height:'550px'}}
@@ -305,27 +308,49 @@ const Analiza = () => {
         >
   
           <SwiperSlide>
+            <Card style={{width:'800px',
+            marginLeft:'200px',
+            borderRadius:'150px',
+            }}>
+              <CardContent>
               <Plot
+                style={{height:'450px'}}
                 data={dataPie}
                 layout={layoutPie}
               />
+              </CardContent>
+              </Card>
           </SwiperSlide>
 
 
           <SwiperSlide>
+          <Card style={{width:'800px',
+            marginLeft:'200px',
+            borderRadius:'150px',
+            }}>
+              <CardContent>
               <Plot
                 data={dataBar2}
                 layout={layoutBar2}
               />
+               </CardContent>
+              </Card>
           </SwiperSlide>
 
 
           <SwiperSlide>
+          <Card style={{width:'800px',
+            marginLeft:'200px',
+            borderRadius:'150px',
+            }}>
+              <CardContent>
               <Plot
-            
+
                 data={dataRose}
                 layout={layoutRose}
               />
+              </CardContent>
+              </Card>
           </SwiperSlide>
 
         <div className='slider-controler'>
