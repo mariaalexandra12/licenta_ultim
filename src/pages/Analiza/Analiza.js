@@ -6,6 +6,10 @@ import { collection, query, where, onSnapshot } from 'firebase/firestore';
 import { db } from '../../firebaseUtils/firebase_ut';
 import Plot from 'react-plotly.js';
 import './analiza.css';
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+
+
 
 const Analiza = () => {
   const { currentUser } = useUserAuth();
@@ -269,36 +273,40 @@ const Analiza = () => {
 
   return (
     <>
-      <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
+      <Box sx={{ display: 'flex' }}>
         <Navig />
-        <div className="chartDiv">{createPlotlyCharts(dataScadenta, valoareTotala, numeFurnizor)}</div>
-        <Paper elevation={24} className="paperDiv" sx={{ marginLeft: '50px' ,
-        width:'400px',
-        height:'400px',}}>
-          <Plot
-            data={dataPie}
-            layout={layoutPie}
-          />
-        </Paper>
-
-
-        <Paper elevation={24} className="paperDiv" sx={{width:'400px',height:'400px'}}>
-          <Plot
-            data={dataBar2}
-            layout={layoutBar2}
-          />
-        </Paper>
-
-
-        <Paper elevation={24} className="paperDiv" sx={{width:'400px',height:'400px'}}>
-          <Plot
-            data={dataRose}
-            layout={layoutRose}
-          />
-        </Paper>
+        <Swiper>
+          <SwiperSlide>
+            <div className="chartDiv">{createPlotlyCharts(dataScadenta, valoareTotala, numeFurnizor)}</div>
+          </SwiperSlide>
+          <SwiperSlide>
+            <Paper elevation={24} className="paperDiv">
+              <Plot
+                data={dataPie}
+                layout={layoutPie}
+              />
+            </Paper>
+          </SwiperSlide>
+          <SwiperSlide>
+            <Paper elevation={24} className="paperDiv">
+              <Plot
+                data={dataBar2}
+                layout={layoutBar2}
+              />
+            </Paper>
+          </SwiperSlide>
+          <SwiperSlide>
+            <Paper elevation={24} className="paperDiv">
+              <Plot
+                data={dataRose}
+                layout={layoutRose}
+              />
+            </Paper>
+          </SwiperSlide>
+        </Swiper>
       </Box>
     </>
   );
-};
+}
 
 export default Analiza;
