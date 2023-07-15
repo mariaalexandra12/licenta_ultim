@@ -9,7 +9,10 @@ import './analiza.css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 
-
+import './swiper.css';
+import './effect-coverflow.css';
+import './navigation.css';
+import './pagination.css';
 
 const Analiza = () => {
   const { currentUser } = useUserAuth();
@@ -275,7 +278,21 @@ const Analiza = () => {
     <>
       <Box sx={{ display: 'flex' }}>
         <Navig />
-        <Swiper>
+        <Swiper 
+        effect={'coverflow'}
+        grabCursor={true}
+        centeredSlides={true}
+        loop={true} 
+        slidesPerView={'auto'}
+        coverflowEffect={
+          {
+            rotate:0,
+            stretch:0,
+            depth:100,
+            modifier:2.5,
+          }
+        }       
+        >
           <SwiperSlide>
             <div className="chartDiv">{createPlotlyCharts(dataScadenta, valoareTotala, numeFurnizor)}</div>
           </SwiperSlide>
