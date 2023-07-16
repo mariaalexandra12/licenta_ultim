@@ -16,7 +16,7 @@ import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import DescriptionIcon from '@mui/icons-material/Description';
 import PaidIcon from '@mui/icons-material/Paid';
-import { PieChart } from '@mui/x-charts';
+import { PieChart} from '@mui/x-charts/PieChart';
 
 
 const Dashboard = () => {
@@ -26,6 +26,7 @@ const Dashboard = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [valoareTotala, setValoareTotala] = useState([]);
   const [totalDePlata, setTotalDePlata]=useState();
+  const [pieChartData, setPieChartData] = useState([]);
   useEffect(() => {
     const q2 = query(collection(db, 'utilizator'), where('emailUtilizator', '==', currentUser));
     const unsub = onSnapshot(q2, (snapshot) => {
@@ -72,6 +73,7 @@ const Dashboard = () => {
   
  
 
+  useEffect(()=>{
   const calculatePieChartData = () => {
     const data = dateFactura.reduce((acc, factura) => {
       if (factura.numeFurnizor in acc) {
@@ -85,13 +87,22 @@ const Dashboard = () => {
     const totalPlata = parseFloat(totalDePlata);
 
     return Object.entries(data).map(([numeFurnizor, valoareFactura]) => ({
-      numeFurnizor,
+      label:numeFurnizor,
       valoareFactura,
       value: (valoareFactura / totalPlata),
     }));
   };
 
-  const pieChartData = calculatePieChartData();
+  setPieChartData(calculatePieChartData());
+
+  },[dateFactura])
+
+  const TOTAL = pieChartData.map((item) => item.value).reduce((a, b) => a + b, 0);
+
+const getArcLabel = (params) => {
+  const percent = params.value / TOTAL;
+  return `${(percent * 100).toFixed(0)}%`;
+};
 
   return (
     <>
@@ -203,35 +214,37 @@ const Dashboard = () => {
 
           <Card
   sx={{
-    width: '400px',
+    marginTop:'20px',
+    marginLeft:'50px',
+    width: '600px',
     height: '400px',
     borderRadius: '20px',
-    backgroundColor: 'red',
+    backgroundColor: 'transparent',
     color: '#311B92',
   }}
 >
   <CardContent>
     <Typography variant="h6" sx={{ fontSize: '20px' }}>
-      Titlul Graficului
+      Ponderea facturilor inregistrate in totalul de plata 
     </Typography>
     <PieChart
       series={[
         {
           data: pieChartData,
-          cx: 200,
-          cy: 200,
-          innerRadius: 40,
-          outerRadius: 80,
+          cx: 150,
+          cy: 150,
+          innerRadius: 90,
+          outerRadius: 150,
+          arcLabel: getArcLabel,
         },
       ]}
-      height={300}
+      sx={{ height: '400px', marginLeft: '100px' }}
       legend={{
         position: 'right',
         align: 'center',
         verticalAlign: 'middle',
         layout: 'vertical',
-        formatter: (label, value) => `${label}: ${value.toFixed(2)}%`,
-      }}
+        formatter: (label, value) => `${label}: ${value.toFixed(2)}%`,}}
     />
   </CardContent>
 </Card>
