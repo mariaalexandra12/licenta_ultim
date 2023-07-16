@@ -122,6 +122,8 @@ const getArcLabel = (params) => {
                 borderRadius: '20px',
                 backgroundColor: '#BBDEFB',
                 color: '#311B92',
+                overflow:'hidden',
+                zIndex:'10',
               }}
             >
               <CardContent>
@@ -152,6 +154,8 @@ const getArcLabel = (params) => {
                 borderRadius: '20px',
                 backgroundColor: '#C5CAE9',
                 color: '#311B92',
+                overflow:'hidden',
+                zIndex:'10',
               }}
             >
               <CardContent>
@@ -177,7 +181,8 @@ const getArcLabel = (params) => {
                 borderRadius: '20px',
                 backgroundColor: '#BBDEFB',
                 color: '#311B92',
-                
+                overflow:'hidden',
+                zIndex:'10',
               }}
             >
               <CardContent sx={{position: 'relative'}}>
@@ -205,6 +210,8 @@ const getArcLabel = (params) => {
                 borderRadius: '20px',
                 backgroundColor: '#B3E5FC',
                 color: '#311B92',
+                overflow:'hidden',
+                zIndex:'10',
               }}
             >
               <CardContent>
