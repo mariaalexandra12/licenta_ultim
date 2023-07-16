@@ -16,7 +16,7 @@ import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import DescriptionIcon from '@mui/icons-material/Description';
 import PaidIcon from '@mui/icons-material/Paid';
-import { PieChart } from '@mui/x-charts';
+import { PieChart } from '@mui/x-charts/PieChart';
 
 
 
@@ -272,7 +272,19 @@ useEffect(() => {
     <Typography variant="h6" sx={{ fontSize: '20px' }}>
       Ponderea facturilor inregistrate in totalul de plata 
     </Typography>
-   
+    <PieChart
+      series={[
+        {
+          data: pieChartData,
+          cx: 500,
+          cy: 200,
+          innerRadius: 40,
+          outerRadius: 80,
+        },
+      ]}
+      height={300}
+      legend={{ hidden: true }}
+    />
 
   </CardContent>
 </Card>
