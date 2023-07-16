@@ -16,7 +16,7 @@ import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import DescriptionIcon from '@mui/icons-material/Description';
 import PaidIcon from '@mui/icons-material/Paid';
-import { PieChart} from '@mui/x-charts/PieChart';
+import { PieChart} from '@mui/x-charts';
 
 
 const Dashboard = () => {
