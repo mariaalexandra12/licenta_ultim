@@ -21,6 +21,7 @@ import { PieChart } from '@mui/x-charts';
 
 const Dashboard = () => {
   const { currentUser }=useUserAuth();
+  const [ultimaFactura, setUltimaFactura] = useState(null);
   const [dateFactura, setDateFactura] = useState([]);
   const [datePersonale, setDatePersonale] = useState([]);
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -99,6 +100,25 @@ const getArcLabel = (params) => {
   const percent = params.value / TOTAL;
   return `${(percent * 100).toFixed(0)}%`;
 };
+
+useEffect(() => {
+  const q2 = query(collection(db, 'factura'));
+  const unsub = onSnapshot(q2, (snapshot) => {
+    const items = [];
+    snapshot.forEach((doc) => {
+      items.push(doc.data());
+    });
+    setDateFactura(items);
+
+    // Obține ultima factură adăugată
+    const ultimaFacturaAdaugata = items[items.length - 1];
+    setUltimaFactura(ultimaFacturaAdaugata);
+  });
+  return () => {
+    unsub();
+  };
+}, []);
+
 
   return (
     <>
@@ -213,8 +233,22 @@ const getArcLabel = (params) => {
               }}
             >
               <CardContent sx={{zIndex:'10'}}>
-                <Typography variant="h6" sx={{zIndex:'2'}}>Card 4</Typography>
-                {/* Adăugați conținutul dorit pentru cardul 4 */}
+                <Typography variant="h6" sx={{zIndex:'2'}}>Ultima factura inregistrata</Typography>
+                {ultimaFactura ? (
+      <>
+        <Typography variant="body1" sx={{zIndex:'2'}}>
+          Nume furnizor: {ultimaFactura.numeFurnizor}
+        </Typography>
+        <Typography variant="body1" sx={{zIndex:'2'}}>
+          Valoare totală: {ultimaFactura.valoareTotala}
+        </Typography>
+         Data scadenta : {ultimaFactura.dataScadenta}
+      </>
+    ) : (
+      <Typography variant="body1" sx={{zIndex:'2'}}>
+        Nu există facturi înregistrate.
+      </Typography>
+    )}
               </CardContent>
             </Card>
           </Grid>
