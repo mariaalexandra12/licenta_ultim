@@ -17,7 +17,7 @@ import Box from '@mui/material/Box';
 import DescriptionIcon from '@mui/icons-material/Description';
 import PaidIcon from '@mui/icons-material/Paid';
 import { PieChart } from '@mui/x-charts';
-
+import './dashboard.css'
 
 const Dashboard = () => {
   const { currentUser }=useUserAuth();
@@ -174,9 +174,11 @@ const getArcLabel = (params) => {
                 borderRadius: '20px',
                 backgroundColor: '#BBDEFB',
                 color: '#311B92',
+                
               }}
             >
-              <CardContent>
+              <CardContent sx={{position: 'relative'}}>
+               <div className='line'></div>
               <Avatar sx={{ backgroundColor: '#673ab7', marginBottom: '10px' }}>
                 <PaidIcon />
               </Avatar>
@@ -186,6 +188,7 @@ const getArcLabel = (params) => {
               <Typography variant="h4" sx={{ fontSize: '20px' }}>
                 Total de plata
               </Typography>
+              
               </CardContent>
             </Card>
           </Grid>
