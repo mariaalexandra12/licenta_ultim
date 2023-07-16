@@ -20,34 +20,46 @@
     animation: glowing-line 3s infinite;
   }
   
-  @keyframes border-glow {
-    0% {
-      box-shadow: 0 0 0 0px #0328ae;
+  @keyframes rotate {
+    0%{
+        transform: rotate(0deg);
     }
-    50% {
-      box-shadow: 0 0 0 10px #0328ae;
+    100%{
+        transform: rotate(-360deg);
     }
-    100% {
-      box-shadow: 0 0 0 0px #0328ae;
-    }
-  }
+}
   
   .border-animation {
-    animation: border-glow 3s infinite;
+    animation: rotate 3s infinite;
     position: relative;
     overflow: hidden;
   }
   
   .border-animation::before {
     content: "";
+    background-image: conic-gradient(
+        #ff0052 20deg,
+        transparent 120deg
+    );
+    width: 150%;
+    height: 150%;
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border: 2px solid #0328ae;
-    border-radius: 20px;
-    opacity: 0;
-    animation: border-glow 3s infinite;
+    animation: rotate 2s linear infinite;
+  }
+
+  .border-animation::after{
+    content: "Animation";
+    width: 190px;
+    height: 190px;
+    background: #101010;
+    position: absolute;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ff0052;
+    font-size: larger;
+    letter-spacing: 5px;
+    box-shadow: inset 20px 20px 20px #0000008c;
   }
   
