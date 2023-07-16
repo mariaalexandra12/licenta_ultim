@@ -4,7 +4,7 @@
     width: 150px;
     height: 150px;
     background: linear-gradient(#00ccff,#d400d4);
-    animation: animate 5s linear infinite;
+    animation: animate 4s linear infinite;
   }
   
   @keyframes animate {
@@ -12,6 +12,6 @@
         transform:rotate(0deg);
     }
     100%{
-        tranform:rotate(360deg);
+        tranform:rotate(-360deg);
     }
   }
