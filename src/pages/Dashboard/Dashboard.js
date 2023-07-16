@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Grid, Card, CardContent, Typography , Avatar } from '@mui/material';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { StaticDateTimePicker } from '@mui/x-date-pickers/StaticDateTimePicker';
 import TextField from '@mui/material/TextField';
 import Navig from '../../components/Navig';
 import { collection, query, where, getDocs, onSnapshot } from 'firebase/firestore';
@@ -17,6 +17,7 @@ import Box from '@mui/material/Box';
 import DescriptionIcon from '@mui/icons-material/Description';
 import PaidIcon from '@mui/icons-material/Paid';
 import { PieChart } from '@mui/x-charts';
+
 
 
 const Dashboard = () => {
@@ -225,7 +226,7 @@ useEffect(() => {
             <Card
               className="border-animation"
               sx={{
-                height: '170px',
+                height: '180px',
                 borderRadius: '20px',
                 backgroundColor: '#B3E5FC',
                 color: '#311B92',
@@ -292,13 +293,13 @@ useEffect(() => {
   </CardContent>
 </Card>
 
-
-
-
-
-
-
-
+<Card sx={{marginTop:'20px'}}>
+  <CardContent>
+     <LocalizationProvider dateAdapter={AdapterDayjs}>
+         <StaticDateTimePicker orientation="landscape" />
+     </LocalizationProvider>
+     </CardContent>
+   </Card>
         </Grid>
         </Paper>
       </div>
