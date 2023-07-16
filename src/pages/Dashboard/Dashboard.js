@@ -199,7 +199,7 @@ const getArcLabel = (params) => {
 
           <Grid item xs={12} sm={6} md={2.5}>
             <Card
-            
+              className="border-animation"
               sx={{
                 height: '170px',
                 borderRadius: '20px',
@@ -207,7 +207,7 @@ const getArcLabel = (params) => {
                 color: '#311B92',
               }}
             >
-              <CardContent className="border-animation">
+              <CardContent>
                 <Typography variant="h6">Card 4</Typography>
                 {/* Adăugați conținutul dorit pentru cardul 4 */}
               </CardContent>
