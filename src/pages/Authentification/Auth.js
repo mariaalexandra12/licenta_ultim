@@ -259,11 +259,11 @@ function Auth(){
             flexDirection:"column",
             marginLeft:'90px'
           }}>
-              <Grid item xs>
+              {/* <Grid item xs>
                 <Link href="/forget" color='#283593' underline="hover">
                   Ai uitat parola?
                 </Link>
-              </Grid>
+              </Grid> */}
               <Grid item>
                 <Link href="/signUp" color='#283593' underline="hover" >
                   {"Nu ai un cont?Creeaza-ti unul!"}
