@@ -151,11 +151,6 @@ const Facturi = () => {
             </IconButton>
           </Tooltip>
 
-          <Tooltip title="Vizualizeaza factura">
-            <IconButton onClick={handleView}>
-              <VisibilityIcon />
-            </IconButton>
-          </Tooltip>
         </div>
       ),
     },
