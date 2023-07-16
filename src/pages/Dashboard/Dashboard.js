@@ -84,12 +84,12 @@ const Dashboard = () => {
       return acc;
     }, {});
 
-    const totalPlata = parseFloat(totalDePlata);
+    // const totalPlata = parseFloat(totalDePlata);
 
     return Object.entries(data).map(([numeFurnizor, valoareFactura]) => ({
       label:numeFurnizor,
-      valoareFactura,
-      value: (valoareFactura / totalPlata),
+      value:valoareFactura,
+      // value: (valoareFactura / totalPlata),
     }));
   };
 
@@ -103,6 +103,10 @@ const getArcLabel = (params) => {
   const percent = params.value / TOTAL;
   return `${(percent * 100).toFixed(0)}%`;
 };
+
+useEffect(()=>{
+  console.log(pieChartData);
+})
 
   return (
     <>
@@ -213,28 +217,28 @@ const getArcLabel = (params) => {
 
 
           <Card
-  sx={{
-    marginTop:'20px',
-    marginLeft:'50px',
-    width: '600px',
-    height: '400px',
-    borderRadius: '20px',
-    backgroundColor: 'transparent',
-    color: '#311B92',
-  }}
->
-  <CardContent>
-    <Typography variant="h6" sx={{ fontSize: '20px' }}>
-      Ponderea facturilor inregistrate in totalul de plata 
-    </Typography>
-    <PieChart
-      series={[
-        {
-          data: pieChartData,
-          cx: 150,
-          cy: 150,
-          innerRadius: 90,
-          outerRadius: 150,
+           sx={{
+            marginTop:'20px',
+            marginLeft:'50px',
+            width: '600px',
+            height: '400px',
+            borderRadius: '20px',
+            backgroundColor: 'transparent',
+            color: '#311B92',
+           }}
+           >
+          <CardContent>
+            <Typography variant="h6" sx={{ fontSize: '20px' }}>
+            Ponderea facturilor inregistrate in totalul de plata 
+            </Typography>
+         <PieChart
+          series={[
+            {
+              data: pieChartData,
+              cx: 150,
+              cy: 150,
+              innerRadius: 90,
+              outerRadius: 150,
           arcLabel: getArcLabel,
         },
       ]}
