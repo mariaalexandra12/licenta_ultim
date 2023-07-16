@@ -123,7 +123,7 @@ const getArcLabel = (params) => {
                 backgroundColor: '#BBDEFB',
                 color: '#311B92',
                 overflow:'hidden',
-                zIndex:'10',
+              
               }}
             >
               <CardContent>
@@ -132,10 +132,11 @@ const getArcLabel = (params) => {
               </Avatar>
               {datePersonale.map((pers)=>(
                 <>
-                 <Typography variant="h6" sx={{ fontSize: '20px' }}>
+                 <Typography variant="h6" sx={{ fontSize: '20px',zIndex:'2' }}>
                 Bine ai venit , 
               </Typography>
-              <Typography variant="h6" sx={{ fontSize: '20px', marginTop: '10px' }}>
+              <Typography variant="h6" sx={{ fontSize: '20px', marginTop: '10px' ,
+              zIndex:'2'}}>
                 {pers['nume']} {pers['prenume']}! 
               </Typography>
                 </>
@@ -155,17 +156,16 @@ const getArcLabel = (params) => {
                 backgroundColor: '#C5CAE9',
                 color: '#311B92',
                 overflow:'hidden',
-                zIndex:'10',
               }}
             >
               <CardContent>
               <Avatar sx={{ backgroundColor: '#673ab7', marginBottom: '10px' }}>
                 <DescriptionIcon />
               </Avatar>
-              <Typography variant="h6" sx={{ fontSize: '35px' }}>
+              <Typography variant="h6" sx={{ fontSize: '35px',zIndex:'2' }}>
                 {dateFactura.length}
               </Typography>
-              <Typography variant="h4" sx={{ fontSize: '20px' }}>
+              <Typography variant="h4" sx={{ fontSize: '20px',zIndex:'2' }}>
                 Total facturi înregistrate
               </Typography>
               </CardContent>
@@ -182,7 +182,7 @@ const getArcLabel = (params) => {
                 backgroundColor: '#BBDEFB',
                 color: '#311B92',
                 overflow:'hidden',
-                zIndex:'10',
+
               }}
             >
               <CardContent sx={{position: 'relative'}}>
@@ -190,10 +190,10 @@ const getArcLabel = (params) => {
               <Avatar sx={{ backgroundColor: '#673ab7', marginBottom: '10px' }}>
                 <PaidIcon />
               </Avatar>
-              <Typography variant="h6" sx={{ fontSize: '35px' }}>
+              <Typography variant="h6" sx={{ fontSize: '35px',zIndex:'2' }}>
                 {totalDePlata}
               </Typography>
-              <Typography variant="h4" sx={{ fontSize: '20px' }}>
+              <Typography variant="h4" sx={{ fontSize: '20px',zIndex:'2' }}>
                 Total de plata
               </Typography>
               
@@ -211,11 +211,10 @@ const getArcLabel = (params) => {
                 backgroundColor: '#B3E5FC',
                 color: '#311B92',
                 overflow:'hidden',
-                zIndex:'10',
               }}
             >
               <CardContent>
-                <Typography variant="h6">Card 4</Typography>
+                <Typography variant="h6" sx={{zIndex:'2'}}>Card 4</Typography>
                 {/* Adăugați conținutul dorit pentru cardul 4 */}
               </CardContent>
             </Card>
