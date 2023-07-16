@@ -18,6 +18,7 @@ import DescriptionIcon from '@mui/icons-material/Description';
 import PaidIcon from '@mui/icons-material/Paid';
 import { PieChart } from '@mui/x-charts';
 
+
 const Dashboard = () => {
   const { currentUser }=useUserAuth();
   const [dateFactura, setDateFactura] = useState([]);
@@ -86,7 +87,7 @@ const Dashboard = () => {
     return Object.entries(data).map(([numeFurnizor, valoareFactura]) => ({
       numeFurnizor,
       valoareFactura,
-      pondere: (valoareFactura / totalPlata) * 100,
+      value: (valoareFactura / totalPlata),
     }));
   };
 
@@ -200,34 +201,41 @@ const Dashboard = () => {
           </Grid>
 
 
-          <Grid item xs={12} sm={6} md={2.5}>
-            <Card
-              sx={{
-                width:'400',
-                height: '400px',
-                borderRadius: '20px',
-                backgroundColor: 'red',
-                color: '#311B92',
-              }}
-            >
-              <CardContent>
-          <PieChart
-      series={[   
+          <Card
+  sx={{
+    width: '400px',
+    height: '400px',
+    borderRadius: '20px',
+    backgroundColor: 'red',
+    color: '#311B92',
+  }}
+>
+  <CardContent>
+    <Typography variant="h6" sx={{ fontSize: '20px' }}>
+      Titlul Graficului
+    </Typography>
+    <PieChart
+      series={[
         {
           data: pieChartData,
-          cx: 500,
+          cx: 200,
           cy: 200,
           innerRadius: 40,
           outerRadius: 80,
         },
       ]}
       height={300}
-      legend={{ hidden: false }}
+      legend={{
+        position: 'right',
+        align: 'center',
+        verticalAlign: 'middle',
+        layout: 'vertical',
+        formatter: (label, value) => `${label}: ${value.toFixed(2)}%`,
+      }}
     />
+  </CardContent>
+</Card>
 
-           </CardContent>
-            </Card>
-          </Grid>
 
 
 
