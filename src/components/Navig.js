@@ -238,24 +238,6 @@ const [navOpen, setNavOpen] = useState(true);
                 </Tooltip>
               </ListItem>
 
-              <div className="facturiButton">
-                <ListItem onClick={() => navigate('/facturi')}
-                sx={{
-                  '&:hover': {
-        backgroundColor: 'white',
-        borderRadius: '300px',
-             },}}  >
-                  <Tooltip title='Facturi'>
-                  <ListItemButton >
-                    <ListItemIcon style={{ color: '#283593' }}>
-                      <ReceiptIcon />
-                    </ListItemIcon>
-                    <Typography variant='h6' >Facturi</Typography>
-                  </ListItemButton>
-                  </Tooltip>
-                </ListItem>
-              </div>
-     
 
               <div className="adaugaButton">
                 <ListItem onClick={() => navigate('/adaugaFacturi')} 
@@ -274,7 +256,25 @@ const [navOpen, setNavOpen] = useState(true);
                   </Tooltip>
                 </ListItem>
               </div>
-         
+
+              <div className="facturiButton">
+                <ListItem onClick={() => navigate('/facturi')}
+                sx={{
+                  '&:hover': {
+        backgroundColor: 'white',
+        borderRadius: '300px',
+             },}}  >
+                  <Tooltip title='Facturi'>
+                  <ListItemButton >
+                    <ListItemIcon style={{ color: '#283593' }}>
+                      <ReceiptIcon />
+                    </ListItemIcon>
+                    <Typography variant='h6' >Facturi</Typography>
+                  </ListItemButton>
+                  </Tooltip>
+                </ListItem>
+              </div>
+     
 
               <div className="analizaButton">
                 <ListItem onClick={() => navigate('/analiza')}
