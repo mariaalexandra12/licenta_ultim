@@ -226,7 +226,7 @@ useEffect(() => {
             <Card
               className="border-animation"
               sx={{
-                height: '180px',
+                height: '200px',
                 borderRadius: '20px',
                 backgroundColor: '#B3E5FC',
                 color: '#311B92',
@@ -244,7 +244,11 @@ useEffect(() => {
           Valoare totală: {ultimaFactura.valoareTotala}
         </Typography>
          Data scadenta : {ultimaFactura.dataScadenta}
+         <Typography variant="body1" sx={{zIndex:'2'}}>
+          Tip Factura: {ultimaFactura.tipFactura}
+        </Typography>
       </>
+      
     ) : (
       <Typography variant="body1" sx={{zIndex:'2'}}>
         Nu există facturi înregistrate.
@@ -270,30 +274,16 @@ useEffect(() => {
     <Typography variant="h6" sx={{ fontSize: '20px' }}>
       Ponderea facturilor inregistrate in totalul de plata 
     </Typography>
-    <PieChart
-      series={[
-        {
-          data: pieChartData,
-          cx: 150,
-          cy: 150,
-          innerRadius: 90,
-          outerRadius: 150,
-          arcLabel: getArcLabel,
-        },
-      ]}
-      sx={{ height: '400px', marginLeft: '100px' }}
-      legend={{
-        position: 'right',
-        markSize:'108',
-        align: 'center',
-        verticalAlign: 'middle',
-        layout: 'vertical',
-        formatter: (label, value) => `${label}: ${value.toFixed(2)}%`,}}
-    />
+    {/* <PieChart
+  data={pieChartData}
+  radius={60}
+  label={({ dataEntry }) => `${dataEntry.label}: ${dataEntry.value.toFixed(2)}%`}
+/> */}
+
   </CardContent>
 </Card>
 
-<Card sx={{marginTop:'20px'}}>
+<Card sx={{marginTop:'20px',marginLeft:'40px'}}>
   <CardContent>
      <LocalizationProvider dateAdapter={AdapterDayjs}>
          <StaticDateTimePicker orientation="landscape" />
