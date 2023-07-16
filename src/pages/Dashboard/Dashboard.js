@@ -17,7 +17,7 @@ import Box from '@mui/material/Box';
 import DescriptionIcon from '@mui/icons-material/Description';
 import PaidIcon from '@mui/icons-material/Paid';
 import { PieChart } from '@mui/x-charts/PieChart';
-
+import ReceiptIcon from '@mui/icons-material/Receipt';
 
 
 const Dashboard = () => {
@@ -220,7 +220,7 @@ useEffect(() => {
           </Grid>
 
 
-          <Grid item xs={12} sm={6} md={2.5}>
+          <Grid item xs={12} sm={6} md={2.8}>
             <Card
               className="border-animation"
               sx={{
@@ -231,18 +231,21 @@ useEffect(() => {
                 overflow:'hidden',
               }}
             >
-              <CardContent sx={{zIndex:'10'}}>
-                <Typography variant="h6" sx={{zIndex:'2'}}>Ultima factura inregistrata</Typography>
+              <CardContent >
+                <Avatar sx={{ backgroundColor: '#673ab7',marginLeft:'200px' }}>
+                  <ReceiptIcon/>
+                </Avatar>
+                <Typography variant="h6" sx={{marginTop:'-45px'}} >Ultima factura inregistrata</Typography>
                 {ultimaFactura ? (
       <>
-        <Typography variant="body1" sx={{zIndex:'2'}}>
+        <Typography variant="body1">
           Nume furnizor: {ultimaFactura.numeFurnizor}
         </Typography>
-        <Typography variant="body1" sx={{zIndex:'2'}}>
+        <Typography variant="body1">
           Valoare totală: {ultimaFactura.valoareTotala}
         </Typography>
          Data scadenta : {ultimaFactura.dataScadenta}
-         <Typography variant="body1" sx={{zIndex:'2'}}>
+         <Typography variant="body1">
           Tip Factura: {ultimaFactura.tipFactura}
         </Typography>
       </>
