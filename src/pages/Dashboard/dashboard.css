@@ -1,8 +1,8 @@
 @keyframes rotate {
-    0% {
+    from{
       transform: rotate(0deg);
     }
-    100% {
+    to{
       transform: rotate(-360deg);
     }
   }
@@ -22,7 +22,15 @@
     height: calc(100% + 4px);
     border: 2px solid #0328ae;
     border-radius: 20px;
-    animation: rotate 3s infinite;
-    z-index: 1;
+    animation: rotate 4s linear infinite;
+    z-index: 2;
+  }
+
+  .border-animation::after{
+    content:'';
+    position: absolute;
+    background:transparent;
+    inset: 10px;
+    border-radius: 20px;
   }
   
