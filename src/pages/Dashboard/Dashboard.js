@@ -110,8 +110,6 @@ useEffect(() => {
       items.push(doc.data());
     });
     setDateFactura(items);
-
-    // Obține ultima factură adăugată
     const ultimaFacturaAdaugata = items[items.length - 1];
     setUltimaFactura(ultimaFacturaAdaugata);
   });
@@ -274,11 +272,7 @@ useEffect(() => {
     <Typography variant="h6" sx={{ fontSize: '20px' }}>
       Ponderea facturilor inregistrate in totalul de plata 
     </Typography>
-    {/* <PieChart
-  data={pieChartData}
-  radius={60}
-  label={({ dataEntry }) => `${dataEntry.label}: ${dataEntry.value.toFixed(2)}%`}
-/> */}
+   
 
   </CardContent>
 </Card>
