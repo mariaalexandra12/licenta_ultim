@@ -17,7 +17,7 @@ import Box from '@mui/material/Box';
 import DescriptionIcon from '@mui/icons-material/Description';
 import PaidIcon from '@mui/icons-material/Paid';
 import { PieChart } from '@mui/x-charts';
-import './dashboard.css'
+
 
 const Dashboard = () => {
   const { currentUser }=useUserAuth();
@@ -126,7 +126,7 @@ const getArcLabel = (params) => {
               
               }}
             >
-              <CardContent>
+              <CardContent sx={{zIndex:'10'}}>
               <Avatar sx={{ backgroundColor: '#673ab7', marginBottom: '10px' }}>
                 <ContactsIcon />
               </Avatar>
@@ -158,7 +158,7 @@ const getArcLabel = (params) => {
                 overflow:'hidden',
               }}
             >
-              <CardContent>
+              <CardContent sx={{zIndex:'10'}}>
               <Avatar sx={{ backgroundColor: '#673ab7', marginBottom: '10px' }}>
                 <DescriptionIcon />
               </Avatar>
@@ -185,15 +185,14 @@ const getArcLabel = (params) => {
 
               }}
             >
-              <CardContent sx={{position: 'relative'}}>
-               <div className='line'></div>
+              <CardContent sx={{position: 'relative',zIndex:'10'}}>
               <Avatar sx={{ backgroundColor: '#673ab7', marginBottom: '10px' }}>
                 <PaidIcon />
               </Avatar>
-              <Typography variant="h6" sx={{ fontSize: '35px',zIndex:'2' }}>
+              <Typography variant="h6" sx={{ fontSize: '35px',zIndex:'10' }}>
                 {totalDePlata}
               </Typography>
-              <Typography variant="h4" sx={{ fontSize: '20px',zIndex:'2' }}>
+              <Typography variant="h4" sx={{ fontSize: '20px',zIndex:'10' }}>
                 Total de plata
               </Typography>
               
@@ -213,7 +212,7 @@ const getArcLabel = (params) => {
                 overflow:'hidden',
               }}
             >
-              <CardContent>
+              <CardContent sx={{zIndex:'10'}}>
                 <Typography variant="h6" sx={{zIndex:'2'}}>Card 4</Typography>
                 {/* Adăugați conținutul dorit pentru cardul 4 */}
               </CardContent>
