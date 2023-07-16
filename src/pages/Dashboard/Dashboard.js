@@ -114,6 +114,7 @@ const getArcLabel = (params) => {
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6} md={3}>
             <Card
+            className="border-animation"
               sx={{
                 display:'flex',
                 marginLeft:'20px',
@@ -145,6 +146,7 @@ const getArcLabel = (params) => {
 
           <Grid item xs={12} sm={6} md={3}>
             <Card
+            className="border-animation"
               sx={{
                 height: '170px',
                 borderRadius: '20px',
@@ -169,6 +171,7 @@ const getArcLabel = (params) => {
 
           <Grid item xs={12} sm={6} md={3}>
             <Card
+            className="border-animation"
               sx={{
                 height: '170px',
                 borderRadius: '20px',
@@ -196,6 +199,7 @@ const getArcLabel = (params) => {
 
           <Grid item xs={12} sm={6} md={2.5}>
             <Card
+            className="border-animation"
               sx={{
                 height: '170px',
                 borderRadius: '20px',
