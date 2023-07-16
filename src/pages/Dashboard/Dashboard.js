@@ -99,7 +99,7 @@ const Dashboard = () => {
 
 const getArcLabel = (params) => {
   const percent = params.value / TOTAL;
-  return `${(percent * 100).toFixed(0)}%`;
+  return `${(percent).toFixed(0)}%`;
 };
 
 useEffect(() => {
@@ -276,16 +276,16 @@ useEffect(() => {
       series={[
         {
           data: pieChartData,
-          cx: 500,
-          cy: 200,
-          innerRadius: 40,
-          outerRadius: 80,
+          cx: 150,
+          cy: 150,
+          innerRadius: 80,
+          outerRadius: 150,
         },
       ]}
       height={300}
-      legend={{ hidden: true }}
+      
     />
-
+     
   </CardContent>
 </Card>
 
